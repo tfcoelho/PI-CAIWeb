@@ -72,11 +72,11 @@ body, html {
     .logo-container {
         top: 20%;
         left: 10%;
-        width: 100%;
+        width: 80%;
     }
 	
 	.logo {
-		width: 80%; /* This will make the logo responsive within the container */
+		width: 100%; /* This will make the logo responsive within the container */
 	}
 	
 
