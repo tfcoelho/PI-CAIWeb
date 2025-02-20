@@ -9,6 +9,15 @@
   	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="theme-color" content="#111820">
     <title>PI-CAI</title>
+	<script>
+        function adjustBodyHeight() {
+            const vh = window.innerHeight * 0.01;
+            document.documentElement.style.setProperty('--vh', `${vh}px`);
+        }
+
+        window.addEventListener('resize', adjustBodyHeight);
+        window.addEventListener('DOMContentLoaded', adjustBodyHeight); // Ensure it runs once the DOM is fully loaded
+    </script>
 </head>
 <body>
     <div class="background-image">
