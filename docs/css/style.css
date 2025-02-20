@@ -13,9 +13,10 @@
 }
 
 body, html {
-    height: 100%;
+    height: 100vh;
     margin: 0;
     overflow: hidden;
+	background-color: #111820;
 }
 
 .background-image {
@@ -100,9 +101,6 @@ body, html {
 		margin-top: 20px; /* Space between the logo and the text */
 		font-size: 2rem;
 	}
-	.background-image {
-        width: 100%;
-    }
 }
 
 @media (orientation: landscape) {
