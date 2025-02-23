@@ -56,10 +56,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (currentTouchY < lastTouchY) {
             // Scrolling up
-            showScrollMessage();
+            hideScrollMessage();
         } else {
             // Scrolling down
-            hideScrollMessage();
+			showScrollMessage();
         }
 
         lastTouchY = currentTouchY;
