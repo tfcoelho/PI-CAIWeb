@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!message) return;
 
     let lastScrollTop = 0;
+    let lastTouchY = 0;
 
     function showScrollMessage() {
         message.style.opacity = "1";
@@ -37,9 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 
-    // Prevent default scrolling behavior and show message on wheel or touch
+    // Optional: Add wheel event for immediate feedback on desktop
     document.addEventListener("wheel", function (event) {
-        event.preventDefault(); // Prevent scrolling
         if (event.deltaY > 0) {
             // Scrolling down
             showScrollMessage();
@@ -47,23 +47,21 @@ document.addEventListener("DOMContentLoaded", function () {
             // Scrolling up
             hideScrollMessage();
         }
-    }, { passive: false });
+    }, { passive: true }); // Set to passive to improve performance
 
+    // Handle touch events for mobile
     document.addEventListener("touchmove", function (event) {
-        event.preventDefault(); // Prevent scrolling
         let touch = event.touches[0];
         let currentTouchY = touch.clientY;
 
-        if (currentTouchY > lastTouchY) {
-            // Scrolling down
+        if (currentTouchY < lastTouchY) {
+            // Swiping up (scrolling down)
             showScrollMessage();
         } else {
-            // Scrolling up
+            // Swiping down (scrolling up)
             hideScrollMessage();
         }
 
         lastTouchY = currentTouchY;
-    }, { passive: false });
-
-    let lastTouchY = 0;
+    }, { passive: true }); // Set to passive to improve performance
 });
