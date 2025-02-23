@@ -41,6 +41,11 @@ body, html {
     height: auto;
 }
 
+.arrow-icon {
+    width: 12px; /* Adjust based on your image size */
+    height: auto; /* Maintain aspect ratio */
+}
+
 .vision-text {
     font-family: 'Nunito-Sans', sans-serif;
 	font-weight: 1;
@@ -73,6 +78,58 @@ body, html {
     box-sizing: border-box; /* Ensure padding is included in the width */
 }
 
+.gradient-border-button {
+  border: none;
+  display: inline-block;
+  border-radius: 99px;
+  color: white;
+  position: relative;
+  top: 30px;
+  z-index: 1;
+  font-size: 20px;
+  padding: 17px 35px;
+  font-weight: 200;
+  font-family: 'Nunito-Sans', sans-serif;
+  letter-spacing: 2px;
+}
+
+.gradient-border-button:before, 
+.gradient-border-button:after {
+  content: ' ';
+  position: absolute;
+  border-radius: 99px;
+}
+
+.gradient-border-button:before {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -2;
+  background: #db23a1;
+  background: -moz-linear-gradient(left, #db23a1 0%, #f01160 100%);
+  background: -webkit-gradient(linear, left top, right top, color-stop(0%,#db23a1), color-stop(100%,#f01160));
+  background: -webkit-linear-gradient(left, #db23a1 0%,#f01160 100%);
+  background: -o-linear-gradient(left, #db23a1 0%,#f01160 100%);
+  background: -ms-linear-gradient(left, #db23a1 0%,#f01160 100%);
+  background: linear-gradient(to right, #db23a1 0%,#f01160 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#db23a1', endColorstr='#f01160',GradientType=1 );
+}
+
+.gradient-border-button:after {
+  top: 1px; 
+  bottom: 1px;
+  left: 1px;
+  right: 1px;
+  background-color: #0A0A0B;
+  z-index: -1;
+  opacity: 1;
+  transition: all 0.6s ease-in-out;
+}
+
+.gradient-border-button:hover:after {
+  opacity: 0;
+}
 
 /* Small screens (large smartphones in portrait) */
 
