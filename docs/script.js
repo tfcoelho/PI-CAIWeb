@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let touch = event.touches[0];
         let currentTouchY = touch.clientY;
 
-        if (currentTouchY > lastTouchY) {
+        if (currentTouchY < lastTouchY) {
             // Scrolling up
             showScrollMessage();
         } else {
