@@ -11,7 +11,6 @@ document.addEventListener("DOMContentLoaded", function () {
     if (!message) return;
 
     let lastScrollTop = 0;
-    let lastTouchY = 0;
 
     function showScrollMessage() {
         message.style.opacity = "1";
@@ -27,41 +26,44 @@ document.addEventListener("DOMContentLoaded", function () {
     document.addEventListener("scroll", function () {
         let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
 
-        if (scrollTop > lastScrollTop) {
+        if (scrollTop < lastScrollTop) {
             // Scrolling down
-            showScrollMessage();
+            hideScrollMessage();
         } else {
             // Scrolling up
-            hideScrollMessage();
+            showScrollMessage();
         }
 
         lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
     });
 
-    // Optional: Add wheel event for immediate feedback on desktop
+    // Prevent default scrolling behavior and show message on wheel or touch
     document.addEventListener("wheel", function (event) {
+        event.preventDefault(); // Prevent scrolling
         if (event.deltaY > 0) {
-            // Scrolling down
+            // Scrolling up
             showScrollMessage();
         } else {
-            // Scrolling up
+            // Scrolling down
             hideScrollMessage();
         }
-    }, { passive: false }); // Set to passive to improve performance
+    }, { passive: false });
 
-    // Handle touch events for mobile
     document.addEventListener("touchmove", function (event) {
+        event.preventDefault(); // Prevent scrolling
         let touch = event.touches[0];
         let currentTouchY = touch.clientY;
 
-        if (currentTouchY < lastTouchY) {
-            // Swiping up (scrolling down)
+        if (currentTouchY > lastTouchY) {
+            // Scrolling up
             showScrollMessage();
         } else {
-            // Swiping down (scrolling up)
+            // Scrolling down
             hideScrollMessage();
         }
 
         lastTouchY = currentTouchY;
-    }, { passive: false }); // Set to passive to improve performance
+    }, { passive: false });
+
+    let lastTouchY = 0;
 });
