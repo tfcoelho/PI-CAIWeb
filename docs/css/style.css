@@ -13,10 +13,10 @@
 }
 
 body, html {
-    height: 100vh;
+    height: 100vh;  /* Fix viewport height */
     margin: 0;
-    overflow: hidden;
-	background-color: #111820;
+    overflow: hidden; /* Prevent scrolling */
+    background-color: #111820;
 }
 
 .background-image {
@@ -51,7 +51,23 @@ body, html {
 }
 
 .highlight {
-    color: #db23a1; 
+   color: #db23a1; 
+}
+
+.scroll-message {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+    color: white;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    font-family: 'Nunito-Sans', sans-serif;
+    border-radius: 10px;
+    opacity: 0;  /* Initially hidden */
+    transition: opacity 0.5s ease-in-out;
+    visibility: hidden;
 }
 
 
