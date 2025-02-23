@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Scrolling up
             hideScrollMessage();
         }
-    }, { passive: true }); // Set to passive to improve performance
+    }, { passive: false }); // Set to passive to improve performance
 
     // Handle touch events for mobile
     document.addEventListener("touchmove", function (event) {
@@ -63,5 +63,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         lastTouchY = currentTouchY;
-    }, { passive: true }); // Set to passive to improve performance
+    }, { passive: false }); // Set to passive to improve performance
 });
