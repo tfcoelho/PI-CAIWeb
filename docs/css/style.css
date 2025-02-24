@@ -49,7 +49,7 @@ body, html {
 .vision-text {
     font-family: 'Nunito-Sans', sans-serif;
 	font-weight: 1;
-	line-height: 1.2em;
+	line-height: 0.9em;
     color: white; /* Adjust the color as needed */
     font-size: 44px; /* Adjust size as needed */
     margin-top: 47px; /* Space between the logo and the text */
@@ -57,6 +57,15 @@ body, html {
 
 .highlight {
    color: #db23a1; 
+}
+
+.upperline{
+	font-size: 41.8px;
+	font-weight: 800;
+}
+.underline{
+	font-size: 31.2px;
+	font-weight: 100;
 }
 
 
@@ -135,9 +144,19 @@ body, html {
 
 @media (max-width: 750px) {
 	.vision-text {
-        font-size: 1.7rem;
-		margin-top: 20px;
+		margin-top: 30px;
+		line-height: 0.75em;
     }
+	
+	.upperline{
+		font-size: 35px;
+		font-weight: 800;
+	}
+	.underline{
+		font-size: 26.3px;
+		font-weight: 100;
+	}
+
     .background-image {
         background-size: cover;
     }
@@ -152,7 +171,6 @@ body, html {
 	.logo {
 		width: 100%; /* This will make the logo responsive within the container */
 	}
-	
 
     .background-image::before {
         content: '';
@@ -165,13 +183,27 @@ body, html {
         z-index: 1;
     }
 	.gradient-border-button {
-	  top: 20px;
+	  top: 30px;
 	  font-size: 15px;
       padding: 10px 20px;
 	}
+
+}
+@media (max-width: 600px) {
+	.vision-text {
+		line-height: 0.6em;
+    }
+	.upperline{
+		font-size: 30px;
+		font-weight: 800;
+	}
+	.underline{
+		font-size: 22.7px;
+		font-weight: 100;
+	}
 }
 
-@media (max-height: 450px) {
+@media (max-height: 550px) {
 	.logo-container {
         top: 7%;
         left: 10%;
@@ -183,12 +215,11 @@ body, html {
 		width: 80%; /* This will make the logo responsive within the container */
 	}
 	.vision-text {
-		margin-top: 10px; /* Space between the logo and the text */
-		font-size: 1.7rem;
+		margin-top: 15px; /* Space between the logo and the text */
 	}
 	
 	.gradient-border-button {
-	  top: 10px;
+	  top: 15px;
 	  font-size: 15px;
       padding: 10px 20px;
 	}
