@@ -190,36 +190,41 @@ body, html {
 
 }
 
+/* Media query for screens up to 600px */
 @media (max-width: 600px) {
-	.vision-text {
-		line-height: 0.6em;
+    .vision-text {
+        line-height: 0.6em;
     }
-	.upperline{
-		font-size: 30px;
-		font-weight: 800;
-	}
-	.underline{
-		font-size: 22.7px;
-		font-weight: 100;
-	}
+
+    .upperline {
+        font-size: 30px;
+        font-weight: 800;
+    }
+
+    .underline {
+        font-size: 22.7px;
+        font-weight: 100;
+    }
 }
 
+/* Media query for screens up to 520px */
 @media (max-width: 520px) {
-	.vision-text {
-		line-height: 0.3em;
+    .vision-text {
+        line-height: 0.3em;
     }
-	.upperline{
-		font-size: 21px;
-		font-weight: 800;
-	}
-	.underline{
-		font-size: 16.2px;
-		font-weight: 100;
-	}
+
+    .upperline {
+        font-size: 21px;
+        font-weight: 800;
+    }
+
+    .underline {
+        font-size: 16.2px;
+        font-weight: 100;
+    }
 }
 
-
-@media (max-height: 550px) {
+@media (max-height: 450px) {
 	.logo-container {
         top: 7%;
         left: 10%;
