@@ -41,31 +41,9 @@ body, html {
     height: auto;
 }
 
-.arrow-icon {
-    width: 12px; /* Adjust based on your image size */
-    height: auto; /* Maintain aspect ratio */
-}
-
-.vision-text {
-    font-family: 'Nunito-Sans', sans-serif;
-	font-weight: 1;
-	line-height: 0.9em;
-    color: white; /* Adjust the color as needed */
-    font-size: 44px; /* Adjust size as needed */
-    margin-top: 47px; /* Space between the logo and the text */
-}
-
-.highlight {
-   color: #db23a1; 
-}
-
-.upperline{
-	font-size: 41.8px;
-	font-weight: 800;
-}
-.underline{
-	font-size: 31.2px;
-	font-weight: 100;
+.vision-image {
+	padding-top: 30px;
+    width: 70%;  /* Adjust the width as needed */
 }
 
 
@@ -89,17 +67,19 @@ body, html {
 
 .gradient-border-button {
   border: none;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;  /* Align items vertically */
+  justify-content: center; /* Center content horizontally */
   border-radius: 99px;
   color: white;
   position: relative;
   top: 30px;
   z-index: 1;
-  font-size: 20px;
-  padding: 17px 35px;
+  padding: 12px 20px;
   font-weight: 200;
   font-family: 'Nunito-Sans', sans-serif;
   letter-spacing: 2px;
+  overflow: hidden;  /* Hide the overflow to hide arrow initially */
 }
 
 .gradient-border-button:before, 
@@ -133,30 +113,40 @@ body, html {
   background-color: #0A0A0B;
   z-index: -1;
   opacity: 1;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.4s ease-in-out;
 }
 
 .gradient-border-button:hover:after {
   opacity: 0;
+  transition: all 0.1s ease-in-out;
+}
+
+.arrow-icon {
+  width: 12px;
+  height: auto;
+  transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;  /* Add transition for opacity and position */
+  opacity: 0;  /* Start with the arrow transparent */
+  transform: translateX(5px); /* Start with the arrow moved to the right */
+}
+
+.gradient-border-button:hover .arrow-icon {
+  opacity: 1;  /* Make arrow fully visible on hover */
+  transform: translateX(0px); /* Move arrow to its final position */
+}
+
+.button-text {
+	padding-left: 15px;	
+	font-size: 20px;
+	transition: transform 0.4s ease-in-out;  /* Add transition for text shifting */
+}
+
+.gradient-border-button:hover .button-text {
+  transform: translateX(-10px);  /* Shift text to the left on hover */
 }
 
 /* Small screens (large smartphones in portrait) */
 
 @media (max-width: 750px) {
-	.vision-text {
-		margin-top: 30px;
-		line-height: 0.75em;
-    }
-	
-	.upperline{
-		font-size: 35px;
-		font-weight: 800;
-	}
-	.underline{
-		font-size: 26.3px;
-		font-weight: 100;
-	}
-
     .background-image {
         background-size: cover;
     }
@@ -170,7 +160,11 @@ body, html {
 	
 	.logo {
 		width: 100%; /* This will make the logo responsive within the container */
-	}
+	}	
+	
+	.vision-image {
+        width: 100%;
+    }
 
     .background-image::before {
         content: '';
@@ -184,45 +178,14 @@ body, html {
     }
 	.gradient-border-button {
 	  top: 30px;
-	  font-size: 15px;
-      padding: 10px 20px;
+      padding: 15px 15px;
 	}
-
+	.button-text {
+		padding-left: 15px;	
+		font-size: 15px;
+	}
 }
 
-/* Media query for screens up to 600px */
-@media (max-width: 600px) {
-    .vision-text {
-        line-height: 0.6em;
-    }
-
-    .upperline {
-        font-size: 30px;
-        font-weight: 800;
-    }
-
-    .underline {
-        font-size: 22.7px;
-        font-weight: 100;
-    }
-}
-
-/* Media query for screens up to 520px */
-@media (max-width: 520px) {
-    .vision-text {
-        line-height: 0.3em;
-    }
-
-    .upperline {
-        font-size: 21px;
-        font-weight: 800;
-    }
-
-    .underline {
-        font-size: 16.2px;
-        font-weight: 100;
-    }
-}
 
 @media (max-height: 450px) {
 	.logo-container {
@@ -235,14 +198,14 @@ body, html {
 	.logo {
 		width: 80%; /* This will make the logo responsive within the container */
 	}
-	.vision-text {
-		margin-top: 15px; /* Space between the logo and the text */
-	}
+	.vision-image {
+        width: 80%;
+    }
 	
 	.gradient-border-button {
 	  top: 15px;
-	  font-size: 15px;
-      padding: 10px 20px;
+	  font-size: 10px;
+      padding: 15px 30px;
 	}
 }
 
