@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "name": "Lorem Ipsum",
+    "job": "AI Research Scientist",
+    "role": "Project Leader",
+    "website": "https://example.com/lorem1",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 2,
+    "name": "Lorem Ipsum Dolor",
+    "job": "Software Engineer",
+    "role": "AI Leader",
+    "website": "https://example.com/lorem2",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 3,
+    "name": "Lorem Sit Amet",
+    "job": "Data Scientist",
+    "role": "",
+    "website": "https://example.com/lorem3",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 4,
+    "name": "Dolor Sit Ipsum",
+    "job": "Research Director",
+    "role": "",
+    "website": "https://example.com/lorem4",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 5,
+    "name": "Ipsum Consectetur",
+    "job": "UX Designer",
+    "role": "",
+    "website": "https://example.com/lorem5",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 6,
+    "name": "Adipiscing Elit",
+    "job": "ML Engineer",
+    "role": "",
+    "website": "https://example.com/lorem6",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 7,
+    "name": "Consectetur Adipiscing",
+    "job": "Backend Developer",
+    "role": "",
+    "website": "https://example.com/lorem7",
+    "picture_path": "people/no_pfp.jpg"
+  },
+  {
+    "id": 8,
+    "name": "Sed Do Eiusmod",
+    "job": "Product Manager",
+    "role": "",
+    "website": "https://example.com/lorem8",
+    "picture_path": "people/no_pfp.jpg"
+  }
+] 
