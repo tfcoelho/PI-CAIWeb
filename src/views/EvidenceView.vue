@@ -28,47 +28,47 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue'
-import { marked } from 'marked'
-import { evidenceService } from '@/services/evidenceService'
+import { ref, onMounted } from "vue";
+import { marked } from "marked";
+import { evidenceService } from "@/services/evidenceService";
 
 export default {
-  name: 'EvidenceView',
+  name: "EvidenceView",
   setup() {
-    const papers = ref([])
-    const selectedPaper = ref(null)
-    const renderedContent = ref('')
+    const papers = ref([]);
+    const selectedPaper = ref(null);
+    const renderedContent = ref("");
 
     const loadPapers = async () => {
       try {
-        papers.value = await evidenceService.getPapersList()
+        papers.value = await evidenceService.getPapersList();
       } catch (error) {
-        console.error('Error loading papers:', error)
+        console.error("Error loading papers:", error);
       }
-    }
+    };
 
     const viewPaper = async (paper) => {
       try {
-        const content = await evidenceService.getPaperContent(paper.id)
-        renderedContent.value = marked(content)
-        selectedPaper.value = paper
+        const content = await evidenceService.getPaperContent(paper.id);
+        renderedContent.value = marked(content);
+        selectedPaper.value = paper;
       } catch (error) {
-        console.error('Error loading paper content:', error)
+        console.error("Error loading paper content:", error);
       }
-    }
+    };
 
     onMounted(() => {
-      loadPapers()
-    })
+      loadPapers();
+    });
 
     return {
       papers,
       selectedPaper,
       renderedContent,
-      viewPaper
-    }
-  }
-}
+      viewPaper,
+    };
+  },
+};
 </script>
 
 <style scoped>
@@ -116,7 +116,7 @@ export default {
 }
 
 .view-btn {
-  background: #4CAF50;
+  background: #4caf50;
   color: white;
   border: none;
   padding: 0.5rem 1rem;
@@ -174,7 +174,8 @@ export default {
 }
 
 .markdown-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
   font-size: 16px;
   line-height: 1.6;
 }
@@ -196,7 +197,7 @@ export default {
   padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(27,31,35,0.05);
+  background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
 }
-</style> 
+</style>
