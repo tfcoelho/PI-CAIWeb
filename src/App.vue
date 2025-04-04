@@ -21,7 +21,7 @@
             }"
             >Research</router-link
           >
-          <router-link to="/people">People</router-link>
+          <!-- <router-link to="/people">People</router-link> -->
         </div>
         <div class="spacer" v-if="$route.path !== '/'"></div>
       </div>

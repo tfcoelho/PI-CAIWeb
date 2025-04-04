@@ -5,24 +5,25 @@ export const evidenceService = {
     // In a real application, this would come from an API
     return [
       {
-        id: 'ai-clinical-decision',
-        title: 'AI in Clinical Decision Support: A Systematic Review',
-        authors: 'Smith, J., Johnson, M., & Williams, R.',
-        year: '2023'
+        id: "ai-clinical-decision",
+        title: "AI in Clinical Decision Support: A Systematic Review",
+        authors: "Smith, J., Johnson, M., & Williams, R.",
+        year: "2023",
       },
       {
-        id: 'machine-learning-healthcare',
-        title: 'Machine Learning Applications in Healthcare: Current Status and Future Prospects',
-        authors: 'Brown, A., Davis, K., & Wilson, P.',
-        year: '2023'
+        id: "machine-learning-healthcare",
+        title:
+          "Machine Learning Applications in Healthcare: Current Status and Future Prospects",
+        authors: "Brown, A., Davis, K., & Wilson, P.",
+        year: "2023",
       },
       {
-        id: 'deep-learning-medical-imaging',
-        title: 'Deep Learning in Medical Imaging: A Comprehensive Survey',
-        authors: 'Lee, S., Chen, X., & Anderson, B.',
-        year: '2022'
-      }
-    ]
+        id: "deep-learning-medical-imaging",
+        title: "Deep Learning in Medical Imaging: A Comprehensive Survey",
+        authors: "Lee, S., Chen, X., & Anderson, B.",
+        year: "2022",
+      },
+    ];
   },
 
   // Get the content of a specific paper
@@ -30,11 +31,11 @@ export const evidenceService = {
     try {
       // In a real application, this would load from a server
       // For now, we'll return dummy content based on the paperId
-      const content = await import(`@/assets/papers/${paperId}.md`)
-      return content.default
+      const content = await import(`@/assets/papers/${paperId}.md`);
+      return content.default;
     } catch (error) {
-      console.error(`Error loading paper content for ${paperId}:`, error)
-      throw error
+      console.error(`Error loading paper content for ${paperId}:`, error);
+      throw error;
     }
-  }
-} 
+  },
+};
