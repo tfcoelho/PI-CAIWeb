@@ -168,8 +168,8 @@ export default {
   margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif;
-  overflow-y: auto;
   min-height: 100vh;
+  background-color: #ebebf5;
 }
 
 .content-wrapper {
@@ -177,9 +177,13 @@ export default {
 }
 
 .back-button-container {
-  text-align: left;
+  position: sticky;
+  top: 0;
+  background-color: #ebebf5;
+  z-index: 10;
+  padding: 20px 0;
   margin-bottom: 20px;
-  padding-top: 20px;
+  text-align: left;
 }
 
 .back-button {
@@ -227,6 +231,8 @@ export default {
 .paper-main-content {
   flex-grow: 1;
   text-align: left;
+  overflow-y: auto;
+  min-height: 0;
 }
 
 .paper-tags {
