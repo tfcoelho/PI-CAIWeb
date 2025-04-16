@@ -1,0 +1,23 @@
+---
+tags: RADIOLOGY, AI, PUBLISHED
+date: 2024-07-01
+authors: A. Saha, J. S. Bosma, J. J. Twilt, B. van Ginneken, A. Bjartell, A. R. Padhani, D. Bonekamp, G. Villeirs, G. Salomon, G. Giannarini, J. Kalpathy-Cramer, J. Barentsz, K. H. Maier-Hein, M. Rusu, O. Rouvière, R. van den Bergh, V. Panebianco, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, M. de Rooij, H. Huisman, PI-CAI consortium
+publication_details: Lancet Oncol. 2024;25(7):879–87
+publication_link: https://doi.org/10.1016/S1470-2045(24)00220-1
+---
+
+# Artificial intelligence and radiologists in prostate cancer detection on MRI (PI-CAI): an international, paired, non-inferiority, confirmatory study
+
+## Abstract
+
+### Background
+Artificial intelligence (AI) systems can potentially aid the diagnostic pathway of prostate cancer by alleviating the increasing workload, preventing overdiagnosis, and reducing the dependence on experienced radiologists. We aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale.
+
+### Methods
+In this international, paired, non-inferiority, confirmatory study, we trained and externally validated an AI system (developed within an international consortium) for detecting Gleason grade group 2 or greater cancers using a retrospective cohort of 10 207 MRI examinations from 9129 patients. Of these examinations, 9207 cases from three centres (11 sites) based in the Netherlands were used for training and tuning, and 1000 cases from four centres (12 sites) based in the Netherlands and Norway were used for testing. In parallel, we facilitated a multireader, multicase observer study with 62 radiologists (45 centres in 20 countries; median 7 [IQR 5–10] years of experience in reading prostate MRI) using PI-RADS (2.1) on 400 paired MRI examinations from the testing cohort. Primary endpoints were the sensitivity, specificity, and the area under the receiver operating characteristic curve (AUROC) of the AI system in comparison with that of all readers using PI-RADS (2.1) and in comparison with that of the historical radiology readings made during multidisciplinary routine practice (ie, the standard of care with the aid of patient history and peer consultation). Histopathology and at least 3 years (median 5 [IQR 4–6] years) of follow-up were used to establish the reference standard. The statistical analysis plan was prespecified with a primary hypothesis of non-inferiority (considering a margin of 0·05) and a secondary hypothesis of superiority towards the AI system, if non-inferiority was confirmed. This study was registered at ClinicalTrials.gov, NCT05489341.
+
+### Findings
+Of the 10 207 examinations included from Jan 1, 2012, through Dec 31, 2021, 2440 cases had histologically confirmed Gleason grade group 2 or greater prostate cancer. In the subset of 400 testing cases in which the AI system was compared with the radiologists participating in the reader study, the AI system showed a statistically superior and non-inferior AUROC of 0·91 (95% CI 0·87–0·94; p<0·0001), in comparison to the pool of 62 radiologists with an AUROC of 0·86 (0·83–0·89), with a lower boundary of the two-sided 95% Wald CI for the difference in AUROC of 0·02. At the mean PI-RADS 3 or greater operating point of all readers, the AI system detected 6·8% more cases with Gleason grade group 2 or greater cancers at the same specificity (57·7%, 95% CI 51·6–63·3), or 50·4% fewer false-positive results and 20·0% fewer cases with Gleason grade group 1 cancers at the same sensitivity (89·4%, 95% CI 85·3–92·9). In all 1000 testing cases where the AI system was compared with the radiology readings made during multidisciplinary practice, non-inferiority was not confirmed, as the AI system showed lower specificity (68·9% [95% CI 65·3–72·4] vs 69·0% [65·5–72·5]) at the same sensitivity (96·1%, 94·0–98·2) as the PI-RADS 3 or greater operating point. The lower boundary of the two-sided 95% Wald CI for the difference in specificity (−0·04) was greater than the non-inferiority margin (−0·05) and a p value below the significance threshold was reached (p<0·001).
+
+### Interpretation
+An AI system was superior to radiologists using PI-RADS (2.1), on average, at detecting clinically significant prostate cancer and comparable to the standard of care. Such a system shows the potential to be a supportive tool within a primary diagnostic setting, with several associated benefits for patients and radiologists. Prospective validation is needed to test clinical applicability of this system.
