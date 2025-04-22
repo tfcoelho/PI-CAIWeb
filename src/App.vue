@@ -26,9 +26,11 @@
         <div class="spacer" v-if="$route.path !== '/'"></div>
       </div>
     </nav>
-    <transition name="page" mode="out-in">
-      <router-view />
-    </transition>
+    <router-view v-slot="{ Component }">
+      <transition name="page" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
 </template>
 

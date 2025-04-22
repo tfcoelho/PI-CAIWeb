@@ -125,6 +125,9 @@ export default {
 
 .logo-container {
   position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   top: 37%;
   left: 16%;
   width: 810px;
