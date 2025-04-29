@@ -184,12 +184,13 @@ export default {
 
 <style scoped>
 .research-page {
-  padding: 0;
+  min-height: 100vh; /* <-- Add this */
   padding-top: 60px;
   max-width: 1200px;
   margin: 0 auto;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif;
+  background-color: #ebebf5; /* Match PaperView background if needed */
 }
 
 .research-header {

@@ -33,42 +33,37 @@ export default {
     this.adjustBodyHeight();
     window.addEventListener("resize", this.adjustBodyHeight);
 
-    // Prevent default scrolling behavior and show message on wheel or touch
-    document.addEventListener(
-      "wheel",
-      (event) => {
-        event.preventDefault(); // Prevent scrolling
-        if (event.deltaY > 0) {
-          // Scrolling up
-          this.showScrollMessage();
-        } else {
-          // Scrolling down
-          this.hideScrollMessage();
-        }
-      },
-      { passive: false }
-    );
+    // Save references to event handlers
+    this.wheelHandler = (event) => {
+      event.preventDefault();
+      if (event.deltaY > 0) {
+        this.showScrollMessage();
+      } else {
+        this.hideScrollMessage();
+      }
+    };
 
-    let lastTouchY = 0;
-    document.addEventListener(
-      "touchmove",
-      (event) => {
-        event.preventDefault(); // Prevent scrolling
-        let touch = event.touches[0];
-        let currentTouchY = touch.clientY;
+    this.touchMoveHandler = (event) => {
+      event.preventDefault();
+      let touch = event.touches[0];
+      let currentTouchY = touch.clientY;
 
-        if (currentTouchY < lastTouchY) {
-          // Scrolling up
-          this.showScrollMessage();
-        } else {
-          // Scrolling down
-          this.hideScrollMessage();
-        }
+      if (currentTouchY < this.lastTouchY) {
+        this.showScrollMessage();
+      } else {
+        this.hideScrollMessage();
+      }
 
-        lastTouchY = currentTouchY;
-      },
-      { passive: false }
-    );
+      this.lastTouchY = currentTouchY;
+    };
+
+    this.lastTouchY = 0;
+
+    // Now add event listeners properly
+    document.addEventListener("wheel", this.wheelHandler, { passive: false });
+    document.addEventListener("touchmove", this.touchMoveHandler, {
+      passive: false,
+    });
   },
   methods: {
     adjustBodyHeight() {
@@ -91,7 +86,7 @@ export default {
     },
   },
   beforeUnmount() {
-    // Clean up event listeners
+    // Clean up event listeners correctly
     window.removeEventListener("resize", this.adjustBodyHeight);
     document.removeEventListener("wheel", this.wheelHandler);
     document.removeEventListener("touchmove", this.touchMoveHandler);
