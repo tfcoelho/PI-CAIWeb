@@ -40,7 +40,7 @@
           </div>
         </div>
 
-        <div class="paper-main-content">
+        <div class="paper-main-content" ref="mainContentRef">
           <div v-if="loading" class="loading-content">
             Loading paper content...
           </div>
@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from "vue";
+import { ref, onMounted, onUnmounted, watch } from "vue";
 import { useRoute } from "vue-router";
 import { marked } from "marked";
 import { researchService } from "@/services/researchService";
@@ -138,6 +138,9 @@ export default {
     };
 
     onMounted(() => {
+      // Reset any leftover scrolling locks
+      document.body.style.overflow = "auto";
+
       loadPaper();
 
       // Save original background color and set new one (same as research page)
@@ -148,6 +151,17 @@ export default {
     onUnmounted(() => {
       // Restore original background color when leaving this view
       document.body.style.backgroundColor = originalBackgroundColor;
+    });
+
+    const mainContentRef = ref(null);
+
+    watch(loading, (newVal) => {
+      if (newVal === false && mainContentRef.value) {
+        requestAnimationFrame(() => {
+          mainContentRef.value.scrollTop = 0;
+          mainContentRef.value.style.overflowY = "auto";
+        });
+      }
     });
 
     return {
@@ -169,11 +183,16 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif;
   min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #ebebf5;
 }
 
 .content-wrapper {
+  flex: 1; /* Take available space */
   padding: 80px 20px 30px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .back-button-container {
@@ -214,25 +233,27 @@ export default {
 }
 
 .paper-content-container {
+  flex: 1; /* Grow to fill space */
   display: flex;
   gap: 40px;
   background: #ffffff;
   border-radius: 12px;
   padding: 30px;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  overflow: hidden; /* Important: cut off overflow except inside .paper-main-content */
 }
 
 .paper-sidebar {
   width: 25%;
   flex-shrink: 0;
   text-align: left;
+  overflow-y: auto; /* Optional, if your sidebar gets tall */
 }
 
 .paper-main-content {
   flex-grow: 1;
-  text-align: left;
   overflow-y: auto;
-  min-height: 0;
+  min-height: 0; /* VERY important with flexbox for scrolling children */
 }
 
 .paper-tags {
@@ -311,6 +332,14 @@ export default {
   padding: 20px;
   background-color: #fceae9;
   border-radius: 4px;
+}
+
+.loading-content,
+.error-message {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .markdown-body {
