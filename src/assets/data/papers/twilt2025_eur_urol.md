@@ -1,5 +1,5 @@
 ---
-tags: RADIOLOGY, BIPARAMETRIC MRI, PUBLISHED
+tags: FULL ARTICLES
 date: 2025-02-01
 authors: J. J. Twilt, A. Saha, J. S. Bosma, B. van Ginneken, A. Bjartell, A. R. Padhani, D. Bonekamp, G. Villeirs, G. Salomon, G. Giannarini, J. Kalpathy-Cramer, J. Barentsz, K. H. Maier-Hein, M. Rusu, O. Rouvière, R. van den Bergh, V. Panebianco, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, H. Huisman, M. de Rooij, PI-CAI consortium
 publication_details: Eur Urol 2025;87(2):240-250
