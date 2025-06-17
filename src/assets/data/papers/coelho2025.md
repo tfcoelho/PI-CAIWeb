@@ -1,7 +1,7 @@
 ---
 tags: STUDY DESIGNS
 date: 2024-07-01
-authors: T. Coelho,M. de Rooi, M. Maas, H. Huisman
+authors: T. Coelho, M. de Rooij, M. Maas, H. Huisman
 publication_details: 
 publication_link: 
 ---

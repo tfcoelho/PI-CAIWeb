@@ -6,7 +6,7 @@ publication_details: Zenodo
 publication_link: https://doi.org/10.5281/zenodo.14888094
 ---
 
-# Scalable Clinical Annota1on with Location Evidence (SCALE) Statistical Analysis Plan
+# Scalable Clinical Annotation with Location Evidence (SCALE) Statistical Analysis Plan
 
 ## Abstract
 
