@@ -27,7 +27,6 @@ export default {
 
 <style scoped>
 .about-page {
-  margin: 0 5% 0 auto; /* Pushes the block to the right with 5% margin */
   padding-top: 150px;
   max-width: 80%;
 }
@@ -43,5 +42,26 @@ export default {
 .hero p {
   font-size: 1.5rem;
   color: #555;
+}
+
+@media (max-width: 750px) {
+  /* This will apply to the main container on mobile */
+  .about-page {
+    max-width: 90%; /* Use most of the screen width */
+    padding-top: 120px; /* Adjust padding for mobile */
+    margin: 0 auto; /* This centers the .about-page block itself */
+  }
+
+  /* This will center the hero section's content */
+  .hero {
+    max-width: 100%; /* Allow it to fill the new centered parent */
+    text-align: center; /* Center the heading */
+    margin-bottom: 40px;
+  }
+
+  /* This justifies the paragraph text specifically */
+  .hero p {
+    text-align: justify;
+  }
 }
 </style>

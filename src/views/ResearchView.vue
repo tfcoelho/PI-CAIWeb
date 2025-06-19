@@ -446,6 +446,9 @@ export default {
   .page-title {
     font-size: 32px;
   }
+  .header-logo {
+    opacity: 0;
+  }
 }
 
 /* Add Vue transition group animations */

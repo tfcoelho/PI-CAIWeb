@@ -356,9 +356,6 @@ onBeforeUnmount(() => {
 
 /* On screens 750px or less, we override the desktop styles */
 @media (max-width: 750px) {
-  /* On mobile, the logo is NOT sticky. It is a static block
-    positioned near the top of the page.
-  */
   .sticky-logo {
     position: absolute;
     top: 28%; /* Position it 15% from the top of the screen */
@@ -368,16 +365,13 @@ onBeforeUnmount(() => {
     margin: 0; /* Reset any desktop margins */
   }
 
-  /*
-    The content below the logo is also positioned absolutely
-    to ensure a clean, static layout that scrolls with the page.
-  */
   .hero-content {
     position: absolute;
     top: 45%; /* Position it vertically centered */
     left: 50%; /* Center it horizontally */
     transform: translateY(-50%) translateX(-50%);
     width: 80%; /* Give it a slightly wider width */
+    align-items: center; /* Center the content */
   }
 
   .vision-image {
