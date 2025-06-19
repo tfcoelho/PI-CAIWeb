@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <nav :class="{ 'dark-bg': $route.path === '/' }">
+    <nav
+      :class="{
+        'dark-bg': $route.path === '/',
+        'on-light-bg': isNavOverWhiteBg,
+      }"
+    >
       <div class="nav-wrapper">
         <div class="nav-container">
           <router-link to="/">Home</router-link>
@@ -15,6 +20,21 @@
     </router-view>
   </div>
 </template>
+
+<script setup>
+import { ref, provide } from "vue";
+
+// This new state will control the nav's appearance
+const isNavOverWhiteBg = ref(false);
+
+// This is the function that HomeView will call to update the state
+const setNavAppearance = (isOver) => {
+  isNavOverWhiteBg.value = isOver;
+};
+
+// We "provide" this function to all child components
+provide("setNavAppearance", setNavAppearance);
+</script>
 
 <style>
 /* Basic styles for the entire app */
@@ -45,10 +65,12 @@ nav {
   text-align: center;
   transition: all 0.3s ease;
 }
+/* In App.vue <style> section */
 .nav-container {
   display: inline-flex;
   gap: 4px;
-  background: rgba(255, 255, 255, 0.1);
+  /* Change the background to be transparent */
+  background: transparent;
   backdrop-filter: blur(10px);
   padding: 4px;
   border-radius: 6px;
@@ -58,6 +80,9 @@ nav.dark-bg a {
   color: white;
 }
 nav:not(.dark-bg) a {
+  color: #333;
+}
+nav.on-light-bg a {
   color: #333;
 }
 nav a {
