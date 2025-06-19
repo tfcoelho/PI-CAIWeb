@@ -49,7 +49,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch, inject } from "vue";
 import AboutView from "./AboutView.vue";
 
 const logoScale = ref(1);
@@ -58,17 +58,26 @@ const aboutSectionRef = ref(null); // This will be a reference to the <section> 
 const isOverWhiteBg = ref(false); // This will be true when we are over the #about section
 const isMaskHidden = ref(false);
 
+const setNavAppearance = inject("setNavAppearance");
+
+// --- This WATCH effect now calls the injected function ---
+watch(isOverWhiteBg, (isOver) => {
+  if (setNavAppearance) {
+    setNavAppearance(isOver);
+  }
+});
+
 // This function handles the logo scaling on scroll
 function handleScroll() {
   // On mobile, do nothing and ensure the logo is full size.
-  if (window.innerWidth <= 750) {
+  if (window.innerWidth <= 700) {
     logoScale.value = 1;
     return;
   }
 
   const scrollY = window.scrollY;
   // Shrink the logo based on scroll, but not smaller than 40%
-  logoScale.value = Math.max(0.3, 1 - scrollY / 800);
+  logoScale.value = Math.max(0.3, 1 - scrollY / 650);
   isSticky.value = scrollY > 10;
 }
 
@@ -108,11 +117,13 @@ onMounted(() => {
     maskObserver.observe(aboutSectionRef.value);
   }
 });
-
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
   if (aboutObserver) aboutObserver.disconnect();
   if (maskObserver) maskObserver.disconnect();
+  if (setNavAppearance) {
+    setNavAppearance(false);
+  }
 });
 </script>
 
@@ -338,7 +349,7 @@ onBeforeUnmount(() => {
 
 #about {
   min-height: 100vh;
-  background-color: white;
+  background-color: #ebebf5;
   padding: 5%;
   color: #333;
 }
