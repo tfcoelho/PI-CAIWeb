@@ -2,6 +2,11 @@
   <div class="research-page">
     <div class="research-header">
       <div class="logo-and-title">
+        <img
+          src="@/assets/images/logo_dark.png"
+          alt="Logo"
+          class="header-logo"
+        />
         <h1 class="page-title">Research</h1>
       </div>
     </div>
@@ -183,8 +188,18 @@ export default {
 </script>
 
 <style scoped>
+/* This rule styles the new logo image */
+.header-logo {
+  position: fixed; /* This makes the logo stay in place on scroll */
+  top: 20px; /* Distance from the top of the window */
+  left: 5%; /* Distance from the left of the window */
+  height: 30px; /* Adjust size as needed */
+  width: auto;
+  z-index: 11; /* IMPORTANT: Places it on top of the gradient mask (which is z-index: 10) */
+}
+
 .research-page {
-  min-height: 100vh; /* <-- Add this */
+  min-height: 100vh;
   padding-top: 60px;
   max-width: 1200px;
   margin: 0 auto;
@@ -193,12 +208,28 @@ export default {
   background-color: #ebebf5; /* Match PaperView background if needed */
 }
 
+/* This creates the fading mask at the top */
+.research-page::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px; /* The height of the fade effect */
+  z-index: 10;
+  /* This creates a gradient from the page background color to transparent */
+  background: linear-gradient(to bottom, #ebebf5 50px, transparent);
+  /* This prevents the mask from blocking clicks on the content below it */
+  pointer-events: none;
+}
+
 .research-header {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 20px;
   padding: 20px 0;
   border-bottom: 0px solid #666666;
+  padding-top: 80px;
 }
 
 .logo-and-title {
@@ -306,7 +337,7 @@ export default {
 .papers-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 30px;
+  gap: 0px;
   margin-top: 2rem;
   position: relative;
 }
@@ -323,6 +354,7 @@ export default {
   text-align: left;
   cursor: pointer;
   animation: fadeIn 0.4s ease-out;
+  margin: 20px;
 }
 
 .paper-card:hover {
