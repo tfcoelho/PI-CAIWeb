@@ -222,7 +222,7 @@ onBeforeUnmount(() => {
 
   /* Start invisible and transition smoothly */
   opacity: 0;
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0s ease-in-out;
   pointer-events: none; /* Allows clicks to pass through */
 }
 
