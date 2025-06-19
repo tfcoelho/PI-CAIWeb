@@ -1,8 +1,29 @@
 <template>
-  <div class="home">
-    <div class="background-image">
-      <div class="logo-container">
-        <img src="@/assets/images/logo.png" alt="Logo" class="logo" />
+  <div
+    class="home-container"
+    :class="{
+      'logo-is-sticky': isSticky,
+      'on-about-section': isOverWhiteBg,
+      'hide-mask': isMaskHidden,
+    }"
+  >
+    <div
+      class="sticky-logo"
+      :class="{
+        'on-about-section': isOverWhiteBg,
+        'is-sticky-active': isSticky,
+      }"
+      :style="{ transform: `scale(${logoScale})` }"
+    >
+      <img src="@/assets/images/logo.png" alt="Logo" class="logo-image" />
+      <img
+        src="@/assets/images/logo_dark.png"
+        alt="Logo"
+        class="logo-image logo-black"
+      />
+    </div>
+    <div class="hero-section">
+      <div class="hero-content">
         <img
           src="@/assets/images/message.png"
           alt="Prostate Cancer Detection AI"
@@ -20,157 +41,212 @@
         </a>
       </div>
     </div>
-    <div class="scroll-message" ref="scrollMessage">
-      More content coming soon
-    </div>
+
+    <section id="about" ref="aboutSectionRef">
+      <AboutView />
+    </section>
   </div>
 </template>
 
-<script>
-export default {
-  name: "HomeView",
-  mounted() {
-    this.adjustBodyHeight();
-    window.addEventListener("resize", this.adjustBodyHeight);
+<script setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import AboutView from "./AboutView.vue";
 
-    // Save references to event handlers
-    this.wheelHandler = (event) => {
-      event.preventDefault();
-      if (event.deltaY > 0) {
-        this.showScrollMessage();
-      } else {
-        this.hideScrollMessage();
-      }
-    };
+const logoScale = ref(1);
+const isSticky = ref(false);
+const aboutSectionRef = ref(null); // This will be a reference to the <section> element
+const isOverWhiteBg = ref(false); // This will be true when we are over the #about section
+const isMaskHidden = ref(false);
 
-    this.touchMoveHandler = (event) => {
-      event.preventDefault();
-      let touch = event.touches[0];
-      let currentTouchY = touch.clientY;
+// This function handles the logo scaling on scroll
+function handleScroll() {
+  // On mobile, do nothing and ensure the logo is full size.
+  if (window.innerWidth <= 750) {
+    logoScale.value = 1;
+    return;
+  }
 
-      if (currentTouchY < this.lastTouchY) {
-        this.showScrollMessage();
-      } else {
-        this.hideScrollMessage();
-      }
+  const scrollY = window.scrollY;
+  // Shrink the logo based on scroll, but not smaller than 40%
+  logoScale.value = Math.max(0.3, 1 - scrollY / 800);
+  isSticky.value = scrollY > 10;
+}
 
-      this.lastTouchY = currentTouchY;
-    };
+let aboutObserver;
+let maskObserver;
 
-    this.lastTouchY = 0;
-
-    // Now add event listeners properly
-    document.addEventListener("wheel", this.wheelHandler, { passive: false });
-    document.addEventListener("touchmove", this.touchMoveHandler, {
-      passive: false,
+// Add and remove the scroll listener for the window
+onMounted(() => {
+  window.addEventListener("scroll", handleScroll);
+  const options = {
+    // Trigger when the top of the about section is 30% from the top of the viewport
+    rootMargin: "-5% 0px -95% 0px",
+    threshold: 0,
+  };
+  const callback = (entries) => {
+    entries.forEach((entry) => {
+      // If the about section is intersecting our trigger line, set our flag to true
+      isOverWhiteBg.value = entry.isIntersecting;
     });
-  },
-  methods: {
-    adjustBodyHeight() {
-      const vh = window.innerHeight * 0.01;
-      document.documentElement.style.setProperty("--vh", `${vh}px`);
-    },
-    showScrollMessage() {
-      const message = this.$refs.scrollMessage;
-      if (message) {
-        message.style.opacity = "1";
-        message.style.visibility = "visible";
-      }
-    },
-    hideScrollMessage() {
-      const message = this.$refs.scrollMessage;
-      if (message) {
-        message.style.opacity = "0";
-        message.style.visibility = "hidden";
-      }
-    },
-  },
-  beforeUnmount() {
-    // Clean up event listeners correctly
-    window.removeEventListener("resize", this.adjustBodyHeight);
-    document.removeEventListener("wheel", this.wheelHandler);
-    document.removeEventListener("touchmove", this.touchMoveHandler);
-  },
-};
+  };
+
+  aboutObserver = new IntersectionObserver(callback, options);
+  if (aboutSectionRef.value) {
+    aboutObserver.observe(aboutSectionRef.value);
+  }
+  const maskOptions = {
+    rootMargin: "-20% 0px -85% 0px", // Trigger line is LOW on the screen
+    threshold: 0,
+  };
+  const maskCallback = (entries) => {
+    entries.forEach((entry) => {
+      isMaskHidden.value = entry.isIntersecting;
+    });
+  };
+  maskObserver = new IntersectionObserver(maskCallback, maskOptions);
+  if (aboutSectionRef.value) {
+    maskObserver.observe(aboutSectionRef.value);
+  }
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
+  if (aboutObserver) aboutObserver.disconnect();
+  if (maskObserver) maskObserver.disconnect();
+});
 </script>
 
 <style scoped>
-@font-face {
-  font-family: "Nunito-Sans";
-  src: url("@/assets/fonts/nunito-sans/NunitoSans-ExtraLight.ttf")
-    format("truetype");
-  font-weight: lighter;
-  font-style: normal;
-}
+/* Add these new rules to your HomeView.vue <style scoped> */
 
-.home {
-  height: 100vh;
-  overflow: hidden;
+/* This is the container for the entire home page */
+.home-container {
+  display: grid;
+  grid-template-columns: 1fr; /* A single full-width column */
   background-color: #111820;
 }
 
-.background-image {
-  background-image: url("@/assets/images/background.webp");
-  width: 100%;
-  height: 100%;
-  background-position: 80%;
-  background-repeat: no-repeat;
-  background-size: cover;
+.sticky-logo,
+.hero-section {
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
 }
 
-.logo-container {
+.sticky-logo {
+  position: sticky;
+  top: -52px;
+  left: 16%;
+  width: 560px;
+  z-index: 10;
+  transform-origin: bottom left;
+  transition: transform 0s linear;
+  align-self: start;
+  justify-self: start;
+  margin-left: 16%;
+  margin-top: 44vh;
+  display: grid;
+}
+
+.logo-image {
+  /* This places both images into the same grid cell, stacking them */
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+
+  /* This ensures the image fills the container correctly */
+  width: 100%;
+  height: auto;
+
+  /* The opacity transition for the color swap remains the same */
+  transition: opacity 0s ease-in-out;
+}
+
+/* The black logo starts out invisible */
+.logo-black {
+  opacity: 0;
+}
+
+/* When the .on-about-section class is active, fade out the white and fade in the black */
+.sticky-logo.on-about-section .logo-white {
+  opacity: 0;
+}
+.sticky-logo.on-about-section .logo-black {
+  opacity: 1;
+}
+
+.hero-section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-image: url("@/assets/images/background.webp");
+  background-position: 80% center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+/* The text and button inside the hero section */
+.hero-content {
   position: absolute;
+  top: 45%;
+  left: 16%;
+  width: 560px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  top: 37%;
-  left: 16%;
-  width: 810px;
-  z-index: 2;
-  animation: slideInFromLeft 0.8s ease-out forwards;
-}
-
-@keyframes slideInFromLeft {
-  0% {
-    opacity: 0;
-    transform: translateX(-50px);
-  }
-  50% {
-    opacity: 0;
-    transform: translateX(-25px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-.logo {
-  width: 70%;
-  height: auto;
 }
 
 .vision-image {
-  padding-top: 30px;
-  width: 70%;
+  padding-top: 130px;
+  width: 100%;
+  animation: slideInFromLeft 1s ease-out forwards;
 }
 
-.scroll-message {
+/* This creates the gradient mask element, but it starts invisible */
+.hero-section::before {
+  content: "";
   position: fixed;
-  bottom: 0px;
+  top: 0;
   left: 0;
   width: 100%;
-  text-align: center;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
-  color: white;
-  padding: 30px 0;
-  font-family: "Nunito-Sans", sans-serif;
-  font-size: 15px;
+  height: 250px; /* The height of the fade effect */
+  z-index: 9; /* Below the logo (z-index: 10) */
+
+  /* The background image that it fades to */
+  background-image: url("@/assets/images/background.webp");
+  background-position: 80% center;
+  background-size: cover;
+  background-attachment: fixed;
+
+  /* The fade effect mask */
+  mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+
+  /* Start invisible and transition smoothly */
   opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-  z-index: 1000;
-  box-sizing: border-box;
+  transition: opacity 0.3s ease-in-out;
+  pointer-events: none; /* Allows clicks to pass through */
+}
+
+/* When the logo is sticky, this class is added, and the mask becomes visible */
+.home-container.logo-is-sticky .hero-section::before {
+  opacity: 1;
+}
+
+.home-container.hide-mask .hero-section::before {
+  opacity: 0;
+}
+
+.gradient-border-button {
+  border: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 99px;
+  color: white;
+  position: relative;
+  top: 30px;
+  padding: 12px 20px;
+  cursor: pointer;
+  animation: slideInFromLeft 1.4s ease-out forwards;
 }
 
 .gradient-border-button {
@@ -260,79 +336,71 @@ export default {
   transform: translateX(-10px);
 }
 
-/* Small screens (large smartphones in portrait) */
+#about {
+  min-height: 100vh;
+  background-color: white;
+  padding: 5%;
+  color: #333;
+}
+
+/* On screens 750px or less, we override the desktop styles */
 @media (max-width: 750px) {
-  .background-image {
-    background-size: cover;
-  }
-
-  .logo-container {
-    top: 20%;
-    left: 10%;
-    width: 80%;
-    height: 100%;
-    animation: slideInFromLeft 1.2s ease-out forwards;
-  }
-
-  .logo {
-    width: 100%;
-  }
-
-  .vision-image {
-    width: 100%;
-  }
-
-  .background-image::before {
-    content: "";
+  /* On mobile, the logo is NOT sticky. It is a static block
+    positioned near the top of the page.
+  */
+  .sticky-logo {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 82%;
-    height: 100%;
-    background: linear-gradient(to right, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0));
-    z-index: 1;
-  }
-
-  .gradient-border-button {
-    top: 30px;
-    padding: 7px 7px;
-  }
-
-  .button-text {
-    padding-left: 15px;
-    font-size: 15px;
-  }
-}
-
-@media (max-height: 450px) {
-  .logo-container {
-    top: 7%;
-    left: 10%;
+    top: 28%; /* Position it 15% from the top of the screen */
+    left: 50%; /* Center it horizontally */
+    transform: translateX(-50%) scale(1) !important; /* Force full size and center */
     width: 80%;
-    height: 100%;
-    animation: slideInFromLeft 1.2s ease-out forwards;
+    margin: 0; /* Reset any desktop margins */
   }
 
-  .logo {
-    width: 80%;
+  /*
+    The content below the logo is also positioned absolutely
+    to ensure a clean, static layout that scrolls with the page.
+  */
+  .hero-content {
+    position: absolute;
+    top: 45%; /* Position it vertically centered */
+    left: 50%; /* Center it horizontally */
+    transform: translateY(-50%) translateX(-50%);
+    width: 80%; /* Give it a slightly wider width */
   }
 
   .vision-image {
-    width: 80%;
-  }
-
-  .gradient-border-button {
-    top: 15px;
-    font-size: 10px;
-    padding: 7px 7px;
+    padding-top: 0; /* Remove desktop padding */
   }
 }
 
-@media (orientation: landscape) {
-  .background-image {
-    width: 100vw;
-    height: 100vh;
-    background-size: cover;
+@media (max-width: 900px) and (orientation: landscape) {
+  /* Make the sticky logo much smaller and move it to the corner */
+  .sticky-logo {
+    top: 28%;
+    left: 34%;
+    width: 50%; /* A smaller fixed width */
+  }
+
+  /* Reposition the hero content to give the logo space */
+  .hero-content {
+    top: 60%;
+    left: 10%;
+    width: 50%; /* A smaller width for the content */
+    transform: translateY(-50%);
+    align-items: flex-start;
+  }
+}
+
+/* Keyframes and other styles from your original file */
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
 }
 </style>
