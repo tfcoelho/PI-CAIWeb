@@ -143,7 +143,7 @@ onBeforeUnmount(() => {
   align-self: start;
   justify-self: start;
   margin-left: 16%;
-  margin-top: 44vh;
+  margin-top: 37vh;
   display: grid;
 }
 
@@ -187,7 +187,7 @@ onBeforeUnmount(() => {
 /* The text and button inside the hero section */
 .hero-content {
   position: absolute;
-  top: 45%;
+  top: 38%;
   left: 16%;
   width: 560px;
   display: flex;
@@ -196,7 +196,7 @@ onBeforeUnmount(() => {
 }
 
 .vision-image {
-  padding-top: 130px;
+  padding-top: 125px;
   width: 100%;
   animation: slideInFromLeft 1s ease-out forwards;
 }
