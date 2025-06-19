@@ -78,7 +78,7 @@ export default {
 }
 
 .stat-value {
-  font-size: 48px;
+  font-size: 4rem;
   font-weight: 700;
   /* Using your brand's pink accent color */
   color: #e02090;
@@ -93,9 +93,34 @@ export default {
 
 /* Responsive adjustments for smaller screens */
 @media (max-width: 960px) {
+  .collaboration-section {
+    /* Reduce vertical padding on mobile */
+    padding: 60px 20px;
+  }
+
+  .section-title {
+    /* Make the title smaller on mobile */
+    font-size: 30px;
+  }
+
+  .section-subtitle {
+    /* Make the subtitle smaller on mobile */
+    font-size: 16px;
+  }
+
   .stats-grid {
+    /* Stack the cards vertically */
     flex-direction: column;
+    /* Center the stacked cards */
     align-items: center;
+    /* Reduce the gap for the vertical layout */
+    gap: 20px;
+  }
+
+  .stat-card {
+    /* Allow cards to take up more of the screen width on mobile */
+    width: 90%;
+    max-width: 150px; /* But don't let them get too wide */
   }
 }
 </style>
