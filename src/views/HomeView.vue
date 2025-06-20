@@ -5,6 +5,7 @@
       'logo-is-sticky': isSticky,
       'on-about-section': isOverWhiteBg,
       'hide-mask': isMaskHidden,
+      'fade-is-active': showTopFade,
     }"
   >
     <div
@@ -57,6 +58,7 @@ const isSticky = ref(false);
 const aboutSectionRef = ref(null); // This will be a reference to the <section> element
 const isOverWhiteBg = ref(false); // This will be true when we are over the #about section
 const isMaskHidden = ref(false);
+const showTopFade = ref(false);
 
 const setNavAppearance = inject("setNavAppearance");
 
@@ -83,6 +85,7 @@ function handleScroll() {
 
 let aboutObserver;
 let maskObserver;
+let fadeObserver;
 
 // Add and remove the scroll listener for the window
 onMounted(() => {
@@ -103,6 +106,21 @@ onMounted(() => {
   if (aboutSectionRef.value) {
     aboutObserver.observe(aboutSectionRef.value);
   }
+
+  const fadeOptions = {
+    rootMargin: "0% 0px -100% 0px", // Triggers later
+    threshold: 0,
+  };
+  const fadeCallback = (entries) => {
+    entries.forEach((entry) => {
+      showTopFade.value = entry.isIntersecting;
+    });
+  };
+  fadeObserver = new IntersectionObserver(fadeCallback, fadeOptions);
+  if (aboutSectionRef.value) {
+    fadeObserver.observe(aboutSectionRef.value);
+  }
+
   const maskOptions = {
     rootMargin: "-20% 0px -85% 0px", // Trigger line is LOW on the screen
     threshold: 0,
@@ -121,6 +139,7 @@ onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
   if (aboutObserver) aboutObserver.disconnect();
   if (maskObserver) maskObserver.disconnect();
+  if (fadeObserver) fadeObserver.disconnect();
   if (setNavAppearance) {
     setNavAppearance(false);
   }
@@ -148,7 +167,7 @@ onBeforeUnmount(() => {
   top: -52px;
   left: 16%;
   width: 560px;
-  z-index: 10;
+  z-index: 15;
   transform-origin: bottom left;
   transition: transform 0s linear;
   align-self: start;
@@ -244,6 +263,28 @@ onBeforeUnmount(() => {
 
 .home-container.hide-mask .hero-section::before {
   opacity: 0;
+}
+
+.home-container::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 120px;
+  z-index: 10;
+
+  background: linear-gradient(to bottom, #ebebf5 40%, transparent);
+  opacity: 0;
+  transition: opacity 0s ease-in-out;
+  pointer-events: none;
+}
+
+/* UPDATE THIS RULE: 
+  When the .fade-is-active class is present, the gradient fades in.
+*/
+.home-container.fade-is-active::before {
+  opacity: 1;
 }
 
 .gradient-border-button {
