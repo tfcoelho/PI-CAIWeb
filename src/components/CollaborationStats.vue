@@ -1,8 +1,10 @@
 <template>
   <section class="collaboration-section">
-    <h2 class="section-title">A Worldwide Collaboration</h2>
+    <h2 class="section-title">
+      Worldwide <span class="gradient-text">Thrust</span>
+    </h2>
     <p class="section-subtitle">
-      Our benchmark is built on a global foundation of data and expertise.
+      Our community is built on a global foundation of data and expertise.
     </p>
 
     <div class="stats-grid">
@@ -13,12 +15,12 @@
 
       <div class="stat-card">
         <div class="stat-value">50+</div>
-        <div class="stat-label">Contributing Centers</div>
+        <div class="stat-label">Data Centers</div>
       </div>
 
       <div class="stat-card">
         <div class="stat-value">60+</div>
-        <div class="stat-label">Expert & Non-Expert Radiologists</div>
+        <div class="stat-label">Expert Radiologists</div>
       </div>
     </div>
   </section>
@@ -31,6 +33,25 @@ export default {
 </script>
 
 <style scoped>
+.gradient-text {
+  /* Use a bold font weight to make the gradient more visible */
+  font-weight: 700; /* Or bold, 800, 900 depending on your font */
+
+  /* 1. Set the background to a gradient */
+  background-image: linear-gradient(
+    45deg,
+    #eb57ff,
+    #ff7878
+  ); /* A professional blue gradient */
+
+  /* 2. Clip the background to the text */
+  -webkit-background-clip: text; /* For Safari/Chrome */
+  background-clip: text;
+
+  /* 3. Make the text color transparent */
+  color: transparent;
+}
+
 .collaboration-section {
   text-align: center;
   padding: 80px 20px;
@@ -81,7 +102,7 @@ export default {
   font-size: 4rem;
   font-weight: 700;
   /* Using your brand's pink accent color */
-  color: #e02090;
+  color: #f547ac;
   margin-bottom: 12px;
 }
 
