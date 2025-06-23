@@ -134,9 +134,4 @@ const marqueeLogos = computed(() => {
     transform: translateX(-100%);
   }
 }
-
-/* Pause the animation on hover */
-.marquee-container:hover .marquee-content {
-  animation-play-state: paused;
-}
 </style>
