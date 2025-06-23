@@ -46,12 +46,16 @@
     <section id="about" ref="aboutSectionRef">
       <AboutView />
     </section>
+    <section class="marquee-container">
+      <CollaboratorsMarquee />
+    </section>
   </div>
 </template>
 
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, inject } from "vue";
 import AboutView from "./AboutView.vue";
+import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
 const logoScale = ref(1);
 const isSticky = ref(false);
@@ -78,9 +82,13 @@ function handleScroll() {
   }
 
   const scrollY = window.scrollY;
+  const vh = window.innerHeight;
+  const stickyThreshold = 0.01 * vh;
+  const shrinkDistance = 0.58 * vh;
+
   // Shrink the logo based on scroll, but not smaller than 40%
-  logoScale.value = Math.max(0.3, 1 - scrollY / 650);
-  isSticky.value = scrollY > 10;
+  logoScale.value = Math.max(0.3, 1 - scrollY / shrinkDistance);
+  isSticky.value = scrollY > stickyThreshold;
 }
 
 let aboutObserver;
@@ -164,8 +172,7 @@ onBeforeUnmount(() => {
 
 .sticky-logo {
   position: sticky;
-  top: -52px;
-  left: 16%;
+  top: -50px;
   width: 560px;
   z-index: 15;
   transform-origin: bottom left;
@@ -178,24 +185,17 @@ onBeforeUnmount(() => {
 }
 
 .logo-image {
-  /* This places both images into the same grid cell, stacking them */
   grid-row: 1 / 2;
   grid-column: 1 / 2;
-
-  /* This ensures the image fills the container correctly */
   width: 100%;
   height: auto;
-
-  /* The opacity transition for the color swap remains the same */
   transition: opacity 0s ease-in-out;
 }
 
-/* The black logo starts out invisible */
 .logo-black {
   opacity: 0;
 }
 
-/* When the .on-about-section class is active, fade out the white and fade in the black */
 .sticky-logo.on-about-section .logo-white {
   opacity: 0;
 }
@@ -217,7 +217,7 @@ onBeforeUnmount(() => {
 /* The text and button inside the hero section */
 .hero-content {
   position: absolute;
-  top: 38%;
+  top: calc(37vh + 135px); /* Where logo starts + logo fixed height in pixels */
   left: 16%;
   width: 560px;
   display: flex;
@@ -226,7 +226,6 @@ onBeforeUnmount(() => {
 }
 
 .vision-image {
-  padding-top: 125px;
   width: 100%;
   animation: slideInFromLeft 1s ease-out forwards;
 }
@@ -238,7 +237,7 @@ onBeforeUnmount(() => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 250px; /* The height of the fade effect */
+  height: 17vh; /* The height of the fade effect */
   z-index: 9; /* Below the logo (z-index: 10) */
 
   /* The background image that it fades to */
@@ -271,7 +270,7 @@ onBeforeUnmount(() => {
   top: 0;
   left: 0;
   width: 100%;
-  height: 120px;
+  height: 11vh;
   z-index: 10;
 
   background: linear-gradient(to bottom, #ebebf5 40%, transparent);
@@ -393,6 +392,14 @@ onBeforeUnmount(() => {
   background-color: #ebebf5;
   padding: 5%;
   color: #333;
+}
+
+.marquee-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  background: url("@/assets/images/background.webp");
 }
 
 /* On screens 750px or less, we override the desktop styles */
