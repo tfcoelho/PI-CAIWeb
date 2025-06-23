@@ -78,8 +78,6 @@ export default {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-
-  /* This creates the space BETWEEN the cards */
   gap: 30px;
 }
 
