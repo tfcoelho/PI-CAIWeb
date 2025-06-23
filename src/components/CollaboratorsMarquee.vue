@@ -68,12 +68,13 @@ const marqueeLogos = computed(() => {
   text-align: center;
   font-size: 30px;
   font-weight: 600;
-  color: #111;
+  color: #ffffff;
   margin-bottom: 70px;
 }
 
 .marquee-container {
-  width: 70vw;
+  width: 64vw;
+  margin: 0 auto;
   overflow: hidden;
   display: flex;
   mask-image: linear-gradient(
@@ -95,22 +96,32 @@ const marqueeLogos = computed(() => {
 .marquee-content {
   display: flex;
   flex-shrink: 0; /* Prevents the block from shrinking */
-  align-items: center;
   justify-content: space-around;
   /* This is the animation that moves the block */
   animation: scroll 50s linear infinite;
 }
 
+/* Find this rule in your CollaboratorsMarquee.vue file */
 .marquee-logo {
   height: 80px;
   margin: 0 40px;
-  filter: grayscale(100%);
-  opacity: 0.6;
+
+  /* UPDATED: We add invert(1) to make the black logos white.
+    We also add brightness() to make the non-hovered state a bit dimmer,
+    which will make the hover effect pop more.
+  */
+  filter: invert(1) grayscale(1) brightness(1);
+  opacity: 1;
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
+/* We also update the hover state to keep the logo white */
 .marquee-logo:hover {
-  filter: grayscale(0%);
+  /*
+    UPDATED: We keep invert(1) and set brightness and opacity to full.
+    This makes the logo bright white when hovered.
+  */
+  filter: invert(1) brightness(1);
   opacity: 1;
 }
 
