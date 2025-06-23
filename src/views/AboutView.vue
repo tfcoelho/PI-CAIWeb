@@ -93,6 +93,7 @@ export default {
 
   border-radius: 30px;
   box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+  min-height: 500px; /* Adjust height as needed */
 }
 
 .background-video {
@@ -134,16 +135,21 @@ export default {
 
   .hero {
     max-width: 100%;
-    text-align: center;
+    text-align: center !important;
     margin-bottom: 40px;
   }
 
   .hero p {
     text-align: justify;
+    max-width: 90%;
+    margin: 0 auto;
   }
 
   .collaboration-container {
     padding: 2.5rem; /* Adjust padding for smaller screens */
+  }
+  .container-content {
+    padding: 1rem;
   }
 }
 </style>
