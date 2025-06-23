@@ -54,7 +54,6 @@ export default {
 
 .collaboration-section {
   text-align: center;
-  padding: 80px 20px;
   background-color: transparent; /* Assumes this is on the white part of the about page */
 }
 
@@ -84,10 +83,7 @@ export default {
 /* Styling for each individual card */
 .stat-card {
   background-color: transparent; /* A very light grey background */
-  border-radius: 12px;
-  padding: 2.5rem;
-  width: 260px;
-  /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);*/
+  width: 17vw;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -137,8 +133,18 @@ export default {
 
   .stat-card {
     /* Allow cards to take up more of the screen width on mobile */
-    width: 90%;
+    width: 100%;
     max-width: 150px; /* But don't let them get too wide */
+  }
+  .stat-value {
+    font-size: 5rem;
+    font-weight: 700;
+    /* Using your brand's pink accent color */
+    color: #ffffff; /*#f547ac;*/
+  }
+
+  .stat-label {
+    font-size: 15px;
   }
 }
 </style>
