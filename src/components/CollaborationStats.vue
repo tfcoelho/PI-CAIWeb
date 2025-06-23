@@ -1,7 +1,7 @@
 <template>
   <section class="collaboration-section">
     <h2 class="section-title">
-      Worldwide <span class="gradient-text">Thrust</span>
+      Worldwide <span class="gradient-text">Trust</span>
     </h2>
     <p class="section-subtitle">
       Our community is built on a global foundation of data and expertise.
@@ -61,13 +61,13 @@ export default {
 .section-title {
   font-size: 36px;
   font-weight: 600;
-  color: #111;
+  color: #ffffff;
   margin-bottom: 16px;
 }
 
 .section-subtitle {
   font-size: 18px;
-  color: #666;
+  color: #dddddd;
   max-width: 600px;
   margin: 0 auto 48px auto;
   line-height: 1.6;
@@ -85,31 +85,30 @@ export default {
 
 /* Styling for each individual card */
 .stat-card {
-  background-color: #ffffff; /* A very light grey background */
+  background-color: transparent; /* A very light grey background */
   border-radius: 12px;
   padding: 2.5rem;
   width: 260px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  /*box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);*/
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+  /*box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);*/
 }
 
 .stat-value {
-  font-size: 4rem;
+  font-size: 7rem;
   font-weight: 700;
   /* Using your brand's pink accent color */
-  color: #f547ac;
-  margin-bottom: 12px;
+  color: #ffffff; /*#f547ac;*/
 }
 
 .stat-label {
-  font-size: 16px;
-  color: #555;
-  line-height: 1.5;
+  font-size: 20px;
+  color: #ffffff; /*#555*/
+  line-height: 1;
 }
 
 /* Responsive adjustments for smaller screens */
