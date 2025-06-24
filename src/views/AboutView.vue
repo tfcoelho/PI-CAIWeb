@@ -87,8 +87,8 @@ export default {
   overflow: hidden;
 
   /* Your existing background will now sit BEHIND the video */
-  background: url("@/assets/images/gradient.png") no-repeat center center /
-      cover,
+  background: url("@/assets/images/gradient.png") no-repeat center center / 100%
+      100%,
     #111820;
 
   border-radius: 30px;
