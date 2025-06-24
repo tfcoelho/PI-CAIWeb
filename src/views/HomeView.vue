@@ -10,6 +10,7 @@
   >
     <div
       class="sticky-logo"
+      ref="stickyLogoRef"
       :class="{
         'on-about-section': isOverWhiteBg,
         'is-sticky-active': isSticky,
@@ -24,7 +25,7 @@
       />
     </div>
     <div class="hero-section">
-      <div class="hero-content">
+      <div class="hero-content" ref="heroContentRef">
         <img
           src="@/assets/images/message.png"
           alt="Prostate Cancer Detection AI"
@@ -53,7 +54,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch, inject } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch, inject, nextTick } from "vue";
 import AboutView from "./AboutView.vue";
 import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
@@ -63,6 +64,9 @@ const aboutSectionRef = ref(null); // This will be a reference to the <section> 
 const isOverWhiteBg = ref(false); // This will be true when we are over the #about section
 const isMaskHidden = ref(false);
 const showTopFade = ref(false);
+const stickyLogoRef = ref(null);
+const heroContentRef = ref(null);
+const isMobile = window.innerWidth <= 750;
 
 const setNavAppearance = inject("setNavAppearance");
 
@@ -73,10 +77,45 @@ watch(isOverWhiteBg, (isOver) => {
   }
 });
 
+let bottomAlreadySet = false;
+
+function updateStickyLogoBottom() {
+  if (
+    bottomAlreadySet ||
+    !heroContentRef.value ||
+    !stickyLogoRef.value ||
+    window.innerWidth > 900
+  )
+    return;
+
+  const heroEl = heroContentRef.value;
+  const logoEl = stickyLogoRef.value;
+
+  const heroHeight = heroEl.offsetHeight;
+  const baseBottom = window.innerHeight * 0.4;
+  const isLandscape = window.innerHeight < window.innerWidth;
+  const extraSpacing = isLandscape && isMobile ? -50 : 70;
+
+  logoEl.style.bottom = `${baseBottom + heroHeight + extraSpacing}px`;
+  logoEl.style.top = "auto";
+
+  bottomAlreadySet = true;
+}
+
+function handleResize() {
+  bottomAlreadySet = false;
+  waitForHeroImageThenPositionLogo();
+}
+
+function handleOrientationChange() {
+  bottomAlreadySet = false;
+  setTimeout(waitForHeroImageThenPositionLogo, 150);
+}
+
 // This function handles the logo scaling on scroll
 function handleScroll() {
   // On mobile, do nothing and ensure the logo is full size.
-  if (window.innerWidth <= 700) {
+  if (window.innerWidth <= 750) {
     logoScale.value = 1;
     return;
   }
@@ -95,8 +134,31 @@ let aboutObserver;
 let maskObserver;
 let fadeObserver;
 
+function waitForHeroImageThenPositionLogo() {
+  const image = heroContentRef.value?.querySelector("img");
+  if (!image || !stickyLogoRef.value) return;
+
+  function runUpdate() {
+    updateStickyLogoBottom(); // this handles spacing and sets bottomAlreadySet = true
+  }
+
+  if (image.complete) {
+    runUpdate();
+  } else {
+    image.addEventListener(
+      "load",
+      () => {
+        bottomAlreadySet = false;
+        runUpdate();
+      },
+      { once: true }
+    );
+  }
+}
+
 // Add and remove the scroll listener for the window
 onMounted(() => {
+  window.addEventListener("orientationchange", handleOrientationChange);
   window.addEventListener("scroll", handleScroll);
   const options = {
     // Trigger when the top of the about section is 30% from the top of the viewport
@@ -142,8 +204,18 @@ onMounted(() => {
   if (aboutSectionRef.value) {
     maskObserver.observe(aboutSectionRef.value);
   }
+  nextTick(() => {
+    waitForHeroImageThenPositionLogo();
+    if (isMobile) {
+      window.addEventListener("resize", handleResize);
+      window.addEventListener("orientationchange", handleOrientationChange);
+    }
+  });
 });
 onBeforeUnmount(() => {
+  window.removeEventListener("resize", handleResize);
+  window.removeEventListener("orientationchange", handleOrientationChange);
+  window.removeEventListener("resize", updateStickyLogoBottom);
   window.removeEventListener("scroll", handleScroll);
   if (aboutObserver) aboutObserver.disconnect();
   if (maskObserver) maskObserver.disconnect();
@@ -405,17 +477,20 @@ onBeforeUnmount(() => {
 /* On screens 750px or less, we override the desktop styles */
 @media (max-width: 750px) {
   .sticky-logo {
-    position: absolute;
-    top: 28%; /* Position it 15% from the top of the screen */
+    position: absolute !important;
     left: 50%; /* Center it horizontally */
     transform: translateX(-50%) scale(1) !important; /* Force full size and center */
     width: 80%;
-    margin: 0; /* Reset any desktop margins */
+    margin: 0;
+    top: auto;
+    bottom: unset; /* Remove top positioning */
+    transform-origin: bottom center;
   }
 
   .hero-content {
     position: absolute;
-    top: 45%; /* Position it vertically centered */
+    top: auto; /* Position it vertically centered */
+    bottom: 40vh; /* Position it above the sticky logo */
     left: 50%; /* Center it horizontally */
     transform: translateY(-50%) translateX(-50%);
     width: 80%; /* Give it a slightly wider width */
@@ -427,21 +502,27 @@ onBeforeUnmount(() => {
   }
 }
 
-@media (max-width: 900px) and (orientation: landscape) {
-  /* Make the sticky logo much smaller and move it to the corner */
+@media (max-width: 750px) and (orientation: landscape) {
   .sticky-logo {
-    top: 28%;
-    left: 34%;
-    width: 50%; /* A smaller fixed width */
+    position: absolute;
+    top: auto;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%) scale(1) !important;
+    width: 50%;
+    transform-origin: bottom center;
   }
 
-  /* Reposition the hero content to give the logo space */
   .hero-content {
-    top: 60%;
-    left: 10%;
-    width: 50%; /* A smaller width for the content */
-    transform: translateY(-50%);
-    align-items: flex-start;
+    position: absolute;
+    bottom: 30vh; /* slightly above sticky-logo */
+    left: 50%;
+    transform: translateX(-50%) translateY(0);
+    width: 50%;
+    align-items: center;
+  }
+  .gradient-border-button {
+    top: 15px;
   }
 }
 
