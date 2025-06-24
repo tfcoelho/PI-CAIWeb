@@ -84,7 +84,7 @@ function updateStickyLogoBottom() {
     bottomAlreadySet ||
     !heroContentRef.value ||
     !stickyLogoRef.value ||
-    window.innerWidth > 900
+    window.innerWidth > 750
   )
     return;
 
@@ -102,9 +102,29 @@ function updateStickyLogoBottom() {
   bottomAlreadySet = true;
 }
 
+let lastIsMobile = window.innerWidth <= 750;
+
 function handleResize() {
-  bottomAlreadySet = false;
-  waitForHeroImageThenPositionLogo();
+  const nowIsMobile = window.innerWidth <= 750;
+
+  // Crossing boundary triggers re-layout
+  if (nowIsMobile !== lastIsMobile) {
+    bottomAlreadySet = false;
+
+    if (!nowIsMobile && stickyLogoRef.value) {
+      // Reset desktop styles
+      stickyLogoRef.value.style.bottom = "";
+      stickyLogoRef.value.style.top = "";
+      stickyLogoRef.value.style.position = "";
+      stickyLogoRef.value.style.transform = "";
+    } else if (nowIsMobile && stickyLogoRef.value) {
+      // Force absolute positioning again for mobile (JS side safety net)
+      stickyLogoRef.value.style.position = "absolute";
+      stickyLogoRef.value.style.top = "auto";
+    }
+    waitForHeroImageThenPositionLogo();
+    lastIsMobile = nowIsMobile;
+  }
 }
 
 function handleOrientationChange() {
@@ -209,6 +229,7 @@ onMounted(() => {
     if (isMobile) {
       window.addEventListener("resize", handleResize);
       window.addEventListener("orientationchange", handleOrientationChange);
+      handleResize();
     }
   });
 });
@@ -482,7 +503,7 @@ onBeforeUnmount(() => {
     transform: translateX(-50%) scale(1) !important; /* Force full size and center */
     width: 80%;
     margin: 0;
-    top: auto;
+    top: auto !important;
     bottom: unset; /* Remove top positioning */
     transform-origin: bottom center;
   }
@@ -499,6 +520,12 @@ onBeforeUnmount(() => {
 
   .vision-image {
     padding-top: 0; /* Remove desktop padding */
+  }
+
+  .hero-section {
+    background-attachment: scroll !important;
+    background-position: center center !important;
+    background-size: cover; /* or try 'contain' if zoom is still too aggressive */
   }
 }
 
