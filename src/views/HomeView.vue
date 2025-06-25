@@ -44,7 +44,7 @@
       </div>
     </div>
 
-    <section id="about" ref="aboutSectionRef">
+    <section id="about" ref="aboutSectionRef" class="about-page">
       <AboutView />
     </section>
     <section class="marquee-container">
@@ -151,7 +151,6 @@ function handleScroll() {
 }
 
 let aboutObserver;
-let maskObserver;
 let fadeObserver;
 
 function waitForHeroImageThenPositionLogo() {
@@ -211,19 +210,6 @@ onMounted(() => {
     fadeObserver.observe(aboutSectionRef.value);
   }
 
-  const maskOptions = {
-    rootMargin: "-20% 0px -85% 0px", // Trigger line is LOW on the screen
-    threshold: 0,
-  };
-  const maskCallback = (entries) => {
-    entries.forEach((entry) => {
-      isMaskHidden.value = entry.isIntersecting;
-    });
-  };
-  maskObserver = new IntersectionObserver(maskCallback, maskOptions);
-  if (aboutSectionRef.value) {
-    maskObserver.observe(aboutSectionRef.value);
-  }
   nextTick(() => {
     waitForHeroImageThenPositionLogo();
     if (isMobile) {
@@ -239,7 +225,6 @@ onBeforeUnmount(() => {
   window.removeEventListener("resize", updateStickyLogoBottom);
   window.removeEventListener("scroll", handleScroll);
   if (aboutObserver) aboutObserver.disconnect();
-  if (maskObserver) maskObserver.disconnect();
   if (fadeObserver) fadeObserver.disconnect();
   if (setNavAppearance) {
     setNavAppearance(false);
@@ -248,6 +233,9 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.about-page {
+  z-index: 3;
+}
 /* Add these new rules to your HomeView.vue <style scoped> */
 
 /* This is the container for the entire home page */
@@ -331,7 +319,7 @@ onBeforeUnmount(() => {
   left: 0;
   width: 100%;
   height: 17vh; /* The height of the fade effect */
-  z-index: 9; /* Below the logo (z-index: 10) */
+  z-index: 2; /* Below the logo (z-index: 10) */
 
   /* The background image that it fades to */
   background-image: url("@/assets/images/background.webp");
@@ -351,10 +339,6 @@ onBeforeUnmount(() => {
 /* When the logo is sticky, this class is added, and the mask becomes visible */
 .home-container.logo-is-sticky .hero-section::before {
   opacity: 1;
-}
-
-.home-container.hide-mask .hero-section::before {
-  opacity: 0;
 }
 
 .home-container::before {
