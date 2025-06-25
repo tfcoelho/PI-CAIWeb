@@ -1,5 +1,5 @@
 ---
-tags: STUDY DESIGNS
+tags: STUDY PROTOCOL
 date: 2024-07-01
 authors: T. Coelho, M. de Rooij, M. Maas, H. Huisman
 publication_details: 

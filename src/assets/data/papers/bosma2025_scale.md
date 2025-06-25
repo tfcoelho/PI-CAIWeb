@@ -1,5 +1,5 @@
 ---
-tags: STUDY DESIGNS
+tags: STUDY PROTOCOL
 date: 2025-02-18
 authors: J.S. Bosma, N. Obuchowski, M. de Rooij, H. Huisman
 publication_details: Zenodo
