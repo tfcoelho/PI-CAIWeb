@@ -39,7 +39,11 @@
         @click="viewPaper(paper)"
       >
         <div class="paper-tags" v-if="paper.tags && paper.tags.length > 0">
-          <span v-for="tag in paper.tags" :key="tag" class="paper-tag">
+          <span
+            v-for="tag in paper.tags"
+            :key="tag"
+            :class="['paper-tag', tagClass(tag)]"
+          >
             {{ tag }}
           </span>
         </div>
@@ -77,6 +81,17 @@ export default {
         (paper) => paper.tags && paper.tags.includes(selectedTag.value)
       );
     });
+
+    const tagClass = (tag) => {
+      switch (tag.toUpperCase()) {
+        case "STUDY PROTOCOL":
+          return "tag-study-design";
+        case "PUBLISHED":
+          return "tag-published";
+        default:
+          return "";
+      }
+    };
 
     const filterByTag = (tag) => {
       selectedTag.value = tag;
@@ -182,6 +197,7 @@ export default {
       viewPaper,
       loading,
       formatDate,
+      tagClass,
     };
   },
 };
@@ -408,6 +424,14 @@ export default {
   letter-spacing: 0.5px;
   background-color: #e02090;
   color: white;
+}
+
+.paper-tag.tag-study-design {
+  background-color: #ed9fb6; /* blue */
+}
+
+.paper-tag.tag-published {
+  background-color: #e02090; /* green */
 }
 
 .paper-title {
