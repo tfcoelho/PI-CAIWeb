@@ -20,7 +20,7 @@
 
       <div class="stat-card">
         <div class="stat-value">60+</div>
-        <div class="stat-label">Expert Radiologists</div>
+        <div class="stat-label">Radiologists</div>
       </div>
     </div>
   </section>
