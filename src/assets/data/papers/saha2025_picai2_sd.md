@@ -1,5 +1,5 @@
 ---
-tags: RADIOLOGY, STUDY DESIGN
+tags: STUDY PROTOCOL
 date: 2025-08-08
 authors: A. Saha, J. S. Bosma, J. J. Twilt, A. B. C. D. Ng, A. Asif, K. Magudia, P. Larson, Q. Xie, X. Zhang, C. P. Minh,
 S. N. Gitau, I. G. Schoots, M. F. Boomsma, R. Cuocolo, N. Papanikolaou, D. Regge, D. Yakar, M. Elschot, J. Veltman,
