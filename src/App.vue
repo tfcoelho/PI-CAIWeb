@@ -132,7 +132,8 @@ nav a:hover:not(.router-link-exact-active) {
     gap: 2px;
     padding: 3px;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(17, 24, 32, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.18);
   }
 
   nav a {
@@ -142,6 +143,12 @@ nav a:hover:not(.router-link-exact-active) {
     flex: 1;
     text-align: center;
     white-space: nowrap;
+  }
+
+  nav:not(.dark-bg) .nav-container,
+  nav.on-light-bg .nav-container {
+    background: rgba(255, 255, 255, 0.75);
+    border: 1px solid rgba(0, 0, 0, 0.08);
   }
 }
 
