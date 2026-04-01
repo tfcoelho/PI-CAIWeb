@@ -233,7 +233,7 @@ onBeforeUnmount(() => {
 .hero-section {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   background-image: url("@/assets/images/background.webp");
   background-position: 80% center;
   background-repeat: no-repeat;
@@ -489,6 +489,8 @@ onBeforeUnmount(() => {
   /* Switch from grid to block — eliminates any sub-pixel grid gaps showing
      the dark #111820 container background at the top */
   .home-container {
+    --mobile-hero-width: min(88%, 360px);
+    --mobile-y-offset: 100px;
     display: block;
     position: relative;
     /* Fallback bg so any edge cases show the image, not bare dark color */
@@ -500,6 +502,7 @@ onBeforeUnmount(() => {
 
   .hero-section {
     min-height: 100vh;
+    min-height: 107dvh;
     height: auto;
     padding: 0 0 52px;
     display: flex;
@@ -513,10 +516,10 @@ onBeforeUnmount(() => {
 
   .sticky-logo {
     position: absolute !important;
-    top: 60px !important;
+    top: calc(70px + var(--mobile-y-offset)) !important;
     left: 50%;
     transform: translateX(-50%) !important;
-    width: min(68%, 300px);
+    width: var(--mobile-hero-width);
     margin: 0;
     bottom: auto !important;
     animation: none !important;
@@ -528,11 +531,10 @@ onBeforeUnmount(() => {
     top: 0;
     left: auto;
     transform: none;
-    width: min(88%, 460px);
+    width: var(--mobile-hero-width);
     align-items: center;
-    /* Push content below the absolute logo:
-       logo top(60) + logo height(~55) + breathing room(55) ≈ 170px */
-    margin-top: 170px;
+    /* Push content below the absolute logo, with a tighter logo-to-slogan gap */
+    margin-top: calc(152px + var(--mobile-y-offset));
   }
 
   .vision-image {
@@ -541,8 +543,19 @@ onBeforeUnmount(() => {
 
   .gradient-border-button {
     top: 0;
-    margin-top: 24px;
+    margin-top: 18px;
     align-self: center;
+    padding: 8px 14px;
+    letter-spacing: 1.2px;
+  }
+
+  .button-text {
+    padding-left: 10px;
+    font-size: 16px;
+  }
+
+  .arrow-icon {
+    width: 10px;
   }
 
   .symposium-card {
@@ -562,19 +575,24 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 750px) and (orientation: landscape) {
+  .home-container {
+    --mobile-hero-width: min(55%, 400px);
+    --mobile-y-offset: 16px;
+  }
+
   .hero-section {
     min-height: 100vw; /* landscape: use width as min-height */
     padding: 0 0 36px;
   }
 
   .sticky-logo {
-    top: 52px !important;
-    width: min(40%, 240px);
+    top: calc(52px + var(--mobile-y-offset)) !important;
+    width: var(--mobile-hero-width);
   }
 
   .hero-content {
-    width: min(55%, 400px);
-    margin-top: 130px;
+    width: var(--mobile-hero-width);
+    margin-top: calc(118px + var(--mobile-y-offset));
   }
 
   .gradient-border-button {
