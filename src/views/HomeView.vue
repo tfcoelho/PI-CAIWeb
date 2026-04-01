@@ -10,12 +10,11 @@
   >
     <div
       class="sticky-logo"
-      ref="stickyLogoRef"
       :class="{
         'on-about-section': isOverWhiteBg,
         'is-sticky-active': isSticky,
       }"
-      :style="{ transform: `scale(${logoScale})` }"
+      :style="logoTransformStyle"
     >
       <img src="@/assets/images/logo.png" alt="Logo" class="logo-image" />
       <img
@@ -25,7 +24,7 @@
       />
     </div>
     <div class="hero-section">
-      <div class="hero-content" ref="heroContentRef">
+      <div class="hero-content">
         <img
           src="@/assets/images/message.png"
           alt="Prostate Cancer Detection AI"
@@ -41,6 +40,14 @@
             />
           </button>
         </a>
+        <router-link to="/symposium-2026" class="symposium-card">
+          <span class="symposium-badge">New Symposium</span>
+          <h2 class="symposium-title">
+            AI for Prostate Cancer Diagnosis and Screening on MRI
+          </h2>
+          <p class="symposium-meta">June 1 | 08:30 | Theaterzaal C</p>
+          <span class="symposium-cta">View Symposium Program</span>
+        </router-link>
       </div>
     </div>
 
@@ -54,181 +61,118 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount, watch, inject, nextTick } from "vue";
+import { ref, onMounted, onBeforeUnmount, watch, inject, computed } from "vue";
 import AboutView from "./AboutView.vue";
 import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
 const logoScale = ref(1);
+const logoTopPx = ref(window.innerHeight * 0.37);
 const isSticky = ref(false);
-const aboutSectionRef = ref(null); // This will be a reference to the <section> element
-const isOverWhiteBg = ref(false); // This will be true when we are over the #about section
+const aboutSectionRef = ref(null);
+const isOverWhiteBg = ref(false);
 const isMaskHidden = ref(false);
 const showTopFade = ref(false);
-const stickyLogoRef = ref(null);
-const heroContentRef = ref(null);
-const isMobile = window.innerWidth <= 750;
+const isMobileLayout = ref(window.innerWidth <= 750);
 
 const setNavAppearance = inject("setNavAppearance");
 
-// --- This WATCH effect now calls the injected function ---
 watch(isOverWhiteBg, (isOver) => {
-  if (setNavAppearance) {
-    setNavAppearance(isOver);
-  }
+  if (setNavAppearance) setNavAppearance(isOver);
 });
 
-let bottomAlreadySet = false;
+// --- Constants ---
+const LOGO_INITIAL_TOP = 0.37; // ratio of vh where the logo starts
+const NAV_Y = 20; // px — where the logo sticks (matches nav top)
+const MIN_SCALE = 0.1;
+const SHRINK_DISTANCE = 0.5; // ratio of vh over which logo shrinks from 1 → MIN_SCALE
 
-function updateStickyLogoBottom() {
-  if (
-    bottomAlreadySet ||
-    !heroContentRef.value ||
-    !stickyLogoRef.value ||
-    window.innerWidth > 750
-  )
-    return;
+// --- Computed style: JS drives position+scale on desktop, CSS handles mobile ---
+const logoTransformStyle = computed(() => {
+  if (isMobileLayout.value) return {};
+  return {
+    transform: `translateY(${logoTopPx.value}px) scale(${logoScale.value})`,
+  };
+});
 
-  const heroEl = heroContentRef.value;
-  const logoEl = stickyLogoRef.value;
-
-  const heroHeight = heroEl.offsetHeight;
-  const baseBottom = window.innerHeight * 0.4;
-  const isLandscape = window.innerHeight < window.innerWidth;
-  const extraSpacing = isLandscape && isMobile ? -50 : 70;
-
-  logoEl.style.bottom = `${baseBottom + heroHeight + extraSpacing}px`;
-  logoEl.style.top = "auto";
-
-  bottomAlreadySet = true;
-}
-
-let lastIsMobile = window.innerWidth <= 750;
-
-function handleResize() {
-  const nowIsMobile = window.innerWidth <= 750;
-
-  // Crossing boundary triggers re-layout
-  if (nowIsMobile !== lastIsMobile) {
-    bottomAlreadySet = false;
-
-    if (!nowIsMobile && stickyLogoRef.value) {
-      // Reset desktop styles
-      stickyLogoRef.value.style.bottom = "";
-      stickyLogoRef.value.style.top = "";
-      stickyLogoRef.value.style.position = "";
-      stickyLogoRef.value.style.transform = "";
-    } else if (nowIsMobile && stickyLogoRef.value) {
-      // Force absolute positioning again for mobile (JS side safety net)
-      stickyLogoRef.value.style.position = "absolute";
-      stickyLogoRef.value.style.top = "auto";
-    }
-    waitForHeroImageThenPositionLogo();
-    lastIsMobile = nowIsMobile;
-  }
-}
-
-function handleOrientationChange() {
-  bottomAlreadySet = false;
-  setTimeout(waitForHeroImageThenPositionLogo, 150);
-}
-
-// This function handles the logo scaling on scroll
 function handleScroll() {
-  // On mobile, do nothing and ensure the logo is full size.
-  if (window.innerWidth <= 750) {
+  if (isMobileLayout.value) {
     logoScale.value = 1;
     return;
   }
 
   const scrollY = window.scrollY;
   const vh = window.innerHeight;
-  const stickyThreshold = 0.01 * vh;
-  const shrinkDistance = 0.58 * vh;
+  const logoInitialTop = LOGO_INITIAL_TOP * vh;
+  // The scroll amount at which the logo's top edge reaches NAV_Y
+  const stickyScrollY = logoInitialTop - NAV_Y;
 
-  // Shrink the logo based on scroll, but not smaller than 40%
-  logoScale.value = Math.max(0.3, 1 - scrollY / shrinkDistance);
-  isSticky.value = scrollY > stickyThreshold;
+  if (scrollY >= stickyScrollY) {
+    // Logo has reached the nav bar — lock it there
+    isSticky.value = true;
+    logoTopPx.value = NAV_Y;
+    logoScale.value = Math.max(
+      MIN_SCALE,
+      1 - stickyScrollY / (SHRINK_DISTANCE * vh)
+    );
+  } else {
+    // Logo follows the page upward while shrinking
+    isSticky.value = false;
+    logoTopPx.value = logoInitialTop - scrollY;
+    logoScale.value = Math.max(MIN_SCALE, 1 - scrollY / (SHRINK_DISTANCE * vh));
+  }
+}
+
+function handleResize() {
+  isMobileLayout.value = window.innerWidth <= 750;
+  if (!isMobileLayout.value) {
+    // vh may have changed — recalculate
+    logoTopPx.value = window.innerHeight * LOGO_INITIAL_TOP;
+    handleScroll();
+  }
+}
+
+function handleOrientationChange() {
+  setTimeout(() => {
+    isMobileLayout.value = window.innerWidth <= 750;
+    if (!isMobileLayout.value) {
+      logoTopPx.value = window.innerHeight * LOGO_INITIAL_TOP;
+      handleScroll();
+    }
+  }, 150);
 }
 
 let aboutObserver;
 let fadeObserver;
 
-function waitForHeroImageThenPositionLogo() {
-  const image = heroContentRef.value?.querySelector("img");
-  if (!image || !stickyLogoRef.value) return;
-
-  function runUpdate() {
-    updateStickyLogoBottom(); // this handles spacing and sets bottomAlreadySet = true
-  }
-
-  if (image.complete) {
-    runUpdate();
-  } else {
-    image.addEventListener(
-      "load",
-      () => {
-        bottomAlreadySet = false;
-        runUpdate();
-      },
-      { once: true }
-    );
-  }
-}
-
-// Add and remove the scroll listener for the window
 onMounted(() => {
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", handleResize);
   window.addEventListener("orientationchange", handleOrientationChange);
-  window.addEventListener("scroll", handleScroll);
-  const options = {
-    // Trigger when the top of the about section is 30% from the top of the viewport
-    rootMargin: "-5% 0px -95% 0px",
-    threshold: 0,
-  };
-  const callback = (entries) => {
-    entries.forEach((entry) => {
-      // If the about section is intersecting our trigger line, set our flag to true
-      isOverWhiteBg.value = entry.isIntersecting;
-    });
-  };
 
-  aboutObserver = new IntersectionObserver(callback, options);
-  if (aboutSectionRef.value) {
-    aboutObserver.observe(aboutSectionRef.value);
-  }
+  // Initialize position/scale based on current scroll (handles page reload mid-scroll)
+  handleScroll();
 
-  const fadeOptions = {
-    rootMargin: "0% 0px -100% 0px", // Triggers later
-    threshold: 0,
-  };
-  const fadeCallback = (entries) => {
-    entries.forEach((entry) => {
-      showTopFade.value = entry.isIntersecting;
-    });
-  };
-  fadeObserver = new IntersectionObserver(fadeCallback, fadeOptions);
-  if (aboutSectionRef.value) {
-    fadeObserver.observe(aboutSectionRef.value);
-  }
+  aboutObserver = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => (isOverWhiteBg.value = e.isIntersecting)),
+    { rootMargin: "-5% 0px -95% 0px", threshold: 0 }
+  );
+  if (aboutSectionRef.value) aboutObserver.observe(aboutSectionRef.value);
 
-  nextTick(() => {
-    waitForHeroImageThenPositionLogo();
-    if (isMobile) {
-      window.addEventListener("resize", handleResize);
-      window.addEventListener("orientationchange", handleOrientationChange);
-      handleResize();
-    }
-  });
+  fadeObserver = new IntersectionObserver(
+    (entries) => entries.forEach((e) => (showTopFade.value = e.isIntersecting)),
+    { rootMargin: "0% 0px -100% 0px", threshold: 0 }
+  );
+  if (aboutSectionRef.value) fadeObserver.observe(aboutSectionRef.value);
 });
+
 onBeforeUnmount(() => {
+  window.removeEventListener("scroll", handleScroll);
   window.removeEventListener("resize", handleResize);
   window.removeEventListener("orientationchange", handleOrientationChange);
-  window.removeEventListener("resize", updateStickyLogoBottom);
-  window.removeEventListener("scroll", handleScroll);
   if (aboutObserver) aboutObserver.disconnect();
   if (fadeObserver) fadeObserver.disconnect();
-  if (setNavAppearance) {
-    setNavAppearance(false);
-  }
+  if (setNavAppearance) setNavAppearance(false);
 });
 </script>
 
@@ -252,17 +196,19 @@ onBeforeUnmount(() => {
 }
 
 .sticky-logo {
-  position: sticky;
-  top: -50px;
+  position: fixed;
+  top: 0; /* JS controls actual Y via translateY */
+  left: 16%;
   width: 560px;
   z-index: 15;
-  transform-origin: bottom left;
-  transition: transform 0s linear;
-  align-self: start;
-  justify-self: start;
-  margin-left: 16%;
-  margin-top: 37vh;
+  transform-origin: top left; /* top-left anchor = top edge stays where JS puts it */
   display: grid;
+  /* Explicit fade-in so fixed+transform compositor layer can't escape parent opacity */
+  animation: logoFadeIn 0.35s ease-out forwards;
+}
+
+.sticky-logo.is-sticky-active {
+  z-index: 20;
 }
 
 .logo-image {
@@ -309,6 +255,65 @@ onBeforeUnmount(() => {
 .vision-image {
   width: 100%;
   animation: slideInFromLeft 1s ease-out forwards;
+}
+
+.symposium-card {
+  margin-top: 52px;
+  padding: 18px 20px;
+  width: min(100%, 540px);
+  border-radius: 14px;
+  text-align: left;
+  text-decoration: none;
+  color: #ffffff;
+  background: rgba(8, 12, 17, 0.66);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  transition: transform 0.2s ease, border-color 0.2s ease,
+    background-color 0.2s ease;
+  animation: slideInFromLeft 1.2s ease-out forwards;
+}
+
+.symposium-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.45);
+  background: rgba(10, 15, 21, 0.78);
+}
+
+.symposium-badge {
+  display: inline-block;
+  font-family: "Nunito-Sans", sans-serif;
+  letter-spacing: 1.2px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #ff8dd5;
+}
+
+.symposium-title {
+  margin: 10px 0 8px 0;
+  font-family: "Nunito-Sans", sans-serif;
+  font-size: 21px;
+  line-height: 1.2;
+  font-weight: 700;
+}
+
+.symposium-meta {
+  margin: 0;
+  font-family: "Nunito-Sans", sans-serif;
+  font-size: 14px;
+  letter-spacing: 0.6px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.symposium-cta {
+  display: inline-block;
+  margin-top: 14px;
+  font-family: "Nunito-Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.7);
 }
 
 /* This creates the gradient mask element, but it starts invisible */
@@ -481,70 +486,123 @@ onBeforeUnmount(() => {
 
 /* On screens 750px or less, we override the desktop styles */
 @media (max-width: 750px) {
-  .sticky-logo {
-    position: absolute !important;
-    left: 50%; /* Center it horizontally */
-    transform: translateX(-50%) scale(1) !important; /* Force full size and center */
-    width: 80%;
-    margin: 0;
-    top: auto !important;
-    bottom: unset; /* Remove top positioning */
-    transform-origin: bottom center;
-  }
-
-  .hero-content {
-    position: absolute;
-    top: auto; /* Position it vertically centered */
-    bottom: 40vh; /* Position it above the sticky logo */
-    left: 50%; /* Center it horizontally */
-    transform: translateY(-50%) translateX(-50%);
-    width: 80%; /* Give it a slightly wider width */
-    align-items: center; /* Center the content */
-  }
-
-  .vision-image {
-    padding-top: 0; /* Remove desktop padding */
+  /* Switch from grid to block — eliminates any sub-pixel grid gaps showing
+     the dark #111820 container background at the top */
+  .home-container {
+    display: block;
+    position: relative;
+    /* Fallback bg so any edge cases show the image, not bare dark color */
+    background-image: url("@/assets/images/background.webp");
+    background-size: cover;
+    background-position: top center;
+    background-attachment: scroll;
   }
 
   .hero-section {
+    min-height: 100vh;
+    height: auto;
+    padding: 0 0 52px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
     background-attachment: scroll !important;
-    background-position: center center !important;
-    background-size: cover; /* or try 'contain' if zoom is still too aggressive */
+    background-position: top center !important;
+    background-size: cover;
+  }
+
+  .sticky-logo {
+    position: absolute !important;
+    top: 60px !important;
+    left: 50%;
+    transform: translateX(-50%) !important;
+    width: min(68%, 300px);
+    margin: 0;
+    bottom: auto !important;
+    animation: none !important;
+    transform-origin: top center;
+  }
+
+  .hero-content {
+    position: relative;
+    top: 0;
+    left: auto;
+    transform: none;
+    width: min(88%, 460px);
+    align-items: center;
+    /* Push content below the absolute logo:
+       logo top(60) + logo height(~55) + breathing room(55) ≈ 170px */
+    margin-top: 170px;
+  }
+
+  .vision-image {
+    width: 100%;
+  }
+
+  .gradient-border-button {
+    top: 0;
+    margin-top: 24px;
+    align-self: center;
+  }
+
+  .symposium-card {
+    margin-top: 28px;
+    padding: 14px 16px;
+    width: 100%;
+  }
+
+  .symposium-title {
+    font-size: 17px;
+  }
+
+  .symposium-meta,
+  .symposium-cta {
+    font-size: 13px;
   }
 }
 
 @media (max-width: 750px) and (orientation: landscape) {
+  .hero-section {
+    min-height: 100vw; /* landscape: use width as min-height */
+    padding: 0 0 36px;
+  }
+
   .sticky-logo {
-    position: absolute;
-    top: auto;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%) scale(1) !important;
-    width: 50%;
-    transform-origin: bottom center;
+    top: 52px !important;
+    width: min(40%, 240px);
   }
 
   .hero-content {
-    position: absolute;
-    bottom: 30vh; /* slightly above sticky-logo */
-    left: 50%;
-    transform: translateX(-50%) translateY(0);
-    width: 50%;
-    align-items: center;
+    width: min(55%, 400px);
+    margin-top: 130px;
   }
+
   .gradient-border-button {
-    top: 15px;
+    top: 0;
+    margin-top: 16px;
+  }
+
+  .symposium-card {
+    margin-top: 20px;
+  }
+}
+
+@keyframes logoFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
 /* Keyframes and other styles from your original file */
 @keyframes slideInFromLeft {
   from {
-    opacity: 0;
+    /* opacity removed — page transition owns all fading, this only slides */
     transform: translateX(-50px);
   }
   to {
-    opacity: 1;
     transform: translateX(0);
   }
 }

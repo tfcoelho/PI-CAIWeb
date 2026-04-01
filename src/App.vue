@@ -10,11 +10,19 @@
         <div class="nav-container">
           <router-link to="/">Home</router-link>
           <router-link to="/research">Research</router-link>
+          <router-link to="/symposium-2026">Symposium</router-link>
         </div>
       </div>
     </nav>
+    <!-- Sits above all fixed/background-attachment:fixed compositor layers -->
+    <div class="transition-mask" :class="{ visible: maskVisible }"></div>
     <router-view v-slot="{ Component }">
-      <transition name="page" mode="out-in">
+      <transition
+        mode="out-in"
+        :css="false"
+        @leave="onLeave"
+        @after-enter="onAfterEnter"
+      >
         <component :is="Component" />
       </transition>
     </router-view>
@@ -22,18 +30,28 @@
 </template>
 
 <script setup>
-import { ref, provide } from "vue";
+import { ref, provide, nextTick } from "vue";
 
-// This new state will control the nav's appearance
 const isNavOverWhiteBg = ref(false);
+const maskVisible = ref(false);
 
-// This is the function that HomeView will call to update the state
 const setNavAppearance = (isOver) => {
   isNavOverWhiteBg.value = isOver;
 };
-
-// We "provide" this function to all child components
 provide("setNavAppearance", setNavAppearance);
+
+function onLeave(el, done) {
+  // Show mask instantly, then swap component once it's rendered
+  maskVisible.value = true;
+  // Two rAFs: first schedules paint, second confirms it completed
+  requestAnimationFrame(() => requestAnimationFrame(done));
+}
+
+async function onAfterEnter() {
+  // New component is mounted — wait one tick then reveal
+  await nextTick();
+  maskVisible.value = false;
+}
 </script>
 
 <style>
@@ -100,13 +118,46 @@ nav a:hover:not(.router-link-exact-active) {
   background-color: rgba(224, 32, 144, 0.25);
 }
 
-/* Page transitions */
-.page-enter-active,
-.page-leave-active {
-  transition: opacity 0.35s ease;
+@media (max-width: 750px) {
+  nav {
+    top: 6px;
+    padding: 4px 8px;
+    width: calc(100% - 24px);
+    max-width: 440px;
+  }
+
+  .nav-container {
+    width: 100%;
+    justify-content: space-between;
+    gap: 2px;
+    padding: 3px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.65);
+  }
+
+  nav a {
+    padding: 7px 8px;
+    font-size: 13px;
+    line-height: 1;
+    flex: 1;
+    text-align: center;
+    white-space: nowrap;
+  }
 }
-.page-enter-from,
-.page-leave-to {
+
+/* Transition mask — covers the entire viewport so compositor-layer-escaped
+   elements (position:fixed, background-attachment:fixed) can't break through */
+.transition-mask {
+  position: fixed;
+  inset: 0;
+  background: #111820;
+  z-index: 9999;
+  pointer-events: none;
   opacity: 0;
+  transition: opacity 0.35s ease; /* Only used when hiding (fade-out to reveal new page) */
+}
+.transition-mask.visible {
+  opacity: 1;
+  transition: none; /* Appear instantly — no fade-in, no "last to vanish" perception */
 }
 </style>

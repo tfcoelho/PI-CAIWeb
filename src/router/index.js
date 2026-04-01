@@ -20,6 +20,14 @@ const routes = [
       import(/* webpackChunkName: "research" */ "../views/ResearchView.vue"),
   },
   {
+    path: "/symposium-2026",
+    name: "symposium-2026",
+    component: () =>
+      import(
+        /* webpackChunkName: "symposium-2026" */ "../views/SymposiumView.vue"
+      ),
+  },
+  {
     path: "/paper/:id",
     name: "paper",
     component: () =>
