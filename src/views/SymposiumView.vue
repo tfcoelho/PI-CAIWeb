@@ -8,16 +8,38 @@
       </h1>
       <p class="meta">June 1 | 08:30 | Theaterzaal C</p>
       <p class="lead">
-        Artificial intelligence (AI) is rapidly transforming prostate cancer
-        detection on MRI. A growing body of evidence demonstrates the potential
-        of AI systems, yet translation into routine clinical practice remains
-        limited.
+        Artificial intelligence (AI) is
+        <strong>rapidly transforming prostate cancer detection on MRI</strong>.
+        A growing body of evidence demonstrates the potential of AI systems, yet
+        their
+        <strong
+          >translation into routine clinical practice remains limited</strong
+        >. Key challenges include critically appraising the current evidence
+        base, identifying gaps between research settings and real-world clinical
+        environments, and determining how efficacy observed in studies can be
+        reliably <strong>translated into clinical benefit</strong>.
       </p>
       <p class="lead second">
         This symposium brings together experts from radiology, urology,
         epidemiology, and industry to examine the current state of evidence,
         define priorities for future research, and discuss how AI can be
-        effectively integrated into clinical workflows.
+        effectively integrated into clinical workflows. We will focus on
+        <strong
+          >benchmarking and the retrospective evidence base required for safe
+          and effective AI</strong
+        >;
+        <strong
+          >quantifying the harm-to-benefit trade-offs associated with different
+          AI–radiologist clinical workflows</strong
+        >;
+        <strong
+          >scaling validation across diverse populations and care
+          settings</strong
+        >; and
+        <strong
+          >leveraging AI for capacity expansion and cost-effective
+          population-level screening</strong
+        >.
       </p>
     </section>
 
@@ -125,7 +147,7 @@ let originalBackgroundColor;
 
 onMounted(() => {
   originalBackgroundColor = document.body.style.backgroundColor;
-  document.body.style.backgroundColor = "#f4f2ef";
+  document.body.style.backgroundColor = "#EBEBF5";
 });
 
 onUnmounted(() => {
@@ -135,21 +157,30 @@ onUnmounted(() => {
 
 <style scoped>
 .symposium-page {
+  --research-bg: #ebebf5;
+  --research-card: #ffffff;
+  --research-border: #d8d8e6;
+  --research-text: #111111;
+  --research-muted: #666666;
+  --research-accent: #e02090;
+
   min-height: 100vh;
   max-width: 1100px;
   margin: 0 auto;
   padding: 110px 28px 80px;
-  color: #1f2733;
+  color: var(--research-text);
   text-align: left;
-  font-family: "Nunito-Sans", "Segoe UI", sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
+    sans-serif;
+  background-color: var(--research-bg);
 }
 
 .hero {
-  background: linear-gradient(140deg, #ffffff, #f7f5f2);
-  border: 1px solid #e7e3dc;
+  background: linear-gradient(140deg, #ffffff, #f7f5ff);
+  border: 1px solid var(--research-border);
   border-radius: 20px;
   padding: 34px;
-  box-shadow: 0 12px 40px rgba(20, 27, 36, 0.08);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .eyebrow {
@@ -157,7 +188,7 @@ onUnmounted(() => {
   font-size: 12px;
   letter-spacing: 1.6px;
   text-transform: uppercase;
-  color: #c11672;
+  color: var(--research-accent);
   font-weight: 800;
 }
 
@@ -165,17 +196,17 @@ h1 {
   margin: 14px 0 16px;
   font-size: 38px;
   line-height: 1.15;
-  color: #0f1b2b;
+  color: var(--research-text);
 }
 
 .meta {
   margin: 0 0 22px;
   font-size: 17px;
   font-weight: 700;
-  color: #263950;
+  color: #333333;
   display: inline-block;
-  background: #f0ece6;
-  border: 1px solid #e1dacf;
+  background: #f7f5ff;
+  border: 1px solid var(--research-border);
   border-radius: 999px;
   padding: 8px 14px;
 }
@@ -184,6 +215,11 @@ h1 {
   margin: 0;
   font-size: 18px;
   line-height: 1.5;
+  color: var(--research-muted);
+}
+
+.lead strong {
+  color: var(--research-text);
 }
 
 .lead.second {
@@ -192,9 +228,9 @@ h1 {
 
 .focus-areas {
   margin-top: 26px;
-  background: #ffffff;
+  background: var(--research-card);
   border-radius: 16px;
-  border: 1px solid #e7e3dc;
+  border: 1px solid var(--research-border);
   padding: 24px 28px;
 }
 
@@ -219,10 +255,11 @@ h1 {
 }
 
 .program-card {
-  background: #ffffff;
-  border: 1px solid #e7e3dc;
+  background: var(--research-card);
+  border: 1px solid var(--research-border);
   border-radius: 16px;
   padding: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .program-card h2 {
@@ -233,7 +270,7 @@ h1 {
 .slot {
   margin-bottom: 18px;
   padding-bottom: 18px;
-  border-bottom: 1px solid #ece8e1;
+  border-bottom: 1px solid #ececf5;
 }
 
 .slot:last-of-type {
@@ -245,7 +282,7 @@ h1 {
   font-size: 13px;
   letter-spacing: 0.4px;
   text-transform: uppercase;
-  color: #c11672;
+  color: var(--research-accent);
   font-weight: 800;
 }
 
@@ -263,7 +300,7 @@ h1 {
 
 .speakers {
   margin-top: 8px !important;
-  color: #425367;
+  color: #333333;
   font-weight: 700;
 }
 
@@ -273,10 +310,11 @@ h1 {
 
 .speakers-section {
   margin-top: 26px;
-  background: #ffffff;
-  border: 1px solid #e7e3dc;
+  background: var(--research-card);
+  border: 1px solid var(--research-border);
   border-radius: 16px;
   padding: 24px 28px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
 .speakers-section h2 {
@@ -291,11 +329,11 @@ h1 {
 }
 
 .speaker-placeholder {
-  border: 1px dashed #c9c3b9;
+  border: 1px dashed #b7b7d1;
   border-radius: 12px;
   padding: 20px;
   text-align: center;
-  color: #566375;
+  color: var(--research-muted);
   min-height: 84px;
   display: flex;
   align-items: center;
