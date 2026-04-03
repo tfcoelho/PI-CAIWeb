@@ -6,7 +6,7 @@
         Artificial Intelligence for Prostate Cancer Diagnosis and Screening on
         MRI: Current Practice, Evidence Gaps, and the Research Agenda
       </h1>
-      <p class="meta">June 1 | 08:30 | Theaterzaal C</p>
+      <p class="meta">June 1 | 08:30 | Radboud University, Nijmegen</p>
       <p class="lead">
         Artificial intelligence (AI) is
         <strong>rapidly transforming prostate cancer detection on MRI</strong>.
@@ -41,6 +41,9 @@
           population-level screening</strong
         >.
       </p>
+      <button class="register-btn" @click="scrollToRegister">
+        Register Now
+      </button>
     </section>
 
     <section class="focus-areas">
@@ -63,6 +66,29 @@
       </ul>
     </section>
 
+    <section class="venue-section">
+      <h2>Venue</h2>
+      <div class="venue-grid">
+        <a
+          v-for="venue in venues"
+          :key="venue.name"
+          :href="venue.mapsUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="venue-card"
+        >
+          <p class="venue-label">{{ venue.label }}</p>
+          <p class="venue-name">{{ venue.name }}</p>
+          <p class="venue-address">
+            <template v-for="(line, i) in venue.address" :key="i"
+              >{{ line }}<br v-if="i < venue.address.length - 1"
+            /></template>
+          </p>
+          <p class="venue-cta">Open in Maps ↗</p>
+        </a>
+      </div>
+    </section>
+
     <section class="program-grid">
       <article class="program-card">
         <h2>Morning Program</h2>
@@ -78,7 +104,6 @@
             support to selective automation, with emphasis on clinical utility,
             patient impact, and safety.
           </p>
-          <p class="speakers">Speakers: To be announced</p>
         </div>
 
         <div class="slot">
@@ -91,7 +116,6 @@
             screening, and feasibility of scalable MRI-based screening
             strategies for prostate cancer.
           </p>
-          <p class="speakers">Speakers: To be announced</p>
         </div>
 
         <div class="compact-row">
@@ -129,25 +153,159 @@
       </article>
     </section>
 
+    <section id="register" class="register-section">
+      <h2>Register</h2>
+      <p class="register-lead">
+        Attendance is free. Fill in the form below to reserve your spot.
+      </p>
+      <div data-fs-success class="form-success">
+        Thanks for registering! We'll be in touch closer to the event.
+      </div>
+      <div data-fs-error class="form-error"></div>
+      <form id="symposium-register" class="register-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full name</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              placeholder="Jane Smith"
+              data-fs-field
+            />
+            <span data-fs-error="name" class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="email">Email address</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              placeholder="jane@institution.edu"
+              data-fs-field
+            />
+            <span data-fs-error="email" class="field-error"></span>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="affiliation">Institution / Affiliation</label>
+            <input
+              id="affiliation"
+              type="text"
+              name="affiliation"
+              required
+              placeholder="Radboud University"
+              data-fs-field
+            />
+            <span data-fs-error="affiliation" class="field-error"></span>
+          </div>
+          <div class="form-group">
+            <label for="role">Role</label>
+            <select id="role" name="role" required data-fs-field>
+              <option value="" disabled selected>Select your role</option>
+              <option>Clinician</option>
+              <option>Researcher</option>
+              <option>Industry</option>
+              <option>Student</option>
+              <option>Other</option>
+            </select>
+            <span data-fs-error="role" class="field-error"></span>
+          </div>
+        </div>
+        <div class="form-group">
+          <span class="form-group-label">I plan to attend</span>
+          <div class="checkbox-grid">
+            <label class="checkbox-item checkbox-item--all">
+              <input
+                type="checkbox"
+                :checked="allSelected"
+                @change="toggleAll"
+              />
+              Full program
+            </label>
+            <label
+              class="checkbox-item"
+              v-for="option in attendOptions"
+              :key="option"
+            >
+              <input
+                type="checkbox"
+                name="attend[]"
+                :value="option"
+                v-model="selected"
+              />
+              {{ option }}
+            </label>
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="register-btn register-btn--submit"
+          data-fs-submit-btn
+        >
+          Submit Registration
+        </button>
+      </form>
+    </section>
+
     <section class="speakers-section">
       <h2>Speakers</h2>
       <div class="speaker-placeholder-wrap">
-        <div class="speaker-placeholder">Headshot + details coming soon</div>
-        <div class="speaker-placeholder">Headshot + details coming soon</div>
-        <div class="speaker-placeholder">More speakers to be announced</div>
+        <div v-for="i in 3" :key="i" class="speaker-placeholder">
+          Speakers to be announced
+        </div>
       </div>
     </section>
   </main>
 </template>
 
 <script setup>
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, ref, computed } from "vue";
+import { initForm } from "@formspree/ajax/dist/index.mjs";
+
+const attendOptions = [
+  "Morning program",
+  "Lunch",
+  "PhD defense Jasper",
+  "PhD defense Anindo",
+  "Borrel",
+];
+const selected = ref([]);
+const allSelected = computed(
+  () => selected.value.length === attendOptions.length
+);
+function toggleAll() {
+  selected.value = allSelected.value ? [] : [...attendOptions];
+}
+
+const venues = [
+  {
+    label: "Morning Program",
+    name: "Theaterzaal C",
+    address: ["Heyendaalseweg 141", "6525 AJ, Nijmegen", "The Netherlands"],
+    mapsUrl: "https://maps.google.com/?q=Heyendaalseweg+141,+6525+AJ+Nijmegen",
+  },
+  {
+    label: "Afternoon Program",
+    name: "De Aula",
+    address: ["Comeniuslaan 2", "6525 HP, Nijmegen", "The Netherlands"],
+    mapsUrl: "https://maps.google.com/?q=Comeniuslaan+2,+6525+HP+Nijmegen",
+  },
+];
+
+function scrollToRegister() {
+  document.getElementById("register").scrollIntoView({ behavior: "smooth" });
+}
 
 let originalBackgroundColor;
 
 onMounted(() => {
   originalBackgroundColor = document.body.style.backgroundColor;
   document.body.style.backgroundColor = "#EBEBF5";
+  initForm({ formElement: "#symposium-register", formId: "mojpkqyl" });
 });
 
 onUnmounted(() => {
@@ -211,6 +369,183 @@ h1 {
   padding: 8px 14px;
 }
 
+.register-btn {
+  display: inline-block;
+  margin-top: 24px;
+  padding: 12px 28px;
+  background: var(--research-accent);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 999px;
+  text-decoration: none;
+  outline: none;
+  border: none;
+  transition: opacity 0.15s;
+}
+
+.register-btn:hover {
+  opacity: 0.85;
+}
+
+.register-btn:focus,
+.register-btn:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+.register-btn--submit {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+  margin-top: 0;
+}
+
+.register-section {
+  margin-top: 26px;
+  background: var(--research-card);
+  border-radius: 16px;
+  border: 1px solid var(--research-border);
+  padding: 32px 28px;
+}
+
+.register-section h2 {
+  margin: 0 0 6px;
+  font-size: 24px;
+}
+
+.register-lead {
+  margin: 0 0 24px;
+  color: var(--research-muted);
+  font-size: 15px;
+}
+
+.form-success {
+  display: none;
+  padding: 14px 18px;
+  background: #edfaf3;
+  border: 1px solid #6fcf97;
+  border-radius: 10px;
+  color: #1a7a45;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 16px;
+}
+
+.form-error {
+  display: none;
+  padding: 14px 18px;
+  background: #fff0f0;
+  border: 1px solid #f87171;
+  border-radius: 10px;
+  color: #b91c1c;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.field-error {
+  font-size: 12px;
+  color: #b91c1c;
+}
+
+.form-group-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--research-text);
+  display: block;
+  margin-bottom: 10px;
+}
+
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  padding: 10px 14px;
+  border: 1px solid var(--research-border);
+  border-radius: 8px;
+  cursor: pointer;
+  background: #fafafa;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.checkbox-item:hover {
+  border-color: var(--research-accent);
+  background: #fff;
+}
+
+.checkbox-item--all {
+  font-weight: 700;
+  border-color: var(--research-accent);
+  color: var(--research-accent);
+}
+
+.checkbox-item input[type="checkbox"] {
+  accent-color: var(--research-accent);
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--research-text);
+}
+
+.form-group input,
+.form-group select {
+  padding: 10px 14px;
+  border: 1px solid var(--research-border);
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fafafa;
+  color: var(--research-text);
+  transition: border-color 0.15s;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  outline: none;
+  border-color: var(--research-accent);
+}
+
+.meta-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: rgba(0, 0, 0, 0.3);
+  text-underline-offset: 2px;
+}
+
+.meta-link:hover {
+  text-decoration-color: currentColor;
+}
+
 .lead {
   margin: 0;
   font-size: 18px;
@@ -245,6 +580,70 @@ h1 {
   display: grid;
   gap: 10px;
   line-height: 1.45;
+}
+
+.venue-section {
+  margin-top: 26px;
+  background: var(--research-card);
+  border-radius: 16px;
+  border: 1px solid var(--research-border);
+  padding: 24px 28px;
+}
+
+.venue-section h2 {
+  margin: 0 0 16px;
+  font-size: 24px;
+}
+
+.venue-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.venue-card {
+  display: block;
+  text-decoration: none;
+  color: var(--research-text);
+  background: #f7f5ff;
+  border: 1px solid var(--research-border);
+  border-radius: 12px;
+  padding: 18px 20px;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.venue-card:hover {
+  border-color: var(--research-accent);
+  box-shadow: 0 2px 8px rgba(224, 32, 144, 0.1);
+}
+
+.venue-label {
+  margin: 0 0 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--research-accent);
+}
+
+.venue-name {
+  margin: 0 0 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.venue-address {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--research-muted);
+}
+
+.venue-cta {
+  margin: 12px 0 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--research-accent);
 }
 
 .program-grid {
@@ -342,8 +741,17 @@ h1 {
 
 @media (max-width: 980px) {
   .program-grid,
+  .venue-grid,
   .speaker-placeholder-wrap {
     grid-template-columns: 1fr;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
