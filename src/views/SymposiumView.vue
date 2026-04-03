@@ -268,10 +268,10 @@ import { initForm } from "@formspree/ajax/dist/index.mjs";
 
 const attendOptions = [
   "Morning program",
-  "Lunch",
+  "Lunch (included)",
   "PhD defense Jasper",
   "PhD defense Anindo",
-  "Borrel",
+  "Borrel (included)",
 ];
 const selected = ref([]);
 const allSelected = computed(
