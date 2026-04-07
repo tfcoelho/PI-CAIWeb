@@ -6,64 +6,30 @@
         Artificial Intelligence for Prostate Cancer Diagnosis and Screening on
         MRI: Current Practice, Evidence Gaps, and the Research Agenda
       </h1>
-      <p class="meta">June 1 | 08:30 | Radboud University, Nijmegen</p>
+      <p class="meta">June 1 | Radboud University, Nijmegen</p>
       <p class="lead">
-        Artificial intelligence (AI) is
-        <strong>rapidly transforming prostate cancer detection on MRI</strong>.
-        A growing body of evidence demonstrates the potential of AI systems, yet
-        their
-        <strong
-          >translation into routine clinical practice remains limited</strong
-        >. Key challenges include critically appraising the current evidence
-        base, identifying gaps between research settings and real-world clinical
-        environments, and determining how efficacy observed in studies can be
-        reliably <strong>translated into clinical benefit</strong>.
+        Artificial intelligence (AI) is rapidly transforming prostate cancer
+        detection on MRI. A growing body of evidence demonstrates the potential
+        of AI systems, yet their translation into routine clinical practice
+        remains limited. Key challenges include critically appraising the
+        current evidence base, identifying gaps between research settings and
+        real-world clinical environments, and determining how efficacy observed
+        in studies can be reliably translated into clinical benefit.
       </p>
       <p class="lead second">
         This symposium brings together experts from radiology, urology,
         epidemiology, and industry to examine the current state of evidence,
         define priorities for future research, and discuss how AI can be
         effectively integrated into clinical workflows. We will focus on
-        <strong
-          >benchmarking and the retrospective evidence base required for safe
-          and effective AI</strong
-        >;
-        <strong
-          >quantifying the harm-to-benefit trade-offs associated with different
-          AI–radiologist clinical workflows</strong
-        >;
-        <strong
-          >scaling validation across diverse populations and care
-          settings</strong
-        >; and
-        <strong
-          >leveraging AI for capacity expansion and cost-effective
-          population-level screening</strong
-        >.
+        benchmarking and the retrospective evidence base required for safe and
+        effective AI; quantifying the harm-to-benefit trade-offs associated with
+        different AI–radiologist clinical workflows; scaling validation across
+        diverse populations and care settings; and leveraging AI for capacity
+        expansion and cost-effective population-level screening.
       </p>
       <button class="register-btn" @click="scrollToRegister">
         Register Now
       </button>
-    </section>
-
-    <section class="focus-areas">
-      <h2>Focus Areas</h2>
-      <ul>
-        <li>
-          Benchmarking and the retrospective evidence base required for safe and
-          effective AI.
-        </li>
-        <li>
-          Harm-to-benefit trade-offs in AI-radiologist clinical workflows.
-        </li>
-        <li>
-          Scaling validation across diverse populations and care settings.
-        </li>
-        <li>
-          Leveraging AI for capacity expansion and cost-effective population
-          screening.
-        </li>
-      </ul>
     </section>
 
     <section class="venue-section">
@@ -551,6 +517,7 @@ h1 {
   font-size: 18px;
   line-height: 1.5;
   color: var(--research-muted);
+  text-align: justify;
 }
 
 .lead strong {

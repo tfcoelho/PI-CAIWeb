@@ -45,9 +45,7 @@
           <h2 class="symposium-title">
             AI for Prostate Cancer Diagnosis and Screening on MRI
           </h2>
-          <p class="symposium-meta">
-            June 1 | 08:30 | Radboud University, Nijmegen
-          </p>
+          <p class="symposium-meta">June 1 | Radboud University, Nijmegen</p>
           <span class="symposium-cta">View Symposium Program</span>
         </router-link>
       </div>
