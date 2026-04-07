@@ -76,6 +76,10 @@
           </p>
         </div>
 
+        <div class="compact-row compact-row--divider">
+          <p><strong>10:30-11:00</strong> Break</p>
+        </div>
+
         <div class="slot">
           <p class="time">11:00-12:15</p>
           <h3>
@@ -106,9 +110,8 @@
           </p>
         </div>
 
-        <div class="slot">
-          <p class="time">16:00-16:30</p>
-          <h3>Break</h3>
+        <div class="compact-row compact-row--divider">
+          <p><strong>16:00-16:30</strong> Break</p>
         </div>
 
         <div class="slot">
