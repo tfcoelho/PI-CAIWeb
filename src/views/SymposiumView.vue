@@ -59,6 +59,10 @@
       <article class="program-card">
         <h2>Morning Program</h2>
 
+        <div class="compact-row compact-row--divider">
+          <p><strong>08:30-09:00</strong> Walk-in</p>
+        </div>
+
         <div class="slot">
           <p class="time">09:00-10:30</p>
           <h3>
@@ -672,6 +676,12 @@ h1 {
 
 .compact-row p {
   margin: 8px 0 0;
+}
+
+.compact-row--divider {
+  padding-bottom: 18px;
+  margin-bottom: 18px;
+  border-bottom: 1px solid #ececf5;
 }
 
 .speakers-section {
