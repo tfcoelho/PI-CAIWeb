@@ -226,9 +226,39 @@
 
     <section class="speakers-section">
       <h2>Speakers</h2>
-      <div class="speaker-placeholder-wrap">
-        <div v-for="i in 3" :key="i" class="speaker-placeholder">
-          Speakers to be announced
+      <div class="speaker-grid">
+        <div
+          v-for="speaker in speakers"
+          :key="speaker.name"
+          class="speaker-card"
+        >
+          <div class="speaker-photo-wrap">
+            <img
+              :src="speaker.photo"
+              :alt="speaker.name"
+              class="speaker-photo"
+              :style="
+                speaker.photoScale || speaker.photoOffset
+                  ? {
+                      transform: `scale(${
+                        speaker.photoScale || 1
+                      }) translateY(${speaker.photoOffset || 0}px)`,
+                    }
+                  : {}
+              "
+            />
+          </div>
+          <div class="speaker-info">
+            <p class="speaker-name">{{ speaker.name }}</p>
+            <p class="speaker-affiliation">{{ speaker.affiliation }}</p>
+          </div>
+        </div>
+        <div
+          v-for="i in 1"
+          :key="'placeholder-' + i"
+          class="speaker-placeholder"
+        >
+          More speakers to be announced
         </div>
       </div>
     </section>
@@ -238,6 +268,25 @@
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from "vue";
 import { initForm } from "@formspree/ajax/dist/index.mjs";
+import anwarPadhani from "@/assets/images/people/Anwar_Padhani.jpg";
+import ivoSchoots from "@/assets/images/people/Ivo_Schoots.jpg";
+
+const speakers = [
+  {
+    name: "Prof. Dr. Anwar R. Padhani",
+    affiliation:
+      "Paul Strickland Scanner Centre, Mount Vernon Cancer Centre, London, United Kingdom",
+    photo: anwarPadhani,
+  },
+  {
+    name: "Dr. Ivo G. Schoots",
+    affiliation:
+      "Department of Radiology, Netherlands Cancer Institute, Amsterdam, the Netherlands; Department of Radiology and Nuclear Medicine, Erasmus University Medical Center, Rotterdam, the Netherlands",
+    photo: ivoSchoots,
+    photoScale: 1.23,
+    photoOffset: 4,
+  },
+];
 
 const attendOptions = [
   "Morning program",
@@ -701,7 +750,7 @@ h1 {
   font-size: 24px;
 }
 
-.speaker-placeholder-wrap {
+.speaker-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 14px;
@@ -717,12 +766,69 @@ h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  font-size: 14px;
+}
+
+.speaker-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: #f7f5ff;
+  border: 1px solid var(--research-border);
+  border-radius: 12px;
+  padding: 24px 16px 20px;
+  gap: 14px;
+}
+
+.speaker-photo-wrap {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  border: 2px solid var(--research-border);
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.speaker-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.speaker-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.speaker-name {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--research-text);
+}
+
+.speaker-affiliation {
+  margin: 0;
+  font-size: 13px;
+  color: var(--research-muted);
+}
+
+.speaker-session {
+  display: inline-block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--research-accent);
 }
 
 @media (max-width: 980px) {
   .program-grid,
   .venue-grid,
-  .speaker-placeholder-wrap {
+  .speaker-grid {
     grid-template-columns: 1fr;
   }
 
