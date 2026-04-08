@@ -251,6 +251,7 @@
           <div class="speaker-info">
             <p class="speaker-name">{{ speaker.name }}</p>
             <p class="speaker-affiliation">{{ speaker.affiliation }}</p>
+            <p v-if="speaker.bio" class="speaker-bio">{{ speaker.bio }}</p>
           </div>
         </div>
         <div
@@ -276,12 +277,14 @@ const speakers = [
     name: "Prof. Dr. Anwar R. Padhani",
     affiliation:
       "Paul Strickland Scanner Centre, Mount Vernon Cancer Centre, London, United Kingdom",
+    bio: "Advisor to Siemens Healthineers and Lucida Medical, and past co-chair of the ACR PI-RADS steering committee.",
     photo: anwarPadhani,
   },
   {
     name: "Dr. Ivo G. Schoots",
     affiliation:
       "Department of Radiology, Netherlands Cancer Institute, Amsterdam, the Netherlands; Department of Radiology and Nuclear Medicine, Erasmus University Medical Center, Rotterdam, the Netherlands",
+    bio: "Co-chair of the ACR PI-RADS steering committee and full panel member of the EAU prostate cancer guidelines.",
     photo: ivoSchoots,
     photoScale: 1.23,
     photoOffset: 4,
@@ -810,9 +813,23 @@ h1 {
 }
 
 .speaker-affiliation {
-  margin: 0;
+  margin: 4px 0 0;
   font-size: 13px;
+  font-weight: 300;
   color: var(--research-muted);
+  line-height: 1.2;
+}
+
+.speaker-bio {
+  margin: 10px auto 0;
+  padding-top: 10px;
+  font-weight: 300;
+  border-top: 1px solid var(--research-border);
+  font-size: 11px;
+  line-height: 1.2;
+  color: #999999;
+  text-align: center;
+  width: 100%;
 }
 
 .speaker-session {
