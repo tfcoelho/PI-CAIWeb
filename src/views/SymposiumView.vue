@@ -225,7 +225,7 @@
     </section>
 
     <section class="speakers-section">
-      <h2>Speakers</h2>
+      <h2>Speakers and Moderators</h2>
       <div class="speaker-grid">
         <div
           v-for="speaker in speakers"
@@ -238,11 +238,15 @@
               :alt="speaker.name"
               class="speaker-photo"
               :style="
-                speaker.photoScale || speaker.photoOffset
+                speaker.photoScale ||
+                speaker.photoOffset ||
+                speaker.photoOffsetX
                   ? {
                       transform: `scale(${
                         speaker.photoScale || 1
-                      }) translateY(${speaker.photoOffset || 0}px)`,
+                      }) translateX(${
+                        speaker.photoOffsetX || 0
+                      }px) translateY(${speaker.photoOffset || 0}px)`,
                     }
                   : {}
               "
@@ -254,14 +258,8 @@
             <p v-if="speaker.bio" class="speaker-bio">{{ speaker.bio }}</p>
           </div>
         </div>
-        <div
-          v-for="i in 1"
-          :key="'placeholder-' + i"
-          class="speaker-placeholder"
-        >
-          More speakers to be announced
-        </div>
       </div>
+      <p class="speakers-more">More speakers to be announced.</p>
     </section>
   </main>
 </template>
@@ -271,6 +269,8 @@ import { onMounted, onUnmounted, ref, computed } from "vue";
 import { initForm } from "@formspree/ajax/dist/index.mjs";
 import anwarPadhani from "@/assets/images/people/Anwar_Padhani.jpg";
 import ivoSchoots from "@/assets/images/people/Ivo_Schoots.jpg";
+import henkjanHuisman from "@/assets/images/people/Henkjan_Huisman.jpg";
+import maartenDeRooij from "@/assets/images/people/Maarten_de_Rooij.jpg";
 
 const speakers = [
   {
@@ -279,6 +279,8 @@ const speakers = [
       "Paul Strickland Scanner Centre, Mount Vernon Cancer Centre, London, United Kingdom",
     bio: "Advisor to Siemens Healthineers and Lucida Medical, and past co-chair of the ACR PI-RADS steering committee.",
     photo: anwarPadhani,
+    photoScale: 1.03,
+    photoOffset: 2,
   },
   {
     name: "Dr. Ivo G. Schoots",
@@ -287,7 +289,26 @@ const speakers = [
     bio: "Co-chair of the ACR PI-RADS steering committee and full panel member of the EAU prostate cancer guidelines.",
     photo: ivoSchoots,
     photoScale: 1.23,
-    photoOffset: 4,
+    photoOffset: 8,
+  },
+  {
+    name: "Prof. Dr. Henkjan Huisman",
+    affiliation:
+      "Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
+    bio: "Co-chair of the ACR PI-RADS AI subcommittee.",
+    photo: henkjanHuisman,
+    photoScale: 1.33,
+    photoOffset: 11,
+  },
+  {
+    name: "Dr. Maarten de Rooij",
+    affiliation:
+      "Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
+    bio: "Member of the ACR PI-RADS AI subcommittee and ESUR Prostate MRI Working Group.",
+    photo: maartenDeRooij,
+    photoScale: 1.15,
+    photoOffsetX: -4,
+    photoOffset: -2,
   },
 ];
 
@@ -753,6 +774,14 @@ h1 {
   font-size: 24px;
 }
 
+.speakers-more {
+  margin: 20px 0 0;
+  text-align: center;
+  font-size: 13px;
+  color: var(--research-muted);
+  font-style: italic;
+}
+
 .speaker-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -777,16 +806,13 @@ h1 {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  background: #f7f5ff;
-  border: 1px solid var(--research-border);
-  border-radius: 12px;
-  padding: 24px 16px 20px;
+  padding: 16px 8px;
   gap: 14px;
 }
 
 .speaker-photo-wrap {
-  width: 88px;
-  height: 88px;
+  width: 180px;
+  height: 180px;
   border-radius: 50%;
   border: 2px solid var(--research-border);
   overflow: hidden;
@@ -807,29 +833,27 @@ h1 {
 
 .speaker-name {
   margin: 0;
-  font-size: 15px;
   font-weight: 700;
+  line-height: 1.45;
   color: var(--research-text);
 }
 
 .speaker-affiliation {
   margin: 4px 0 0;
-  font-size: 13px;
-  font-weight: 300;
-  color: var(--research-muted);
   line-height: 1.2;
+  color: var(--research-text);
+  font-weight: 300;
 }
 
 .speaker-bio {
   margin: 10px auto 0;
   padding-top: 10px;
-  font-weight: 300;
   border-top: 1px solid var(--research-border);
-  font-size: 11px;
   line-height: 1.2;
-  color: #999999;
+  color: var(--research-text);
   text-align: center;
   width: 100%;
+  font-weight: 300;
 }
 
 .speaker-session {
