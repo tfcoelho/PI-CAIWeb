@@ -304,7 +304,7 @@ const speakers = [
     name: "Dr. Maarten de Rooij",
     affiliation:
       "Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
-    bio: "Member of the ACR PI-RADS AI subcommittee and ESUR Prostate MRI Working Group.",
+    bio: "Member of the ACR PI-RADS AI subcommittee and vice-chair of the ESUR Prostate MRI Working Group.",
     photo: maartenDeRooij,
     photoScale: 1.15,
     photoOffsetX: -4,
