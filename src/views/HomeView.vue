@@ -43,7 +43,8 @@
         <router-link to="/symposium-2026" class="symposium-card">
           <span class="symposium-badge">New Symposium</span>
           <h2 class="symposium-title">
-            AI for Prostate Cancer Diagnosis and Screening on MRI
+            Artificial Intelligence for Prostate Cancer Diagnosis and Screening
+            on MRI: Current Practice, Evidence Gaps, and the Research Agenda
           </h2>
           <p class="symposium-meta">June 1 | Radboud University, Nijmegen</p>
           <span class="symposium-cta">View Symposium Program</span>
