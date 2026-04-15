@@ -126,6 +126,48 @@
       </article>
     </section>
 
+    <section class="speakers-section">
+      <h2>Speakers and Moderators</h2>
+      <div class="speaker-grid">
+        <div
+          v-for="speaker in speakers"
+          :key="speaker.name"
+          class="speaker-card"
+        >
+          <div class="speaker-photo-wrap">
+            <img
+              :src="speaker.photo"
+              :alt="speaker.name"
+              class="speaker-photo"
+              :style="
+                speaker.photoScale ||
+                speaker.photoOffset ||
+                speaker.photoOffsetX
+                  ? {
+                      transform: `scale(${
+                        speaker.photoScale || 1
+                      }) translateX(${
+                        speaker.photoOffsetX || 0
+                      }px) translateY(${speaker.photoOffset || 0}px)`,
+                    }
+                  : {}
+              "
+            />
+          </div>
+          <div class="speaker-info">
+            <p class="speaker-name">{{ speaker.name }}</p>
+            <span v-if="speaker.role" class="speaker-role">{{
+              speaker.role
+            }}</span>
+            <p class="speaker-affiliation">{{ speaker.affiliation }}</p>
+            <p v-if="speaker.bio" class="speaker-bio">{{ speaker.bio }}</p>
+          </div>
+        </div>
+      </div>
+
+      <p class="speakers-more">More speakers to be announced.</p>
+    </section>
+
     <section id="register" class="register-section">
       <h2>Register</h2>
       <p class="register-lead">
@@ -222,47 +264,6 @@
           Submit Registration
         </button>
       </form>
-    </section>
-
-    <section class="speakers-section">
-      <h2>Speakers and Moderators</h2>
-      <div class="speaker-grid">
-        <div
-          v-for="speaker in speakers"
-          :key="speaker.name"
-          class="speaker-card"
-        >
-          <div class="speaker-photo-wrap">
-            <img
-              :src="speaker.photo"
-              :alt="speaker.name"
-              class="speaker-photo"
-              :style="
-                speaker.photoScale ||
-                speaker.photoOffset ||
-                speaker.photoOffsetX
-                  ? {
-                      transform: `scale(${
-                        speaker.photoScale || 1
-                      }) translateX(${
-                        speaker.photoOffsetX || 0
-                      }px) translateY(${speaker.photoOffset || 0}px)`,
-                    }
-                  : {}
-              "
-            />
-          </div>
-          <div class="speaker-info">
-            <p class="speaker-name">{{ speaker.name }}</p>
-            <span v-if="speaker.role" class="speaker-role">{{
-              speaker.role
-            }}</span>
-            <p class="speaker-affiliation">{{ speaker.affiliation }}</p>
-            <p v-if="speaker.bio" class="speaker-bio">{{ speaker.bio }}</p>
-          </div>
-        </div>
-      </div>
-      <p class="speakers-more">More speakers to be announced.</p>
     </section>
   </main>
 </template>
@@ -366,6 +367,7 @@ const speakers = [
     role: "Medical - AI",
     photo: jasperTwilt,
     photoScale: 1.17,
+    phd: true,
   },
   {
     name: "Anindo Saha, MSc",
@@ -375,7 +377,8 @@ const speakers = [
     role: "Medical - AI",
     photo: anindoSaha,
     photoScale: 1.35,
-    photoOffset: 10,
+    photoOffset: 8,
+    phd: true,
   },
 ];
 
@@ -851,8 +854,50 @@ h1 {
 
 .speaker-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.speakers-subheading {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 32px 0 14px;
+  color: var(--research-text);
+  padding-top: 24px;
+  border-top: 1px solid var(--research-border);
+}
+
+.phd-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.phd-card {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+  background: #f7f5ff;
+  border: 1px solid var(--research-border);
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.phd-photo-wrap {
+  width: 90px !important;
+  height: 90px !important;
+  flex-shrink: 0;
+}
+
+.phd-info {
+  text-align: left !important;
+}
+
+.phd-bio {
+  text-align: left !important;
+  width: 100% !important;
+  margin: 8px 0 0 !important;
 }
 
 .speaker-placeholder {
@@ -873,13 +918,20 @@ h1 {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 16px 8px;
-  gap: 14px;
+  padding: 20px 12px;
+  gap: 12px;
+  border-radius: 14px;
+  transition: background 0.2s;
+  cursor: default;
+}
+
+.speaker-card:hover {
+  background: #f7f5ff;
 }
 
 .speaker-photo-wrap {
-  width: 180px;
-  height: 180px;
+  width: 140px;
+  height: 140px;
   border-radius: 50%;
   border: 2px solid var(--research-border);
   overflow: hidden;
@@ -911,16 +963,18 @@ h1 {
 
 .speaker-name {
   margin: 0;
-  font-weight: 700;
-  line-height: 1.45;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.3;
   color: var(--research-text);
 }
 
 .speaker-affiliation {
   margin: 4px 0 0;
-  line-height: 1.2;
-  color: var(--research-text);
-  font-weight: 300;
+  font-size: 12px;
+  line-height: 1.35;
+  color: var(--research-muted);
+  font-weight: 400;
 }
 
 .speaker-bio {
@@ -928,10 +982,11 @@ h1 {
   padding-top: 10px;
   border-top: 1px solid var(--research-border);
   line-height: 1.2;
-  color: var(--research-text);
+  color: var(--research-muted);
   text-align: center;
   width: 100%;
   font-weight: 300;
+  font-size: 13px;
 }
 
 .speaker-session {
@@ -946,8 +1001,15 @@ h1 {
 
 @media (max-width: 980px) {
   .program-grid,
-  .venue-grid,
+  .venue-grid {
+    grid-template-columns: 1fr;
+  }
+
   .speaker-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .phd-grid {
     grid-template-columns: 1fr;
   }
 
