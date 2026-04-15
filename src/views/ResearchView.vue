@@ -86,6 +86,10 @@ const journalLogos = {
     src: require("@/assets/images/journal_logos/european-urology.png"),
     height: 36,
   },
+  "comput biol med": {
+    src: require("@/assets/images/journal_logos/computers-in-biology-and-medicine.jpg"),
+    height: 40,
+  },
 };
 
 function getJournalLogo(publicationDetails) {
