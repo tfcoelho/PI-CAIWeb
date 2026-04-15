@@ -1,12 +1,12 @@
 ---
 tags: STUDY PROTOCOL
 date: 2024-07-01
-authors: T. Coelho, M. de Rooij, M. Maas, H. Huisman
+authors: T. F. Coelho, J. S. Bosma, V. Bozgo, C. R. Noordman, R. Grimm, M. de Rooij, M. Maas, H. Huisman
 publication_details: 
 publication_link: 
 ---
 
-# Diagnostically Calibrated AI MR Image Quality Assessment for Prostate MRI: Proof of Concept
+# Diagnostically Calibrated AI Image-Quality Framework 
 
 ## Abstract
 
@@ -31,5 +31,3 @@ The model will be evaluated on two key tasks:
 ### Expected Outcomes
 
 We expect the model to accurately classify extremes of image quality and to generalize its predictions to intermediate-quality scans in a diagnostically meaningful way. By aligning quality scores with expected diagnostic performance, this tool may support real-time quality control during MRI acquisition—potentially reducing recall rates and enhancing csPCa detection. Upon data access approval, we will begin validation under GDPR-compliant protocols and institutional ethics approvals.
-
-
