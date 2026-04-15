@@ -254,6 +254,9 @@
           </div>
           <div class="speaker-info">
             <p class="speaker-name">{{ speaker.name }}</p>
+            <span v-if="speaker.role" class="speaker-role">{{
+              speaker.role
+            }}</span>
             <p class="speaker-affiliation">{{ speaker.affiliation }}</p>
             <p v-if="speaker.bio" class="speaker-bio">{{ speaker.bio }}</p>
           </div>
@@ -271,6 +274,8 @@ import anwarPadhani from "@/assets/images/people/Anwar_Padhani.jpg";
 import ivoSchoots from "@/assets/images/people/Ivo_Schoots.jpg";
 import henkjanHuisman from "@/assets/images/people/Henkjan_Huisman.jpg";
 import maartenDeRooij from "@/assets/images/people/Maarten_de_Rooij.jpg";
+import kickyVanLeeuwen from "@/assets/images/people/kicky_van_leeuwen.jpg";
+import roderickVanDenBergh from "@/assets/images/people/roderick_van_den_bergh.jpg";
 
 const speakers = [
   {
@@ -278,6 +283,7 @@ const speakers = [
     affiliation:
       "Paul Strickland Scanner Centre, Mount Vernon Cancer Centre, London, United Kingdom",
     bio: "Advisor to Siemens Healthineers and Lucida Medical, and past co-chair of the ACR PI-RADS steering committee.",
+    role: "Radiologist",
     photo: anwarPadhani,
     photoScale: 1.03,
     photoOffset: 2,
@@ -287,6 +293,7 @@ const speakers = [
     affiliation:
       "Department of Radiology, Netherlands Cancer Institute, Amsterdam, the Netherlands; Department of Radiology and Nuclear Medicine, Erasmus University Medical Center, Rotterdam, the Netherlands",
     bio: "Co-chair of the ACR PI-RADS steering committee and full panel member of the EAU prostate cancer guidelines.",
+    role: "Radiologist",
     photo: ivoSchoots,
     photoScale: 1.23,
     photoOffset: 8,
@@ -296,6 +303,7 @@ const speakers = [
     affiliation:
       "Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
     bio: "Co-chair of the ACR PI-RADS AI subcommittee.",
+    role: "Researcher",
     photo: henkjanHuisman,
     photoScale: 1.33,
     photoOffset: 11,
@@ -305,10 +313,28 @@ const speakers = [
     affiliation:
       "Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
     bio: "Member of the ACR PI-RADS AI subcommittee and Vice-Chair of the ESUR Prostate MRI Working Group.",
+    role: "Radiologist",
     photo: maartenDeRooij,
     photoScale: 1.15,
     photoOffsetX: -4,
     photoOffset: -2,
+  },
+  {
+    name: "Dr. Kicky van Leeuwen",
+    affiliation: "Romion Health, Utrecht, the Netherlands",
+    bio: "Managing partner at Romion Health and founder of Health AI Register.",
+    role: "Industry",
+    photo: kickyVanLeeuwen,
+  },
+  {
+    name: "Dr. Roderick van den Bergh",
+    affiliation:
+      "Department of Urology, Erasmus Medical Center, Rotterdam, the Netherlands",
+    bio: "Full panel member of the EAU prostate cancer guidelines.",
+    role: "Urologist",
+    photo: roderickVanDenBergh,
+    photoScale: 1.05,
+    photoOffset: -3,
   },
 ];
 
@@ -829,6 +855,17 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 4px;
+}
+
+.speaker-role {
+  display: block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--research-accent);
+  margin-top: 4px;
+  margin-bottom: 8px;
 }
 
 .speaker-name {
