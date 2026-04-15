@@ -280,7 +280,7 @@ import roderickVanDenBergh from "@/assets/images/people/roderick_van_den_bergh.j
 import francescoGiganti from "@/assets/images/people/Francesco_Giganti.jpg";
 import jasperTwilt from "@/assets/images/people/Jasper_Twilt.jpg";
 import anindoSaha from "@/assets/images/people/anindo_shaha.jpg";
-import noPfp from "@/assets/images/people/no_pfp.jpg";
+import mireilleBroeders from "@/assets/images/people/mireille_broeders.png";
 
 const speakers = [
   {
@@ -336,7 +336,9 @@ const speakers = [
       "Dutch Expert Centre for Screening (LRCB), The Netherlands; IQ Health Science Department, Radboud University Medical Center, the Netherlands",
     bio: "Scientific supervisor for the LRCB; Member of the Dutch Evaluation Team Breast Cancer Screening (LETB); Member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; Member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
     role: "Epidemiology",
-    photo: noPfp,
+    photo: mireilleBroeders,
+    photoScale: 1.1,
+    photoOffset: 6.5,
   },
   {
     name: "Prof. Henkjan Huisman, PhD",
