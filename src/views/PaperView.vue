@@ -12,7 +12,11 @@
       <div class="paper-content-container">
         <div class="paper-sidebar">
           <div v-if="paper.tags && paper.tags.length > 0" class="paper-tags">
-            <span v-for="tag in paper.tags" :key="tag" class="paper-tag">
+            <span
+              :class="['paper-tag', tagClass(tag)]"
+              v-for="tag in paper.tags"
+              :key="tag"
+            >
               {{ tag }}
             </span>
           </div>
@@ -137,6 +141,17 @@ export default {
       }
     };
 
+    const tagClass = (tag) => {
+      switch (tag.toUpperCase()) {
+        case "STUDY PROTOCOL":
+          return "tag-study-design";
+        case "PUBLISHED":
+          return "tag-published";
+        default:
+          return "";
+      }
+    };
+
     onMounted(() => {
       // Reset any leftover scrolling locks
       document.body.style.overflow = "auto";
@@ -170,6 +185,7 @@ export default {
       loading,
       error,
       formatDate,
+      tagClass,
     };
   },
 };
@@ -273,6 +289,14 @@ export default {
   letter-spacing: 0.5px;
   background-color: #e02090;
   color: white;
+}
+
+.paper-tag.tag-study-design {
+  background-color: #ed9fb6;
+}
+
+.paper-tag.tag-published {
+  background-color: #e02090;
 }
 
 .paper-sidebar h3 {
