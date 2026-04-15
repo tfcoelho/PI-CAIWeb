@@ -276,65 +276,106 @@ import henkjanHuisman from "@/assets/images/people/Henkjan_Huisman.jpg";
 import maartenDeRooij from "@/assets/images/people/Maarten_de_Rooij.jpg";
 import kickyVanLeeuwen from "@/assets/images/people/kicky_van_leeuwen.jpg";
 import roderickVanDenBergh from "@/assets/images/people/roderick_van_den_bergh.jpg";
+import francescoGiganti from "@/assets/images/people/Francesco_Giganti.jpg";
+import jasperTwilt from "@/assets/images/people/Jasper_Twilt.jpg";
+import anindoSaha from "@/assets/images/people/anindo_shaha.jpg";
+import noPfp from "@/assets/images/people/no_pfp.jpg";
 
 const speakers = [
   {
-    name: "Prof. Dr. Anwar R. Padhani",
+    name: "Prof. Anwar R. Padhani, MD, PhD",
     affiliation:
       "Paul Strickland Scanner Centre, Mount Vernon Cancer Centre, London, United Kingdom",
     bio: "Advisor to Siemens Healthineers and Lucida Medical, and past co-chair of the ACR PI-RADS steering committee.",
-    role: "Radiologist",
+    role: "Radiology",
     photo: anwarPadhani,
     photoScale: 1.03,
     photoOffset: 2,
   },
   {
-    name: "Dr. Ivo G. Schoots",
+    name: "Ivo G. Schoots, MD, PhD",
     affiliation:
       "Department of Radiology, Netherlands Cancer Institute, Amsterdam, the Netherlands; Department of Radiology and Nuclear Medicine, Erasmus University Medical Center, Rotterdam, the Netherlands",
     bio: "Co-chair of the ACR PI-RADS steering committee and full panel member of the EAU prostate cancer guidelines.",
-    role: "Radiologist",
+    role: "Radiology",
     photo: ivoSchoots,
     photoScale: 1.23,
     photoOffset: 8,
   },
   {
-    name: "Prof. Dr. Henkjan Huisman",
+    name: "Kicky van Leeuwen, PhD",
+    affiliation: "Romion Health, Utrecht, the Netherlands",
+    bio: "Managing partner at Romion Health and founder of Health AI Register.",
+    role: "Medical - AI",
+    photo: kickyVanLeeuwen,
+  },
+  {
+    name: "Roderick van den Bergh, MD, PhD",
+    affiliation:
+      "Department of Urology, Erasmus Medical Center, Rotterdam, the Netherlands",
+    bio: "Full panel member of the EAU prostate cancer guidelines.",
+    role: "Urology",
+    photo: roderickVanDenBergh,
+    photoScale: 1.05,
+    photoOffset: -3,
+  },
+  {
+    name: "Francesco Giganti, MD, PhD",
+    affiliation:
+      "Department of Radiology, University College London Hospital NHS Foundation Trust, London, UK; Division of Surgery and Interventional Science, University College London, London, UK",
+    bio: "Co-chair of the ACR PI-RADS Quality Assurance and Practice Improvement Subcommittee and past chair of the ESUR Prostate MRI Working Group.",
+    role: "Radiology",
+    photo: francescoGiganti,
+    photoOffsetX: 2,
+    photoScale: 1.03,
+  },
+  {
+    name: "Prof. Mireille J. M. Broeders, PhD",
+    affiliation:
+      "Dutch Expert Centre for Screening (LRCB), The Netherlands; IQ Health Science Department, Radboud University Medical Center, the Netherlands",
+    bio: "Scientific supervisor for the LRCB; Member of the Dutch Evaluation Team Breast Cancer Screening (LETB); Member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; Member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
+    role: "Epidemiology",
+    photo: noPfp,
+  },
+  {
+    name: "Prof. Henkjan Huisman, PhD",
     affiliation:
       "Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
     bio: "Co-chair of the ACR PI-RADS AI subcommittee.",
-    role: "Researcher",
+    role: "Medical - AI",
     photo: henkjanHuisman,
     photoScale: 1.33,
     photoOffset: 11,
   },
   {
-    name: "Dr. Maarten de Rooij",
+    name: "Maarten de Rooij, MD, PhD",
     affiliation:
       "Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
     bio: "Member of the ACR PI-RADS AI subcommittee and Vice-Chair of the ESUR Prostate MRI Working Group.",
-    role: "Radiologist",
+    role: "Radiology",
     photo: maartenDeRooij,
     photoScale: 1.15,
     photoOffsetX: -4,
     photoOffset: -2,
   },
   {
-    name: "Dr. Kicky van Leeuwen",
-    affiliation: "Romion Health, Utrecht, the Netherlands",
-    bio: "Managing partner at Romion Health and founder of Health AI Register.",
-    role: "Industry",
-    photo: kickyVanLeeuwen,
+    name: "Jasper J. Twilt, MSc",
+    affiliation:
+      "Minimally Invasive Image-Guided Intervention Center, Department of Medical Imaging, Radboud University Medical Center, Nijmegen, the Netherlands; Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
+    bio: "PhD candidate, defending his thesis entitled 'Artificial Intelligence and Biparametric MRI in Prostate Cancer Detection: From Benchmarking to Workflow Strategies'.",
+    role: "Medical - AI",
+    photo: jasperTwilt,
+    photoScale: 1.17,
   },
   {
-    name: "Dr. Roderick van den Bergh",
+    name: "Anindo Saha, MSc",
     affiliation:
-      "Department of Urology, Erasmus Medical Center, Rotterdam, the Netherlands",
-    bio: "Full panel member of the EAU prostate cancer guidelines.",
-    role: "Urologist",
-    photo: roderickVanDenBergh,
-    photoScale: 1.05,
-    photoOffset: -3,
+      "Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands; Minimally Invasive Image-Guided Intervention Center, Department of Medical Imaging, Radboud University Medical Center, Nijmegen, the Netherlands",
+    bio: "PhD candidate, defending his thesis entitled 'Artificial Intelligence × Prostate Cancer Detection on MRI'.",
+    role: "Medical - AI",
+    photo: anindoSaha,
+    photoScale: 1.35,
+    photoOffset: 10,
   },
 ];
 
