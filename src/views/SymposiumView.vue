@@ -280,6 +280,7 @@ import roderickVanDenBergh from "@/assets/images/people/roderick_van_den_bergh.j
 import francescoGiganti from "@/assets/images/people/Francesco_Giganti.jpg";
 import jasperTwilt from "@/assets/images/people/Jasper_Twilt.jpg";
 import anindoSaha from "@/assets/images/people/anindo_shaha.jpg";
+import jurgenFutterer from "@/assets/images/people/jurgen_fütterer.jpg";
 import mireilleBroeders from "@/assets/images/people/mireille_broeders.png";
 
 const speakers = [
@@ -360,6 +361,15 @@ const speakers = [
     photoScale: 1.15,
     photoOffsetX: -4,
     photoOffset: -2,
+  },
+  {
+    name: "Prof. Jurgen J. Fütterer, MD, PhD",
+    affiliation:
+      "Minimally Invasive Image-Guided Intervention Center, Department of Medical Imaging, Radboud University Medical Center, Nijmegen, the Netherlands; TechMed Centre, University of Twente, Enschede, the Netherlands",
+    role: "Radiology",
+    photo: jurgenFutterer,
+    photoScale: 1.2,
+    photoOffset: 8,
   },
   {
     name: "Jasper J. Twilt, MSc",
