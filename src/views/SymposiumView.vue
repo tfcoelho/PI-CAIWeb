@@ -1,12 +1,12 @@
 <template>
   <main class="symposium-page">
-    <div class="header-logo-glass">
+    <router-link to="/" class="header-logo-glass" aria-label="Go to home page">
       <img
         src="@/assets/images/logo_dark.png"
         alt="PI-CAI logo"
         class="header-logo"
       />
-    </div>
+    </router-link>
 
     <section class="hero">
       <p class="eyebrow">PI-CAI Symposium</p>
@@ -462,6 +462,8 @@ onUnmounted(() => {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 11;
+  text-decoration: none;
+  line-height: 0;
 }
 
 .header-logo {

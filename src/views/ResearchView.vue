@@ -2,13 +2,17 @@
   <div class="research-page">
     <div class="research-header">
       <div class="logo-and-title">
-        <div class="header-logo-glass">
+        <router-link
+          to="/"
+          class="header-logo-glass"
+          aria-label="Go to home page"
+        >
           <img
             src="@/assets/images/logo_dark.png"
             alt="PI-CAI logo"
             class="header-logo"
           />
-        </div>
+        </router-link>
         <h1 class="page-title">Research</h1>
       </div>
     </div>
@@ -262,6 +266,8 @@ export default {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 11;
+  text-decoration: none;
+  line-height: 0;
 }
 
 .header-logo {
