@@ -90,6 +90,10 @@ const journalLogos = {
     src: require("@/assets/images/journal_logos/computers-in-biology-and-medicine.jpg"),
     height: 40,
   },
+  "imaging cancer": {
+    src: require("@/assets/images/journal_logos/radiology-imaging-cancer.png"),
+    height: 40,
+  },
 };
 
 function getJournalLogo(publicationDetails) {
