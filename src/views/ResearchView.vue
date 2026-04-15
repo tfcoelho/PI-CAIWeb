@@ -2,11 +2,13 @@
   <div class="research-page">
     <div class="research-header">
       <div class="logo-and-title">
-        <img
-          src="@/assets/images/logo_dark.png"
-          alt="Logo"
-          class="header-logo"
-        />
+        <div class="header-logo-glass">
+          <img
+            src="@/assets/images/logo_dark.png"
+            alt="PI-CAI logo"
+            class="header-logo"
+          />
+        </div>
         <h1 class="page-title">Research</h1>
       </div>
     </div>
@@ -248,14 +250,24 @@ export default {
 </script>
 
 <style scoped>
-/* This rule styles the new logo image */
+.header-logo-glass {
+  position: fixed;
+  top: 20px;
+  left: 6%;
+  padding: 4px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 11;
+}
+
 .header-logo {
-  position: fixed; /* This makes the logo stay in place on scroll */
-  top: 20px; /* Distance from the top of the window */
-  left: 5%; /* Distance from the left of the window */
-  height: 30px; /* Adjust size as needed */
-  width: auto;
-  z-index: 11; /* IMPORTANT: Places it on top of the gradient mask (which is z-index: 10) */
+  width: 132px;
+  height: auto;
+  display: block;
 }
 
 .research-page {
@@ -266,21 +278,6 @@ export default {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif;
   background-color: #ebebf5; /* Match PaperView background if needed */
-}
-
-/* This creates the fading mask at the top */
-.research-page::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100px; /* The height of the fade effect */
-  z-index: 10;
-  /* This creates a gradient from the page background color to transparent */
-  background: linear-gradient(to bottom, #ebebf5 50px, transparent);
-  /* This prevents the mask from blocking clicks on the content below it */
-  pointer-events: none;
 }
 
 .research-header {
@@ -520,7 +517,7 @@ export default {
   opacity: 0.85;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 750px) {
   .papers-grid {
     grid-template-columns: 1fr;
   }
@@ -528,8 +525,8 @@ export default {
   .page-title {
     font-size: 32px;
   }
-  .header-logo {
-    opacity: 0;
+  .header-logo-glass {
+    display: none;
   }
 }
 

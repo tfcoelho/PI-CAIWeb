@@ -1,5 +1,13 @@
 <template>
   <main class="symposium-page">
+    <div class="header-logo-glass">
+      <img
+        src="@/assets/images/logo_dark.png"
+        alt="PI-CAI logo"
+        class="header-logo"
+      />
+    </div>
+
     <section class="hero">
       <p class="eyebrow">PI-CAI Symposium</p>
       <h1>
@@ -442,6 +450,26 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+.header-logo-glass {
+  position: fixed;
+  top: 20px;
+  left: 6%;
+  padding: 4px;
+  border-radius: 6px;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 11;
+}
+
+.header-logo {
+  width: 132px;
+  height: auto;
+  display: block;
+}
+
 .symposium-page {
   --research-bg: #ebebf5;
   --research-card: #ffffff;
@@ -1035,6 +1063,10 @@ h1 {
 }
 
 @media (max-width: 750px) {
+  .header-logo-glass {
+    display: none;
+  }
+
   .symposium-page {
     padding: 76px 12px 40px;
   }
