@@ -37,7 +37,7 @@
         src/assets/data/papers directory.
       </p>
     </div>
-    <TransitionGroup name="paper-list" tag="div" class="papers-grid">
+    <div class="papers-grid">
       <div
         v-for="paper in filteredPapers"
         :key="paper.id"
@@ -70,7 +70,7 @@
           <p v-else-if="paper.year" class="year">{{ paper.year }}</p>
         </div>
       </div>
-    </TransitionGroup>
+    </div>
   </div>
 </template>
 
@@ -416,41 +416,12 @@ export default {
   position: relative;
   text-align: left;
   cursor: pointer;
-  animation: fadeIn 0.4s ease-out;
   margin: 20px;
 }
 
 .paper-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-/* Add fade in animation */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* Add fade out animation */
-.paper-card.fade-out {
-  animation: fadeOut 0.3s ease-out forwards;
-}
-
-@keyframes fadeOut {
-  from {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  to {
-    opacity: 0;
-    transform: translateY(10px);
-  }
 }
 
 .paper-tags {
@@ -534,22 +505,5 @@ export default {
   .header-logo-glass {
     display: none;
   }
-}
-
-/* Add Vue transition group animations */
-.paper-list-move,
-.paper-list-enter-active,
-.paper-list-leave-active {
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.paper-list-enter-from,
-.paper-list-leave-to {
-  opacity: 0;
-  transform: translateY(30px);
-}
-
-.paper-list-leave-active {
-  position: absolute;
 }
 </style>
