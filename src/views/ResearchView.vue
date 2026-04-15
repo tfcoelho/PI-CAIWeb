@@ -49,8 +49,20 @@
         </div>
         <h2 class="paper-title">{{ paper.title }}</h2>
         <p v-if="paper.authors" class="authors">{{ paper.authors }}</p>
-        <p v-if="paper.date" class="date">{{ formatDate(paper.date) }}</p>
-        <p v-else-if="paper.year" class="year">{{ paper.year }}</p>
+        <div class="paper-footer">
+          <img
+            v-if="getJournalLogo(paper.publicationDetails)"
+            :src="getJournalLogo(paper.publicationDetails).src"
+            :style="{
+              maxHeight: getJournalLogo(paper.publicationDetails).height + 'px',
+            }"
+            class="journal-logo"
+            alt="Journal logo"
+          />
+          <span v-else></span>
+          <p v-if="paper.date" class="date">{{ formatDate(paper.date) }}</p>
+          <p v-else-if="paper.year" class="year">{{ paper.year }}</p>
+        </div>
       </div>
     </TransitionGroup>
   </div>
@@ -61,12 +73,36 @@ import { ref, onMounted, onUnmounted, computed, nextTick } from "vue";
 import { researchService } from "@/services/researchService";
 import { useRouter } from "vue-router";
 
+const journalLogos = {
+  "lancet oncol": {
+    src: require("@/assets/images/journal_logos/lancet-oncology.png"),
+    height: 44,
+  },
+  "jama netw": {
+    src: require("@/assets/images/journal_logos/jama-open.png"),
+    height: 28,
+  },
+  "eur urol": {
+    src: require("@/assets/images/journal_logos/european-urology.png"),
+    height: 36,
+  },
+};
+
+function getJournalLogo(publicationDetails) {
+  if (!publicationDetails) return null;
+  const lower = publicationDetails.toLowerCase();
+  for (const [key, entry] of Object.entries(journalLogos)) {
+    if (lower.includes(key)) return entry;
+  }
+  return null;
+}
+
 export default {
   name: "ResearchView",
   setup() {
     const papers = ref([]);
     const tags = ref(["All"]);
-    const selectedTag = ref("All");
+    const selectedTag = ref("PUBLISHED");
     const loading = ref(true);
     const router = useRouter();
 
@@ -150,7 +186,6 @@ export default {
         return new Intl.DateTimeFormat("en-US", {
           year: "numeric",
           month: "long",
-          day: "numeric",
         }).format(date);
       } catch (e) {
         console.error("Error formatting date:", e);
@@ -198,6 +233,7 @@ export default {
       loading,
       formatDate,
       tagClass,
+      getJournalLogo,
     };
   },
 };
@@ -449,17 +485,31 @@ export default {
   font-weight: 400;
 }
 
+.paper-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 12px;
+}
+
 .date {
   color: #777;
   font-size: 14px;
-  margin-bottom: 16px;
   font-style: italic;
+  margin: 0;
 }
 
 .year {
   color: #999;
   font-size: 14px;
-  margin-bottom: 16px;
+  margin: 0;
+}
+
+.journal-logo {
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
 }
 
 @media (max-width: 768px) {

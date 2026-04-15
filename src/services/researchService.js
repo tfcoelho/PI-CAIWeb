@@ -22,6 +22,7 @@ export const researchService = {
           let frontmatterAuthors = "";
           let frontmatterDate = "";
           let publicationLink = "";
+          let publicationDetails = "";
 
           if (frontmatterMatch && frontmatterMatch[1]) {
             // Extract tags from frontmatter
@@ -68,6 +69,14 @@ export const researchService = {
                 publicationLink
               );
             }
+
+            // Extract publication details from frontmatter
+            const detailsMatch = frontmatterMatch[1].match(
+              /publication_details:\s*(.+)/i
+            );
+            if (detailsMatch && detailsMatch[1]) {
+              publicationDetails = detailsMatch[1].trim();
+            }
           } else {
             console.log(`No frontmatter found in ${id}.`);
           }
@@ -110,6 +119,7 @@ export const researchService = {
             year,
             tags,
             publicationLink,
+            publicationDetails,
           };
         })
       );
