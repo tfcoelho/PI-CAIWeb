@@ -68,7 +68,8 @@ import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
 const logoScale = ref(1);
 const logoTopPx = ref(
-  window.innerHeight * (window.innerHeight < 820 ? 0.33 : 0.37)
+  window.innerHeight *
+    (window.innerHeight < 700 ? 0.25 : window.innerHeight < 820 ? 0.3 : 0.37)
 );
 const isSticky = ref(false);
 const aboutSectionRef = ref(null);
@@ -86,11 +87,22 @@ watch(isOverWhiteBg, (isOver) => {
 // --- Constants ---
 const NAV_Y = 20; // px — where the logo sticks (matches nav top)
 const MIN_SCALE = 0.1;
-const SHRINK_DISTANCE = 0.5; // ratio of vh over which logo shrinks from 1 → MIN_SCALE
+const STICKY_SCALE = 0.3; // scale the logo should be at exactly when it sticks
 
 // On short screens the logo sits higher so hero content fits within 100dvh
 function getLogoInitialTop() {
-  return window.innerHeight < 820 ? 0.33 : 0.37;
+  if (window.innerHeight < 700) return 0.25;
+  if (window.innerHeight < 820) return 0.3;
+  return 0.37;
+}
+
+// Compute shrink distance so the logo naturally reaches STICKY_SCALE at the
+// sticky threshold — eliminates any scale jump when snapping to the nav bar.
+// On tall screens this resolves to ~0.5 (unchanged); on short screens it
+// shrinks faster so it arrives at STICKY_SCALE at exactly the right scroll.
+function getShrinkDistance(vh) {
+  const stickyScrollY = getLogoInitialTop() * vh - NAV_Y;
+  return stickyScrollY / ((1 - STICKY_SCALE) * vh);
 }
 
 // --- Computed style: JS drives position+scale on desktop, CSS handles mobile ---
@@ -110,22 +122,23 @@ function handleScroll() {
   const scrollY = window.scrollY;
   const vh = window.innerHeight;
   const logoInitialTop = getLogoInitialTop() * vh;
+  const shrinkDistance = getShrinkDistance(vh);
   // The scroll amount at which the logo's top edge reaches NAV_Y
   const stickyScrollY = logoInitialTop - NAV_Y;
 
   if (scrollY >= stickyScrollY) {
-    // Logo has reached the nav bar — lock it there
+    // Logo has reached the nav bar — scale is already STICKY_SCALE here (no jump)
     isSticky.value = true;
     logoTopPx.value = NAV_Y;
     logoScale.value = Math.max(
       MIN_SCALE,
-      1 - stickyScrollY / (SHRINK_DISTANCE * vh)
+      1 - stickyScrollY / (shrinkDistance * vh)
     );
   } else {
     // Logo follows the page upward while shrinking
     isSticky.value = false;
     logoTopPx.value = logoInitialTop - scrollY;
-    logoScale.value = Math.max(MIN_SCALE, 1 - scrollY / (SHRINK_DISTANCE * vh));
+    logoScale.value = Math.max(MIN_SCALE, 1 - scrollY / (shrinkDistance * vh));
   }
 }
 
@@ -483,19 +496,51 @@ onBeforeUnmount(() => {
 
 /* On screens 750px or less, we override the desktop styles */
 /* Short viewport: compress hero content to stay within 100dvh */
-@media (max-height: 820px) and (min-width: 751px) {
-  /* Shrink logo to 480px; at that width its natural height is ~120px */
+@media (max-height: 700px) and (min-width: 751px) {
+  /* Very short screens: logo at 25dvh, 400px wide, height ~96px */
   .sticky-logo {
-    width: 480px;
+    width: 400px;
   }
 
   .hero-section {
-    /* logo at 33dvh, height ~120px at 480px wide */
-    padding-top: calc(33dvh + 120px);
+    padding-top: calc(25dvh + 96px);
   }
 
   .hero-content {
-    width: 480px;
+    width: 400px;
+  }
+
+  .symposium-title {
+    font-size: 16px;
+    margin: 4px 0 4px 0;
+  }
+
+  .symposium-badge {
+    font-size: 10px;
+  }
+
+  .symposium-meta,
+  .symposium-cta {
+    font-size: 12px;
+  }
+
+  .symposium-cta {
+    margin-top: 8px;
+  }
+}
+
+@media (max-height: 820px) and (min-width: 751px) {
+  /* Short screens: logo at 30dvh, 460px wide, height ~111px */
+  .sticky-logo {
+    width: 460px;
+  }
+
+  .hero-section {
+    padding-top: calc(30dvh + 100px);
+  }
+
+  .hero-content {
+    width: 460px;
   }
 
   .symposium-title {
