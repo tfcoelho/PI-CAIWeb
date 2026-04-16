@@ -343,7 +343,7 @@ const speakers = [
     name: "Prof. Mireille J. M. Broeders, PhD",
     affiliation:
       "Dutch Expert Centre for Screening (LRCB), The Netherlands; IQ Health Science Department, Radboud University Medical Center, the Netherlands",
-    bio: "Scientific Supervisor for the LRCB; Member of the Dutch Evaluation Team Breast Cancer Screening (LETB); Member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; Member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
+    bio: "Scientific supervisor for the LRCB; member of the Dutch Evaluation Team Breast Cancer Screening (LETB); member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
     role: "Epidemiology",
     photo: mireilleBroeders,
     photoScale: 1.1,
