@@ -67,7 +67,9 @@ import AboutView from "./AboutView.vue";
 import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
 const logoScale = ref(1);
-const logoTopPx = ref(window.innerHeight * 0.37);
+const logoTopPx = ref(
+  window.innerHeight * (window.innerHeight < 820 ? 0.33 : 0.37)
+);
 const isSticky = ref(false);
 const aboutSectionRef = ref(null);
 const isOverWhiteBg = ref(false);
@@ -82,10 +84,14 @@ watch(isOverWhiteBg, (isOver) => {
 });
 
 // --- Constants ---
-const LOGO_INITIAL_TOP = 0.37; // ratio of vh where the logo starts
 const NAV_Y = 20; // px — where the logo sticks (matches nav top)
 const MIN_SCALE = 0.1;
 const SHRINK_DISTANCE = 0.5; // ratio of vh over which logo shrinks from 1 → MIN_SCALE
+
+// On short screens the logo sits higher so hero content fits within 100dvh
+function getLogoInitialTop() {
+  return window.innerHeight < 820 ? 0.33 : 0.37;
+}
 
 // --- Computed style: JS drives position+scale on desktop, CSS handles mobile ---
 const logoTransformStyle = computed(() => {
@@ -103,7 +109,7 @@ function handleScroll() {
 
   const scrollY = window.scrollY;
   const vh = window.innerHeight;
-  const logoInitialTop = LOGO_INITIAL_TOP * vh;
+  const logoInitialTop = getLogoInitialTop() * vh;
   // The scroll amount at which the logo's top edge reaches NAV_Y
   const stickyScrollY = logoInitialTop - NAV_Y;
 
@@ -127,7 +133,7 @@ function handleResize() {
   isMobileLayout.value = window.innerWidth <= 750;
   if (!isMobileLayout.value) {
     // vh may have changed — recalculate
-    logoTopPx.value = window.innerHeight * LOGO_INITIAL_TOP;
+    logoTopPx.value = window.innerHeight * getLogoInitialTop();
     handleScroll();
   }
 }
@@ -136,7 +142,7 @@ function handleOrientationChange() {
   setTimeout(() => {
     isMobileLayout.value = window.innerWidth <= 750;
     if (!isMobileLayout.value) {
-      logoTopPx.value = window.innerHeight * LOGO_INITIAL_TOP;
+      logoTopPx.value = window.innerHeight * getLogoInitialTop();
       handleScroll();
     }
   }, 150);
@@ -235,6 +241,12 @@ onBeforeUnmount(() => {
   position: relative;
   width: 100%;
   height: 100dvh;
+  display: flex;
+  align-items: flex-start;
+  padding-top: calc(37dvh + 135px);
+  padding-bottom: clamp(20px, 4dvh, 60px);
+  box-sizing: border-box;
+  overflow: hidden;
   background-image: url("@/assets/images/background.webp");
   background-position: 80% center;
   background-repeat: no-repeat;
@@ -244,9 +256,7 @@ onBeforeUnmount(() => {
 
 /* The text and button inside the hero section */
 .hero-content {
-  position: absolute;
-  top: calc(37vh + 135px); /* Where logo starts + logo fixed height in pixels */
-  left: 16%;
+  margin-left: 16%;
   width: 560px;
   display: flex;
   flex-direction: column;
@@ -259,8 +269,8 @@ onBeforeUnmount(() => {
 }
 
 .symposium-card {
-  margin-top: 52px;
-  padding: 18px 20px;
+  margin-top: clamp(14px, 5dvh, 52px);
+  padding: clamp(12px, 2dvh, 18px) 20px;
   width: min(100%, 540px);
   border-radius: 14px;
   text-align: left;
@@ -377,21 +387,7 @@ onBeforeUnmount(() => {
   border-radius: 99px;
   color: white;
   position: relative;
-  top: 30px;
-  padding: 12px 20px;
-  cursor: pointer;
-  animation: slideInFromLeft 1.4s ease-out forwards;
-}
-
-.gradient-border-button {
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 99px;
-  color: white;
-  position: relative;
-  top: 30px;
+  top: clamp(10px, 3dvh, 30px);
   z-index: 1;
   padding: 12px 20px;
   font-weight: 200;
@@ -486,6 +482,41 @@ onBeforeUnmount(() => {
 }
 
 /* On screens 750px or less, we override the desktop styles */
+/* Short viewport: compress hero content to stay within 100dvh */
+@media (max-height: 820px) and (min-width: 751px) {
+  /* Shrink logo to 480px; at that width its natural height is ~120px */
+  .sticky-logo {
+    width: 480px;
+  }
+
+  .hero-section {
+    /* logo at 33dvh, height ~120px at 480px wide */
+    padding-top: calc(33dvh + 120px);
+  }
+
+  .hero-content {
+    width: 480px;
+  }
+
+  .symposium-title {
+    font-size: 18px;
+    margin: 6px 0 5px 0;
+  }
+
+  .symposium-badge {
+    font-size: 10px;
+  }
+
+  .symposium-meta,
+  .symposium-cta {
+    font-size: 13px;
+  }
+
+  .symposium-cta {
+    margin-top: 10px;
+  }
+}
+
 @media (max-width: 750px) {
   /* Switch from grid to block — eliminates any sub-pixel grid gaps showing
      the dark #111820 container background at the top */
