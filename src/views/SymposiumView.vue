@@ -343,7 +343,7 @@ const speakers = [
     name: "Prof. Mireille J. M. Broeders, PhD",
     affiliation:
       "Dutch Expert Centre for Screening (LRCB), The Netherlands; IQ Health Science Department, Radboud University Medical Center, the Netherlands",
-    bio: "Scientific supervisor for the LRCB; Member of the Dutch Evaluation Team Breast Cancer Screening (LETB); Member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; Member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
+    bio: "Scientific Supervisor for the LRCB; Member of the Dutch Evaluation Team Breast Cancer Screening (LETB); Member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; Member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
     role: "Epidemiology",
     photo: mireilleBroeders,
     photoScale: 1.1,
@@ -363,7 +363,7 @@ const speakers = [
     name: "Maarten de Rooij, MD, PhD",
     affiliation:
       "Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
-    bio: "Member of the ACR PI-RADS AI subcommittee and Vice-Chair of the ESUR Prostate MRI Working Group.",
+    bio: "Member of the ACR PI-RADS AI subcommittee and Vice-chair of the ESUR Prostate MRI Working Group.",
     role: "Radiology",
     photo: maartenDeRooij,
     photoScale: 1.15,
@@ -393,7 +393,7 @@ const speakers = [
     name: "Anindo Saha, MSc",
     affiliation:
       "Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands; Minimally Invasive Image-Guided Intervention Center, Department of Medical Imaging, Radboud University Medical Center, Nijmegen, the Netherlands",
-    bio: "PhD candidate, defending his thesis entitled 'Artificial Intelligence × Prostate Cancer Detection on MRI'.",
+    bio: "PhD candidate, defending his thesis entitled 'Artificial Intelligence × Prostate Cancer Detection on MRI'; member of the ACR PI-RADS AI subcommittee.",
     role: "Medical - AI",
     photo: anindoSaha,
     photoScale: 1.35,
