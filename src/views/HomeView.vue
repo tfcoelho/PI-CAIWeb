@@ -609,6 +609,7 @@ onBeforeUnmount(() => {
     left: auto;
     transform: none;
     width: var(--mobile-hero-width);
+    margin-left: 0;
     align-items: center;
     /* Push content below the absolute logo, with a tighter logo-to-slogan gap */
     margin-top: calc(152px + var(--mobile-y-offset));
