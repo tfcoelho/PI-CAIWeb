@@ -1,5 +1,6 @@
 ---
 tags: PUBLISHED
+order: 4
 date: 2026-04-10
 authors: J. J. Twilt, A. Saha, J. S. Bosma, G. Giannarini, A. R. Padhani, D. Yakar, M. Elschot, J. Veltman, J. J. Futterer, H. Huisman, M. de Rooij, PI-CAI Consortium
 publication_details: Radiology: Imaging Cancer 2026;8(3):e250461

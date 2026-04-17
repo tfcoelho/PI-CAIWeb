@@ -169,8 +169,10 @@ export default {
         papers.value = await researchService.getPapersList();
         tags.value = await researchService.getAllTags();
 
-        // Sort papers by year (most recent first)
         papers.value.sort((a, b) => {
+          if (a.order != null && b.order != null) return a.order - b.order;
+          if (a.order != null) return -1;
+          if (b.order != null) return 1;
           if (!a.year) return 1;
           if (!b.year) return -1;
           return b.year.localeCompare(a.year);

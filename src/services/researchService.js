@@ -24,6 +24,7 @@ export const researchService = {
           let publicationLink = "";
           let publicationDetails = "";
           let studyProtocolLink = "";
+          let order = null;
 
           if (frontmatterMatch && frontmatterMatch[1]) {
             // Extract tags from frontmatter
@@ -86,6 +87,11 @@ export const researchService = {
             if (protocolMatch && protocolMatch[1]) {
               studyProtocolLink = protocolMatch[1].trim();
             }
+
+            const orderMatch = frontmatterMatch[1].match(/order:\s*(\d+)/i);
+            if (orderMatch && orderMatch[1]) {
+              order = parseInt(orderMatch[1], 10);
+            }
           } else {
             console.log(`No frontmatter found in ${id}.`);
           }
@@ -130,6 +136,7 @@ export const researchService = {
             publicationLink,
             publicationDetails,
             studyProtocolLink,
+            order,
           };
         })
       );
