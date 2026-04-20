@@ -30,7 +30,11 @@
           alt="Prostate Cancer Detection AI"
           class="vision-image"
         />
-        <a href="https://pi-cai.grand-challenge.org/" target="_blank">
+        <a
+          v-if="SHOW_ABOUT_SECTION"
+          href="https://pi-cai.grand-challenge.org/"
+          target="_blank"
+        >
           <button class="gradient-border-button">
             <span class="button-text">More Information</span>
             <img
@@ -52,10 +56,15 @@
       </div>
     </div>
 
-    <section id="about" ref="aboutSectionRef" class="about-page">
-      <AboutView />
-    </section>
-    <section class="marquee-container">
+    <template v-if="SHOW_ABOUT_SECTION">
+      <section id="about" ref="aboutSectionRef" class="about-page">
+        <AboutView />
+      </section>
+    </template>
+    <section
+      class="marquee-container"
+      :class="{ 'marquee-seamless': !SHOW_ABOUT_SECTION }"
+    >
       <CollaboratorsMarquee />
     </section>
   </div>
@@ -64,6 +73,9 @@
 <script setup>
 import { ref, onMounted, onBeforeUnmount, watch, inject, computed } from "vue";
 import AboutView from "./AboutView.vue";
+
+// Set to true to show the about/white section again
+const SHOW_ABOUT_SECTION = false;
 import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
 const logoScale = ref(1);
@@ -492,6 +504,12 @@ onBeforeUnmount(() => {
   overflow: hidden;
   margin: 0 auto;
   background: url("@/assets/images/background.webp");
+}
+
+.marquee-seamless {
+  background-position: 80% center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 /* On screens 750px or less, we override the desktop styles */
