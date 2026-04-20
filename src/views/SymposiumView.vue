@@ -290,6 +290,7 @@ import jasperTwilt from "@/assets/images/people/Jasper_Twilt.jpg";
 import anindoSaha from "@/assets/images/people/anindo_shaha.jpg";
 import jurgenFutterer from "@/assets/images/people/jurgen_futterer.jpg";
 import mireilleBroeders from "@/assets/images/people/mireille_broeders.png";
+import veeruKasivisvanathan from "@/assets/images/people/Veeru_Kasivisvanathan.png";
 
 const speakers = [
   {
@@ -310,7 +311,18 @@ const speakers = [
     role: "Radiology",
     photo: ivoSchoots,
     photoScale: 1.23,
-    photoOffset: 8,
+    photoOffset: 6,
+  },
+  {
+    name: "Prof. Veeru Kasivisvanathan, MD, PhD",
+    affiliation:
+      "University College London and University College London Hospital, London, United Kingdom; Cleveland Clinic London, London, United Kingdom; University of Vienna, Vienna, Austria",
+    bio: "Chair of the EAU School of Urology Imaging, Focal Therapy and Uropathology Group; member of the European Association of Urology Scientific Congress Board; and director of the Centre for Urology Imaging, Prostate, AI and Surgical Studies (COMPASS).",
+    role: "Urology",
+    photo: veeruKasivisvanathan,
+    photoScale: 1.28,
+    photoOffset: 12,
+    photoOffsetX: 3,
   },
   {
     name: "Kicky van Leeuwen, PhD",
@@ -332,7 +344,7 @@ const speakers = [
   {
     name: "Francesco Giganti, MD, PhD",
     affiliation:
-      "Department of Radiology, University College London Hospital NHS Foundation Trust, London, UK; Division of Surgery and Interventional Science, University College London, London, UK",
+      "Department of Radiology, University College London Hospital NHS Foundation Trust, London, United Kingdom; Division of Surgery and Interventional Science, University College London, London, United Kingdom",
     bio: "Co-chair of the ACR PI-RADS Quality Assurance and Practice Improvement Subcommittee and past chair of the ESUR Prostate MRI Working Group.",
     role: "Radiology",
     photo: francescoGiganti,
@@ -342,8 +354,8 @@ const speakers = [
   {
     name: "Prof. Mireille J. M. Broeders, PhD",
     affiliation:
-      "Dutch Expert Centre for Screening (LRCB), The Netherlands; IQ Health Science Department, Radboud University Medical Center, the Netherlands",
-    bio: "Scientific supervisor for the LRCB; member of the Dutch Evaluation Team Breast Cancer Screening (LETB); member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; member of the Steering Committee, International Cancer Screening Network; Member of the Health Council.",
+      "Dutch Expert Centre for Screening (LRCB), the Netherlands; IQ Health Science Department, Radboud University Medical Center, the Netherlands",
+    bio: "Scientific supervisor for the LRCB; member of the Dutch Evaluation Team Breast Cancer Screening (LETB); member of the Guidelines Development Group, European Commission Initiative on Breast Cancer; member of the Steering Committee, International Cancer Screening Network; member of the Health Council.",
     role: "Epidemiology",
     photo: mireilleBroeders,
     photoScale: 1.1,
@@ -363,7 +375,7 @@ const speakers = [
     name: "Maarten de Rooij, MD, PhD",
     affiliation:
       "Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
-    bio: "Member of the ACR PI-RADS AI subcommittee and Vice-chair of the ESUR Prostate MRI Working Group.",
+    bio: "Member of the ACR PI-RADS AI subcommittee and vice-chair of the ESUR Prostate MRI Working Group.",
     role: "Radiology",
     photo: maartenDeRooij,
     photoScale: 1.15,
@@ -1008,6 +1020,9 @@ h1 {
   font-size: 14px;
   font-weight: 600;
   line-height: 1.3;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: var(--research-text);
 }
 
