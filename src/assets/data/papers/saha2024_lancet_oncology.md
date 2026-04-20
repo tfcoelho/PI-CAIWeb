@@ -2,7 +2,7 @@
 tags: PUBLISHED
 order: 1
 date: 2024-07-01
-authors: A. Saha, J. S. Bosma, J. J. Twilt, B. van Ginneken, A. Bjartell, A. R. Padhani, D. Bonekamp, G. Villeirs, G. Salomon, G. Giannarini, J. Kalpathy-Cramer, J. Barentsz, K. H. Maier-Hein, M. Rusu, O. Rouvière, R. van den Bergh, V. Panebianco, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, M. de Rooij, H. Huisman, PI-CAI consortium
+authors: A. Saha*, J. S. Bosma*, J. J. Twilt*, B. van Ginneken, A. Bjartell, A. R. Padhani, D. Bonekamp, G. Villeirs, G. Salomon, G. Giannarini, J. Kalpathy-Cramer, J. Barentsz, K. H. Maier-Hein, M. Rusu, O. Rouvière, R. van den Bergh, V. Panebianco, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, M. de Rooij†, H. Huisman†, PI-CAI consortium — *joint first authors, †joint senior authors
 publication_details: Lancet Oncol. 2024;25(7):879–87
 publication_link: https://doi.org/10.1016/S1470-2045(24)00220-1
 ---
