@@ -172,8 +172,6 @@
           </div>
         </div>
       </div>
-
-      <p class="speakers-more">More speakers to be announced.</p>
     </section>
 
     <section id="register" class="register-section">
@@ -896,14 +894,6 @@ h1 {
 .speakers-section h2 {
   margin: 0 0 14px;
   font-size: 24px;
-}
-
-.speakers-more {
-  margin: 20px 0 0;
-  text-align: center;
-  font-size: 13px;
-  color: var(--research-muted);
-  font-style: italic;
 }
 
 .speaker-grid {
