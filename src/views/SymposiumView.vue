@@ -1031,10 +1031,9 @@ h1 {
 
 .speaker-name {
   margin: 0;
-  font-size: 14px;
+  font-size: 12.5px;
   font-weight: 600;
   line-height: 1.3;
-  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   color: var(--research-text);
