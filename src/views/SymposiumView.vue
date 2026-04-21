@@ -183,7 +183,11 @@
         Thanks for registering! We'll be in touch closer to the event.
       </div>
       <div data-fs-error class="form-error"></div>
-      <form id="symposium-register" class="register-form">
+      <form
+        id="symposium-register"
+        class="register-form"
+        @submit="handleSubmit"
+      >
         <div class="form-row">
           <div class="form-group">
             <label for="name">Full name</label>
@@ -238,6 +242,9 @@
         </div>
         <div class="form-group">
           <span class="form-group-label">I plan to attend</span>
+          <span v-if="attendError" class="field-error attend-error"
+            >Please select at least one option.</span
+          >
           <div class="checkbox-grid">
             <label class="checkbox-item checkbox-item--all">
               <input
@@ -423,8 +430,20 @@ const selected = ref([]);
 const allSelected = computed(
   () => selected.value.length === attendOptions.length
 );
+const attendError = ref(false);
+
 function toggleAll() {
   selected.value = allSelected.value ? [] : [...attendOptions];
+}
+
+function handleSubmit(e) {
+  if (selected.value.length === 0) {
+    attendError.value = true;
+    e.preventDefault();
+    e.stopImmediatePropagation();
+  } else {
+    attendError.value = false;
+  }
 }
 
 const venues = [
@@ -614,6 +633,11 @@ h1 {
 .field-error {
   font-size: 12px;
   color: #b91c1c;
+}
+
+.attend-error {
+  display: block;
+  margin-top: 4px;
 }
 
 .form-group-label {
