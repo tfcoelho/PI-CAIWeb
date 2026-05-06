@@ -403,6 +403,8 @@ const speakers = [
       "Associate Professor AI in Thoracic Oncology, Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
     bio: "Co-chair of the European Society of Radiology MICCAI Challenges Working Group.",
     role: "Medical - AI",
+    photoScale: 1.07,
+    photoOffset: -4,
     photo: colinJacobs,
   },
   {
