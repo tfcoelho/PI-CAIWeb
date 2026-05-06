@@ -94,9 +94,9 @@
             Session 2: From Diagnostic Practice to Population-Based Screening
           </h3>
           <p>
-            Evidence for early detection, lessons from AI-based breast cancer
-            screening, and feasibility of scalable MRI-based screening
-            strategies for prostate cancer.
+            Evidence supporting early detection, insights from breast and lung
+            cancer screening, including the role of AI, and the feasibility of
+            scalable MRI-based screening strategies for prostate cancer.
           </p>
         </div>
 
