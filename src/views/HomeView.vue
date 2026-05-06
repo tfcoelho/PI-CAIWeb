@@ -668,6 +668,14 @@ onBeforeUnmount(() => {
   .symposium-cta {
     font-size: 13px;
   }
+
+  .marquee-seamless {
+    background: transparent;
+  }
+
+  .home-container:has(.marquee-seamless) .hero-section {
+    background-image: none;
+  }
 }
 
 @media (max-width: 750px) and (orientation: landscape) {
