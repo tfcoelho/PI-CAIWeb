@@ -398,6 +398,14 @@ const speakers = [
     photoOffset: 8,
   },
   {
+    name: "Colin Jacobs, PhD",
+    affiliation:
+      "Associate Professor AI in Thoracic Oncology, Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
+    bio: "Co-chair of the European Society of Radiology MICCAI Challenges Working Group.",
+    role: "Medical - AI",
+    photo: colinJacobs,
+  },
+  {
     name: "Jasper J. Twilt, MSc",
     affiliation:
       "Minimally Invasive Image-Guided Intervention Center, Department of Medical Imaging, Radboud University Medical Center, Nijmegen, the Netherlands; Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
@@ -406,14 +414,6 @@ const speakers = [
     photo: jasperTwilt,
     photoScale: 1.17,
     phd: true,
-  },
-  {
-    name: "Colin Jacobs, PhD",
-    affiliation:
-      "Associate Professor AI in Thoracic Oncology, Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
-    bio: "Co-chair of the European Society of Radiology MICCAI Challenges Working Group.",
-    role: "Medical - AI",
-    photo: colinJacobs,
   },
   {
     name: "Anindo Saha, MSc",
