@@ -89,7 +89,7 @@
         </div>
 
         <div class="slot">
-          <p class="time">11:00-12:15</p>
+          <p class="time">11:00-12:20</p>
           <h3>
             Session 2: From Diagnostic Practice to Population-Based Screening
           </h3>
@@ -101,7 +101,7 @@
         </div>
 
         <div class="compact-row">
-          <p><strong>12:15-12:30</strong> Closing Remarks</p>
+          <p><strong>12:20-12:30</strong> Closing Remarks</p>
           <p><strong>12:30-13:30</strong> Lunch</p>
         </div>
       </article>
@@ -296,6 +296,7 @@ import anindoSaha from "@/assets/images/people/anindo_shaha.jpg";
 import jurgenFutterer from "@/assets/images/people/jurgen_futterer.jpg";
 import mireilleBroeders from "@/assets/images/people/mireille_broeders.png";
 import veeruKasivisvanathan from "@/assets/images/people/Veeru_Kasivisvanathan.png";
+import colinJacobs from "@/assets/images/people/colin_jacobs.jpg";
 
 const speakers = [
   {
@@ -405,6 +406,14 @@ const speakers = [
     photo: jasperTwilt,
     photoScale: 1.17,
     phd: true,
+  },
+  {
+    name: "Colin Jacobs, PhD",
+    affiliation:
+      "Associate Professor AI in Thoracic Oncology, Diagnostic Image Analysis Group, Department of Medical Imaging, Radboud University Medical Center, the Netherlands",
+    bio: "Co-chair of the European Society of Radiology MICCAI Challenges Working Group.",
+    role: "Medical - AI",
+    photo: colinJacobs,
   },
   {
     name: "Anindo Saha, MSc",
