@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="364" viewBox="0 0 1200 364">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="360" y="40" font-size="28" font-family="Arial, sans-serif" font-weight="700" fill="#111">Event Selection Counts</text>
+<line x1="360" y1="70" x2="360" y2="322" stroke="#333" stroke-width="1.5"/>
+<text x="348" y="103.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Morning program</text>
+<rect x="360" y="80" width="767" height="34" rx="4" fill="#B7791F"/>
+<text x="1137" y="103.0" font-size="15" font-family="Arial, sans-serif" fill="#222">69</text>
+<text x="348" y="153.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Lunch (included)</text>
+<rect x="360" y="130" width="756" height="34" rx="4" fill="#B7791F"/>
+<text x="1126" y="153.0" font-size="15" font-family="Arial, sans-serif" fill="#222">68</text>
+<text x="348" y="203.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">PhD defense Jasper</text>
+<rect x="360" y="180" width="790" height="34" rx="4" fill="#B7791F"/>
+<text x="1160" y="203.0" font-size="15" font-family="Arial, sans-serif" fill="#222">71</text>
+<text x="348" y="253.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">PhD defense Anindo</text>
+<rect x="360" y="230" width="778" height="34" rx="4" fill="#B7791F"/>
+<text x="1148" y="253.0" font-size="15" font-family="Arial, sans-serif" fill="#222">70</text>
+<text x="348" y="303.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Borrel (included)</text>
+<rect x="360" y="280" width="745" height="34" rx="4" fill="#B7791F"/>
+<text x="1115" y="303.0" font-size="15" font-family="Arial, sans-serif" fill="#222">67</text>
+</svg>

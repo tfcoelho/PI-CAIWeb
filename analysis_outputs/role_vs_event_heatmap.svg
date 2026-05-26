@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1040" height="420" viewBox="0 0 1040 420">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="250" y="44" font-size="28" font-family="Arial, sans-serif" font-weight="700" fill="#111">Role vs Event Attendance</text>
+<text x="325.0" y="100" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#222">Morning program</text>
+<text x="475.0" y="100" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#222">Lunch (included)</text>
+<text x="625.0" y="100" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#222">PhD defense Jasper</text>
+<text x="775.0" y="100" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#222">PhD defense Anindo</text>
+<text x="925.0" y="100" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#222">Borrel (included)</text>
+<text x="238" y="151.0" text-anchor="end" font-size="14" font-family="Arial, sans-serif" fill="#222">Researcher</text>
+<rect x="250" y="120" width="150" height="52" fill="rgb(43,122,120)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="325.0" y="151.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">40</text>
+<rect x="400" y="120" width="150" height="52" fill="rgb(47,125,123)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="475.0" y="151.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">39</text>
+<rect x="550" y="120" width="150" height="52" fill="rgb(67,138,136)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="625.0" y="151.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">35</text>
+<rect x="700" y="120" width="150" height="52" fill="rgb(47,125,123)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="775.0" y="151.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">39</text>
+<rect x="850" y="120" width="150" height="52" fill="rgb(72,141,139)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="925.0" y="151.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">34</text>
+<text x="238" y="203.0" text-anchor="end" font-size="14" font-family="Arial, sans-serif" fill="#222">Other</text>
+<rect x="250" y="172" width="150" height="52" fill="rgb(200,224,224)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="325.0" y="203.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">8</text>
+<rect x="400" y="172" width="150" height="52" fill="rgb(205,227,227)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="475.0" y="203.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">7</text>
+<rect x="550" y="172" width="150" height="52" fill="rgb(156,195,194)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="625.0" y="203.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">17</text>
+<rect x="700" y="172" width="150" height="52" fill="rgb(195,221,220)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="775.0" y="203.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">9</text>
+<rect x="850" y="172" width="150" height="52" fill="rgb(175,208,207)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="925.0" y="203.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">13</text>
+<text x="238" y="255.0" text-anchor="end" font-size="14" font-family="Arial, sans-serif" fill="#222">Student</text>
+<rect x="250" y="224" width="150" height="52" fill="rgb(185,214,214)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="325.0" y="255.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">11</text>
+<rect x="400" y="224" width="150" height="52" fill="rgb(180,211,211)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="475.0" y="255.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">12</text>
+<rect x="550" y="224" width="150" height="52" fill="rgb(190,218,217)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="625.0" y="255.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">10</text>
+<rect x="700" y="224" width="150" height="52" fill="rgb(180,211,211)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="775.0" y="255.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">12</text>
+<rect x="850" y="224" width="150" height="52" fill="rgb(190,218,217)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="925.0" y="255.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">10</text>
+<text x="238" y="307.0" text-anchor="end" font-size="14" font-family="Arial, sans-serif" fill="#222">Industry</text>
+<rect x="250" y="276" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="325.0" y="307.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+<rect x="400" y="276" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="475.0" y="307.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+<rect x="550" y="276" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="625.0" y="307.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+<rect x="700" y="276" width="150" height="52" fill="rgb(210,230,230)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="775.0" y="307.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">6</text>
+<rect x="850" y="276" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="925.0" y="307.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+<text x="238" y="359.0" text-anchor="end" font-size="14" font-family="Arial, sans-serif" fill="#222">Clinician</text>
+<rect x="250" y="328" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="325.0" y="359.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+<rect x="400" y="328" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="475.0" y="359.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+<rect x="550" y="328" width="150" height="52" fill="rgb(220,237,237)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="625.0" y="359.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">4</text>
+<rect x="700" y="328" width="150" height="52" fill="rgb(220,237,237)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="775.0" y="359.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">4</text>
+<rect x="850" y="328" width="150" height="52" fill="rgb(215,234,233)" stroke="#d8d8d8" stroke-width="1"/>
+<text x="925.0" y="359.0" text-anchor="middle" font-size="14" font-family="Arial, sans-serif" fill="#111">5</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="364" viewBox="0 0 1200 364">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="360" y="40" font-size="28" font-family="Arial, sans-serif" font-weight="700" fill="#111">Role Distribution</text>
+<line x1="360" y1="70" x2="360" y2="322" stroke="#333" stroke-width="1.5"/>
+<text x="348" y="103.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Researcher</text>
+<rect x="360" y="80" width="790" height="34" rx="4" fill="#205375"/>
+<text x="1160" y="103.0" font-size="15" font-family="Arial, sans-serif" fill="#222">49</text>
+<text x="348" y="153.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Other</text>
+<rect x="360" y="130" width="338" height="34" rx="4" fill="#205375"/>
+<text x="708" y="153.0" font-size="15" font-family="Arial, sans-serif" fill="#222">21</text>
+<text x="348" y="203.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Student</text>
+<rect x="360" y="180" width="209" height="34" rx="4" fill="#205375"/>
+<text x="579" y="203.0" font-size="15" font-family="Arial, sans-serif" fill="#222">13</text>
+<text x="348" y="253.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Industry</text>
+<rect x="360" y="230" width="96" height="34" rx="4" fill="#205375"/>
+<text x="466" y="253.0" font-size="15" font-family="Arial, sans-serif" fill="#222">6</text>
+<text x="348" y="303.0" text-anchor="end" font-size="16" font-family="Arial, sans-serif" fill="#222">Clinician</text>
+<rect x="360" y="280" width="80" height="34" rx="4" fill="#205375"/>
+<text x="450" y="303.0" font-size="15" font-family="Arial, sans-serif" fill="#222">5</text>
+</svg>
