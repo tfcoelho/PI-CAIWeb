@@ -28,6 +28,14 @@ const routes = [
       ),
   },
   {
+    path: "/insights",
+    name: "insights",
+    component: () =>
+      import(
+        /* webpackChunkName: "registration-insights" */ "../views/RegistrationInsightsView.vue"
+      ),
+  },
+  {
     path: "/paper/:id",
     name: "paper",
     component: () =>

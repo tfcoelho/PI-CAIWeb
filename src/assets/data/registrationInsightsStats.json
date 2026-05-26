@@ -1,0 +1,65 @@
+{
+  "meta": {
+    "updatedOn": "2026-05-26",
+    "totalSubmissions": 94,
+    "missingAffiliations": 3
+  },
+  "roleDistribution": [
+    { "label": "Researcher", "count": 49 },
+    { "label": "Other", "count": 21 },
+    { "label": "Student", "count": 13 },
+    { "label": "Industry", "count": 6 },
+    { "label": "Clinician", "count": 5 }
+  ],
+  "eventSelections": [
+    { "label": "Morning program", "count": 69 },
+    { "label": "Lunch (included)", "count": 68 },
+    { "label": "PhD defense Jasper", "count": 71 },
+    { "label": "PhD defense Anindo", "count": 70 },
+    { "label": "Borrel (included)", "count": 67 }
+  ],
+  "defenseInterest": [
+    { "label": "Both defenses", "count": 57 },
+    { "label": "Jasper only", "count": 14 },
+    { "label": "Anindo only", "count": 13 },
+    { "label": "Neither", "count": 10 }
+  ],
+  "selectionHistogram": [
+    { "selected": 0, "count": 1 },
+    { "selected": 1, "count": 7 },
+    { "selected": 2, "count": 23 },
+    { "selected": 3, "count": 7 },
+    { "selected": 4, "count": 9 },
+    { "selected": 5, "count": 47 }
+  ],
+  "topAffiliations": [
+    { "label": "Radboud UMC", "count": 65 },
+    { "label": "University College London", "count": 6 },
+    { "label": "Unknown", "count": 3 },
+    { "label": "Family", "count": 3 },
+    { "label": "DeepHealth", "count": 2 },
+    { "label": "UMCG", "count": 2 },
+    { "label": "OIRRC", "count": 1 },
+    { "label": "Erasmus MC", "count": 1 },
+    { "label": "Mount Vernon Cancer Centre, London, UK", "count": 1 },
+    { "label": "Stealth Startup", "count": 1 },
+    { "label": "University Medical Center Groningen", "count": 1 },
+    { "label": "Open Universiteit", "count": 1 }
+  ],
+  "roleEventHeatmap": {
+    "events": [
+      "Morning program",
+      "Lunch (included)",
+      "PhD defense Jasper",
+      "PhD defense Anindo",
+      "Borrel (included)"
+    ],
+    "rows": [
+      { "role": "Researcher", "counts": [40, 39, 35, 39, 34] },
+      { "role": "Other", "counts": [8, 7, 17, 9, 13] },
+      { "role": "Student", "counts": [11, 12, 10, 12, 10] },
+      { "role": "Industry", "counts": [5, 5, 5, 6, 5] },
+      { "role": "Clinician", "counts": [5, 5, 4, 4, 5] }
+    ]
+  }
+}
