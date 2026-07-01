@@ -10,7 +10,13 @@
         <div class="nav-container">
           <router-link to="/">Home</router-link>
           <router-link to="/research">Research</router-link>
-          <router-link to="/symposium-2026">Symposium</router-link>
+          <router-link to="/meetings">Meetings</router-link>
+          <a
+            href="https://pi-cai.grand-challenge.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Grand Challenge</a
+          >
         </div>
       </div>
     </nav>
