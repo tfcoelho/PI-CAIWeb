@@ -1,6 +1,6 @@
 <template>
-  <div class="meetings-page">
-    <div class="meetings-header">
+  <div class="events-page">
+    <div class="events-header">
       <div class="logo-and-title">
         <router-link
           to="/"
@@ -13,7 +13,7 @@
             class="header-logo"
           />
         </router-link>
-        <h1 class="page-title">Meetings</h1>
+        <h1 class="page-title">Events</h1>
       </div>
     </div>
 
@@ -28,21 +28,21 @@
       </button>
     </div>
 
-    <div v-if="filteredMeetings.length === 0" class="no-meetings">
-      <p>No {{ selectedFilter.toLowerCase() }} meetings found.</p>
+    <div v-if="filteredEvents.length === 0" class="no-events">
+      <p>No {{ selectedFilter.toLowerCase() }} events found.</p>
     </div>
-    <div class="meetings-grid">
+    <div class="events-grid">
       <div
-        v-for="meeting in filteredMeetings"
-        :key="meeting.id"
-        class="meeting-card"
-        @click="viewMeeting(meeting)"
+        v-for="event in filteredEvents"
+        :key="event.id"
+        class="event-card"
+        @click="viewEvent(event)"
       >
-        <span class="meeting-tag">{{ meeting.tag }}</span>
-        <h2 class="meeting-title">{{ meeting.title }}</h2>
-        <p class="meeting-location">{{ meeting.location }}</p>
-        <div class="meeting-footer">
-          <p class="date">{{ formatDate(meeting.date) }}</p>
+        <span class="event-tag">{{ event.tag }}</span>
+        <h2 class="event-title">{{ event.title }}</h2>
+        <p class="event-location">{{ event.location }}</p>
+        <div class="event-footer">
+          <p class="date">{{ formatDate(event.date) }}</p>
         </div>
       </div>
     </div>
@@ -54,11 +54,11 @@ import { ref, computed, onMounted, onUnmounted, nextTick } from "vue";
 import { useRouter } from "vue-router";
 
 export default {
-  name: "MeetingsView",
+  name: "EventsView",
   setup() {
     const router = useRouter();
 
-    const meetings = ref([
+    const events = ref([
       {
         id: "symposium-2026",
         tag: "Symposium",
@@ -73,16 +73,16 @@ export default {
     const filters = ["All", "Past", "Upcoming"];
     const selectedFilter = ref("All");
 
-    const isPast = (meeting) => new Date(meeting.date) < new Date();
+    const isPast = (event) => new Date(event.date) < new Date();
 
-    const filteredMeetings = computed(() => {
+    const filteredEvents = computed(() => {
       if (selectedFilter.value === "Upcoming") {
-        return meetings.value.filter((meeting) => !isPast(meeting));
+        return events.value.filter((event) => !isPast(event));
       }
       if (selectedFilter.value === "Past") {
-        return meetings.value.filter((meeting) => isPast(meeting));
+        return events.value.filter((event) => isPast(event));
       }
-      return meetings.value;
+      return events.value;
     });
 
     const updateIndicator = () => {
@@ -120,8 +120,8 @@ export default {
 
     let originalBackgroundColor;
 
-    const viewMeeting = (meeting) => {
-      router.push(meeting.route);
+    const viewEvent = (event) => {
+      router.push(event.route);
     };
 
     onMounted(() => {
@@ -135,13 +135,13 @@ export default {
     });
 
     return {
-      meetings,
+      events,
       filters,
       selectedFilter,
-      filteredMeetings,
+      filteredEvents,
       filterByStatus,
       formatDate,
-      viewMeeting,
+      viewEvent,
     };
   },
 };
@@ -170,7 +170,7 @@ export default {
   display: block;
 }
 
-.meetings-page {
+.events-page {
   min-height: 100vh;
   padding-top: 60px;
   max-width: 1200px;
@@ -180,7 +180,7 @@ export default {
   background-color: #ebebf5;
 }
 
-.meetings-header {
+.events-header {
   display: flex;
   justify-content: flex-start;
   margin-bottom: 20px;
@@ -265,14 +265,14 @@ export default {
   opacity: 1;
 }
 
-.no-meetings {
+.no-events {
   text-align: center;
   margin-top: 3rem;
   color: #666;
   font-size: 1.2rem;
 }
 
-.meetings-grid {
+.events-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 0px;
@@ -280,7 +280,7 @@ export default {
   position: relative;
 }
 
-.meeting-card {
+.event-card {
   display: flex;
   flex-direction: column;
   background: #ffffff;
@@ -294,12 +294,12 @@ export default {
   margin: 20px;
 }
 
-.meeting-card:hover {
+.event-card:hover {
   transform: translateY(-3px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.meeting-tag {
+.event-tag {
   display: inline-block;
   font-size: 11px;
   font-weight: 700;
@@ -313,7 +313,7 @@ export default {
   align-self: flex-start;
 }
 
-.meeting-title {
+.event-title {
   margin: 0 0 8px 0;
   font-size: 18px;
   line-height: 1.4;
@@ -321,14 +321,14 @@ export default {
   color: #111;
 }
 
-.meeting-location {
+.event-location {
   color: #666;
   font-size: 14px;
   margin: 0 0 8px 0;
   font-weight: 400;
 }
 
-.meeting-footer {
+.event-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -344,7 +344,7 @@ export default {
 }
 
 @media (max-width: 750px) {
-  .meetings-grid {
+  .events-grid {
     grid-template-columns: 1fr;
   }
 
