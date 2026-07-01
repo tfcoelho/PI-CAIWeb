@@ -15,7 +15,7 @@
             href="https://pi-cai.grand-challenge.org/"
             target="_blank"
             rel="noopener noreferrer"
-            >Grand Challenge</a
+            >Benchmark</a
           >
         </div>
       </div>
