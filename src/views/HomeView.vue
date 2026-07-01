@@ -26,7 +26,7 @@
     <div class="hero-section">
       <div class="hero-content">
         <img
-          src="@/assets/images/message.png"
+          src="@/assets/images/message2.png"
           alt="Prostate Cancer Detection AI"
           class="vision-image"
         />

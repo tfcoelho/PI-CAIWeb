@@ -35,7 +35,11 @@
         diverse populations and care settings; and leveraging AI for capacity
         expansion and cost-effective population-level screening.
       </p>
-      <button class="register-btn" @click="scrollToRegister">
+      <button
+        v-if="SHOW_REGISTRATION"
+        class="register-btn"
+        @click="scrollToRegister"
+      >
         Register Now
       </button>
     </section>
@@ -174,7 +178,7 @@
       </div>
     </section>
 
-    <section id="register" class="register-section">
+    <section v-if="SHOW_REGISTRATION" id="register" class="register-section">
       <h2>Register</h2>
       <p class="register-lead">
         Attendance is free. Fill in the form below to reserve your spot.
@@ -283,6 +287,9 @@
 
 <script setup>
 import { onMounted, onUnmounted, ref, computed } from "vue";
+
+// Set to true to show the registration button/section again
+const SHOW_REGISTRATION = false;
 import { initForm } from "@formspree/ajax/dist/index.mjs";
 import anwarPadhani from "@/assets/images/people/Anwar_Padhani.jpg";
 import ivoSchoots from "@/assets/images/people/Ivo_Schoots.jpg";
@@ -473,7 +480,7 @@ const venues = [
 ];
 
 function scrollToRegister() {
-  document.getElementById("register").scrollIntoView({ behavior: "smooth" });
+  document.getElementById("register")?.scrollIntoView({ behavior: "smooth" });
 }
 
 let originalBackgroundColor;
@@ -481,7 +488,9 @@ let originalBackgroundColor;
 onMounted(() => {
   originalBackgroundColor = document.body.style.backgroundColor;
   document.body.style.backgroundColor = "#EBEBF5";
-  initForm({ formElement: "#symposium-register", formId: "mojpkqyl" });
+  if (SHOW_REGISTRATION) {
+    initForm({ formElement: "#symposium-register", formId: "mojpkqyl" });
+  }
 });
 
 onUnmounted(() => {
