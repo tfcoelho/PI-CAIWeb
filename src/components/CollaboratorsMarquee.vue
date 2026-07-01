@@ -60,16 +60,16 @@ const marqueeLogos = computed(() => {
 
 <style scoped>
 .marquee-section {
-  padding: 80px 0;
+  padding: clamp(32px, 6dvh, 80px) 0;
   background-color: transparent;
 }
 
 .section-title {
   text-align: center;
-  font-size: 30px;
+  font-size: 22px;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: 70px;
+  margin-bottom: clamp(32px, 6dvh, 70px);
 }
 
 .marquee-container {
@@ -132,6 +132,13 @@ const marqueeLogos = computed(() => {
   to {
     /* This moves the block to the left by its full width, creating the loop */
     transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 750px) {
+  .marquee-logo {
+    height: 40px;
+    margin: 0 5px;
   }
 }
 </style>
