@@ -41,7 +41,6 @@
         <span class="meeting-tag">{{ meeting.tag }}</span>
         <h2 class="meeting-title">{{ meeting.title }}</h2>
         <p class="meeting-location">{{ meeting.location }}</p>
-        <p class="meeting-description">{{ meeting.description }}</p>
         <div class="meeting-footer">
           <p class="date">{{ formatDate(meeting.date) }}</p>
         </div>
@@ -62,12 +61,11 @@ export default {
     const meetings = ref([
       {
         id: "symposium-2026",
-        tag: "2026",
-        title: "PI-CAI Symposium",
+        tag: "Symposium",
+        title:
+          "Artificial Intelligence for Prostate Cancer Diagnosis and Screening on MRI: Current Practice, Evidence Gaps, and the Research Agenda",
         location: "Radboud University, Nijmegen",
         date: "2026-06-01",
-        description:
-          "Artificial Intelligence for Prostate Cancer Diagnosis and Screening on MRI: Current Practice, Evidence Gaps, and the Research Agenda.",
         route: "/symposium-2026",
       },
     ]);
@@ -328,13 +326,6 @@ export default {
   font-size: 14px;
   margin: 0 0 8px 0;
   font-weight: 400;
-}
-
-.meeting-description {
-  color: #444;
-  font-size: 14px;
-  line-height: 1.5;
-  margin: 0;
 }
 
 .meeting-footer {
