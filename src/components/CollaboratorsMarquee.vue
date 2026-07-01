@@ -8,7 +8,7 @@
           :key="index"
           :src="logo.src"
           :alt="logo.alt"
-          class="marquee-logo"
+          :class="['marquee-logo', logo.class]"
         />
       </div>
       <div class="marquee-content" aria-hidden="true">
@@ -17,7 +17,7 @@
           :key="'dup-' + index"
           :src="logo.src"
           :alt="logo.alt"
-          class="marquee-logo"
+          :class="['marquee-logo', logo.class]"
         />
       </div>
     </div>
@@ -35,6 +35,7 @@ import logoEau from "@/assets/images/black_logos/eau.png";
 import logozgt from "@/assets/images/black_logos/zgt.png";
 import logoaws from "@/assets/images/black_logos/aws.png";
 import logoesur from "@/assets/images/black_logos/esur.png";
+import logodkfz from "@/assets/images/black_logos/dkfz.png";
 
 // Your single source of truth for logos
 const logos = ref([
@@ -45,6 +46,11 @@ const logos = ref([
   { src: logozgt, alt: "Ziekenhuis Tjongerschans" },
   { src: logoaws, alt: "Amazon Web Services" },
   { src: logoesur, alt: "European Society of Urogenital Radiology" },
+  {
+    src: logodkfz,
+    alt: "German Cancer Research Center (DKFZ)",
+    class: "logo-dkfz",
+  },
 ]);
 
 // This computed property ensures the list is long enough
@@ -115,6 +121,11 @@ const marqueeLogos = computed(() => {
   transition: filter 0.3s ease, opacity 0.3s ease;
 }
 
+.marquee-logo.logo-dkfz {
+  height: 56px;
+  align-self: center;
+}
+
 /* We also update the hover state to keep the logo white */
 .marquee-logo:hover {
   /*
@@ -139,6 +150,10 @@ const marqueeLogos = computed(() => {
   .marquee-logo {
     height: 40px;
     margin: 0 5px;
+  }
+
+  .marquee-logo.logo-dkfz {
+    height: 28px;
   }
 }
 </style>
