@@ -44,7 +44,11 @@
             />
           </button>
         </a>
-        <router-link to="/symposium-2026" class="symposium-card">
+        <router-link
+          v-if="SHOW_SYMPOSIUM_CARD"
+          to="/symposium-2026"
+          class="symposium-card"
+        >
           <span class="symposium-badge">New Symposium</span>
           <h2 class="symposium-title">
             Artificial Intelligence for Prostate Cancer Diagnosis and Screening
@@ -76,6 +80,8 @@ import AboutView from "./AboutView.vue";
 
 // Set to true to show the about/white section again
 const SHOW_ABOUT_SECTION = false;
+// Set to true to show the symposium card on the home page again
+const SHOW_SYMPOSIUM_CARD = false;
 import CollaboratorsMarquee from "@/components/CollaboratorsMarquee.vue";
 
 const logoScale = ref(1);
