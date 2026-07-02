@@ -66,7 +66,7 @@ const marqueeLogos = computed(() => {
 
 <style scoped>
 .marquee-section {
-  padding: clamp(32px, 6dvh, 80px) 0;
+  padding: clamp(20px, 5dvh, 80px) 0;
   background-color: transparent;
 }
 
@@ -75,7 +75,7 @@ const marqueeLogos = computed(() => {
   font-size: 22px;
   font-weight: 600;
   color: #ffffff;
-  margin-bottom: clamp(32px, 6dvh, 70px);
+  margin-bottom: clamp(16px, 4dvh, 70px);
 }
 
 .marquee-container {
@@ -109,7 +109,7 @@ const marqueeLogos = computed(() => {
 
 /* Find this rule in your CollaboratorsMarquee.vue file */
 .marquee-logo {
-  height: 80px;
+  height: clamp(40px, 9dvh, 80px);
   margin: 0 40px;
 
   /* UPDATED: We add invert(1) to make the black logos white.
@@ -122,7 +122,7 @@ const marqueeLogos = computed(() => {
 }
 
 .marquee-logo.logo-dkfz {
-  height: 56px;
+  height: clamp(28px, 6.3dvh, 56px);
   align-self: center;
 }
 

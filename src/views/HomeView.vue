@@ -60,12 +60,12 @@ const SHOW_SYMPOSIUM_CARD = false;
 
 <style scoped>
 .home-container {
-  min-height: 100dvh;
+  position: relative;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: stretch;
-  gap: clamp(16px, 4dvh, 48px);
-  padding: clamp(70px, 50dvh, 380px) 0 clamp(16px, 4dvh, 40px);
   box-sizing: border-box;
   background-color: #111820;
   background-image: url("@/assets/images/background.webp");
@@ -79,14 +79,14 @@ const SHOW_SYMPOSIUM_CARD = false;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: min(90vw, 560px);
+  width: min(90vw, 34vw, 55vh, 560px);
   margin-left: 16%;
 }
 
 .logo-image {
   width: 100%;
   height: auto;
-  margin-bottom: clamp(12px, 3dvh, 28px);
+  margin-bottom: clamp(10px, 3dvh, 24px);
   animation: fadeIn 0.5s ease-out forwards;
 }
 
@@ -234,15 +234,17 @@ const SHOW_SYMPOSIUM_CARD = false;
 }
 
 .marquee-container {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(16px, 3dvh, 40px);
   width: 100%;
   overflow: hidden;
-  margin-top: auto;
 }
 
 @media (max-width: 750px) {
   .home-container {
     align-items: center;
-    padding-top: clamp(200px, 30dvh, 300px);
   }
 
   .hero-content {
