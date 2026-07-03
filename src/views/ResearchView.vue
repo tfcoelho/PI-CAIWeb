@@ -115,7 +115,7 @@ export default {
   name: "ResearchView",
   setup() {
     const papers = ref([]);
-    const tags = ref(["All"]);
+    const tags = ref([]);
     const selectedTag = ref("PUBLISHED");
     const loading = ref(true);
     const router = useRouter();
@@ -124,9 +124,6 @@ export default {
     let originalBackgroundColor;
 
     const filteredPapers = computed(() => {
-      if (selectedTag.value === "All") {
-        return papers.value;
-      }
       return papers.value.filter(
         (paper) => paper.tags && paper.tags.includes(selectedTag.value)
       );
