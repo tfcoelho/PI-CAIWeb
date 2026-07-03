@@ -206,14 +206,14 @@ export default {
       }
     };
 
-    onMounted(() => {
-      loadPapers();
-
+    onMounted(async () => {
       // Save original background color and set new one
       originalBackgroundColor = document.body.style.backgroundColor;
       document.body.style.backgroundColor = "#EBEBF5";
 
-      // Initialize the indicator position
+      await loadPapers();
+
+      // Initialize the indicator position now that the tag buttons exist
       nextTick(() => {
         const activeBtn = document.querySelector(".tag-btn.active");
         const filterContainer = document.querySelector(".tag-filter");
