@@ -184,7 +184,7 @@ export const researchService = {
       // DEBUG: Print all unique tags found
       console.log("All unique tags found:", Array.from(allTags));
 
-      return ["All", ...Array.from(allTags)];
+      return Array.from(allTags);
     } catch (error) {
       console.error("Error getting all tags:", error);
       return ["All"];

@@ -1,5 +1,5 @@
 ---
-tags: STUDY PROTOCOL
+tags: ONGOING
 date: 2025-03-27
 authors: C. Grisi, M. Stegeman, J. Lefkes, M. D'Amato, L. Builtjes, L. Philipp, F. van der Graaf, J. Bosma, J. Kather, M. Ligero Hernandez, L. Wee, A. Dekker, G. Campanella, B. van Ginneken, A. Hering, F. Ciompi
 publication_details: MICCAI 2025 Lighthouse Challenge, Zenodo

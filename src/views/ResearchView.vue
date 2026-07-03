@@ -131,7 +131,7 @@ export default {
 
     const tagClass = (tag) => {
       switch (tag.toUpperCase()) {
-        case "STUDY PROTOCOL":
+        case "ONGOING":
           return "tag-study-design";
         case "PUBLISHED":
           return "tag-published";
