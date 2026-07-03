@@ -10,7 +10,7 @@
         <div class="nav-container">
           <router-link to="/">Home</router-link>
           <router-link to="/research">Research</router-link>
-          <router-link to="/events">Events</router-link>
+          <router-link to="/events">Meetings</router-link>
           <a
             href="https://pi-cai.grand-challenge.org/"
             target="_blank"

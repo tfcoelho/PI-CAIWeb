@@ -13,7 +13,7 @@
             class="header-logo"
           />
         </router-link>
-        <h1 class="page-title">Events</h1>
+        <h1 class="page-title">Meetings</h1>
       </div>
     </div>
 
@@ -29,7 +29,7 @@
     </div>
 
     <div v-if="filteredEvents.length === 0" class="no-events">
-      <p>No {{ selectedFilter.toLowerCase() }} events found.</p>
+      <p>No {{ selectedFilter.toLowerCase() }} meetings found.</p>
     </div>
     <div class="events-grid">
       <div
