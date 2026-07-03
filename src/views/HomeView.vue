@@ -7,7 +7,7 @@
         class="logo-image"
       />
       <img
-        src="@/assets/images/message2.png"
+        src="@/assets/images/message7.png"
         alt="Prostate Cancer Detection AI"
         class="vision-image"
       />
