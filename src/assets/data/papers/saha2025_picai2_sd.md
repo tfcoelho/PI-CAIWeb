@@ -10,7 +10,7 @@ publication_details: Arxiv
 publication_link: https://arxiv.org/abs/2508.03762
 ---
 
-# Scaling Artificial Intelligence for Prostate Cancer Detection on MRI towards Population-Based Screening and Primary Diagnosis in a Global, Multiethnic Population (Study Protocol)
+# Scaling Artificial Intelligence for Prostate Cancer Detection on MRI towards Population-Based Screening and Primary Diagnosis in a Global, Multiethnic Population
 
 ## Abstract
 
