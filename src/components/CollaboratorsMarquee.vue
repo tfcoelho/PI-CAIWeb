@@ -36,6 +36,7 @@ import logozgt from "@/assets/images/black_logos/zgt.png";
 import logoaws from "@/assets/images/black_logos/aws.png";
 import logoesur from "@/assets/images/black_logos/esur.png";
 import logodkfz from "@/assets/images/black_logos/dkfz.png";
+import logoGrandChallenge from "@/assets/images/black_logos/grandchallenge.png";
 
 // Your single source of truth for logos
 const logos = ref([
@@ -50,6 +51,11 @@ const logos = ref([
     src: logodkfz,
     alt: "German Cancer Research Center (DKFZ)",
     class: "logo-dkfz",
+  },
+  {
+    src: logoGrandChallenge,
+    alt: "Grand Challenge",
+    class: "logo-grandchallenge",
   },
 ]);
 
@@ -79,7 +85,7 @@ const marqueeLogos = computed(() => {
 }
 
 .marquee-container {
-  width: 64vw;
+  width: 70vw;
   margin: 0 auto;
   overflow: hidden;
   display: flex;
@@ -109,7 +115,7 @@ const marqueeLogos = computed(() => {
 
 /* Find this rule in your CollaboratorsMarquee.vue file */
 .marquee-logo {
-  height: clamp(40px, 9dvh, 80px);
+  height: clamp(40px, 7dvh, 80px);
   margin: 0 40px;
 
   /* UPDATED: We add invert(1) to make the black logos white.
@@ -123,6 +129,11 @@ const marqueeLogos = computed(() => {
 
 .marquee-logo.logo-dkfz {
   height: clamp(28px, 6.3dvh, 56px);
+  align-self: center;
+}
+
+.marquee-logo.logo-grandchallenge {
+  height: clamp(20px, 4.5dvh, 30px);
   align-self: center;
 }
 
@@ -154,6 +165,10 @@ const marqueeLogos = computed(() => {
 
   .marquee-logo.logo-dkfz {
     height: 28px;
+  }
+
+  .marquee-logo.logo-grandchallenge {
+    height: 20px;
   }
 }
 </style>
