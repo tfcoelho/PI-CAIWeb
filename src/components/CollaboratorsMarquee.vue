@@ -37,6 +37,7 @@ import logoaws from "@/assets/images/black_logos/aws.png";
 import logoesur from "@/assets/images/black_logos/esur.png";
 import logodkfz from "@/assets/images/black_logos/dkfz.png";
 import logoGrandChallenge from "@/assets/images/black_logos/grandchallenge.png";
+import logoNtnu from "@/assets/images/black_logos/ntnu.png";
 
 // Your single source of truth for logos
 const logos = ref([
@@ -57,6 +58,7 @@ const logos = ref([
     alt: "Grand Challenge",
     class: "logo-grandchallenge",
   },
+  { src: logoNtnu, alt: "Norwegian University of Science and Technology" },
 ]);
 
 // This computed property ensures the list is long enough
