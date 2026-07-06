@@ -58,7 +58,11 @@ const logos = ref([
     alt: "Grand Challenge",
     class: "logo-grandchallenge",
   },
-  { src: logoNtnu, alt: "Norwegian University of Science and Technology" },
+  {
+    src: logoNtnu,
+    alt: "Norwegian University of Science and Technology",
+    class: "logo-ntnu",
+  },
 ]);
 
 // This computed property ensures the list is long enough
@@ -112,7 +116,7 @@ const marqueeLogos = computed(() => {
   flex-shrink: 0; /* Prevents the block from shrinking */
   justify-content: space-around;
   /* This is the animation that moves the block */
-  animation: scroll 50s linear infinite;
+  animation: scroll 20s linear infinite;
 }
 
 /* Find this rule in your CollaboratorsMarquee.vue file */
@@ -136,6 +140,11 @@ const marqueeLogos = computed(() => {
 
 .marquee-logo.logo-grandchallenge {
   height: clamp(20px, 4.5dvh, 30px);
+  align-self: center;
+}
+
+.marquee-logo.logo-ntnu {
+  height: clamp(30px, 6dvh, 50px);
   align-self: center;
 }
 
@@ -171,6 +180,10 @@ const marqueeLogos = computed(() => {
 
   .marquee-logo.logo-grandchallenge {
     height: 20px;
+  }
+
+  .marquee-logo.logo-ntnu {
+    height: 30px;
   }
 }
 </style>
