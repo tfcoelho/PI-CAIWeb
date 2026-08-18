@@ -55,6 +55,18 @@
         </div>
         <h2 class="paper-title">{{ paper.title }}</h2>
         <p v-if="paper.authors" class="authors">{{ paper.authors }}</p>
+        <div v-if="paper.organizations.length > 0" class="paper-orgs">
+          <span class="lead-org">{{ paper.organizations[0] }}</span>
+          <div class="org-logos">
+            <img
+              v-for="org in paper.organizations.filter((o) => getOrgLogo(o))"
+              :key="org"
+              :src="getOrgLogo(org)"
+              :alt="org"
+              class="org-logo"
+            />
+          </div>
+        </div>
         <div class="paper-footer">
           <img
             v-if="getJournalLogo(paper.publicationDetails)"
@@ -101,6 +113,33 @@ const journalLogos = {
     height: 40,
   },
 };
+
+// Organization logos live in src/assets/images/organization_logos. To add
+// one, name the file after the organization with spaces/punctuation
+// replaced by underscores, e.g. "Radboud University Medical Center" ->
+// radboud_university_medical_center.png. If no matching file exists yet,
+// that organization is simply skipped (no broken image).
+const orgLogoContext = require.context(
+  "@/assets/images/organization_logos",
+  false,
+  /\.(png|jpe?g|svg)$/
+);
+const orgLogos = {};
+orgLogoContext.keys().forEach((key) => {
+  const slug = key.replace("./", "").replace(/\.(png|jpe?g|svg)$/i, "");
+  orgLogos[slug] = orgLogoContext(key);
+});
+
+const slugifyOrg = (name) =>
+  name
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "");
+
+function getOrgLogo(orgName) {
+  return orgLogos[slugifyOrg(orgName)] || null;
+}
 
 function getJournalLogo(publicationDetails) {
   if (!publicationDetails) return null;
@@ -247,6 +286,7 @@ export default {
       formatDate,
       tagClass,
       getJournalLogo,
+      getOrgLogo,
     };
   },
 };
@@ -464,6 +504,33 @@ export default {
   font-size: 14px;
   margin-bottom: 8px;
   font-weight: 400;
+}
+
+.paper-orgs {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.lead-org {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e02090;
+}
+
+.org-logos {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.org-logo {
+  height: 36px;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.85;
 }
 
 .paper-footer {

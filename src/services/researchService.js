@@ -25,6 +25,7 @@ export const researchService = {
           let publicationDetails = "";
           let studyProtocolLink = "";
           let order = null;
+          let organizations = [];
 
           if (frontmatterMatch && frontmatterMatch[1]) {
             // Extract tags from frontmatter
@@ -92,6 +93,18 @@ export const researchService = {
             if (orderMatch && orderMatch[1]) {
               order = parseInt(orderMatch[1], 10);
             }
+
+            // Extract involved organizations from frontmatter. The first
+            // one is treated as the leading organization.
+            const orgsMatch = frontmatterMatch[1].match(
+              /organizations:\s*(.+)/i
+            );
+            if (orgsMatch && orgsMatch[1]) {
+              organizations = orgsMatch[1]
+                .split("|")
+                .map((org) => org.trim())
+                .filter(Boolean);
+            }
           } else {
             console.log(`No frontmatter found in ${id}.`);
           }
@@ -137,6 +150,7 @@ export const researchService = {
             publicationDetails,
             studyProtocolLink,
             order,
+            organizations,
           };
         })
       );
