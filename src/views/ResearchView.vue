@@ -100,6 +100,10 @@ const journalLogos = {
     src: require("@/assets/images/journal_logos/radiology-imaging-cancer.png"),
     height: 40,
   },
+  radiology: {
+    src: require("@/assets/images/journal_logos/radiology.png"),
+    height: 28,
+  },
 };
 
 function getJournalLogo(publicationDetails) {

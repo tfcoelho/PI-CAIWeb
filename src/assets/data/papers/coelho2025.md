@@ -1,33 +1,27 @@
 ---
-tags: ONGOING
-date: 2024-07-01
-authors: T. F. Coelho, J. S. Bosma, V. Bozgo, C. R. Noordman, R. Grimm, M. de Rooij, M. Maas, H. Huisman
-publication_details: 
-publication_link: 
+tags: PUBLISHED
+order: 3
+date: 2026-08-18
+authors: T. F. Coelho, J. S. Bosma, V. Bozgo, C. R. Noordman, R. Grimm, M. de Rooij, M. C. Maas, H. Huisman
+publication_details: Radiology
+publication_link: https://pubs.rsna.org/eprint/ZUUNACT288JRGSA3T4N5/full
 ---
 
-# Diagnostically Calibrated AI Image-Quality Framework 
+# Diagnostically Calibrated AI Image-Quality Framework for Prostate MRI
 
 ## Abstract
 
-### Background and objective
+### Background
+Image quality affects diagnostic performance; however, current quality metrics rely on subjective reader labels rather than diagnostic outcomes.
 
-Image quality (IQ) is a critical determinant of clinically significant prostate cancer (csPCa) detection on MRI. High-quality imaging supports accurate diagnosis and is essential for effective clinical decision-making. However, current IQ assessment (IQA) methods rely on subjective visual evaluation and are not scalable for routine use. We propose a diagnostically calibrated deep-learning  classifier that predicts image quality scores aligned with diagnostic performance. The model will be trained on curated, retrospectively labeled T2-weighted scans and evaluated on a large, prospectively collected validation cohort. We hypothesize that predicted image quality will correlate with csPCa detection accuracy, allowing quality thresholding based on diagnostic relevance. If successful, this approach could enable real-time quality feedback in clinical workflows.
+### Purpose
+To develop and evaluate a diagnostically calibrated artificial intelligence (AI) framework using deep learning (DL) for image quality assessment, linking prostate MRI quality scores to diagnostic performance.
 
-### Methods
+### Materials and Methods
+This single-center retrospective study analyzed 12,496 consecutive prostate multiparametric MRI examinations performed between January 2014 and December 2023 at Radboud University Medical Center. A two-step framework was implemented: First, a DL model was trained on the most reliable low-quality (artifact-degraded structures) and high-quality (clear delineated zones) axial T2-weighted images to produce a continuous image quality score. Second, this score was applied in an independent internal test set and calibrated with diagnostic performance measured as (a) area under the receiver operating characteristic curve (AUC) for clinically significant prostate cancer (csPCa) detection by an AI model and (b) accuracy of csPCa detection by radiologists in routine clinical practice. The reference standard was histopathologic findings at biopsy. Diagnostic performance was calculated for quality score 10-percentile thresholds from 10% to 80%. Linear trend between performance and threshold was assessed using a permutation test on the regression slope.
 
-The training cohort consists of 1,229 T2-weighted prostate MRI scans acquired between 2014–2020 at Radboudumc. These include 679 high-quality and 550 low-quality cases, selected from a larger pool of ~15,000 scans. Intermediate-quality cases were excluded to reduce label noise. Quality labels were defined by a PhD student under radiologist supervision using criteria included in PI-QUAL v2.
+### Results
+A total of 1229 T2-weighted series were used for training, and 568 multiparametric MRI examinations for diagnostic testing (1638 male patients; median age, 67 years [IQR, 62–71 years]). The DL model achieved a mean AUC of 0.99 for distinguishing low- versus high-quality images in the training set during fivefold cross-validation. For csPCa detection in the test set, the AI model AUC improved from 0.92 (95% CI: 0.89, 0.94) to 0.99 (95% CI: 0.97, 1.00) (P = .005) across thresholds of DL model image quality score; radiologist accuracy improved from 77% (95% CI: 73, 80) to 85% (95% CI: 78, 91) (P = .01).
 
-The validation cohort will include >1,000 scans from 2021–2025. These scans will reflect real-world quality distributions, with no exclusions based on image quality. Patients must be ≥18 years, with clinical suspicion or follow-up of prostate cancer. Exclusion criteria include prior prostate treatment, prior confirmed csPCa (Gleason grade group ≥2), or incomplete imaging/clinical data. Endo-rectal coil scans will be excluded in both cohorts.
-
-Clinical reference for csPCa will include histopathological confirmation (PI-RADS ≥3) or ≥1 years of negative follow-up for PI-RADS ≤2 cases.
-
-We will train a 3D deep-learning classifier based on Inception I3D, adapted for single-channel T2W input. Preprocessing includes isotropic resampling (0.3×0.3×3 mm³) and fixed central cropping (300×300×15 voxels). No spatial or intensity augmentations will be applied, as preserving original quality is essential. Grad-CAM will be used for interpretability.
-
-The model will be evaluated on two key tasks:
-1. **Classification performance** on the training data (5-fold cross-validation) to assess its ability to distinguish clear high- and low-quality scans.
-2. **Correlation with diagnostic accuracy** on the prospective validation set. We will compute AUCs of a csPCa detection model before and after iteratively excluding the lowest-quality scans (in 10% increments) as ranked by our model. Bootstrap sampling (n=1,000) will be used to estimate AUC distributions, and Pearson’s r will quantify the relationship between predicted quality and diagnostic accuracy (significance at p < 0.05).
-
-### Expected Outcomes
-
-We expect the model to accurately classify extremes of image quality and to generalize its predictions to intermediate-quality scans in a diagnostically meaningful way. By aligning quality scores with expected diagnostic performance, this tool may support real-time quality control during MRI acquisition—potentially reducing recall rates and enhancing csPCa detection. Upon data access approval, we will begin validation under GDPR-compliant protocols and institutional ethics approvals.
+### Conclusion
+The AI framework provided a standardized method to derive an objective image quality score that correlated with improved AI diagnostic performance and radiologist accuracy.
