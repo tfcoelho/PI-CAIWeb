@@ -47,6 +47,12 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "paper" */ "../views/PaperView.vue"),
   },
+  {
+    path: "/linkedin",
+    name: "linkedin",
+    component: () =>
+      import(/* webpackChunkName: "linkedin" */ "../views/LinkedInView.vue"),
+  },
   // {
   //   path: "/people",
   //   name: "people",
