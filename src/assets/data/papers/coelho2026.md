@@ -4,10 +4,10 @@ order: 3
 date: 2026-08-18
 authors: T. F. Coelho, J. S. Bosma, V. Bozgo, C. R. Noordman, R. Grimm, M. de Rooij, M. C. Maas, H. Huisman
 publication_details: Radiology
-publication_link: https://pubs.rsna.org/eprint/ZUUNACT288JRGSA3T4N5/full
+publication_link: https://pubs.rsna.org/doi/10.1148/radiol.253360
 ---
 
-# Diagnostically Calibrated AI Image-Quality Framework for Prostate MRI
+# Diagnostically Calibrated AI Image Quality Framework Applied to Prostate Cancer Detection at MRI
 
 ## Abstract
 
