@@ -243,7 +243,7 @@ const SHOW_SYMPOSIUM_CARD = false;
   position: absolute;
   left: 0;
   right: 0;
-  bottom: clamp(16px, 3dvh, 40px);
+  bottom: clamp(6px, 1dvh, 16px);
   width: 100%;
   overflow: hidden;
   display: flex;
