@@ -44,6 +44,12 @@
 
     <section class="marquee-container">
       <CollaboratorsMarquee />
+      <div class="contact-block">
+        <span class="contact-label">Contact</span>
+        <a href="mailto:info@pi-cai.org" class="contact-email"
+          >info@pi-cai.org</a
+        >
+      </div>
     </section>
   </div>
 </template>
@@ -240,6 +246,39 @@ const SHOW_SYMPOSIUM_CARD = false;
   bottom: clamp(16px, 3dvh, 40px);
   width: 100%;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  margin-top: clamp(6px, 1.6dvh, 18px);
+}
+
+.contact-label {
+  font-family: "Nunito-Sans", sans-serif;
+  letter-spacing: 1.2px;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 141, 213, 0.6);
+}
+
+.contact-email {
+  font-family: "Nunito-Sans", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.contact-email:hover {
+  color: rgba(255, 255, 255, 0.85);
 }
 
 @media (max-width: 750px) {
