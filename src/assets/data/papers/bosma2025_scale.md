@@ -1,8 +1,8 @@
 ---
 tags: PUBLISHED
-order: 5
+order: 6
 date: 2025-12-01
-authors: J.S. Bosma, L. Builtjes, A. Saha, J.J. Twilt, M. Tsiknakis, K. Marias, D. Regge, N. Papanikolaou, I.G. Schoots, J. Veltman, M. Elschot, D. Yakar, N.A. Obuchowski, M.P. Heinrich, A. Hering, M. de Rooij, H. Huisman
+authors: J. S. Bosma, L. Builtjes, A. Saha, J. J. Twilt, M. Tsiknakis, K. Marias, D. Regge, N. Papanikolaou, I. G. Schoots, J. Veltman, M. Elschot, D. Yakar, N. A. Obuchowski, M. P. Heinrich, A. Hering, M. de Rooij, H. Huisman
 publication_details: Comput Biol Med
 publication_link: https://doi.org/10.1016/j.compbiomed.2025.111321
 study_protocol_link: https://doi.org/10.5281/zenodo.14888094
