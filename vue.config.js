@@ -5,6 +5,13 @@ module.exports = defineConfig({
 
   transpileDependencies: true,
 
+  devServer: {
+    // Allows previewing the dev server through a tunnel (e.g. cloudflared,
+    // localtunnel), whose hostname webpack-dev-server otherwise rejects as
+    // an "Invalid Host header" under its DNS-rebinding protection.
+    allowedHosts: "all",
+  },
+
   chainWebpack: (config) => {
     config.module
       .rule("markdown")
