@@ -9,6 +9,7 @@
       <div class="nav-wrapper">
         <div class="nav-container">
           <router-link to="/">Home</router-link>
+          <router-link to="/about">About</router-link>
           <router-link to="/research">Research</router-link>
           <router-link to="/events">Meetings</router-link>
           <a

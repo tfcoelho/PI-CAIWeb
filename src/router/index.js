@@ -10,8 +10,8 @@ const routes = [
   {
     path: "/about",
     name: "about",
-    component: HomeView,
-    meta: { scrollTo: "#about" },
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
   },
   {
     path: "/research",
