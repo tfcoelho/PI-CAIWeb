@@ -2,15 +2,28 @@
   <div id="app">
     <nav
       :class="{
-        'dark-bg': $route.path === '/',
+        'dark-bg': $route.path === '/' || $route.path === '/about',
         'on-light-bg': isNavOverWhiteBg,
       }"
     >
       <div class="nav-wrapper">
         <div class="nav-container">
-          <router-link to="/">Home</router-link>
-          <router-link to="/research">Research</router-link>
-          <router-link to="/events">Meetings</router-link>
+          <router-link to="/" :class="{ active: activeLink === '/' }"
+            >Home</router-link
+          >
+          <router-link to="/about" :class="{ active: activeLink === '/about' }"
+            >About</router-link
+          >
+          <router-link
+            to="/research"
+            :class="{ active: activeLink === '/research' }"
+            >Research</router-link
+          >
+          <router-link
+            to="/events"
+            :class="{ active: activeLink === '/events' }"
+            >Meetings</router-link
+          >
           <a
             href="https://pi-cai.grand-challenge.org/"
             target="_blank"
@@ -36,8 +49,10 @@
 </template>
 
 <script setup>
-import { ref, provide, nextTick } from "vue";
+import { ref, computed, provide, nextTick } from "vue";
+import { useRoute } from "vue-router";
 
+const route = useRoute();
 const isNavOverWhiteBg = ref(false);
 const maskVisible = ref(false);
 
@@ -45,6 +60,22 @@ const setNavAppearance = (isOver) => {
   isNavOverWhiteBg.value = isOver;
 };
 provide("setNavAppearance", setNavAppearance);
+
+// The Home and About routes render the same scrollable page (the About
+// section just lives further down it), so which nav link should read as
+// "active" isn't just the current route — it's also which part of that page
+// is currently in view. HomeView reports that here as the user scrolls.
+const scrollNavOverride = ref(null); // null | '/about'
+provide("setScrollNavOverride", (path) => {
+  scrollNavOverride.value = path;
+});
+
+const activeLink = computed(() => {
+  if (route.path === "/" && scrollNavOverride.value) {
+    return scrollNavOverride.value;
+  }
+  return route.path;
+});
 
 function onLeave(el, done) {
   // Show mask instantly, then swap component once it's rendered
@@ -116,11 +147,11 @@ nav a {
   border-radius: 4px;
   transition: background-color 0.2s ease;
 }
-nav a.router-link-exact-active {
+nav a.active {
   background-color: rgba(224, 32, 144, 0.1);
   font-weight: 600;
 }
-nav a:hover:not(.router-link-exact-active) {
+nav a:hover:not(.active) {
   background-color: rgba(224, 32, 144, 0.25);
 }
 
