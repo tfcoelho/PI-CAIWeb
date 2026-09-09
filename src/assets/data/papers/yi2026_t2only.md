@@ -9,7 +9,7 @@ publication_details:
 publication_link:
 ---
 
-# T2-Only Artificial Intelligence for Clinically Significant Prostate Cancer Detection on MRI: A Global, Multiethnic, Non-Inferiority Study Protocol
+# T2-Only Artificial Intelligence for Clinically Significant Prostate Cancer Detection on MRI
 
 ## Abstract
 
