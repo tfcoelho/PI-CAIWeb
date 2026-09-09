@@ -65,7 +65,23 @@
             class="journal-logo"
             alt="Journal logo"
           />
-          <span v-else></span>
+          <div
+            v-else-if="getInstitutionLogos(paper).length > 0"
+            class="institution-logos"
+          >
+            <template
+              v-for="(logo, index) in getInstitutionLogos(paper)"
+              :key="index"
+            >
+              <span v-if="index > 0" class="institution-separator"></span>
+              <img
+                :src="logo.src"
+                :style="{ height: logo.height + 'px' }"
+                class="institution-logo"
+                alt="Partner institution logo"
+              />
+            </template>
+          </div>
           <p v-if="paper.date" class="date">{{ formatDate(paper.date) }}</p>
           <p v-else-if="paper.year" class="year">{{ paper.year }}</p>
         </div>
@@ -105,6 +121,51 @@ const journalLogos = {
     height: 28,
   },
 };
+
+// Partner-institution logos shown on ongoing studies (in place of a journal
+// logo, which they don't have yet). Stored in their normal, original colors
+// in organization_logos/ — the black appearance in the UI is a CSS filter
+// (see .institution-logo), not baked into the asset, so the same file can be
+// reused anywhere without needing a separate pre-desaturated copy.
+const institutionLogos = {
+  radboud_university_medical_center: {
+    src: require("@/assets/images/organization_logos/radboud_university_medical_center.png"),
+    height: 18,
+  },
+  ntnu: {
+    src: require("@/assets/images/organization_logos/ntnu.png"),
+    height: 18,
+  },
+  dkfz: {
+    src: require("@/assets/images/organization_logos/dkfz.png"),
+    height: 20,
+  },
+  karolinska: {
+    src: require("@/assets/images/organization_logos/karolinska.png"),
+    height: 52,
+  },
+  imperial: {
+    src: require("@/assets/images/organization_logos/Imperial.png"),
+    height: 14,
+  },
+  umcg: {
+    src: require("@/assets/images/organization_logos/umcg.png"),
+    height: 16,
+  },
+  ucl: {
+    src: require("@/assets/images/organization_logos/ucl.png"),
+    height: 20,
+  },
+  ucsd: {
+    src: require("@/assets/images/organization_logos/ucsd.png"),
+    height: 22,
+  },
+};
+
+function getInstitutionLogos(paper) {
+  if (!paper.institutions || paper.institutions.length === 0) return [];
+  return paper.institutions.map((key) => institutionLogos[key]).filter(Boolean);
+}
 
 function getJournalLogo(publicationDetails) {
   if (!publicationDetails) return null;
@@ -266,6 +327,7 @@ export default {
       tagClass,
       tagLabel,
       getJournalLogo,
+      getInstitutionLogos,
     };
   },
 };
@@ -491,29 +553,59 @@ export default {
 
 .paper-footer {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  align-items: flex-start;
   margin-top: auto;
   padding-top: 12px;
+}
+
+.paper-footer .date,
+.paper-footer .year {
+  align-self: flex-end;
 }
 
 .date {
   color: #777;
   font-size: 14px;
   font-style: italic;
-  margin: 0;
+  margin: 6px 0 0 0;
 }
 
 .year {
   color: #999;
   font-size: 14px;
-  margin: 0;
+  margin: 6px 0 0 0;
 }
 
 .journal-logo {
   width: auto;
   object-fit: contain;
   opacity: 0.85;
+}
+
+.institution-logos {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.institution-separator {
+  width: 1px;
+  height: 26px;
+  background-color: #ccc;
+  flex-shrink: 0;
+}
+
+.institution-logo {
+  /* height comes from the per-logo entry in institutionLogos above, since
+     source logos vary a lot in their natural proportions */
+  width: auto;
+  object-fit: contain;
+  /* Source files are the institutions' normal, full-color logos — this is
+     what renders them as plain black marks to match the journal-logo slot's
+     understated look, without needing a separate pre-desaturated asset. */
+  filter: grayscale(1) brightness(0);
+  opacity: 0.7;
 }
 
 @media (max-width: 750px) {

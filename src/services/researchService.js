@@ -26,6 +26,7 @@ export const researchService = {
           let studyProtocolLink = "";
           let order = null;
           let underReview = false;
+          let institutions = [];
 
           if (frontmatterMatch && frontmatterMatch[1]) {
             // Extract tags from frontmatter
@@ -109,6 +110,18 @@ export const researchService = {
             if (underReviewMatch && underReviewMatch[1]) {
               underReview = underReviewMatch[1].trim().toLowerCase() === "true";
             }
+
+            // Extract partner-institution logo keys (comma-separated, match
+            // filenames under src/assets/images/organization_logos/), shown
+            // on ongoing studies in place of a journal logo.
+            const institutionsMatch =
+              frontmatterMatch[1].match(/institutions:\s*(.+)/i);
+            if (institutionsMatch && institutionsMatch[1]) {
+              institutions = institutionsMatch[1]
+                .split(",")
+                .map((key) => key.trim())
+                .filter(Boolean);
+            }
           } else {
             console.log(`No frontmatter found in ${id}.`);
           }
@@ -155,6 +168,7 @@ export const researchService = {
             studyProtocolLink,
             order,
             underReview,
+            institutions,
           };
         })
       );
