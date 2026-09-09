@@ -6,7 +6,7 @@ publication_details:
 publication_link: 
 ---
 
-# Optimizing Radiologists’ Diagnostic Performance and Workload with Semi-Autonomous Clinically Significant Prostate Cancer Detection on BpMRI: a Multi-Center Reader Study
+# Optimizing Radiologists’ Diagnostic Performance and Workload with Semi-Autonomous Clinically Significant Prostate Cancer Detection on BpMRI: A Multi-Center Reader Study
 
 ## Abstract
 

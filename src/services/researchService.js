@@ -41,10 +41,17 @@ export const researchService = {
               console.log(`No tags line found in frontmatter from ${id}.`);
             }
 
-            // Extract authors from frontmatter
-            const authorsMatch = frontmatterMatch[1].match(/authors:\s*(.+)/i);
+            // Extract authors from frontmatter. Long author lists are wrapped
+            // across multiple physical lines in the source file, so this
+            // captures everything up to the next "key:" line (or the end of
+            // the frontmatter block) rather than stopping at the first line.
+            const authorsMatch = frontmatterMatch[1].match(
+              /authors:\s*([\s\S]*?)(?=\n+[a-z_]+:\s|\s*$)/i
+            );
             if (authorsMatch && authorsMatch[1]) {
-              frontmatterAuthors = authorsMatch[1].trim();
+              frontmatterAuthors = authorsMatch[1]
+                .trim()
+                .replace(/\s*\n\s*/g, " ");
               console.log(
                 `Extracted authors from ${id} frontmatter:`,
                 frontmatterAuthors

@@ -2,12 +2,12 @@
 tags: ONGOING
 under_review: true
 date: 2026-08-21
-authors: R. N. Spaans, C. Chia, T. Wang, A. Kowalewski, P. Khachatryan, D. Oliveira, K. Faryna, J. van Basten, G. Litjens, N. Khalili, on behalf of the CHIMERA Consortium
+authors: R. N. Spaans, C. Chia, T. Wang, A. Kowalewski, P. Khachatryan, D. Oliveira, K. Faryna, J. van Basten, G. Litjens, N. Khalili, on behalf of the CHIMERA consortium
 publication_details: Arxiv
 publication_link: https://arxiv.org/abs/2608.21497
 ---
 
-# CHIMERA Challenge: Biochemical Recurrence Prediction in Prostate Cancer Patients using Multimodal Datasets
+# CHIMERA Challenge: Biochemical Recurrence Prediction in Prostate Cancer Patients Using Multimodal Datasets
 
 ## Abstract
 

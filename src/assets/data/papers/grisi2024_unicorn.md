@@ -7,7 +7,7 @@ publication_details: MICCAI 2025 Lighthouse Challenge, Zenodo
 publication_link: https://doi.org/10.5281/zenodo.15123616
 ---
 
-# Unified beNchmarks for Imaging in COmputational pathology, Radiology and Natural language (UNICORN)
+# Unified beNchmarks for Imaging in COmputational Pathology, Radiology and Natural Language (UNICORN)
 
 ## Abstract
 

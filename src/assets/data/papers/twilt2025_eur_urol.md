@@ -2,7 +2,7 @@
 tags: PUBLISHED
 order: 2
 date: 2025-02-01
-authors: J. J. Twilt, A. Saha, J. S. Bosma, B. van Ginneken, A. Bjartell, A. R. Padhani, D. Bonekamp, G. Villeirs, G. Salomon, G. Giannarini, J. Kalpathy-Cramer, J. Barentsz, K. H. Maier-Hein, M. Rusu, O. Rouvière, R. van den Bergh, V. Panebianco, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, H. Huisman, M. de Rooij, PI-CAI consortium
+authors: J. J. Twilt, A. Saha, J. S. Bosma, B. van Ginneken, A. Bjartell, A. R. Padhani, D. Bonekamp, G. Villeirs, G. Salomon, G. Giannarini, J. Kalpathy-Cramer, J. Barentsz, K. H. Maier-Hein, M. Rusu, O. Rouvière, R. van den Bergh, V. Panebianco, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, H. Huisman, M. de Rooij, on behalf of the PI-CAI consortium
 publication_details: Eur Urol 2025;87(2):240-250
 publication_link: https://doi.org/10.1016/j.eururo.2024.09.035
 ---

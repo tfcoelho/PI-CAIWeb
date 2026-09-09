@@ -2,10 +2,10 @@
 tags: ONGOING
 under_review: true
 date: 2025-08-08
-authors: A. Saha, J. S. Bosma, J. J. Twilt, A. B. C. D. Ng, A. Asif, K. Magudia, P. Larson, Q. Xie, X. Zhang, C. P. Minh,
-S. N. Gitau, I. G. Schoots, M. F. Boomsma, R. Cuocolo, N. Papanikolaou, D. Regge, D. Yakar, M. Elschot, J. Veltman,
-B. Turkbey, N. A. Obuchowski, J. J. Fütterer, A. R. Padhani, H. U. Ahmed, T. Nordström, M. Eklund, V. Kasivisvanathan,
-M. de Rooij, H. Huisman, on behalf of the PI-CAI—ProCAncer-I—COMFORT—STHLM3-MRI—PRIME consortia
+authors: A. Saha, J. S. Bosma, J. J. Twilt, A. B. C. D. Ng, A. Asif, K. Magudia, P. E. Z. Larson, Q. Xie, X. Zhang, C. P. Minh,
+S. N. Gitau, I. G. Schoots, M. F. Boomsma, R. Cuocolo, N. Papanikolaou, D. Regge, H. D. Patel, D. Yakar, M. Elschot, J. Veltman,
+B. Turkbey, N. A. Obuchowski, J. J. Fütterer, A. R. Padhani, N. Mayor, H. U. Ahmed, F. Jäderling, T. Nordström, M. Eklund,
+V. Kasivisvanathan, M. de Rooij, H. Huisman, on behalf of the PI-CAI—PRIME—STHLM3-MRI—IP1-PROSTAGRAM—ProCAncer-I—COMFORT consortia
 
 publication_details: Arxiv
 publication_link: https://arxiv.org/abs/2508.03762

@@ -2,12 +2,12 @@
 tags: PUBLISHED
 order: 5
 date: 2026-04-10
-authors: J. J. Twilt, A. Saha, J. S. Bosma, G. Giannarini, A. R. Padhani, D. Yakar, M. Elschot, J. Veltman, J. J. Futterer, H. Huisman, M. de Rooij, PI-CAI Consortium
+authors: J. J. Twilt, A. Saha, J. S. Bosma, G. Giannarini, A. R. Padhani, D. Yakar, M. Elschot, J. Veltman, J. J. Futterer, H. Huisman, M. de Rooij, on behalf of the PI-CAI consortium
 publication_details: Radiology: Imaging Cancer 2026;8(3):e250461
 publication_link: https://doi.org/10.1148/rycan.250461
 ---
 
-# Evaluating an AI-driven Triaging Workflow for MRI-based Clinically Significant Prostate Cancer Diagnosis: A Simulation Study
+# Evaluating an AI-Driven Triaging Workflow for MRI-Based Clinically Significant Prostate Cancer Diagnosis: A Simulation Study
 
 ## Abstract
 
