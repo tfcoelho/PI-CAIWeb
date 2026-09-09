@@ -6,12 +6,13 @@ authors: A. Saha, J. S. Bosma, J. J. Twilt, A. B. C. D. Ng, A. Asif, K. Magudia,
 S. N. Gitau, I. G. Schoots, M. F. Boomsma, R. Cuocolo, N. Papanikolaou, D. Regge, H. D. Patel, D. Yakar, M. Elschot, J. Veltman,
 B. Turkbey, N. A. Obuchowski, J. J. Fütterer, A. R. Padhani, N. Mayor, H. U. Ahmed, F. Jäderling, T. Nordström, M. Eklund,
 V. Kasivisvanathan, M. de Rooij, H. Huisman, on behalf of the PI-CAI—PRIME—STHLM3-MRI—IP1-PROSTAGRAM—ProCAncer-I—COMFORT consortia
+institutions: radboud_university_medical_center, karolinska, imperial, ucl
 
 publication_details: Arxiv
 publication_link: https://arxiv.org/abs/2508.03762
 ---
 
-# Scaling Artificial Intelligence for Prostate Cancer Detection on MRI towards Population-Based Screening and Primary Diagnosis in a Global, Multiethnic Population
+# Artificial Intelligence for Prostate Cancer Diagnosis and Screening on MRI in Global Populations: The SCARLET-1 Study
 
 ## Abstract
 
