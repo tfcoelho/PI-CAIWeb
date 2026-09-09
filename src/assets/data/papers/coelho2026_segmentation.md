@@ -6,6 +6,7 @@ C. P. Minh, S. N. Gitau, I. G. Schoots, M. F. Boomsma, R. Cuocolo, H. D. Patel, 
 D. Regge, N. Papanikolaou, D. Yakar, M. Elschot, J. Veltman, Y. Kirchhoff, B. Kovács, M. C. Maas, R. Grimm,
 H. von Busch, A. R. Padhani, H. U. Ahmed, N. Mayor, T. Nordström, M. Eklund, F. Jäderling, J. S. Bosma,
 V. Kasivisvanathan, M. de Rooij, A. Saha†, H. Huisman†, on behalf of the PI-CAI—PRIME—STHLM3-MRI—IP1-PROSTAGRAM—ProCAncer-I—COMFORT consortia — *joint first authors, †joint senior authors
+institutions: radboud_university_medical_center, karolinska, imperial, ucl
 
 publication_details:
 publication_link:

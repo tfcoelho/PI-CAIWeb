@@ -3,6 +3,7 @@ tags: ONGOING
 under_review: true
 date: 2025-03-27
 authors: C. Grisi, M. Stegeman, J. Lefkes, M. D'Amato, L. Builtjes, L. Philipp, F. van der Graaf, J. Bosma, J. Kather, M. Ligero Hernandez, L. Wee, A. Dekker, G. Campanella, B. van Ginneken, A. Hering, F. Ciompi, on behalf of the UNICORN consortium
+institutions: radboud_university_medical_center
 publication_details: MICCAI 2025 Lighthouse Challenge, Zenodo
 publication_link: https://doi.org/10.5281/zenodo.15123616
 ---

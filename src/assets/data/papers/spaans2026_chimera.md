@@ -3,6 +3,7 @@ tags: ONGOING
 under_review: true
 date: 2026-08-21
 authors: R. N. Spaans, C. Chia, T. Wang, A. Kowalewski, P. Khachatryan, D. Oliveira, K. Faryna, J. van Basten, G. Litjens, N. Khalili, on behalf of the CHIMERA consortium
+institutions: radboud_university_medical_center
 publication_details: Arxiv
 publication_link: https://arxiv.org/abs/2608.21497
 ---
