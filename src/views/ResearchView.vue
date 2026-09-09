@@ -241,12 +241,33 @@ export default {
         papers.value = await researchService.getPapersList();
         tags.value = await researchService.getAllTags();
 
+        // Among ongoing studies (no `order`), three tiers regardless of
+        // review status: (0) led by another institution's first author,
+        // (1) Radboud-led but genuinely multi-institution — ranked by how
+        // many partner logos it shows, and (2) purely internal, Radboud-only
+        // projects at the very bottom.
+        const ongoingTier = (paper) => {
+          if (paper.ledByOther) return 0;
+          if (paper.radboudOnly) return 2;
+          return 1;
+        };
+
         papers.value.sort((a, b) => {
           if (a.order != null && b.order != null) return a.order - b.order;
           if (a.order != null) return -1;
           if (b.order != null) return 1;
-          // Among ongoing studies (no `order`), surface those already
-          // under review above the rest before falling back to date.
+          const tierA = ongoingTier(a);
+          const tierB = ongoingTier(b);
+          if (tierA !== tierB) return tierA - tierB;
+          if (tierA === 1) {
+            // Within the Radboud-led, multi-institution tier, more partner
+            // logos surface first.
+            const logosA = a.institutions ? a.institutions.length : 0;
+            const logosB = b.institutions ? b.institutions.length : 0;
+            if (logosA !== logosB) return logosB - logosA;
+          }
+          // Within each of those groups, surface those already under review
+          // above the rest before falling back to date.
           if (a.underReview && !b.underReview) return -1;
           if (!a.underReview && b.underReview) return 1;
           if (!a.year) return 1;

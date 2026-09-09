@@ -26,6 +26,8 @@ export const researchService = {
           let studyProtocolLink = "";
           let order = null;
           let underReview = false;
+          let radboudOnly = false;
+          let ledByOther = false;
           let institutions = [];
 
           if (frontmatterMatch && frontmatterMatch[1]) {
@@ -111,6 +113,25 @@ export const researchService = {
               underReview = underReviewMatch[1].trim().toLowerCase() === "true";
             }
 
+            // Marks a study as a purely internal, single-institution Radboud
+            // project (as opposed to a genuine multi-institution
+            // collaboration) — used to sink it to the bottom of the ONGOING
+            // list regardless of review status.
+            const radboudOnlyMatch =
+              frontmatterMatch[1].match(/radboud_only:\s*(.+)/i);
+            if (radboudOnlyMatch && radboudOnlyMatch[1]) {
+              radboudOnly = radboudOnlyMatch[1].trim().toLowerCase() === "true";
+            }
+
+            // Marks a study whose first/leading author is based at another
+            // institution rather than Radboud — surfaced above Radboud-led
+            // studies in the ONGOING list regardless of review status.
+            const ledByOtherMatch =
+              frontmatterMatch[1].match(/led_by_other:\s*(.+)/i);
+            if (ledByOtherMatch && ledByOtherMatch[1]) {
+              ledByOther = ledByOtherMatch[1].trim().toLowerCase() === "true";
+            }
+
             // Extract partner-institution logo keys (comma-separated, match
             // filenames under src/assets/images/organization_logos/), shown
             // on ongoing studies in place of a journal logo.
@@ -168,6 +189,8 @@ export const researchService = {
             studyProtocolLink,
             order,
             underReview,
+            radboudOnly,
+            ledByOther,
             institutions,
           };
         })
