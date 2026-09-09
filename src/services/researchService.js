@@ -25,6 +25,7 @@ export const researchService = {
           let publicationDetails = "";
           let studyProtocolLink = "";
           let order = null;
+          let underReview = false;
 
           if (frontmatterMatch && frontmatterMatch[1]) {
             // Extract tags from frontmatter
@@ -92,6 +93,15 @@ export const researchService = {
             if (orderMatch && orderMatch[1]) {
               order = parseInt(orderMatch[1], 10);
             }
+
+            // Extract the under-review flag from frontmatter. This only
+            // changes how the tag badge is displayed — the paper still
+            // filters under its normal "ONGOING" tag.
+            const underReviewMatch =
+              frontmatterMatch[1].match(/under_review:\s*(.+)/i);
+            if (underReviewMatch && underReviewMatch[1]) {
+              underReview = underReviewMatch[1].trim().toLowerCase() === "true";
+            }
           } else {
             console.log(`No frontmatter found in ${id}.`);
           }
@@ -137,6 +147,7 @@ export const researchService = {
             publicationDetails,
             studyProtocolLink,
             order,
+            underReview,
           };
         })
       );
@@ -184,7 +195,18 @@ export const researchService = {
       // DEBUG: Print all unique tags found
       console.log("All unique tags found:", Array.from(allTags));
 
-      return Array.from(allTags);
+      // Order tabs by study lifecycle rather than filesystem/alphabetical
+      // order, which is otherwise implicit and easy to accidentally shuffle
+      // by renaming or adding a paper file.
+      const tagOrder = ["PUBLISHED", "ONGOING"];
+      return Array.from(allTags).sort((a, b) => {
+        const aIndex = tagOrder.indexOf(a.toUpperCase());
+        const bIndex = tagOrder.indexOf(b.toUpperCase());
+        if (aIndex === -1 && bIndex === -1) return a.localeCompare(b);
+        if (aIndex === -1) return 1;
+        if (bIndex === -1) return -1;
+        return aIndex - bIndex;
+      });
     } catch (error) {
       console.error("Error getting all tags:", error);
       return ["All"];

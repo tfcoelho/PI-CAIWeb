@@ -48,9 +48,9 @@
           <span
             v-for="tag in paper.tags"
             :key="tag"
-            :class="['paper-tag', tagClass(tag)]"
+            :class="['paper-tag', tagClass(tag, paper)]"
           >
-            {{ tag }}
+            {{ tagLabel(tag, paper) }}
           </span>
         </div>
         <h2 class="paper-title">{{ paper.title }}</h2>
@@ -133,7 +133,14 @@ export default {
       );
     });
 
-    const tagClass = (tag) => {
+    // A paper marked `under_review` in its frontmatter still files under the
+    // "ONGOING" tab (its `tags` are untouched), but its badge on the card
+    // reads and looks like "UNDER REVIEW" instead of "ONGOING".
+    const isUnderReviewTag = (tag, paper) =>
+      tag.toUpperCase() === "ONGOING" && paper?.underReview;
+
+    const tagClass = (tag, paper) => {
+      if (isUnderReviewTag(tag, paper)) return "tag-under-review";
       switch (tag.toUpperCase()) {
         case "ONGOING":
           return "tag-study-design";
@@ -143,6 +150,9 @@ export default {
           return "";
       }
     };
+
+    const tagLabel = (tag, paper) =>
+      isUnderReviewTag(tag, paper) ? "UNDER REVIEW" : tag;
 
     const filterByTag = (tag) => {
       selectedTag.value = tag;
@@ -250,6 +260,7 @@ export default {
       loading,
       formatDate,
       tagClass,
+      tagLabel,
       getJournalLogo,
     };
   },
@@ -449,6 +460,10 @@ export default {
 
 .paper-tag.tag-study-design {
   background-color: #ed9fb6; /* blue */
+}
+
+.paper-tag.tag-under-review {
+  background-color: #e0a72e; /* amber */
 }
 
 .paper-tag.tag-published {
