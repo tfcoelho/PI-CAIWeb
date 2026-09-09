@@ -71,6 +71,30 @@ publication_link: https://doi.org/10.1001/jamanetworkopen.2025.15672
   the card displays "UNDER REVIEW" (amber) instead of "ONGOING" (pink). Only
   add this when the study has actually been submitted for review, not merely
   "in progress."
+- **`institutions:`** — comma-separated logo keys (matching filenames under
+  `src/assets/images/organization_logos/`, minus extension) shown in place of
+  a journal logo on ongoing studies, e.g. `institutions: dkfz,
+  radboud_university_medical_center`. Base this on real author affiliations,
+  not guesswork — check the source PDF/protocol's affiliation footnotes when
+  available. If an institution doesn't have a logo asset yet, don't add a
+  `require()` for a file that doesn't exist; ask for the logo first.
+- **`led_by_other: true`** / **`radboud_only: true`** — optional, and mutually
+  exclusive. Together they place an ongoing study into one of three sort
+  tiers on the Research page (regardless of `under_review` status, and none
+  of them affect its tag or badge):
+  1. `led_by_other: true` — the first/leading author is based at another
+     institution, not Radboud. Surfaces at the top.
+  2. Neither flag set (the default) — Radboud-led but a genuine
+     multi-institution collaboration. Sits in the middle, ranked by how many
+     partner logos the `institutions:` list shows (more logos first).
+  3. `radboud_only: true` — every author is Radboud-based; a purely internal
+     project. Sinks to the very bottom.
+
+  Base both flags on the actual first author's real affiliation (check the
+  source PDF/protocol), not on which logos happen to be shown — the
+  `institutions:` list can be incomplete (limited by which logo assets
+  exist) even when the study itself is genuinely multi-institution or led
+  elsewhere.
 
 ## Title (the `# Heading`)
 
