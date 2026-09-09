@@ -1,6 +1,7 @@
 ---
 tags: ONGOING
 date: 2026-01-09
+led_by_other: true
 authors: N. Khalili, N. Mulliqi, T. Nordström, P. Weitz, A. Camilloni, K. Faryna, C. Grisi, L. X. Liu, C. Micoli, S. Moonemans, S. Ram, R. N. Spaans, K. Szolnoky, N. Vincent, H. Akebli, T. F. Coelho, J. J. Twilt, A. Saha, H. Grönberg, K. Kartasalo, G. Litjens, M. Eklund, on behalf of the CHIMERA consortium
 institutions: karolinska, radboud_university_medical_center
 
