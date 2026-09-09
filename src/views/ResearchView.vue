@@ -130,35 +130,35 @@ const journalLogos = {
 const institutionLogos = {
   radboud_university_medical_center: {
     src: require("@/assets/images/organization_logos/radboud_university_medical_center.png"),
-    height: 18,
+    height: 14,
   },
   ntnu: {
     src: require("@/assets/images/organization_logos/ntnu.png"),
-    height: 18,
+    height: 14,
   },
   dkfz: {
     src: require("@/assets/images/organization_logos/dkfz.png"),
-    height: 20,
+    height: 15,
   },
   karolinska: {
     src: require("@/assets/images/organization_logos/karolinska.png"),
-    height: 52,
+    height: 39,
   },
   imperial: {
     src: require("@/assets/images/organization_logos/Imperial.png"),
-    height: 14,
+    height: 10,
   },
   umcg: {
     src: require("@/assets/images/organization_logos/umcg.png"),
-    height: 16,
+    height: 12,
   },
   ucl: {
     src: require("@/assets/images/organization_logos/ucl.png"),
-    height: 20,
+    height: 15,
   },
   ucsd: {
     src: require("@/assets/images/organization_logos/ucsd.png"),
-    height: 22,
+    height: 17,
   },
 };
 
@@ -579,19 +579,22 @@ export default {
 
 .journal-logo {
   width: auto;
+  max-width: 100%;
   object-fit: contain;
   opacity: 0.85;
 }
 
 .institution-logos {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 6px;
+  gap: 6px 8px;
+  max-width: 100%;
 }
 
 .institution-separator {
   width: 1px;
-  height: 26px;
+  height: 20px;
   background-color: #ccc;
   flex-shrink: 0;
 }
@@ -600,6 +603,7 @@ export default {
   /* height comes from the per-logo entry in institutionLogos above, since
      source logos vary a lot in their natural proportions */
   width: auto;
+  max-width: 100%;
   object-fit: contain;
   /* Source files are the institutions' normal, full-color logos — this is
      what renders them as plain black marks to match the journal-logo slot's
