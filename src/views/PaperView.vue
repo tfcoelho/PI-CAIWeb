@@ -32,7 +32,7 @@
           </div>
 
           <div v-if="paper.publicationLink" class="paper-link">
-            <h3>Original Publication</h3>
+            <h3>Source</h3>
             <a
               :href="paper.publicationLink"
               target="_blank"
