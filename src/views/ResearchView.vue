@@ -160,6 +160,14 @@ const institutionLogos = {
     src: require("@/assets/images/organization_logos/ucsd.png"),
     height: 17,
   },
+  gothenburg: {
+    src: require("@/assets/images/organization_logos/gothenburg.png"),
+    height: 37,
+  },
+  lund: {
+    src: require("@/assets/images/organization_logos/lund.png"),
+    height: 37,
+  },
 };
 
 function getInstitutionLogos(paper) {
