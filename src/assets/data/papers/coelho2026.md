@@ -1,6 +1,6 @@
 ---
 tags: PUBLISHED
-order: 3
+order: 1
 date: 2026-08-18
 authors: T. F. Coelho, J. S. Bosma, V. Bozgo, C. R. Noordman, R. Grimm, M. de Rooij, M. C. Maas, H. Huisman
 publication_details: Radiology

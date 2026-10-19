@@ -1,6 +1,6 @@
 ---
 tags: PUBLISHED
-order: 4
+order: 5
 date: 2025-06-13
 authors: J. J. Twilt, A. Saha, J. S. Bosma, A. R. Padhani, D. Bonekamp, G. Giannarini, R. van den Bergh, V. Kasivisvanathan, N. A. Obuchowski, D. Yakar, M. Elschot, J. Veltman, J. J. Fütterer, H. Huisman, M. de Rooij, on behalf of the PI-CAI consortium
 publication_details: JAMA Netw. Open 2025;8;(6):e2515672.
