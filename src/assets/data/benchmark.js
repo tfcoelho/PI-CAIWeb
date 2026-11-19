@@ -138,18 +138,11 @@ export const benchmark = {
       title: "Siemens Healthineers",
       description:
         "Commercial AI systems evaluated under the same masked, standardised protocol.",
-      decimals: 3,
-      // Source: Open Development Phase - Testing leaderboard, team
-      // "Siemens Healthineers Prostate AI" (.../evaluation/challenge/leaderboard/).
-      entries: [
-        {
-          name: "Prostate AI Research",
-          authors: null,
-          note: "Trained on an external private dataset",
-          auc: 0.892,
-          ci: [0.87, 0.913],
-        },
-      ],
+      // No results yet: a dedicated submission is being evaluated. Add it to
+      // `entries` (like the post-study list) once the AUROC is known.
+      status:
+        "Evaluation in progress. Results will be added here once available.",
+      entries: [],
     },
   ],
 };
