@@ -65,14 +65,23 @@
             </div>
           </div>
 
-          <div v-if="block.reference" class="reference-row">
-            <span class="reference-name">{{ block.reference.name }}</span>
-            <span class="reference-score">
-              {{ formatAuc(block.reference.auc) }}
-              <span v-if="block.reference.ci" class="score-ci">
-                ({{ formatCi(block.reference.ci) }})
+          <div v-if="block.readerStudy" class="reader-study">
+            <span class="reader-study-label">{{
+              block.readerStudy.label
+            }}</span>
+            <div
+              v-for="row in block.readerStudy.rows"
+              :key="row.name"
+              class="reader-study-row"
+            >
+              <span>{{ row.name }}</span>
+              <span class="reader-study-score">
+                {{ formatAuc(row.auc) }}
+                <span v-if="row.ci" class="score-ci">
+                  ({{ formatCi(row.ci) }})
+                </span>
               </span>
-            </span>
+            </div>
           </div>
 
           <h3 class="list-heading">Ensemble members</h3>
@@ -438,17 +447,37 @@ onUnmounted(() => {
   font-weight: 400;
 }
 
-.reference-row {
+/* Secondary reader-study comparison under the AI system box */
+.reader-study {
+  margin-top: 12px;
+  padding: 12px 24px 12px 28px;
+  border-radius: 6px;
+  background: #f6f6fa;
+  font-size: 14px;
+  color: #555;
+}
+
+.reader-study-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #999;
+  margin-bottom: 6px;
+}
+
+.reader-study-row {
   display: flex;
   justify-content: space-between;
   gap: 16px;
-  padding: 12px 24px 0 28px;
-  font-size: 14px;
-  color: #666;
+  padding: 3px 0;
 }
 
-.reference-score {
+.reader-study-score {
   font-feature-settings: "tnum";
+  font-weight: 600;
+  color: #333;
   white-space: nowrap;
 }
 
@@ -610,10 +639,14 @@ onUnmounted(() => {
     align-items: flex-start;
   }
 
-  .reference-row {
+  .reader-study {
+    padding: 12px 16px;
+  }
+
+  .reader-study-row {
     flex-direction: column;
-    gap: 2px;
-    padding: 12px 0 0;
+    gap: 0;
+    padding: 4px 0;
   }
 }
 </style>
