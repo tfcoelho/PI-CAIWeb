@@ -47,21 +47,56 @@
         <!-- Study with an ensemble AI system and its contributing algorithms -->
         <template v-if="block.kind === 'ensemble'">
           <div class="system-box">
-            <div class="system-info">
-              <span class="system-name">{{ block.system.name }}</span>
-              <span v-if="block.system.detail" class="system-detail">
-                {{ block.system.detail }}
-              </span>
-              <span v-if="block.system.cohort" class="card-meta">
-                {{ block.system.cohort }}
-              </span>
+            <div class="system-head">
+              <div class="system-info">
+                <span class="system-name">{{ block.system.name }}</span>
+                <span v-if="block.system.detail" class="system-detail">
+                  {{ block.system.detail }}
+                </span>
+                <span v-if="block.system.cohort" class="card-meta">
+                  {{ block.system.cohort }}
+                </span>
+              </div>
+              <div class="score score-large">
+                <span class="score-label">AUROC</span>
+                <span class="score-value">{{
+                  formatAuc(block.system.auc)
+                }}</span>
+                <span v-if="block.system.ci" class="score-ci">
+                  {{ block.system.ciLabel }} {{ formatCi(block.system.ci) }}
+                </span>
+              </div>
             </div>
-            <div class="score score-large">
-              <span class="score-label">AUROC</span>
-              <span class="score-value">{{ formatAuc(block.system.auc) }}</span>
-              <span v-if="block.system.ci" class="score-ci">
-                {{ block.system.ciLabel }} {{ formatCi(block.system.ci) }}
-              </span>
+
+            <!-- What the AI system is made of: nested inside its box -->
+            <div class="system-members">
+              <div class="members-head">
+                <h3 class="list-heading">Ensemble members</h3>
+                <span v-if="block.contributorsNote" class="list-note">
+                  {{ block.contributorsNote }}
+                </span>
+              </div>
+              <ol class="result-list ranked">
+                <li
+                  v-for="(member, i) in block.contributors"
+                  :key="i"
+                  class="result-row"
+                >
+                  <span class="rank">{{ i + 1 }}</span>
+                  <span class="result-main">
+                    <span class="result-name">{{ member.authors }}</span>
+                    <span v-if="member.placeholder" class="tbc">
+                      To be confirmed
+                    </span>
+                  </span>
+                  <span class="result-score">
+                    {{ formatAuc(member.auc, block.contributorsDecimals) }}
+                    <span v-if="member.ci" class="score-ci">
+                      ({{ formatCi(member.ci, block.contributorsDecimals) }})
+                    </span>
+                  </span>
+                </li>
+              </ol>
             </div>
           </div>
 
@@ -83,32 +118,6 @@
               </span>
             </div>
           </div>
-
-          <h3 class="list-heading">Ensemble members</h3>
-          <p v-if="block.contributorsNote" class="list-note">
-            {{ block.contributorsNote }}
-          </p>
-          <ol class="result-list ranked">
-            <li
-              v-for="(member, i) in block.contributors"
-              :key="i"
-              class="result-row"
-            >
-              <span class="rank">{{ i + 1 }}</span>
-              <span class="result-main">
-                <span class="result-name">{{ member.authors }}</span>
-                <span v-if="member.placeholder" class="tbc">
-                  To be confirmed
-                </span>
-              </span>
-              <span class="result-score">
-                {{ formatAuc(member.auc, block.contributorsDecimals) }}
-                <span v-if="member.ci" class="score-ci">
-                  ({{ formatCi(member.ci, block.contributorsDecimals) }})
-                </span>
-              </span>
-            </li>
-          </ol>
         </template>
 
         <!-- Plain list of evaluated submissions -->
@@ -391,15 +400,54 @@ onUnmounted(() => {
 
 /* Highlighted AI system box */
 .system-box {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
   padding: 20px 24px;
   border: 1px solid #e0209044;
   border-left: 4px solid #e02090;
   border-radius: 6px;
   background: #e020900a;
+}
+
+.system-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* The algorithms the AI system is built from: nested inside its box,
+   indented behind a thin pink rule so they read as its components. */
+.system-members {
+  margin: 20px 0 4px 8px;
+  padding: 4px 0 0 20px;
+  border-left: 2px solid #e0209033;
+}
+
+.members-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2px 16px;
+  margin-bottom: 2px;
+}
+
+.system-members .list-heading {
+  margin: 0;
+}
+
+.system-members .list-note {
+  margin: 0;
+  font-size: 12px;
+}
+
+.system-members .result-row {
+  padding: 10px 0;
+  border-bottom-color: #e0209018;
+}
+
+.system-members .result-name,
+.system-members .result-score {
+  font-size: 15px;
 }
 
 .system-info {
@@ -630,9 +678,27 @@ onUnmounted(() => {
   }
 
   .system-box {
+    padding: 16px 18px;
+  }
+
+  .system-head {
     flex-direction: column;
     align-items: flex-start;
-    padding: 16px 18px;
+    gap: 12px;
+  }
+
+  .system-members {
+    margin-left: 0;
+    padding-left: 14px;
+  }
+
+  .system-members .result-row {
+    flex-wrap: wrap;
+  }
+
+  .system-members .result-score {
+    width: 100%;
+    padding-left: 38px;
   }
 
   .score {
