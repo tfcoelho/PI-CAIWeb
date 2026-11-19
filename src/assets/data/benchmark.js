@@ -42,12 +42,48 @@ export const benchmark = {
         ciLabel: "95% CI",
       },
       // The five algorithms that make up the ensemble, in final ranking order.
+      // Source: Closed Testing Phase - Final Ranking leaderboard (ranks 1, 4,
+      // 5, 7 and 8; the other rows are later submissions and baselines):
+      // https://pi-cai.grand-challenge.org/evaluation/closed-testing-phase-final-ranking/leaderboard/
+      // Authors are as listed in each algorithm's leaderboard title.
+      contributorsNote: "AUROC (95% CI) on the full hidden testing cohort",
+      contributorsDecimals: 3,
       contributors: [
-        { authors: "Team 1 authors", auc: null, placeholder: true },
-        { authors: "Team 2 authors", auc: null, placeholder: true },
-        { authors: "Team 3 authors", auc: null, placeholder: true },
-        { authors: "Team 4 authors", auc: null, placeholder: true },
-        { authors: "Team 5 authors", auc: null, placeholder: true },
+        {
+          team: "DataScientX",
+          authors: "N. Debs, A. Routier, et al.",
+          country: "France",
+          auc: 0.934,
+          ci: [0.918, 0.95],
+        },
+        {
+          team: "BDAV_Y",
+          authors: "Y. Yuan, et al.",
+          country: "Australia",
+          auc: 0.909,
+          ci: [0.89, 0.928],
+        },
+        {
+          team: "Swangeese",
+          authors: "H. Kan, et al.",
+          country: "China",
+          auc: 0.904,
+          ci: [0.884, 0.923],
+        },
+        {
+          team: "PIMed-Stanford",
+          authors: "X. Li, S. Vesal, S. Saunders, et al.",
+          country: "USA",
+          auc: 0.9,
+          ci: [0.879, 0.919],
+        },
+        {
+          team: "HeviAI",
+          authors: "A. Karagoz, et al.",
+          country: "Turkey",
+          auc: 0.892,
+          ci: [0.87, 0.913],
+        },
       ],
     },
     {
