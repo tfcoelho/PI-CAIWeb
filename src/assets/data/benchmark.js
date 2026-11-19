@@ -6,6 +6,9 @@
 // Conventions
 // - `auc` is the AUROC as a number (e.g. 0.91). Use `null` while unknown — the
 //   page then shows "—" instead of a value.
+// - Values show with at least two decimals, or as many as entered. To force
+//   a fixed precision for a list (so 0.900 doesn't show as 0.90), set
+//   `contributorsDecimals` / `decimals` on the block.
 // - `ci` is the uncertainty as [lower, upper] (e.g. a 95% CI), or `null`.
 //   `ciLabel` says what that interval is (shown as a small caption).
 // - Author strings follow the site's paper convention: initials, then surname
@@ -23,11 +26,11 @@ export const benchmark = {
       title: "PI-CAI Study",
       description:
         "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS (2.1) on biparametric MRI.",
-      cohort: "Hidden testing cohort · 400-case reader-study subset",
       paperId: "saha2024_lancet_oncology",
       system: {
         name: "PI-CAI AI system",
         detail: "Ensemble of the five top-ranked algorithms",
+        cohort: "400-case reader-study subset of the hidden testing cohort",
         auc: 0.91,
         ci: [0.87, 0.94],
         ciLabel: "95% CI",

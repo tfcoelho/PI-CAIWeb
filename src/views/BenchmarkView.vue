@@ -42,7 +42,6 @@
           <p v-if="block.description" class="card-description">
             {{ block.description }}
           </p>
-          <p v-if="block.cohort" class="card-meta">{{ block.cohort }}</p>
         </header>
 
         <!-- Study with an ensemble AI system and its contributing algorithms -->
@@ -52,6 +51,9 @@
               <span class="system-name">{{ block.system.name }}</span>
               <span v-if="block.system.detail" class="system-detail">
                 {{ block.system.detail }}
+              </span>
+              <span v-if="block.system.cohort" class="card-meta">
+                {{ block.system.cohort }}
               </span>
             </div>
             <div class="score score-large">
@@ -74,6 +76,9 @@
           </div>
 
           <h3 class="list-heading">Ensemble members</h3>
+          <p v-if="block.contributorsNote" class="list-note">
+            {{ block.contributorsNote }}
+          </p>
           <ol class="result-list ranked">
             <li
               v-for="(member, i) in block.contributors"
@@ -88,9 +93,9 @@
                 </span>
               </span>
               <span class="result-score">
-                {{ formatAuc(member.auc) }}
+                {{ formatAuc(member.auc, block.contributorsDecimals) }}
                 <span v-if="member.ci" class="score-ci">
-                  ({{ formatCi(member.ci) }})
+                  ({{ formatCi(member.ci, block.contributorsDecimals) }})
                 </span>
               </span>
             </li>
@@ -119,9 +124,9 @@
                 </span>
               </span>
               <span class="result-score">
-                {{ formatAuc(entry.auc) }}
+                {{ formatAuc(entry.auc, block.decimals) }}
                 <span v-if="entry.ci" class="score-ci">
-                  ({{ formatCi(entry.ci) }})
+                  ({{ formatCi(entry.ci, block.decimals) }})
                 </span>
               </span>
             </li>
@@ -205,16 +210,18 @@ function sortedEntries(entries) {
   });
 }
 
-// Keep the precision the value was entered with, but never fewer than two
-// decimals (0.9 -> "0.90", 0.8875 -> "0.8875").
-function formatAuc(value) {
+// With a fixed `decimals`, always use it (0.9 -> "0.900"). Otherwise keep the
+// precision the value was entered with, but never fewer than two decimals
+// (0.9 -> "0.90", 0.8875 -> "0.8875").
+function formatAuc(value, decimals) {
   if (value == null) return "—";
-  const decimals = (String(value).split(".")[1] || "").length;
-  return value.toFixed(Math.max(2, decimals));
+  if (decimals != null) return value.toFixed(decimals);
+  const entered = (String(value).split(".")[1] || "").length;
+  return value.toFixed(Math.max(2, entered));
 }
 
-function formatCi(ci) {
-  return `${formatAuc(ci[0])}–${formatAuc(ci[1])}`;
+function formatCi(ci, decimals) {
+  return `${formatAuc(ci[0], decimals)}–${formatAuc(ci[1], decimals)}`;
 }
 
 let originalBackgroundColor;
@@ -453,6 +460,17 @@ onUnmounted(() => {
   letter-spacing: 0.06em;
   color: #999;
   margin: 32px 0 4px;
+}
+
+.list-note {
+  font-size: 13px;
+  color: #777;
+  margin: 0 0 4px;
+}
+
+.system-info .card-meta {
+  margin-top: 6px;
+  font-size: 11px;
 }
 
 .list-columns {
