@@ -71,6 +71,9 @@ const router = createRouter({
       return { el: to.hash, behavior: "smooth" };
     } else if (savedPosition) {
       return savedPosition;
+    } else if (to.path === from.path) {
+      // Query-only change (e.g. switching tabs on /benchmark): stay put.
+      return false;
     }
     return { top: 0 };
   },
