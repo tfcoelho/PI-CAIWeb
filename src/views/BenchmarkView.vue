@@ -612,7 +612,7 @@ onUnmounted(() => {
 }
 
 /* In plain submission lists, the system name gets its own line with the
-   authors and the leaderboard phase underneath. */
+   authors and an optional note underneath. */
 .result-list:not(.ranked) .result-name {
   flex-basis: 100%;
   font-weight: 500;

@@ -112,21 +112,18 @@ export const benchmark = {
         {
           name: "SCALE (supervised)",
           authors: "J. S. Bosma, L. Builtjes, et al.",
-          note: "Closed testing phase",
           auc: 0.921,
           ci: [0.902, 0.938],
         },
         {
           name: "UMamba-ProSSL",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
-          note: "Open development phase",
           auc: 0.905,
           ci: [0.885, 0.924],
         },
         {
           name: "U-MambaMTL",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
-          note: "Open development phase",
           auc: 0.896,
           ci: [0.875, 0.916],
         },
@@ -148,7 +145,7 @@ export const benchmark = {
         {
           name: "Prostate AI Research",
           authors: null,
-          note: "Open development phase · trained on an external private dataset",
+          note: "Trained on an external private dataset",
           auc: 0.892,
           ci: [0.87, 0.913],
         },
