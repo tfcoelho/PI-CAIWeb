@@ -100,12 +100,35 @@ export const benchmark = {
       title: "Post-Study Submissions",
       description:
         "AI systems submitted for masked evaluation on the same hidden testing data after the PI-CAI study.",
+      decimals: 3,
+      // Sources (Grand Challenge leaderboards):
+      // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
+      //   submission): .../evaluation/closed-testing-phase-final-ranking/leaderboard/
+      // - Open Development Phase - Testing, ranks 1 and 2 (NTNU - PROPERMED):
+      //   .../evaluation/challenge/leaderboard/
+      // Authors from the SCALE paper (bosma2025_scale) and the NTNU
+      // submissions' supporting documents.
       entries: [
         {
-          name: "Submission name",
-          authors: "Author et al.",
-          auc: null,
-          placeholder: true,
+          name: "SCALE (supervised)",
+          authors: "J. S. Bosma, L. Builtjes, et al.",
+          note: "Closed testing phase",
+          auc: 0.921,
+          ci: [0.902, 0.938],
+        },
+        {
+          name: "UMamba-ProSSL",
+          authors: "S. F. Abbas, M. S. Larsen, et al.",
+          note: "Open development phase",
+          auc: 0.905,
+          ci: [0.885, 0.924],
+        },
+        {
+          name: "U-MambaMTL",
+          authors: "M. S. Larsen, S. F. Abbas, et al.",
+          note: "Open development phase",
+          auc: 0.896,
+          ci: [0.875, 0.916],
         },
       ],
     },
