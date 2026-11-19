@@ -26,6 +26,12 @@ const routes = [
       import(/* webpackChunkName: "events" */ "../views/EventsView.vue"),
   },
   {
+    path: "/benchmark",
+    name: "benchmark",
+    component: () =>
+      import(/* webpackChunkName: "benchmark" */ "../views/BenchmarkView.vue"),
+  },
+  {
     path: "/symposium-2026",
     name: "symposium-2026",
     component: () =>
