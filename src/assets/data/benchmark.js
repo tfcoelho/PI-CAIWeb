@@ -27,26 +27,34 @@ export const benchmark = {
       description:
         "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS (2.1) on biparametric MRI.",
       paperId: "saha2024_lancet_oncology",
+      // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure).
       system: {
         name: "PI-CAI AI system",
         detail: "Ensemble of the five top-ranked algorithms",
-        cohort: "400-case reader-study subset of the hidden testing cohort",
-        auc: 0.91,
-        ci: [0.87, 0.94],
+        cohort: "All 1,000 cases of the hidden testing cohort",
+        auc: 0.93,
+        ci: [0.91, 0.94],
         ciLabel: "95% CI",
       },
-      reference: {
-        name: "Radiologists (n = 62, PI-RADS 2.1)",
-        auc: 0.86,
-        ci: [0.83, 0.89],
-        ciLabel: "95% CI",
+      // Secondary comparison on the subset read by the radiologists.
+      readerStudy: {
+        label: "Reader study · 400-case subset",
+        rows: [
+          { name: "PI-CAI AI system", auc: 0.91, ci: [0.87, 0.94] },
+          {
+            name: "62 radiologists (PI-RADS 2.1)",
+            auc: 0.86,
+            ci: [0.83, 0.89],
+          },
+        ],
       },
       // The five algorithms that make up the ensemble, in final ranking order.
       // Source: Closed Testing Phase - Final Ranking leaderboard (ranks 1, 4,
       // 5, 7 and 8; the other rows are later submissions and baselines):
       // https://pi-cai.grand-challenge.org/evaluation/closed-testing-phase-final-ranking/leaderboard/
       // Authors are as listed in each algorithm's leaderboard title.
-      contributorsNote: "AUROC (95% CI) on the full hidden testing cohort",
+      contributorsNote:
+        "AUROC (95% CI) of each algorithm on the same 1,000 cases",
       contributorsDecimals: 3,
       contributors: [
         {
