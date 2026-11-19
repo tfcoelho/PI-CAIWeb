@@ -141,12 +141,16 @@ export const benchmark = {
       title: "Siemens Healthineers",
       description:
         "Commercial AI systems evaluated under the same masked, standardised protocol.",
+      decimals: 3,
+      // Source: Open Development Phase - Testing leaderboard, team
+      // "Siemens Healthineers Prostate AI" (.../evaluation/challenge/leaderboard/).
       entries: [
         {
-          name: "Product / algorithm name",
+          name: "Prostate AI Research",
           authors: null,
-          auc: null,
-          placeholder: true,
+          note: "Open development phase · trained on an external private dataset",
+          auc: 0.892,
+          ci: [0.87, 0.913],
         },
       ],
     },
