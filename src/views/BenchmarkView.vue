@@ -120,6 +120,11 @@
           </div>
         </template>
 
+        <!-- Block with no results yet: show its status instead of a list -->
+        <p v-else-if="!block.entries.length" class="card-status">
+          {{ block.status || "Results to be announced." }}
+        </p>
+
         <!-- Plain list of evaluated submissions -->
         <template v-else>
           <div class="list-columns">
@@ -642,6 +647,15 @@ onUnmounted(() => {
   border-radius: 4px;
   background: #e0a72e22;
   color: #a0741c;
+}
+
+.card-status {
+  margin: 0;
+  padding: 14px 18px;
+  border-radius: 6px;
+  background: #f6f6fa;
+  font-size: 15px;
+  color: #666;
 }
 
 .card-footer {
