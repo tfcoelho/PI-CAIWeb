@@ -137,6 +137,9 @@
                 <span v-if="entry.authors" class="result-authors">
                   {{ entry.authors }}
                 </span>
+                <span v-if="entry.note" class="result-note">
+                  {{ entry.note }}
+                </span>
                 <span v-if="entry.placeholder" class="tbc">
                   To be confirmed
                 </span>
@@ -606,6 +609,20 @@ onUnmounted(() => {
 .result-authors {
   font-size: 14px;
   color: #777;
+}
+
+/* In plain submission lists, the system name gets its own line with the
+   authors and the leaderboard phase underneath. */
+.result-list:not(.ranked) .result-name {
+  flex-basis: 100%;
+  font-weight: 500;
+}
+
+.result-note {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #999;
 }
 
 .result-score {
