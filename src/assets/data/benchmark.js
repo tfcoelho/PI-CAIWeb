@@ -98,8 +98,6 @@ export const benchmark = {
       id: "post-study",
       kind: "list",
       title: "Post-Study Submissions",
-      description:
-        "AI systems submitted for masked evaluation on the same hidden testing data after the PI-CAI study.",
       decimals: 3,
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
