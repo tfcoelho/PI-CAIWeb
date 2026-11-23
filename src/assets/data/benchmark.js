@@ -153,12 +153,6 @@ export const benchmark = {
           marker: "§",
           authors: "J. S. Bosma, L. Builtjes, et al.",
           source: { paper: "bosma2025_scale" },
-          links: [
-            {
-              label: "Model",
-              href: "https://grand-challenge.org/algorithms/datascientx-lite/",
-            },
-          ],
           testing: { auc: 0.921, ci: [0.902, 0.938] },
         },
         {
@@ -166,12 +160,6 @@ export const benchmark = {
           marker: "§",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
-          links: [
-            {
-              label: "Model",
-              href: "https://grand-challenge.org/algorithms/umamba-base",
-            },
-          ],
           testing: { auc: 0.905, ci: [0.885, 0.924] },
         },
         {
@@ -180,12 +168,6 @@ export const benchmark = {
           authors: "M. S. Larsen, S. F. Abbas, et al.",
           // MIDL 2025 full paper
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
-          links: [
-            {
-              label: "Model",
-              href: "https://grand-challenge.org/algorithms/mamba_mtl",
-            },
-          ],
           testing: { auc: 0.896, ci: [0.875, 0.916] },
         },
       ],
