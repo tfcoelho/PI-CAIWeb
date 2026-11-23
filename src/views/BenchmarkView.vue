@@ -44,120 +44,100 @@
           </p>
         </header>
 
-        <!-- Study with an ensemble AI system and its contributing algorithms -->
-        <template v-if="block.kind === 'ensemble'">
-          <div class="system-box">
-            <div class="system-head">
-              <div class="system-info">
-                <span class="system-name">{{ block.system.name }}</span>
-                <span v-if="block.system.detail" class="system-detail">
-                  {{ block.system.detail }}
+        <!-- Both analyses side by side: every system gets a score per column
+             (1,000-case testing cohort | 400-case reader study). -->
+        <div class="results" role="table" :aria-label="block.title">
+          <div class="results-head" role="row">
+            <span class="cell-name" role="columnheader">System</span>
+            <span
+              v-for="col in columns"
+              :key="col.key"
+              class="cell-score"
+              role="columnheader"
+            >
+              <span class="col-title">{{ col.title }}</span>
+              <span class="col-subtitle">{{ col.subtitle }}</span>
+            </span>
+          </div>
+
+          <div
+            v-for="(row, r) in block.rows"
+            :key="r"
+            :class="[
+              'row-group',
+              { highlight: row.highlight, emphasis: row.emphasis },
+            ]"
+            role="rowgroup"
+          >
+            <div class="result-row" role="row">
+              <span class="cell-name" role="cell">
+                <span class="row-name">{{ row.name }}</span>
+                <span v-if="row.authors" class="row-authors">
+                  {{ row.authors }}
                 </span>
-                <span v-if="block.system.cohort" class="card-meta">
-                  {{ block.system.cohort }}
+                <span v-if="row.detail" class="row-detail">
+                  {{ row.detail }}
                 </span>
-              </div>
-              <div class="score score-large">
-                <span class="score-label">AUROC</span>
-                <span class="score-value">{{
-                  formatAuc(block.system.auc)
-                }}</span>
-                <span v-if="block.system.ci" class="score-ci">
-                  {{ block.system.ciLabel }} {{ formatCi(block.system.ci) }}
+              </span>
+              <span
+                v-for="col in columns"
+                :key="col.key"
+                class="cell-score"
+                role="cell"
+                :data-label="`${col.title} · ${col.subtitle}`"
+              >
+                <span v-if="row.pending" class="score-pending">Pending</span>
+                <template v-else-if="row[col.key]">
+                  <span class="score-value">{{
+                    formatAuc(row[col.key].auc, decimalsFor(row, block))
+                  }}</span>
+                  <span v-if="row[col.key].ci" class="score-ci">
+                    {{ formatCi(row[col.key].ci, decimalsFor(row, block)) }}
+                  </span>
+                </template>
+                <span v-else class="score-missing" title="Not evaluated">
+                  —
                 </span>
-              </div>
+              </span>
             </div>
 
             <!-- What the AI system is made of: nested inside its box -->
-            <div class="system-members">
-              <div class="members-head">
-                <h3 class="list-heading">Ensemble members</h3>
-                <span v-if="block.contributorsNote" class="list-note">
-                  {{ block.contributorsNote }}
+            <template v-if="row.members">
+              <div class="members-label">{{ row.membersLabel }}</div>
+              <div
+                v-for="(member, i) in row.members"
+                :key="i"
+                class="result-row member-row"
+                role="row"
+              >
+                <span class="cell-name" role="cell">
+                  <span class="rank">{{ i + 1 }}</span>
+                  <span class="row-name">{{ member.name }}</span>
+                </span>
+                <span
+                  v-for="col in columns"
+                  :key="col.key"
+                  :class="['cell-score', { 'is-empty': !member[col.key] }]"
+                  role="cell"
+                >
+                  <template v-if="member[col.key]">
+                    <span class="score-value">{{
+                      formatAuc(member[col.key].auc, row.membersDecimals)
+                    }}</span>
+                    <span v-if="member[col.key].ci" class="score-ci">
+                      {{ formatCi(member[col.key].ci, row.membersDecimals) }}
+                    </span>
+                  </template>
                 </span>
               </div>
-              <ol class="result-list ranked">
-                <li
-                  v-for="(member, i) in block.contributors"
-                  :key="i"
-                  class="result-row"
-                >
-                  <span class="rank">{{ i + 1 }}</span>
-                  <span class="result-main">
-                    <span class="result-name">{{ member.authors }}</span>
-                    <span v-if="member.placeholder" class="tbc">
-                      To be confirmed
-                    </span>
-                  </span>
-                  <span class="result-score">
-                    {{ formatAuc(member.auc, block.contributorsDecimals) }}
-                    <span v-if="member.ci" class="score-ci">
-                      ({{ formatCi(member.ci, block.contributorsDecimals) }})
-                    </span>
-                  </span>
-                </li>
-              </ol>
-            </div>
+            </template>
           </div>
+        </div>
 
-          <div v-if="block.readerStudy" class="reader-study">
-            <span class="reader-study-label">{{
-              block.readerStudy.label
-            }}</span>
-            <div
-              v-for="row in block.readerStudy.rows"
-              :key="row.name"
-              class="reader-study-row"
-            >
-              <span>{{ row.name }}</span>
-              <span class="reader-study-score">
-                {{ formatAuc(row.auc) }}
-                <span v-if="row.ci" class="score-ci">
-                  ({{ formatCi(row.ci) }})
-                </span>
-              </span>
-            </div>
-          </div>
-        </template>
-
-        <!-- Block with no results yet: show its status instead of a list -->
-        <p v-else-if="!block.entries.length" class="card-status">
-          {{ block.status || "Results to be announced." }}
+        <p class="results-footnote">
+          AUROC with 95% CI.
+          <template v-if="block.footnote">{{ block.footnote }}</template>
         </p>
-
-        <!-- Plain list of evaluated submissions -->
-        <template v-else>
-          <div class="list-columns">
-            <span>System</span>
-            <span>AUROC</span>
-          </div>
-          <ul class="result-list">
-            <li
-              v-for="(entry, i) in sortedEntries(block.entries)"
-              :key="i"
-              class="result-row"
-            >
-              <span class="result-main">
-                <span class="result-name">{{ entry.name }}</span>
-                <span v-if="entry.authors" class="result-authors">
-                  {{ entry.authors }}
-                </span>
-                <span v-if="entry.note" class="result-note">
-                  {{ entry.note }}
-                </span>
-                <span v-if="entry.placeholder" class="tbc">
-                  To be confirmed
-                </span>
-              </span>
-              <span class="result-score">
-                {{ formatAuc(entry.auc, block.decimals) }}
-                <span v-if="entry.ci" class="score-ci">
-                  ({{ formatCi(entry.ci, block.decimals) }})
-                </span>
-              </span>
-            </li>
-          </ul>
-        </template>
 
         <footer v-if="block.paperId" class="card-footer">
           <router-link
@@ -182,7 +162,7 @@ import {
   onUnmounted,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { benchmark } from "@/assets/data/benchmark";
+import { benchmark, columns } from "@/assets/data/benchmark";
 
 const tabs = [
   { key: "academic", label: "Academic" },
@@ -226,14 +206,9 @@ function updateIndicator() {
 
 watch(activeTab, () => nextTick(updateIndicator));
 
-// Highest AUROC first; entries still without a value go last.
-function sortedEntries(entries) {
-  return [...entries].sort((a, b) => {
-    if (a.auc == null && b.auc == null) return 0;
-    if (a.auc == null) return 1;
-    if (b.auc == null) return -1;
-    return b.auc - a.auc;
-  });
+// Fixed precision for a row's scores: its own `decimals`, else the block's.
+function decimalsFor(row, block) {
+  return row.decimals != null ? row.decimals : block.decimals;
 }
 
 // With a fixed `decimals`, always use it (0.9 -> "0.900"). Otherwise keep the
@@ -398,103 +373,134 @@ onUnmounted(() => {
   margin: 0;
 }
 
-.card-meta {
-  font-size: 13px;
-  color: #777;
-  margin: 10px 0 0;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
+/* ---- Results table: name column + one column per analysis ---- */
+.results {
+  --score-col: 160px;
 }
 
-/* Highlighted AI system box */
-.system-box {
-  padding: 20px 24px;
+.results-head,
+.result-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) repeat(2, var(--score-col));
+  column-gap: 24px;
+  align-items: baseline;
+}
+
+/* Every row group gets the same side padding and left border width as the
+   highlighted AI system box, so the score columns line up across rows. */
+.results-head,
+.row-group {
+  padding: 0 20px;
+  border-left: 4px solid transparent;
+}
+
+.results-head {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e6e6ee;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #999;
+}
+
+.results-head .cell-score {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 2px;
+}
+
+.col-title {
+  font-size: 13px;
+  color: #333;
+}
+
+.col-subtitle {
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 13px;
+  color: #888;
+}
+
+.result-row {
+  padding: 14px 0;
+}
+
+.row-group:not(.highlight) + .row-group:not(.highlight) {
+  border-top: 1px solid #eee;
+}
+
+/* Highlighted AI system box, containing its ensemble members */
+.row-group.highlight {
+  margin: 4px 0;
+  padding-top: 6px;
+  padding-bottom: 10px;
   border: 1px solid #e0209044;
   border-left: 4px solid #e02090;
   border-radius: 6px;
   background: #e020900a;
 }
 
-.system-head {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 24px;
-}
-
-/* The algorithms the AI system is built from: nested inside its box,
-   indented behind a thin pink rule so they read as its components. */
-.system-members {
-  margin: 20px 0 4px 8px;
-  padding: 4px 0 0 20px;
-  border-left: 2px solid #e0209033;
-}
-
-.members-head {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 2px 16px;
-  margin-bottom: 2px;
-}
-
-.system-members .list-heading {
-  margin: 0;
-}
-
-.system-members .list-note {
-  margin: 0;
-  font-size: 12px;
-}
-
-.system-members .result-row {
-  padding: 10px 0;
-  border-bottom-color: #e0209018;
-}
-
-.system-members .result-name,
-.system-members .result-score {
-  font-size: 15px;
-}
-
-.system-info {
+.cell-name {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
+  min-width: 0;
 }
 
-.system-name {
+.row-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+}
+
+.highlight > .result-row:not(.member-row) .row-name,
+.emphasis .row-name {
   font-size: 20px;
   font-weight: 600;
   color: #111;
 }
 
-.system-detail {
+.row-authors {
+  font-size: 14px;
+  color: #777;
+}
+
+.row-detail {
   font-size: 14px;
   color: #666;
 }
 
-.score {
+.cell-score {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  flex-shrink: 0;
+  font-feature-settings: "tnum";
+  white-space: nowrap;
 }
 
-.score-label {
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #999;
-}
-
-.score-large .score-value {
-  font-size: 34px;
+.score-value {
+  font-size: 17px;
   font-weight: 600;
+  color: #111;
+  line-height: 1.2;
+}
+
+/* Both analyses of the headline rows get the same large type, so the reader
+   study reads as a result on par with the 1,000-case cohort. */
+.highlight > .result-row:not(.member-row) .score-value {
+  font-size: 30px;
   color: #e02090;
   line-height: 1.1;
-  font-feature-settings: "tnum";
+}
+
+.emphasis .score-value {
+  font-size: 30px;
+  color: #333;
+  line-height: 1.1;
 }
 
 .score-ci {
@@ -503,89 +509,54 @@ onUnmounted(() => {
   font-weight: 400;
 }
 
-/* Secondary reader-study comparison under the AI system box */
-.reader-study {
-  margin-top: 12px;
-  padding: 12px 24px 12px 28px;
-  border-radius: 6px;
-  background: #f6f6fa;
-  font-size: 14px;
-  color: #555;
+.score-missing,
+.score-pending {
+  font-size: 15px;
+  color: #aaa;
 }
 
-.reader-study-label {
-  display: block;
-  font-size: 11px;
+.score-pending {
+  font-style: italic;
+}
+
+/* The algorithms the AI system is built from: indented behind a thin pink
+   rule inside its box, scored in the 1,000-case column only. */
+.members-label,
+.member-row .cell-name {
+  margin-left: 8px;
+  padding-left: 20px;
+  border-left: 2px solid #e0209033;
+}
+
+.members-label {
+  padding-top: 8px;
+  padding-bottom: 2px;
+  font-size: 12px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
   color: #999;
-  margin-bottom: 6px;
 }
 
-.reader-study-row {
-  display: flex;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 3px 0;
-}
-
-.reader-study-score {
-  font-feature-settings: "tnum";
-  font-weight: 600;
-  color: #333;
-  white-space: nowrap;
-}
-
-/* Result lists */
-.list-heading {
-  font-size: 13px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  color: #999;
-  margin: 32px 0 4px;
-}
-
-.list-note {
-  font-size: 13px;
-  color: #777;
-  margin: 0 0 4px;
-}
-
-.system-info .card-meta {
-  margin-top: 6px;
-  font-size: 11px;
-}
-
-.list-columns {
-  display: flex;
-  justify-content: space-between;
-  font-size: 11px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: #999;
-  padding: 0 0 8px;
-  border-bottom: 1px solid #eee;
-}
-
-.result-list {
-  list-style: none;
-  margin: 0;
+.member-row {
   padding: 0;
 }
 
-.result-row {
-  display: flex;
+.member-row .cell-name {
+  flex-direction: row;
   align-items: baseline;
-  gap: 16px;
-  padding: 14px 0;
-  border-bottom: 1px solid #eee;
+  gap: 0;
+  padding-top: 9px;
+  padding-bottom: 9px;
 }
 
-.result-row:last-child {
-  border-bottom: none;
+.member-row .row-name,
+.member-row .score-value {
+  font-size: 15px;
+}
+
+.member-row .score-ci {
+  font-size: 12px;
 }
 
 .rank {
@@ -597,65 +568,11 @@ onUnmounted(() => {
   font-feature-settings: "tnum";
 }
 
-.result-main {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  gap: 4px 12px;
-}
-
-.result-name {
-  font-size: 16px;
-  color: #222;
-}
-
-.result-authors {
-  font-size: 14px;
-  color: #777;
-}
-
-/* In plain submission lists, the system name gets its own line with the
-   authors and an optional note underneath. */
-.result-list:not(.ranked) .result-name {
-  flex-basis: 100%;
-  font-weight: 500;
-}
-
-.result-note {
-  font-size: 11px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  color: #999;
-}
-
-.result-score {
-  font-size: 16px;
-  font-weight: 600;
-  color: #111;
-  font-feature-settings: "tnum";
-  white-space: nowrap;
-}
-
-.tbc {
-  font-size: 10px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  padding: 2px 8px;
-  border-radius: 4px;
-  background: #e0a72e22;
-  color: #a0741c;
-}
-
-.card-status {
-  margin: 0;
-  padding: 14px 18px;
-  border-radius: 6px;
-  background: #f6f6fa;
-  font-size: 15px;
-  color: #666;
+.results-footnote {
+  margin: 14px 0 0;
+  padding-left: 24px;
+  font-size: 13px;
+  color: #888;
 }
 
 .card-footer {
@@ -708,42 +625,75 @@ onUnmounted(() => {
     padding: 24px 20px;
   }
 
-  .system-box {
-    padding: 16px 18px;
+  /* Columns stack: the name on its own line, then the two analyses side
+     by side, each labelled since the column headers are hidden. */
+  .results-head {
+    display: none;
   }
 
-  .system-head {
-    flex-direction: column;
+  .results-head,
+  .row-group {
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .result-row {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 16px;
+    row-gap: 10px;
+  }
+
+  .result-row .cell-name {
+    grid-column: 1 / -1;
+  }
+
+  .result-row .cell-score {
     align-items: flex-start;
-    gap: 12px;
+    white-space: normal;
   }
 
-  .system-members {
+  .result-row .cell-score::before {
+    content: attr(data-label);
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #999;
+    margin-bottom: 2px;
+  }
+
+  .highlight > .result-row:not(.member-row) .score-value,
+  .emphasis .score-value {
+    font-size: 26px;
+  }
+
+  .member-row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 0;
+  }
+
+  .member-row .cell-name {
+    grid-column: auto;
     margin-left: 0;
     padding-left: 14px;
   }
 
-  .system-members .result-row {
-    flex-wrap: wrap;
+  .members-label {
+    margin-left: 0;
+    padding-left: 14px;
   }
 
-  .system-members .result-score {
-    width: 100%;
-    padding-left: 38px;
+  .member-row .cell-score {
+    align-items: flex-end;
   }
 
-  .score {
-    align-items: flex-start;
+  .member-row .cell-score::before,
+  .member-row .cell-score.is-empty {
+    display: none;
   }
 
-  .reader-study {
-    padding: 12px 16px;
-  }
-
-  .reader-study-row {
-    flex-direction: column;
-    gap: 0;
-    padding: 4px 0;
+  .results-footnote {
+    padding-left: 18px;
   }
 }
 </style>
