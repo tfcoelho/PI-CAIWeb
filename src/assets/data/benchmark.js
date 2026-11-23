@@ -23,7 +23,9 @@
 //   one of the block's `footnotes` starting with the same sign.
 // - `links` (optional) lists a system's references, shown under its name:
 //   `{ label: "Paper", paper: "<id>" }` for a paper on our Research page, or
-//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page.
+//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page,
+//   or `{ label: "Report", href: "/docs/benchmark/<file>.pdf" }` for a
+//   method report kept in public/docs/benchmark/.
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
@@ -83,10 +85,7 @@ export const benchmark = {
             {
               team: "DataScientX",
               links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-datascientx/",
-                },
+                { label: "Report", href: "/docs/benchmark/datascientx.pdf" },
               ],
               name: "N. Debs, A. Routier, et al.",
               country: "France",
@@ -94,12 +93,7 @@ export const benchmark = {
             },
             {
               team: "BDAV_Y",
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-bday/",
-                },
-              ],
+              links: [{ label: "Report", href: "/docs/benchmark/bdav_y.pdf" }],
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
@@ -107,10 +101,7 @@ export const benchmark = {
             {
               team: "Swangeese",
               links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-swangeese/",
-                },
+                { label: "Report", href: "/docs/benchmark/swangeese.pdf" },
               ],
               name: "H. Kan, et al.",
               country: "China",
@@ -119,10 +110,7 @@ export const benchmark = {
             {
               team: "PIMed-Stanford",
               links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-pimed",
-                },
+                { label: "Report", href: "/docs/benchmark/pimed-stanford.pdf" },
               ],
               name: "X. Li, S. Vesal, S. Saunders, et al.",
               country: "USA",
@@ -130,14 +118,9 @@ export const benchmark = {
             },
             {
               team: "HeviAI",
-              // All seven authors contributed equally, so there is no separate
-              // group of first authors to list: first author + "et al.".
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-heviai/",
-                },
-              ],
+              // All eight authors contributed equally (per their report), so no
+              // separate group of first authors to list: first author + "et al.".
+              links: [{ label: "Report", href: "/docs/benchmark/heviai.pdf" }],
               name: "A. Karagöz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
