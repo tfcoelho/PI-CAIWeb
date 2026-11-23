@@ -26,6 +26,12 @@ const routes = [
       import(/* webpackChunkName: "events" */ "../views/EventsView.vue"),
   },
   {
+    path: "/benchmark",
+    name: "benchmark",
+    component: () =>
+      import(/* webpackChunkName: "benchmark" */ "../views/BenchmarkView.vue"),
+  },
+  {
     path: "/symposium-2026",
     name: "symposium-2026",
     component: () =>
@@ -65,6 +71,9 @@ const router = createRouter({
       return { el: to.hash, behavior: "smooth" };
     } else if (savedPosition) {
       return savedPosition;
+    } else if (to.path === from.path) {
+      // Query-only change (e.g. switching tabs on /benchmark): stay put.
+      return false;
     }
     return { top: 0 };
   },

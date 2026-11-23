@@ -12,12 +12,7 @@
           <router-link to="/about">About</router-link>
           <router-link to="/research">Research</router-link>
           <router-link to="/events">Meetings</router-link>
-          <a
-            href="https://pi-cai.grand-challenge.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-            >Benchmark</a
-          >
+          <router-link to="/benchmark">Benchmark</router-link>
         </div>
       </div>
     </nav>
