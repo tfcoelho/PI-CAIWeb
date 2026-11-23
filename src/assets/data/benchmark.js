@@ -24,7 +24,7 @@
 // - `links` (optional) lists a system's references, shown under its name:
 //   `{ label: "Paper", paper: "<id>" }` for a paper on our Research page, or
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page,
-//   or `{ label: "Report", href: "/docs/benchmark/<file>.pdf" }` for a
+//   or `{ label: "PDF", href: "/docs/benchmark/<file>.pdf" }` for a
 //   method report kept in public/docs/benchmark/.
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
@@ -85,7 +85,7 @@ export const benchmark = {
             {
               team: "DataScientX",
               links: [
-                { label: "Report", href: "/docs/benchmark/datascientx.pdf" },
+                { label: "PDF", href: "/docs/benchmark/datascientx.pdf" },
               ],
               name: "N. Debs, A. Routier, et al.",
               country: "France",
@@ -93,16 +93,14 @@ export const benchmark = {
             },
             {
               team: "BDAV_Y",
-              links: [{ label: "Report", href: "/docs/benchmark/bdav_y.pdf" }],
+              links: [{ label: "PDF", href: "/docs/benchmark/bdav_y.pdf" }],
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
             },
             {
               team: "Swangeese",
-              links: [
-                { label: "Report", href: "/docs/benchmark/swangeese.pdf" },
-              ],
+              links: [{ label: "PDF", href: "/docs/benchmark/swangeese.pdf" }],
               name: "H. Kan, et al.",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
@@ -110,7 +108,7 @@ export const benchmark = {
             {
               team: "PIMed-Stanford",
               links: [
-                { label: "Report", href: "/docs/benchmark/pimed-stanford.pdf" },
+                { label: "PDF", href: "/docs/benchmark/pimed-stanford.pdf" },
               ],
               name: "X. Li, S. Vesal, S. Saunders, et al.",
               country: "USA",
@@ -120,7 +118,7 @@ export const benchmark = {
               team: "HeviAI",
               // All eight authors contributed equally (per their report), so no
               // separate group of first authors to list: first author + "et al.".
-              links: [{ label: "Report", href: "/docs/benchmark/heviai.pdf" }],
+              links: [{ label: "PDF", href: "/docs/benchmark/heviai.pdf" }],
               name: "A. Karagöz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
