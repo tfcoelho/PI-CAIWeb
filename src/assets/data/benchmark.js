@@ -130,8 +130,15 @@ export const benchmark = {
             },
             {
               team: "HeviAI",
-              // TODO: add its Grand Challenge "Model" link.
-              name: "A. Karagoz, et al.",
+              // All seven authors contributed equally, so there is no separate
+              // group of first authors to list: first author + "et al.".
+              links: [
+                {
+                  label: "Model",
+                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-heviai/",
+                },
+              ],
+              name: "A. Karagöz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
             },
