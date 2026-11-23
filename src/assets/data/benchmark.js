@@ -146,7 +146,7 @@ export const benchmark = {
       decimals: 3,
       // `§` on every row: each developer chose their own training data.
       footnotes: [
-        "Dashes (—) mark results that are not available: post-study submissions were not submitted for the reader study.",
+        "Post-study submissions were not submitted for the reader study.",
         "§ Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
