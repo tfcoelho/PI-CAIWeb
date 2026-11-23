@@ -75,6 +75,22 @@
                 <span v-if="row.detail" class="row-detail">
                   {{ row.detail }}
                 </span>
+                <span v-if="row.links" class="row-links">
+                  <template v-for="(link, l) in row.links" :key="l">
+                    <router-link
+                      v-if="link.paper"
+                      :to="{ name: 'paper', params: { id: link.paper } }"
+                      >{{ link.label }}</router-link
+                    >
+                    <a
+                      v-else
+                      :href="link.href"
+                      target="_blank"
+                      rel="noopener"
+                      >{{ link.label }}</a
+                    >
+                  </template>
+                </span>
               </span>
               <span
                 v-for="col in columns"
@@ -112,6 +128,22 @@
                 <span class="cell-name" role="cell">
                   <span class="rank">{{ i + 1 }}</span>
                   <span class="row-name">{{ member.name }}</span>
+                  <span v-if="member.links" class="row-links">
+                    <template v-for="(link, l) in member.links" :key="l">
+                      <router-link
+                        v-if="link.paper"
+                        :to="{ name: 'paper', params: { id: link.paper } }"
+                        >{{ link.label }}</router-link
+                      >
+                      <a
+                        v-else
+                        :href="link.href"
+                        target="_blank"
+                        rel="noopener"
+                        >{{ link.label }}</a
+                      >
+                    </template>
+                  </span>
                 </span>
                 <span
                   v-for="col in columns"
@@ -154,6 +186,20 @@
           >
         </footer>
       </section>
+
+      <p class="page-sources">
+        <strong>Data sources.</strong> Algorithm results are from the
+        <a
+          href="https://pi-cai.grand-challenge.org/"
+          target="_blank"
+          rel="noopener"
+          >PI-CAI leaderboards on Grand Challenge</a
+        >. Results for the PI-CAI AI system and the reader study are from
+        <router-link
+          :to="{ name: 'paper', params: { id: 'saha2024_lancet_oncology' } }"
+          >Saha et al., Lancet Oncology 2024</router-link
+        >.
+      </p>
     </div>
   </div>
 </template>
@@ -557,6 +603,54 @@ onUnmounted(() => {
   margin: 0;
 }
 
+/* Paper / Model links under a system's name, separated by a middle dot */
+.row-links {
+  font-size: 13px;
+  color: #999;
+}
+
+.row-links a {
+  color: #666;
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 2px;
+}
+
+.row-links a:hover {
+  color: #e02090;
+  text-decoration-color: currentColor;
+}
+
+.row-links a + a::before {
+  content: "·";
+  display: inline-block;
+  margin: 0 7px;
+  color: #bbb;
+  text-decoration: none;
+}
+
+.member-row .row-links {
+  margin-left: 12px;
+  white-space: nowrap;
+}
+
+.page-sources {
+  margin: 4px 4px 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #777;
+  text-align: left;
+}
+
+.page-sources a {
+  color: #555;
+  text-decoration: underline;
+}
+
+.page-sources a:hover {
+  color: #e02090;
+}
+
 .card-footer {
   margin-top: 24px;
 }
@@ -651,8 +745,20 @@ onUnmounted(() => {
 
   .member-row .cell-name {
     grid-column: auto;
+    flex-wrap: wrap;
     margin-left: 0;
     padding-left: 14px;
+  }
+
+  .member-row .row-name {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+
+  /* Links drop to their own line, under the name */
+  .member-row .row-links {
+    flex-basis: 100%;
+    margin: 2px 0 0 22px;
   }
 
   .members-label {

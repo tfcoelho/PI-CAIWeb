@@ -19,6 +19,9 @@
 //   they show indented under it.
 // - `pending: true` shows "Pending" in both columns, for evaluations in progress.
 // - Rows show in the order given here: keep them sorted by AUROC.
+// - `links` (optional) lists a system's references, shown under its name:
+//   `{ label: "Paper", paper: "<id>" }` for a paper on our Research page, or
+//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page.
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
@@ -75,30 +78,50 @@ export const benchmark = {
           members: [
             {
               team: "DataScientX",
+              links: [
+                {
+                  label: "Model",
+                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-datascientx/",
+                },
+              ],
               name: "N. Debs, A. Routier, et al.",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
             },
             {
               team: "BDAV_Y",
+              // TODO: add its Grand Challenge "Model" link.
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
             },
             {
               team: "Swangeese",
+              links: [
+                {
+                  label: "Model",
+                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-swangeese/",
+                },
+              ],
               name: "H. Kan, et al.",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
             },
             {
               team: "PIMed-Stanford",
+              links: [
+                {
+                  label: "Model",
+                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-pimed",
+                },
+              ],
               name: "X. Li, S. Vesal, S. Saunders, et al.",
               country: "USA",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
             },
             {
               team: "HeviAI",
+              // TODO: add its Grand Challenge "Model" link.
               name: "A. Karagoz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
@@ -132,16 +155,30 @@ export const benchmark = {
         {
           name: "SCALE (supervised)",
           authors: "J. S. Bosma, L. Builtjes, et al.",
+          // TODO: add its Grand Challenge "Model" link.
+          links: [{ label: "Paper", paper: "bosma2025_scale" }],
           testing: { auc: 0.921, ci: [0.902, 0.938] },
         },
         {
           name: "UMamba-ProSSL",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
+          links: [
+            {
+              label: "Model",
+              href: "https://grand-challenge.org/algorithms/umamba-base",
+            },
+          ],
           testing: { auc: 0.905, ci: [0.885, 0.924] },
         },
         {
           name: "U-MambaMTL",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
+          links: [
+            {
+              label: "Model",
+              href: "https://grand-challenge.org/algorithms/mamba_mtl",
+            },
+          ],
           testing: { auc: 0.896, ci: [0.875, 0.916] },
         },
       ],
