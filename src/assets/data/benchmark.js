@@ -94,7 +94,12 @@ export const benchmark = {
             },
             {
               team: "BDAV_Y",
-              // TODO: add its Grand Challenge "Model" link.
+              links: [
+                {
+                  label: "Model",
+                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-bday/",
+                },
+              ],
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
