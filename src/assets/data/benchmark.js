@@ -221,10 +221,12 @@ export const benchmark = {
       rows: [
         {
           name: "AI system",
+          marker: "§",
           detail: "Dedicated submission under evaluation",
           pending: true,
         },
       ],
+      footnotes: ["§ Training data is chosen by the model's developers."],
     },
   ],
 };

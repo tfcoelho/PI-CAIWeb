@@ -194,7 +194,8 @@
         </footer>
       </section>
 
-      <p class="page-sources">
+      <!-- Sources describe the academic results only -->
+      <p v-if="activeTab === 'academic'" class="page-sources">
         <strong>Data sources.</strong> Algorithm results are from the
         <a
           href="https://pi-cai.grand-challenge.org/"
