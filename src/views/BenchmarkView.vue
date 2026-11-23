@@ -75,7 +75,10 @@
                   }}</sup></span
                 >
                 <span v-if="row.authors" class="row-authors">
-                  {{ row.authors }}
+                  <span class="authors-full">{{ row.authors }}</span>
+                  <span class="authors-short">{{
+                    shortAuthors(row.authors)
+                  }}</span>
                 </span>
                 <span v-if="row.detail" class="row-detail">
                   {{ row.detail }}
@@ -102,9 +105,8 @@
                 :key="col.key"
                 class="cell-score"
                 role="cell"
-                :data-label="`${col.title}${col.marker || ''} · ${
-                  col.subtitle
-                }`"
+                :data-title="`${col.title}${col.marker || ''}`"
+                :data-subtitle="col.subtitle"
               >
                 <span v-if="row.pending" class="score-pending">Pending</span>
                 <template v-else-if="row[col.key]">
@@ -122,7 +124,7 @@
             </div>
 
             <!-- What the AI system is made of: nested inside its box -->
-            <template v-if="row.members">
+            <div v-if="row.members" class="members">
               <div class="members-label">{{ row.membersLabel }}</div>
               <div
                 v-for="(member, i) in row.members"
@@ -132,22 +134,29 @@
               >
                 <span class="cell-name" role="cell">
                   <span class="rank">{{ i + 1 }}</span>
-                  <span class="row-name">{{ member.name }}</span>
-                  <span v-if="member.links" class="row-links">
-                    <template v-for="(link, l) in member.links" :key="l">
-                      <router-link
-                        v-if="link.paper"
-                        :to="{ name: 'paper', params: { id: link.paper } }"
-                        >{{ link.label }}</router-link
-                      >
-                      <a
-                        v-else
-                        :href="link.href"
-                        target="_blank"
-                        rel="noopener"
-                        >{{ link.label }}</a
-                      >
-                    </template>
+                  <span class="member-text">
+                    <span class="row-name">
+                      <span class="authors-full">{{ member.name }}</span>
+                      <span class="authors-short">{{
+                        shortAuthors(member.name)
+                      }}</span>
+                    </span>
+                    <span v-if="member.links" class="row-links">
+                      <template v-for="(link, l) in member.links" :key="l">
+                        <router-link
+                          v-if="link.paper"
+                          :to="{ name: 'paper', params: { id: link.paper } }"
+                          >{{ link.label }}</router-link
+                        >
+                        <a
+                          v-else
+                          :href="link.href"
+                          target="_blank"
+                          rel="noopener"
+                          >{{ link.label }}</a
+                        >
+                      </template>
+                    </span>
                   </span>
                 </span>
                 <span
@@ -169,7 +178,7 @@
                   </span>
                 </span>
               </div>
-            </template>
+            </div>
           </div>
         </div>
 
@@ -267,6 +276,13 @@ function updateIndicator() {
 }
 
 watch(activeTab, () => nextTick(updateIndicator));
+
+// "N. Debs, A. Routier, et al." -> "N. Debs, et al." for narrow screens.
+// Lists with a single author before "et al." are left as they are.
+function shortAuthors(authors) {
+  const names = authors.split(", ").filter((n) => n !== "et al.");
+  return names.length > 1 ? `${names[0]}, et al.` : authors;
+}
 
 // Fixed precision for a row's scores: its own `decimals`, else the block's.
 function decimalsFor(row, block) {
@@ -553,10 +569,10 @@ onUnmounted(() => {
 }
 
 /* The algorithms the AI system is built from: indented under it behind a
-   thin rule, scored in the 1,000-case column only. */
-.members-label,
-.member-row .cell-name {
-  margin-left: 8px;
+   thin rule, scored in the 1,000-patient column only. The score columns have
+   a fixed width, so they still line up with the rows above. */
+.members {
+  margin: 0 0 10px 8px;
   padding-left: 20px;
   border-left: 2px solid #e6e6ee;
 }
@@ -575,16 +591,17 @@ onUnmounted(() => {
   padding: 0;
 }
 
-.member-row:last-child {
-  padding-bottom: 10px;
-}
-
 .member-row .cell-name {
   flex-direction: row;
   align-items: baseline;
   gap: 0;
   padding-top: 9px;
   padding-bottom: 9px;
+}
+
+/* Name and links flow as one line of text, wrapping together */
+.member-text {
+  min-width: 0;
 }
 
 .member-row .row-name,
@@ -644,8 +661,13 @@ onUnmounted(() => {
 }
 
 .member-row .row-links {
-  margin-left: 12px;
+  margin-left: 10px;
   white-space: nowrap;
+}
+
+/* Full author list; first author + "et al." on phones */
+.authors-short {
+  display: none;
 }
 
 .page-sources {
@@ -677,6 +699,31 @@ onUnmounted(() => {
 
 .card-link:hover {
   color: #e02090;
+}
+
+/* Narrower score columns before the layout stacks on phones */
+@media (max-width: 920px) {
+  .benchmark-card {
+    padding: 32px 28px;
+  }
+
+  .results {
+    --score-col: 128px;
+  }
+
+  .results-head,
+  .result-row {
+    column-gap: 16px;
+  }
+
+  .results-head,
+  .row-group {
+    padding: 0 12px;
+  }
+
+  .results-footnote {
+    padding-left: 12px;
+  }
 }
 
 @media (max-width: 750px) {
@@ -742,8 +789,10 @@ onUnmounted(() => {
     white-space: normal;
   }
 
+  /* Column title over subtitle, e.g. "400 PATIENTS*" / "READER STUDY" */
   .result-row .cell-score::before {
-    content: attr(data-label);
+    content: attr(data-title) "\A"attr(data-subtitle);
+    white-space: pre;
     font-size: 10px;
     font-weight: 700;
     text-transform: uppercase;
@@ -759,25 +808,25 @@ onUnmounted(() => {
 
   .member-row .cell-name {
     grid-column: auto;
-    flex-wrap: wrap;
+  }
+
+  .members {
     margin-left: 0;
     padding-left: 14px;
   }
 
-  .member-row .row-name {
-    flex: 1 1 0;
-    min-width: 0;
-  }
-
-  /* Links drop to their own line, under the name */
+  /* Links on their own line, so the name keeps the full width */
   .member-row .row-links {
-    flex-basis: 100%;
-    margin: 2px 0 0 22px;
+    display: block;
+    margin: 2px 0 0;
   }
 
-  .members-label {
-    margin-left: 0;
-    padding-left: 14px;
+  .authors-full {
+    display: none;
+  }
+
+  .authors-short {
+    display: inline;
   }
 
   .member-row .cell-score {
