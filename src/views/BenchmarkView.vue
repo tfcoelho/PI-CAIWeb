@@ -68,7 +68,12 @@
           >
             <div class="result-row" role="row">
               <span class="cell-name" role="cell">
-                <span class="row-name">{{ row.name }}{{ row.marker }}</span>
+                <span class="row-name"
+                  >{{ row.name
+                  }}<sup v-if="row.marker" class="row-marker">{{
+                    row.marker
+                  }}</sup></span
+                >
                 <span v-if="row.authors" class="row-authors">
                   {{ row.authors }}
                 </span>
@@ -497,6 +502,12 @@ onUnmounted(() => {
   font-size: 16px;
   font-weight: 500;
   color: #222;
+}
+
+.row-marker {
+  margin-left: 1px;
+  font-size: 0.7em;
+  color: #777;
 }
 
 .row-authors {

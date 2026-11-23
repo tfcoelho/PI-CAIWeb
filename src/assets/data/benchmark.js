@@ -144,9 +144,10 @@ export const benchmark = {
       id: "post-study",
       title: "Post-Study Submissions",
       decimals: 3,
+      // `§` on every row: each developer chose their own training data.
       footnotes: [
-        "— Post-study submissions were not submitted for the reader study.",
-        "Training data may differ between post-study submissions, and from the PI-CAI study.",
+        "Dashes (—) mark results that are not available: post-study submissions were not submitted for the reader study.",
+        "§ Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
@@ -158,6 +159,7 @@ export const benchmark = {
       rows: [
         {
           name: "SCALE (supervised)",
+          marker: "§",
           authors: "J. S. Bosma, L. Builtjes, et al.",
           // TODO: add its Grand Challenge "Model" link.
           links: [{ label: "Paper", paper: "bosma2025_scale" }],
@@ -165,6 +167,7 @@ export const benchmark = {
         },
         {
           name: "UMamba-ProSSL",
+          marker: "§",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           links: [
             {
@@ -176,6 +179,7 @@ export const benchmark = {
         },
         {
           name: "U-MambaMTL",
+          marker: "§",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
           links: [
             {
