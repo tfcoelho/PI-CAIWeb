@@ -15,8 +15,8 @@
 // - Values show with at least two decimals, or as many as entered. To force a
 //   fixed precision (so 0.900 doesn't show as 0.90), set `decimals` on the
 //   block or row, or `membersDecimals` on a row with `members`.
-// - `highlight: true` puts a row (and its `members`) in the pink AI system box;
-//   `emphasis: true` shows a row's scores at the same large size, unboxed.
+// - `members` lists what a system is made of (e.g. an ensemble's algorithms);
+//   they show indented under it.
 // - `pending: true` shows "Pending" in both columns, for evaluations in progress.
 // - Rows show in the order given here: keep them sorted by AUROC.
 // - Author strings follow the site's paper convention: initials, then surname
@@ -42,7 +42,6 @@ export const benchmark = {
         {
           name: "PI-CAI AI system",
           detail: "Ensemble of the five top-ranked algorithms",
-          highlight: true,
           testing: { auc: 0.93, ci: [0.91, 0.94] },
           reader: { auc: 0.91, ci: [0.87, 0.94] },
           // The five algorithms that make up the ensemble, in final ranking
@@ -89,7 +88,6 @@ export const benchmark = {
         {
           name: "62 radiologists",
           detail: "PI-RADS 2.1",
-          emphasis: true,
           reader: { auc: 0.86, ci: [0.83, 0.89] },
         },
       ],

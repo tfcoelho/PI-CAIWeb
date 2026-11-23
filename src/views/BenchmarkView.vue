@@ -63,10 +63,7 @@
           <div
             v-for="(row, r) in block.rows"
             :key="r"
-            :class="[
-              'row-group',
-              { highlight: row.highlight, emphasis: row.emphasis },
-            ]"
+            class="row-group"
             role="rowgroup"
           >
             <div class="result-row" role="row">
@@ -386,12 +383,9 @@ onUnmounted(() => {
   align-items: baseline;
 }
 
-/* Every row group gets the same side padding and left border width as the
-   highlighted AI system box, so the score columns line up across rows. */
 .results-head,
 .row-group {
   padding: 0 20px;
-  border-left: 4px solid transparent;
 }
 
 .results-head {
@@ -429,19 +423,8 @@ onUnmounted(() => {
   padding: 14px 0;
 }
 
-.row-group:not(.highlight) + .row-group:not(.highlight) {
+.row-group + .row-group {
   border-top: 1px solid #eee;
-}
-
-/* Highlighted AI system box, containing its ensemble members */
-.row-group.highlight {
-  margin: 4px 0;
-  padding-top: 6px;
-  padding-bottom: 10px;
-  border: 1px solid #e0209044;
-  border-left: 4px solid #e02090;
-  border-radius: 6px;
-  background: #e020900a;
 }
 
 .cell-name {
@@ -455,13 +438,6 @@ onUnmounted(() => {
   font-size: 16px;
   font-weight: 500;
   color: #222;
-}
-
-.highlight > .result-row:not(.member-row) .row-name,
-.emphasis .row-name {
-  font-size: 20px;
-  font-weight: 600;
-  color: #111;
 }
 
 .row-authors {
@@ -489,20 +465,6 @@ onUnmounted(() => {
   line-height: 1.2;
 }
 
-/* Both analyses of the headline rows get the same large type, so the reader
-   study reads as a result on par with the 1,000-case cohort. */
-.highlight > .result-row:not(.member-row) .score-value {
-  font-size: 30px;
-  color: #e02090;
-  line-height: 1.1;
-}
-
-.emphasis .score-value {
-  font-size: 30px;
-  color: #333;
-  line-height: 1.1;
-}
-
 .score-ci {
   font-size: 13px;
   color: #777;
@@ -519,13 +481,13 @@ onUnmounted(() => {
   font-style: italic;
 }
 
-/* The algorithms the AI system is built from: indented behind a thin pink
-   rule inside its box, scored in the 1,000-case column only. */
+/* The algorithms the AI system is built from: indented under it behind a
+   thin rule, scored in the 1,000-case column only. */
 .members-label,
 .member-row .cell-name {
   margin-left: 8px;
   padding-left: 20px;
-  border-left: 2px solid #e0209033;
+  border-left: 2px solid #e6e6ee;
 }
 
 .members-label {
@@ -540,6 +502,10 @@ onUnmounted(() => {
 
 .member-row {
   padding: 0;
+}
+
+.member-row:last-child {
+  padding-bottom: 10px;
 }
 
 .member-row .cell-name {
@@ -564,13 +530,13 @@ onUnmounted(() => {
   flex-shrink: 0;
   font-size: 14px;
   font-weight: 600;
-  color: #e02090;
+  color: #999;
   font-feature-settings: "tnum";
 }
 
 .results-footnote {
   margin: 14px 0 0;
-  padding-left: 24px;
+  padding-left: 20px;
   font-size: 13px;
   color: #888;
 }
@@ -662,11 +628,6 @@ onUnmounted(() => {
     margin-bottom: 2px;
   }
 
-  .highlight > .result-row:not(.member-row) .score-value,
-  .emphasis .score-value {
-    font-size: 26px;
-  }
-
   .member-row {
     grid-template-columns: minmax(0, 1fr) auto;
     row-gap: 0;
@@ -693,7 +654,7 @@ onUnmounted(() => {
   }
 
   .results-footnote {
-    padding-left: 18px;
+    padding-left: 14px;
   }
 }
 </style>
