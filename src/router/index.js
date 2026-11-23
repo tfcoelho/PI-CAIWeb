@@ -32,6 +32,14 @@ const routes = [
       import(/* webpackChunkName: "benchmark" */ "../views/BenchmarkView.vue"),
   },
   {
+    // Unlisted working version of /benchmark, including the Industry tab.
+    path: "/benchmark-test-page",
+    name: "benchmark-test",
+    component: () =>
+      import(/* webpackChunkName: "benchmark" */ "../views/BenchmarkView.vue"),
+    meta: { preview: true },
+  },
+  {
     path: "/symposium-2026",
     name: "symposium-2026",
     component: () =>

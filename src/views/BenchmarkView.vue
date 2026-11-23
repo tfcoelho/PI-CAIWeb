@@ -17,7 +17,14 @@
       </div>
     </div>
 
-    <div ref="tabBar" class="tab-filter" role="tablist" :style="indicatorStyle">
+    <!-- No tab bar while there is only one tab (the public /benchmark) -->
+    <div
+      v-if="tabs.length > 1"
+      ref="tabBar"
+      class="tab-filter"
+      role="tablist"
+      :style="indicatorStyle"
+    >
       <button
         v-for="tab in tabs"
         :key="tab.key"
@@ -262,13 +269,17 @@ import {
 import { RouterLink, useRoute, useRouter } from "vue-router";
 import { benchmark, columns, tableNotes } from "@/assets/data/benchmark";
 
-const tabs = [
-  { key: "academic", label: "Academic" },
-  { key: "industry", label: "Industry" },
-];
-
 const route = useRoute();
 const router = useRouter();
+
+// The unlisted /benchmark-test-page (route meta `preview`) shows every tab,
+// including results not yet public (Industry). /benchmark shows Academic.
+const preview = !!route.meta.preview;
+const allTabs = [
+  { key: "academic", label: "Academic" },
+  { key: "industry", label: "Industry", previewOnly: true },
+];
+const tabs = allTabs.filter((t) => preview || !t.previewOnly);
 
 // The active tab lives in the URL (?tab=industry) so it can be linked to
 // directly and survives a refresh.
@@ -360,8 +371,16 @@ function formatCi(ci, decimals) {
 }
 
 let originalBackgroundColor;
+let robotsMeta;
 
 onMounted(() => {
+  // Keep the preview page out of search engines.
+  if (preview) {
+    robotsMeta = document.createElement("meta");
+    robotsMeta.name = "robots";
+    robotsMeta.content = "noindex";
+    document.head.appendChild(robotsMeta);
+  }
   // Match the body to the page background so the dark app background doesn't
   // show on either side of the centered column (same as About/Research).
   originalBackgroundColor = document.body.style.backgroundColor;
@@ -371,6 +390,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  if (robotsMeta) robotsMeta.remove();
   document.body.style.backgroundColor = originalBackgroundColor;
   window.removeEventListener("resize", updateIndicator);
 });
