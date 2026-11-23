@@ -28,8 +28,8 @@ export const columns = [
     key: "reader",
     title: "400 cases",
     subtitle: "Reader study",
-    // `marker` is added to the column header; `note` is shown once per tab,
-    // under the first table.
+    // `marker` is added to the column header; `note` explains it under
+    // every table.
     marker: "*",
     note: "The 400 reader-study cases are a subset of the 1,000 testing cases.",
   },

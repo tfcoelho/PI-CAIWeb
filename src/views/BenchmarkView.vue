@@ -33,7 +33,7 @@
 
     <div class="benchmark-wrapper">
       <section
-        v-for="(block, b) in activeBlocks"
+        v-for="block in activeBlocks"
         :key="block.id"
         class="benchmark-card"
       >
@@ -138,12 +138,9 @@
 
         <div class="results-footnote">
           <p v-for="(note, n) in tableNotes" :key="`t${n}`">{{ note }}</p>
-          <!-- Column notes (e.g. "* subset of…") once per tab, under the first table -->
-          <template v-if="b === 0">
-            <p v-for="col in notedColumns" :key="col.key">
-              {{ col.marker }} {{ col.note }}
-            </p>
-          </template>
+          <p v-for="col in notedColumns" :key="col.key">
+            {{ col.marker }} {{ col.note }}
+          </p>
           <p v-if="block.footnote">{{ block.footnote }}</p>
         </div>
 
