@@ -21,8 +21,8 @@
 // - Rows show in the order given here: keep them sorted by AUROC.
 // - `marker` (optional, e.g. "†") is added after a row's name; explain it in
 //   one of the block's `footnotes` starting with the same sign.
-// - `source` (optional) makes the authors a link to their write-up, like a
-//   citation: `{ paper: "<id>" }` for a paper on our Research page, or
+// - `source` (optional) adds a small file icon after the authors, linking to
+//   their write-up: `{ paper: "<id>" }` for a paper on our Research page, or
 //   `{ href: "/docs/benchmark/<file>.pdf" }` for a method description kept in
 //   public/docs/benchmark/.
 // - `links` (optional) lists further links, shown under the name, e.g.

@@ -74,19 +74,27 @@
                     row.marker
                   }}</sup></span
                 >
-                <!-- The authors link to their write-up (paper or PDF), like a
-                     citation -->
-                <component
-                  :is="sourceLink(row.source).is"
-                  v-if="row.authors"
-                  v-bind="sourceLink(row.source).attrs"
-                  class="row-authors"
-                >
+                <!-- A small file icon after the authors opens their write-up
+                     (paper or PDF) -->
+                <span v-if="row.authors" class="row-authors">
                   <span class="authors-full">{{ row.authors }}</span>
                   <span class="authors-short">{{
                     shortAuthors(row.authors)
                   }}</span>
-                </component>
+                  <component
+                    :is="sourceLink(row.source).is"
+                    v-if="row.source"
+                    v-bind="sourceLink(row.source).attrs"
+                    class="source-icon"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                      />
+                      <path d="M14 3v5h5M9 13h6M9 17h6" />
+                    </svg>
+                  </component>
+                </span>
                 <span v-if="row.detail" class="row-detail">
                   {{ row.detail }}
                 </span>
@@ -142,16 +150,25 @@
                 <span class="cell-name" role="cell">
                   <span class="rank">{{ i + 1 }}</span>
                   <span class="member-text">
-                    <component
-                      :is="sourceLink(member.source).is"
-                      v-bind="sourceLink(member.source).attrs"
-                      class="row-name"
-                    >
+                    <span class="row-name">
                       <span class="authors-full">{{ member.name }}</span>
                       <span class="authors-short">{{
                         shortAuthors(member.name)
                       }}</span>
-                    </component>
+                      <component
+                        :is="sourceLink(member.source).is"
+                        v-if="member.source"
+                        v-bind="sourceLink(member.source).attrs"
+                        class="source-icon"
+                      >
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                          />
+                          <path d="M14 3v5h5M9 13h6M9 17h6" />
+                        </svg>
+                      </component>
+                    </span>
                     <span v-if="member.links" class="row-links">
                       <template v-for="(link, l) in member.links" :key="l">
                         <router-link
@@ -288,33 +305,32 @@ function updateIndicator() {
 
 watch(activeTab, () => nextTick(updateIndicator));
 
-// Where a system's authors link to: its paper on our Research page
-// (`{ paper: "<id>" }`), a PDF or other page (`{ href: "<url>" }`), or nowhere.
+// Where the file icon after a system's authors links to: its paper on our
+// Research page (`{ paper: "<id>" }`) or a PDF / other page (`{ href }`).
 function sourceLink(source) {
-  if (source && source.paper) {
+  if (source.paper) {
     return {
       is: RouterLink,
       attrs: {
         to: { name: "paper", params: { id: source.paper } },
-        class: "source-link",
+        title: "Paper",
+        "aria-label": "Paper",
       },
     };
   }
-  if (source && source.href) {
-    return {
-      is: "a",
-      attrs: {
-        href: source.href,
-        target: "_blank",
-        rel: "noopener",
-        class: "source-link",
-        title: source.href.endsWith(".pdf")
-          ? "Method description (PDF)"
-          : undefined,
-      },
-    };
-  }
-  return { is: "span", attrs: {} };
+  const label = source.href.endsWith(".pdf")
+    ? "Method description (PDF)"
+    : "Method description";
+  return {
+    is: "a",
+    attrs: {
+      href: source.href,
+      target: "_blank",
+      rel: "noopener",
+      title: label,
+      "aria-label": label,
+    },
+  };
 }
 
 // "N. Debs, A. Routier, et al." -> "N. Debs, et al." for narrow screens.
@@ -705,16 +721,29 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
-/* Authors that link to their write-up: underlined like the other links */
-.source-link {
-  text-decoration: underline;
-  text-decoration-color: #ccc;
-  text-underline-offset: 3px;
+/* File icon after the authors, linking to their write-up. Padding gives it
+   a bigger tap target without moving the text. */
+.source-icon {
+  display: inline-block;
+  margin: -4px -4px -4px 2px;
+  padding: 4px;
+  line-height: 0;
+  vertical-align: -2px;
+  color: #888;
 }
 
-.source-link:hover {
+.source-icon svg {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.source-icon:hover {
   color: #e02090;
-  text-decoration-color: currentColor;
 }
 
 /* Full author list; first author + "et al." on phones */
