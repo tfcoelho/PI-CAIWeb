@@ -19,6 +19,8 @@
 //   they show indented under it.
 // - `pending: true` shows "Pending" in both columns, for evaluations in progress.
 // - Rows show in the order given here: keep them sorted by AUROC.
+// - `marker` (optional, e.g. "†") is added after a row's name; explain it in
+//   one of the block's `footnotes` starting with the same sign.
 // - `links` (optional) lists a system's references, shown under its name:
 //   `{ label: "Paper", paper: "<id>" }` for a paper on our Research page, or
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page.
@@ -54,7 +56,7 @@ export const benchmark = {
       // algorithms were retrained at the coordinating centre on 9,107 cases
       // (7,607 sequestered + 1,500 public) before being ensembled.
       footnotes: [
-        "All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
+        "† All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
       ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
       // AI system on all 1,000 testing cases, and AI system vs the 62
@@ -62,6 +64,7 @@ export const benchmark = {
       rows: [
         {
           name: "PI-CAI AI system",
+          marker: "†",
           detail: "Ensemble of the five top-ranked algorithms",
           testing: { auc: 0.93, ci: [0.91, 0.94] },
           reader: { auc: 0.91, ci: [0.87, 0.94] },

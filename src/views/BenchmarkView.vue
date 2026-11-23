@@ -68,7 +68,7 @@
           >
             <div class="result-row" role="row">
               <span class="cell-name" role="cell">
-                <span class="row-name">{{ row.name }}</span>
+                <span class="row-name">{{ row.name }}{{ row.marker }}</span>
                 <span v-if="row.authors" class="row-authors">
                   {{ row.authors }}
                 </span>
