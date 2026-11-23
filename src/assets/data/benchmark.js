@@ -24,14 +24,19 @@
 
 export const columns = [
   { key: "testing", title: "1,000 cases", subtitle: "Standalone AI" },
-  { key: "reader", title: "400 cases", subtitle: "Reader study" },
+  {
+    key: "reader",
+    title: "400 cases",
+    subtitle: "Reader study",
+    // `marker` is added to the column header; `note` is shown once per tab,
+    // under the first table.
+    marker: "*",
+    note: "The 400 reader-study cases are a subset of the 1,000 testing cases.",
+  },
 ];
 
-// Disclosures shown under every table; a block's own `footnote` follows them.
-export const tableNotes = [
-  "AUROC with 95% CI.",
-  "The 400 reader-study cases are a subset of the 1,000 testing cases.",
-];
+// Notes shown under every table; a block's own `footnote` follows them.
+export const tableNotes = ["AUROC with 95% CI."];
 
 export const benchmark = {
   academic: [

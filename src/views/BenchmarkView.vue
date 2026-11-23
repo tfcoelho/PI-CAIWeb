@@ -33,7 +33,7 @@
 
     <div class="benchmark-wrapper">
       <section
-        v-for="block in activeBlocks"
+        v-for="(block, b) in activeBlocks"
         :key="block.id"
         class="benchmark-card"
       >
@@ -55,7 +55,7 @@
               class="cell-score"
               role="columnheader"
             >
-              <span class="col-title">{{ col.title }}</span>
+              <span class="col-title">{{ col.title }}{{ col.marker }}</span>
               <span class="col-subtitle">{{ col.subtitle }}</span>
             </span>
           </div>
@@ -81,7 +81,9 @@
                 :key="col.key"
                 class="cell-score"
                 role="cell"
-                :data-label="`${col.title} · ${col.subtitle}`"
+                :data-label="`${col.title}${col.marker || ''} · ${
+                  col.subtitle
+                }`"
               >
                 <span v-if="row.pending" class="score-pending">Pending</span>
                 <template v-else-if="row[col.key]">
@@ -136,6 +138,12 @@
 
         <div class="results-footnote">
           <p v-for="(note, n) in tableNotes" :key="`t${n}`">{{ note }}</p>
+          <!-- Column notes (e.g. "* subset of…") once per tab, under the first table -->
+          <template v-if="b === 0">
+            <p v-for="col in notedColumns" :key="col.key">
+              {{ col.marker }} {{ col.note }}
+            </p>
+          </template>
           <p v-if="block.footnote">{{ block.footnote }}</p>
         </div>
 
@@ -178,6 +186,7 @@ const activeTab = computed(() =>
   tabs.some((t) => t.key === route.query.tab) ? route.query.tab : "academic"
 );
 const activeBlocks = computed(() => benchmark[activeTab.value] || []);
+const notedColumns = columns.filter((col) => col.marker && col.note);
 
 function selectTab(key) {
   if (key === activeTab.value) return;
