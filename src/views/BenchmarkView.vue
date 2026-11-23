@@ -93,9 +93,9 @@
                 <!-- A small file icon after the authors opens their write-up
                      (paper or PDF) -->
                 <span v-if="row.authors" class="row-authors">
-                  <span class="authors-full">{{ row.authors }}</span>
+                  <span class="authors-full">{{ keepEtAl(row.authors) }}</span>
                   <span class="authors-short">{{
-                    shortAuthors(row.authors)
+                    keepEtAl(shortAuthors(row.authors))
                   }}</span>
                   <component
                     :is="sourceLink(row.source).is"
@@ -136,8 +136,6 @@
                 :key="col.key"
                 class="cell-score"
                 role="cell"
-                :data-title="`${col.title}${col.marker || ''}`"
-                :data-subtitle="col.subtitle"
               >
                 <span v-if="row.pending" class="score-pending">Pending</span>
                 <template v-else-if="row[col.key]">
@@ -167,9 +165,11 @@
                   <span class="rank">{{ i + 1 }}</span>
                   <span class="member-text">
                     <span class="row-name">
-                      <span class="authors-full">{{ member.name }}</span>
+                      <span class="authors-full">{{
+                        keepEtAl(member.name)
+                      }}</span>
                       <span class="authors-short">{{
-                        shortAuthors(member.name)
+                        keepEtAl(shortAuthors(member.name))
                       }}</span>
                       <component
                         :is="sourceLink(member.source).is"
@@ -351,6 +351,11 @@ function sourceLink(source) {
       "aria-label": label,
     },
   };
+}
+
+// Keeps "et al." on one line when author lists wrap.
+function keepEtAl(authors) {
+  return authors.replace(/\bet al\./g, "et\u00a0al.");
 }
 
 // "N. Debs, A. Routier, et al." -> "N. Debs, et al." for narrow screens.
@@ -757,12 +762,17 @@ onUnmounted(() => {
   white-space: nowrap;
 }
 
-/* File icon after the authors, linking to their write-up. Padding gives it
-   a bigger tap target without moving the text. */
+/* File icon after the authors, linking to their write-up. The link takes no
+   width, so it always stays on the line of the last author instead of
+   wrapping alone; the authors keep room for it on the right. */
+.row-authors,
+.member-text {
+  padding-right: 20px;
+}
+
 .source-icon {
   display: inline-block;
-  margin: -4px -4px -4px 2px;
-  padding: 4px;
+  width: 0;
   line-height: 0;
   vertical-align: -2px;
   color: #888;
@@ -771,6 +781,9 @@ onUnmounted(() => {
 .source-icon svg {
   width: 14px;
   height: 14px;
+  /* Bigger tap target than the icon itself */
+  padding: 4px;
+  margin: -4px -4px -4px 1px;
   fill: none;
   stroke: currentColor;
   stroke-width: 2;
@@ -876,63 +889,79 @@ onUnmounted(() => {
   }
 
   .benchmark-card {
-    padding: 24px 20px;
+    padding: 24px 16px;
   }
 
-  /* Columns stack: the name on its own line, then the two analyses side
-     by side, each labelled since the column headers are hidden. */
-  .results-head {
-    display: none;
+  .card-description {
+    font-size: 15px;
+  }
+
+  /* Still a table: the column headers once, two compact score columns,
+     and the names in the remaining width. */
+  .results {
+    --score-col: 64px;
+  }
+
+  .results-head,
+  .result-row {
+    column-gap: 8px;
   }
 
   .results-head,
   .row-group {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .result-row {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 16px;
-    row-gap: 10px;
+  .results-head {
+    font-size: 10px;
+    letter-spacing: 0.04em;
   }
 
-  .result-row .cell-name {
-    grid-column: 1 / -1;
-  }
-
-  .result-row .cell-score {
-    align-items: flex-start;
+  .results-head .cell-score {
+    text-align: right;
     white-space: normal;
   }
 
-  /* Column title over subtitle, e.g. "400 PATIENTS*" / "READER STUDY" */
-  .result-row .cell-score::before {
-    content: attr(data-title) "\A"attr(data-subtitle);
-    white-space: pre;
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #999;
-    margin-bottom: 2px;
+  .col-title,
+  .col-subtitle {
+    font-size: 11px;
+    line-height: 1.3;
   }
 
-  .member-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    row-gap: 0;
+  .row-name {
+    font-size: 15px;
   }
 
-  .member-row .cell-name {
-    grid-column: auto;
+  .row-authors,
+  .row-detail {
+    font-size: 13px;
+  }
+
+  .score-value {
+    font-size: 15px;
+  }
+
+  .score-ci,
+  .member-row .score-ci {
+    font-size: 11px;
+  }
+
+  .member-row .row-name,
+  .member-row .score-value {
+    font-size: 14px;
   }
 
   .members {
     margin-left: 0;
-    padding-left: 14px;
+    padding-left: 10px;
   }
 
-  /* Links on their own line, so the name keeps the full width */
+  .rank {
+    width: 18px;
+    font-size: 13px;
+  }
+
   .member-row .row-links {
     display: block;
     margin: 2px 0 0;
@@ -946,17 +975,8 @@ onUnmounted(() => {
     display: inline;
   }
 
-  .member-row .cell-score {
-    align-items: flex-end;
-  }
-
-  .member-row .cell-score::before,
-  .member-row .cell-score.is-empty {
-    display: none;
-  }
-
   .results-footnote {
-    padding-left: 14px;
+    padding-left: 0;
   }
 }
 </style>
