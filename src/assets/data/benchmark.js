@@ -24,7 +24,7 @@
 
 export const columns = [
   { key: "testing", title: "1,000 cases", subtitle: "Standalone AI" },
-  { key: "reader", title: "400 cases", subtitle: "vs radiologists" },
+  { key: "reader", title: "400 cases", subtitle: "Reader study" },
 ];
 
 export const benchmark = {
