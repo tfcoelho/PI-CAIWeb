@@ -38,7 +38,8 @@ export const columns = [
   },
 ];
 
-// Notes shown under every table; a block's own `footnotes` follow them.
+// Notes shown under every table, then the block's own `footnotes`, then the
+// column `note`s (e.g. "* …").
 export const tableNotes = ["AUROC with 95% CI."];
 
 export const benchmark = {

@@ -170,11 +170,13 @@
 
         <div class="results-footnote">
           <p v-for="(note, n) in tableNotes" :key="`t${n}`">{{ note }}</p>
-          <p v-for="col in notedColumns" :key="col.key">
-            {{ col.marker }} {{ col.note }}
-          </p>
           <p v-for="(note, n) in block.footnotes || []" :key="`b${n}`">
             {{ note }}
+          </p>
+          <!-- Marker notes ("* …") last, so they don't read as covering the
+               notes after them -->
+          <p v-for="col in notedColumns" :key="col.key">
+            {{ col.marker }} {{ col.note }}
           </p>
         </div>
 
