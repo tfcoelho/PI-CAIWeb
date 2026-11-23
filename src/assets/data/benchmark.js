@@ -60,7 +60,10 @@ export const benchmark = {
           // Final Ranking leaderboard (ranks 1, 4, 5, 7 and 8; the other rows
           // are later submissions and baselines):
           // https://pi-cai.grand-challenge.org/evaluation/closed-testing-phase-final-ranking/leaderboard/
-          // Authors are as listed in each algorithm's leaderboard title.
+          // Authors are as listed in each algorithm's leaderboard title: all
+          // first authors, then "et al.". DataScientX (Debs, Routier) and
+          // PIMed-Stanford (Li, Vesal, Saunders) have shared first authors who
+          // contributed equally, per their Grand Challenge algorithm pages.
           membersLabel: "Ensemble members",
           membersDecimals: 3,
           members: [
