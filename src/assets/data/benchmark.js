@@ -21,9 +21,15 @@
 // - Rows show in the order given here: keep them sorted by AUROC.
 // - `marker` (optional, e.g. "†") is added after a row's name; explain it in
 //   one of the block's `footnotes` starting with the same sign.
-// - `links` (optional) lists a system's references, shown under its name:
-//   `{ label: "Paper", paper: "<id>" }` for a paper on our Research page, or
-//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page.
+// - `source` (optional) adds a small file icon after the authors, linking to
+//   their write-up: `{ paper: "<id>" }` for a paper on our Research page, or
+//   `{ href: "/docs/benchmark/<file>.pdf" }` for a method description kept in
+//   public/docs/benchmark/.
+// - `links` (optional) lists further links, shown under the name, e.g.
+//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
+//   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
+// - `logo` (optional, on a block) shows a company's logo instead of its title,
+//   e.g. "/img/logos/<company>.svg" in public/img/logos/.
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
@@ -50,7 +56,7 @@ export const benchmark = {
       id: "pi-cai-study",
       title: "PI-CAI Study",
       description:
-        "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS on biparametric MRI.",
+        "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1,000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       paperId: "saha2024_lancet_oncology",
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
       // algorithms were retrained at the coordinating centre on 9,107 cases
@@ -82,62 +88,37 @@ export const benchmark = {
           members: [
             {
               team: "DataScientX",
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-datascientx/",
-                },
-              ],
+              source: { href: "/docs/benchmark/datascientx.pdf" },
               name: "N. Debs, A. Routier, et al.",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
             },
             {
               team: "BDAV_Y",
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-bday/",
-                },
-              ],
+              source: { href: "/docs/benchmark/bdav_y.pdf" },
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
             },
             {
               team: "Swangeese",
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-swangeese/",
-                },
-              ],
+              source: { href: "/docs/benchmark/swangeese.pdf" },
               name: "H. Kan, et al.",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
             },
             {
               team: "PIMed-Stanford",
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-pimed",
-                },
-              ],
+              source: { href: "/docs/benchmark/pimed-stanford.pdf" },
               name: "X. Li, S. Vesal, S. Saunders, et al.",
               country: "USA",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
             },
             {
               team: "HeviAI",
-              // All seven authors contributed equally, so there is no separate
-              // group of first authors to list: first author + "et al.".
-              links: [
-                {
-                  label: "Model",
-                  href: "https://grand-challenge.org/algorithms/pi-cai-pubpriv-heviai/",
-                },
-              ],
+              // All eight authors contributed equally (per their report), so no
+              // separate group of first authors to list: first author + "et al.".
+              source: { href: "/docs/benchmark/heviai.pdf" },
               name: "A. Karagöz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
@@ -173,47 +154,35 @@ export const benchmark = {
           name: "SCALE (supervised)",
           marker: "§",
           authors: "J. S. Bosma, L. Builtjes, et al.",
-          links: [
-            { label: "Paper", paper: "bosma2025_scale" },
-            {
-              label: "Model",
-              href: "https://grand-challenge.org/algorithms/datascientx-lite/",
-            },
-          ],
+          source: { paper: "bosma2025_scale" },
           testing: { auc: 0.921, ci: [0.902, 0.938] },
         },
         {
           name: "UMamba-ProSSL",
           marker: "§",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
-          links: [
-            {
-              label: "Model",
-              href: "https://grand-challenge.org/algorithms/umamba-base",
-            },
-          ],
+          source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           testing: { auc: 0.905, ci: [0.885, 0.924] },
         },
         {
           name: "U-MambaMTL",
           marker: "§",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
-          links: [
-            {
-              label: "Model",
-              href: "https://grand-challenge.org/algorithms/mamba_mtl",
-            },
-          ],
+          // MIDL 2025 full paper
+          source: { href: "/docs/benchmark/u-mambamtl.pdf" },
           testing: { auc: 0.896, ci: [0.875, 0.916] },
         },
       ],
     },
   ],
 
+  // Only shown on the unlisted /benchmark-test-page for now.
   industry: [
     {
       id: "siemens",
       title: "Siemens Healthineers",
+      // Shown instead of the title; the title stays as its alt text.
+      logo: "/img/logos/siemens-healthineers.svg",
       description:
         "Commercial AI systems evaluated under the same masked, standardised protocol.",
       // A dedicated submission is being evaluated on both the 1,000 cases and

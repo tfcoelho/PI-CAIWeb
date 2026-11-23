@@ -17,7 +17,14 @@
       </div>
     </div>
 
-    <div ref="tabBar" class="tab-filter" role="tablist" :style="indicatorStyle">
+    <!-- No tab bar while there is only one tab (the public /benchmark) -->
+    <div
+      v-if="tabs.length > 1"
+      ref="tabBar"
+      class="tab-filter"
+      role="tablist"
+      :style="indicatorStyle"
+    >
       <button
         v-for="tab in tabs"
         :key="tab.key"
@@ -38,7 +45,16 @@
         class="benchmark-card"
       >
         <header class="card-header">
-          <h2 class="card-title">{{ block.title }}</h2>
+          <h2 class="card-title">
+            <!-- A company's logo stands in for its name -->
+            <img
+              v-if="block.logo"
+              :src="block.logo"
+              :alt="block.title"
+              class="card-logo"
+            />
+            <template v-else>{{ block.title }}</template>
+          </h2>
           <p v-if="block.description" class="card-description">
             {{ block.description }}
           </p>
@@ -74,8 +90,26 @@
                     row.marker
                   }}</sup></span
                 >
+                <!-- A small file icon after the authors opens their write-up
+                     (paper or PDF) -->
                 <span v-if="row.authors" class="row-authors">
-                  {{ row.authors }}
+                  <span class="authors-full">{{ keepEtAl(row.authors) }}</span>
+                  <span class="authors-short">{{
+                    keepEtAl(shortAuthors(row.authors))
+                  }}</span>
+                  <component
+                    :is="sourceLink(row.source).is"
+                    v-if="row.source"
+                    v-bind="sourceLink(row.source).attrs"
+                    class="source-icon"
+                  >
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                      <path
+                        d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                      />
+                      <path d="M14 3v5h5M9 13h6M9 17h6" />
+                    </svg>
+                  </component>
                 </span>
                 <span v-if="row.detail" class="row-detail">
                   {{ row.detail }}
@@ -102,9 +136,6 @@
                 :key="col.key"
                 class="cell-score"
                 role="cell"
-                :data-label="`${col.title}${col.marker || ''} · ${
-                  col.subtitle
-                }`"
               >
                 <span v-if="row.pending" class="score-pending">Pending</span>
                 <template v-else-if="row[col.key]">
@@ -122,7 +153,7 @@
             </div>
 
             <!-- What the AI system is made of: nested inside its box -->
-            <template v-if="row.members">
+            <div v-if="row.members" class="members">
               <div class="members-label">{{ row.membersLabel }}</div>
               <div
                 v-for="(member, i) in row.members"
@@ -132,22 +163,44 @@
               >
                 <span class="cell-name" role="cell">
                   <span class="rank">{{ i + 1 }}</span>
-                  <span class="row-name">{{ member.name }}</span>
-                  <span v-if="member.links" class="row-links">
-                    <template v-for="(link, l) in member.links" :key="l">
-                      <router-link
-                        v-if="link.paper"
-                        :to="{ name: 'paper', params: { id: link.paper } }"
-                        >{{ link.label }}</router-link
+                  <span class="member-text">
+                    <span class="row-name">
+                      <span class="authors-full">{{
+                        keepEtAl(member.name)
+                      }}</span>
+                      <span class="authors-short">{{
+                        keepEtAl(shortAuthors(member.name))
+                      }}</span>
+                      <component
+                        :is="sourceLink(member.source).is"
+                        v-if="member.source"
+                        v-bind="sourceLink(member.source).attrs"
+                        class="source-icon"
                       >
-                      <a
-                        v-else
-                        :href="link.href"
-                        target="_blank"
-                        rel="noopener"
-                        >{{ link.label }}</a
-                      >
-                    </template>
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                          <path
+                            d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                          />
+                          <path d="M14 3v5h5M9 13h6M9 17h6" />
+                        </svg>
+                      </component>
+                    </span>
+                    <span v-if="member.links" class="row-links">
+                      <template v-for="(link, l) in member.links" :key="l">
+                        <router-link
+                          v-if="link.paper"
+                          :to="{ name: 'paper', params: { id: link.paper } }"
+                          >{{ link.label }}</router-link
+                        >
+                        <a
+                          v-else
+                          :href="link.href"
+                          target="_blank"
+                          rel="noopener"
+                          >{{ link.label }}</a
+                        >
+                      </template>
+                    </span>
                   </span>
                 </span>
                 <span
@@ -169,7 +222,7 @@
                   </span>
                 </span>
               </div>
-            </template>
+            </div>
           </div>
         </div>
 
@@ -222,16 +275,20 @@ import {
   onMounted,
   onUnmounted,
 } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import { benchmark, columns, tableNotes } from "@/assets/data/benchmark";
-
-const tabs = [
-  { key: "academic", label: "Academic" },
-  { key: "industry", label: "Industry" },
-];
 
 const route = useRoute();
 const router = useRouter();
+
+// The unlisted /benchmark-test-page (route meta `preview`) shows every tab,
+// including results not yet public (Industry). /benchmark shows Academic.
+const preview = !!route.meta.preview;
+const allTabs = [
+  { key: "academic", label: "Academic" },
+  { key: "industry", label: "Industry", previewOnly: true },
+];
+const tabs = allTabs.filter((t) => preview || !t.previewOnly);
 
 // The active tab lives in the URL (?tab=industry) so it can be linked to
 // directly and survives a refresh.
@@ -268,6 +325,46 @@ function updateIndicator() {
 
 watch(activeTab, () => nextTick(updateIndicator));
 
+// Where the file icon after a system's authors links to: its paper on our
+// Research page (`{ paper: "<id>" }`) or a PDF / other page (`{ href }`).
+function sourceLink(source) {
+  if (source.paper) {
+    return {
+      is: RouterLink,
+      attrs: {
+        to: { name: "paper", params: { id: source.paper } },
+        title: "Paper",
+        "aria-label": "Paper",
+      },
+    };
+  }
+  const label = source.href.endsWith(".pdf")
+    ? "Method description (PDF)"
+    : "Method description";
+  return {
+    is: "a",
+    attrs: {
+      href: source.href,
+      target: "_blank",
+      rel: "noopener",
+      title: label,
+      "aria-label": label,
+    },
+  };
+}
+
+// Keeps "et al." on one line when author lists wrap.
+function keepEtAl(authors) {
+  return authors.replace(/\bet al\./g, "et\u00a0al.");
+}
+
+// "N. Debs, A. Routier, et al." -> "N. Debs, et al." for narrow screens.
+// Lists with a single author before "et al." are left as they are.
+function shortAuthors(authors) {
+  const names = authors.split(", ").filter((n) => n !== "et al.");
+  return names.length > 1 ? `${names[0]}, et al.` : authors;
+}
+
 // Fixed precision for a row's scores: its own `decimals`, else the block's.
 function decimalsFor(row, block) {
   return row.decimals != null ? row.decimals : block.decimals;
@@ -288,8 +385,16 @@ function formatCi(ci, decimals) {
 }
 
 let originalBackgroundColor;
+let robotsMeta;
 
 onMounted(() => {
+  // Keep the preview page out of search engines.
+  if (preview) {
+    robotsMeta = document.createElement("meta");
+    robotsMeta.name = "robots";
+    robotsMeta.content = "noindex";
+    document.head.appendChild(robotsMeta);
+  }
   // Match the body to the page background so the dark app background doesn't
   // show on either side of the centered column (same as About/Research).
   originalBackgroundColor = document.body.style.backgroundColor;
@@ -299,6 +404,7 @@ onMounted(() => {
 });
 
 onUnmounted(() => {
+  if (robotsMeta) robotsMeta.remove();
   document.body.style.backgroundColor = originalBackgroundColor;
   window.removeEventListener("resize", updateIndicator);
 });
@@ -428,6 +534,13 @@ onUnmounted(() => {
   margin: 0 0 8px;
 }
 
+.card-logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  margin: 2px 0 6px;
+}
+
 .card-description {
   font-size: 16px;
   line-height: 1.6;
@@ -553,10 +666,10 @@ onUnmounted(() => {
 }
 
 /* The algorithms the AI system is built from: indented under it behind a
-   thin rule, scored in the 1,000-case column only. */
-.members-label,
-.member-row .cell-name {
-  margin-left: 8px;
+   thin rule, scored in the 1,000-patient column only. The score columns have
+   a fixed width, so they still line up with the rows above. */
+.members {
+  margin: 0 0 10px 8px;
   padding-left: 20px;
   border-left: 2px solid #e6e6ee;
 }
@@ -575,16 +688,17 @@ onUnmounted(() => {
   padding: 0;
 }
 
-.member-row:last-child {
-  padding-bottom: 10px;
-}
-
 .member-row .cell-name {
   flex-direction: row;
   align-items: baseline;
   gap: 0;
   padding-top: 9px;
   padding-bottom: 9px;
+}
+
+/* Name and links flow as one line of text, wrapping together */
+.member-text {
+  min-width: 0;
 }
 
 .member-row .row-name,
@@ -644,8 +758,46 @@ onUnmounted(() => {
 }
 
 .member-row .row-links {
-  margin-left: 12px;
+  margin-left: 10px;
   white-space: nowrap;
+}
+
+/* File icon after the authors, linking to their write-up. The link takes no
+   width, so it always stays on the line of the last author instead of
+   wrapping alone; the authors keep room for it on the right. */
+.row-authors,
+.member-text {
+  padding-right: 20px;
+}
+
+.source-icon {
+  display: inline-block;
+  width: 0;
+  line-height: 0;
+  vertical-align: -2px;
+  color: #888;
+}
+
+.source-icon svg {
+  width: 14px;
+  height: 14px;
+  /* Bigger tap target than the icon itself */
+  padding: 4px;
+  margin: -4px -4px -4px 1px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.source-icon:hover {
+  color: #e02090;
+}
+
+/* Full author list; first author + "et al." on phones */
+.authors-short {
+  display: none;
 }
 
 .page-sources {
@@ -677,6 +829,31 @@ onUnmounted(() => {
 
 .card-link:hover {
   color: #e02090;
+}
+
+/* Narrower score columns before the layout stacks on phones */
+@media (max-width: 920px) {
+  .benchmark-card {
+    padding: 32px 28px;
+  }
+
+  .results {
+    --score-col: 128px;
+  }
+
+  .results-head,
+  .result-row {
+    column-gap: 16px;
+  }
+
+  .results-head,
+  .row-group {
+    padding: 0 12px;
+  }
+
+  .results-footnote {
+    padding-left: 12px;
+  }
 }
 
 @media (max-width: 750px) {
@@ -712,85 +889,94 @@ onUnmounted(() => {
   }
 
   .benchmark-card {
-    padding: 24px 20px;
+    padding: 24px 16px;
   }
 
-  /* Columns stack: the name on its own line, then the two analyses side
-     by side, each labelled since the column headers are hidden. */
-  .results-head {
-    display: none;
+  .card-description {
+    font-size: 15px;
+  }
+
+  /* Still a table: the column headers once, two compact score columns,
+     and the names in the remaining width. */
+  .results {
+    --score-col: 64px;
+  }
+
+  .results-head,
+  .result-row {
+    column-gap: 8px;
   }
 
   .results-head,
   .row-group {
-    padding-left: 14px;
-    padding-right: 14px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
-  .result-row {
-    grid-template-columns: 1fr 1fr;
-    column-gap: 16px;
-    row-gap: 10px;
+  .results-head {
+    font-size: 10px;
+    letter-spacing: 0.04em;
   }
 
-  .result-row .cell-name {
-    grid-column: 1 / -1;
-  }
-
-  .result-row .cell-score {
-    align-items: flex-start;
+  .results-head .cell-score {
+    text-align: right;
     white-space: normal;
   }
 
-  .result-row .cell-score::before {
-    content: attr(data-label);
-    font-size: 10px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    color: #999;
-    margin-bottom: 2px;
+  .col-title,
+  .col-subtitle {
+    font-size: 11px;
+    line-height: 1.3;
   }
 
-  .member-row {
-    grid-template-columns: minmax(0, 1fr) auto;
-    row-gap: 0;
+  .row-name {
+    font-size: 15px;
   }
 
-  .member-row .cell-name {
-    grid-column: auto;
-    flex-wrap: wrap;
+  .row-authors,
+  .row-detail {
+    font-size: 13px;
+  }
+
+  .score-value {
+    font-size: 15px;
+  }
+
+  .score-ci,
+  .member-row .score-ci {
+    font-size: 11px;
+  }
+
+  .member-row .row-name,
+  .member-row .score-value {
+    font-size: 14px;
+  }
+
+  .members {
     margin-left: 0;
-    padding-left: 14px;
+    padding-left: 10px;
   }
 
-  .member-row .row-name {
-    flex: 1 1 0;
-    min-width: 0;
+  .rank {
+    width: 18px;
+    font-size: 13px;
   }
 
-  /* Links drop to their own line, under the name */
   .member-row .row-links {
-    flex-basis: 100%;
-    margin: 2px 0 0 22px;
+    display: block;
+    margin: 2px 0 0;
   }
 
-  .members-label {
-    margin-left: 0;
-    padding-left: 14px;
-  }
-
-  .member-row .cell-score {
-    align-items: flex-end;
-  }
-
-  .member-row .cell-score::before,
-  .member-row .cell-score.is-empty {
+  .authors-full {
     display: none;
   }
 
+  .authors-short {
+    display: inline;
+  }
+
   .results-footnote {
-    padding-left: 14px;
+    padding-left: 0;
   }
 }
 </style>
