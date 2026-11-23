@@ -173,8 +173,13 @@ export const benchmark = {
           name: "SCALE (supervised)",
           marker: "§",
           authors: "J. S. Bosma, L. Builtjes, et al.",
-          // TODO: add its Grand Challenge "Model" link.
-          links: [{ label: "Paper", paper: "bosma2025_scale" }],
+          links: [
+            { label: "Paper", paper: "bosma2025_scale" },
+            {
+              label: "Model",
+              href: "https://grand-challenge.org/algorithms/datascientx-lite/",
+            },
+          ],
           testing: { auc: 0.921, ci: [0.902, 0.938] },
         },
         {
