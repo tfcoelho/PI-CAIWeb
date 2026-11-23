@@ -45,7 +45,16 @@
         class="benchmark-card"
       >
         <header class="card-header">
-          <h2 class="card-title">{{ block.title }}</h2>
+          <h2 class="card-title">
+            <!-- A company's logo stands in for its name -->
+            <img
+              v-if="block.logo"
+              :src="block.logo"
+              :alt="block.title"
+              class="card-logo"
+            />
+            <template v-else>{{ block.title }}</template>
+          </h2>
           <p v-if="block.description" class="card-description">
             {{ block.description }}
           </p>
@@ -518,6 +527,13 @@ onUnmounted(() => {
   font-weight: 600;
   color: #111;
   margin: 0 0 8px;
+}
+
+.card-logo {
+  display: block;
+  height: 30px;
+  width: auto;
+  margin: 2px 0 6px;
 }
 
 .card-description {

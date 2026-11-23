@@ -28,6 +28,8 @@
 // - `links` (optional) lists further links, shown under the name, e.g.
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
 //   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
+// - `logo` (optional, on a block) shows a company's logo instead of its title,
+//   e.g. "/img/logos/<company>.svg" in public/img/logos/.
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
@@ -179,6 +181,8 @@ export const benchmark = {
     {
       id: "siemens",
       title: "Siemens Healthineers",
+      // Shown instead of the title; the title stays as its alt text.
+      logo: "/img/logos/siemens-healthineers.svg",
       description:
         "Commercial AI systems evaluated under the same masked, standardised protocol.",
       // A dedicated submission is being evaluated on both the 1,000 cases and
