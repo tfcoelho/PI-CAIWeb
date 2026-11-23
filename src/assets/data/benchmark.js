@@ -28,15 +28,15 @@
 //   ("A. Saha"). Use "et al." for long author lists.
 
 export const columns = [
-  { key: "testing", title: "1,000 cases", subtitle: "Standalone AI" },
+  { key: "testing", title: "1,000 patients", subtitle: "Standalone AI" },
   {
     key: "reader",
-    title: "400 cases",
+    title: "400 patients",
     subtitle: "Reader study",
     // `marker` is added to the column header; `note` explains it under
     // every table.
     marker: "*",
-    note: "The 400 reader-study cases are a subset of the 1,000 testing cases.",
+    note: "The 400 reader-study patients are a subset of the 1,000 testing patients.",
   },
 ];
 
