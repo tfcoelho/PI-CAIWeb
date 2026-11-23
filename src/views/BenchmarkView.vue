@@ -134,10 +134,10 @@
           </div>
         </div>
 
-        <p class="results-footnote">
-          AUROC with 95% CI.
-          <template v-if="block.footnote">{{ block.footnote }}</template>
-        </p>
+        <div class="results-footnote">
+          <p v-for="(note, n) in tableNotes" :key="`t${n}`">{{ note }}</p>
+          <p v-if="block.footnote">{{ block.footnote }}</p>
+        </div>
 
         <footer v-if="block.paperId" class="card-footer">
           <router-link
@@ -162,7 +162,7 @@ import {
   onUnmounted,
 } from "vue";
 import { useRoute, useRouter } from "vue-router";
-import { benchmark, columns } from "@/assets/data/benchmark";
+import { benchmark, columns, tableNotes } from "@/assets/data/benchmark";
 
 const tabs = [
   { key: "academic", label: "Academic" },
@@ -538,10 +538,15 @@ onUnmounted(() => {
 }
 
 .results-footnote {
-  margin: 14px 0 0;
+  margin-top: 14px;
   padding-left: 20px;
   font-size: 13px;
+  line-height: 1.5;
   color: #888;
+}
+
+.results-footnote p {
+  margin: 0;
 }
 
 .card-footer {

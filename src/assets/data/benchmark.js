@@ -27,6 +27,12 @@ export const columns = [
   { key: "reader", title: "400 cases", subtitle: "Reader study" },
 ];
 
+// Disclosures shown under every table; a block's own `footnote` follows them.
+export const tableNotes = [
+  "AUROC with 95% CI.",
+  "The 400 reader-study cases are a subset of the 1,000 testing cases.",
+];
+
 export const benchmark = {
   academic: [
     {
@@ -96,7 +102,8 @@ export const benchmark = {
       id: "post-study",
       title: "Post-Study Submissions",
       decimals: 3,
-      footnote: "— Not evaluated in the reader study.",
+      footnote:
+        "— Post-study submissions were not submitted for the reader study.",
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
       //   submission): .../evaluation/closed-testing-phase-final-ranking/leaderboard/
