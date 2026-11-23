@@ -21,11 +21,13 @@
 // - Rows show in the order given here: keep them sorted by AUROC.
 // - `marker` (optional, e.g. "†") is added after a row's name; explain it in
 //   one of the block's `footnotes` starting with the same sign.
-// - `links` (optional) lists a system's references, shown under its name:
-//   `{ label: "Paper", paper: "<id>" }` for a paper on our Research page, or
-//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page,
-//   or `{ label: "PDF", href: "/docs/benchmark/<file>.pdf" }` for a
-//   method report kept in public/docs/benchmark/.
+// - `source` (optional) makes the authors a link to their write-up, like a
+//   citation: `{ paper: "<id>" }` for a paper on our Research page, or
+//   `{ href: "/docs/benchmark/<file>.pdf" }` for a method description kept in
+//   public/docs/benchmark/.
+// - `links` (optional) lists further links, shown under the name, e.g.
+//   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
+//   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
@@ -84,32 +86,28 @@ export const benchmark = {
           members: [
             {
               team: "DataScientX",
-              links: [
-                { label: "PDF", href: "/docs/benchmark/datascientx.pdf" },
-              ],
+              source: { href: "/docs/benchmark/datascientx.pdf" },
               name: "N. Debs, A. Routier, et al.",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
             },
             {
               team: "BDAV_Y",
-              links: [{ label: "PDF", href: "/docs/benchmark/bdav_y.pdf" }],
+              source: { href: "/docs/benchmark/bdav_y.pdf" },
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
             },
             {
               team: "Swangeese",
-              links: [{ label: "PDF", href: "/docs/benchmark/swangeese.pdf" }],
+              source: { href: "/docs/benchmark/swangeese.pdf" },
               name: "H. Kan, et al.",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
             },
             {
               team: "PIMed-Stanford",
-              links: [
-                { label: "PDF", href: "/docs/benchmark/pimed-stanford.pdf" },
-              ],
+              source: { href: "/docs/benchmark/pimed-stanford.pdf" },
               name: "X. Li, S. Vesal, S. Saunders, et al.",
               country: "USA",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
@@ -118,7 +116,7 @@ export const benchmark = {
               team: "HeviAI",
               // All eight authors contributed equally (per their report), so no
               // separate group of first authors to list: first author + "et al.".
-              links: [{ label: "PDF", href: "/docs/benchmark/heviai.pdf" }],
+              source: { href: "/docs/benchmark/heviai.pdf" },
               name: "A. Karagöz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
@@ -154,8 +152,8 @@ export const benchmark = {
           name: "SCALE (supervised)",
           marker: "§",
           authors: "J. S. Bosma, L. Builtjes, et al.",
+          source: { paper: "bosma2025_scale" },
           links: [
-            { label: "Paper", paper: "bosma2025_scale" },
             {
               label: "Model",
               href: "https://grand-challenge.org/algorithms/datascientx-lite/",
@@ -167,6 +165,7 @@ export const benchmark = {
           name: "UMamba-ProSSL",
           marker: "§",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
+          source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           links: [
             {
               label: "Model",
@@ -179,6 +178,8 @@ export const benchmark = {
           name: "U-MambaMTL",
           marker: "§",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
+          // MIDL 2025 full paper
+          source: { href: "/docs/benchmark/u-mambamtl.pdf" },
           links: [
             {
               label: "Model",

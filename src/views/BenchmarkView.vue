@@ -74,12 +74,19 @@
                     row.marker
                   }}</sup></span
                 >
-                <span v-if="row.authors" class="row-authors">
+                <!-- The authors link to their write-up (paper or PDF), like a
+                     citation -->
+                <component
+                  :is="sourceLink(row.source).is"
+                  v-if="row.authors"
+                  v-bind="sourceLink(row.source).attrs"
+                  class="row-authors"
+                >
                   <span class="authors-full">{{ row.authors }}</span>
                   <span class="authors-short">{{
                     shortAuthors(row.authors)
                   }}</span>
-                </span>
+                </component>
                 <span v-if="row.detail" class="row-detail">
                   {{ row.detail }}
                 </span>
@@ -135,12 +142,16 @@
                 <span class="cell-name" role="cell">
                   <span class="rank">{{ i + 1 }}</span>
                   <span class="member-text">
-                    <span class="row-name">
+                    <component
+                      :is="sourceLink(member.source).is"
+                      v-bind="sourceLink(member.source).attrs"
+                      class="row-name"
+                    >
                       <span class="authors-full">{{ member.name }}</span>
                       <span class="authors-short">{{
                         shortAuthors(member.name)
                       }}</span>
-                    </span>
+                    </component>
                     <span v-if="member.links" class="row-links">
                       <template v-for="(link, l) in member.links" :key="l">
                         <router-link
@@ -231,7 +242,7 @@ import {
   onMounted,
   onUnmounted,
 } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import { benchmark, columns, tableNotes } from "@/assets/data/benchmark";
 
 const tabs = [
@@ -276,6 +287,35 @@ function updateIndicator() {
 }
 
 watch(activeTab, () => nextTick(updateIndicator));
+
+// Where a system's authors link to: its paper on our Research page
+// (`{ paper: "<id>" }`), a PDF or other page (`{ href: "<url>" }`), or nowhere.
+function sourceLink(source) {
+  if (source && source.paper) {
+    return {
+      is: RouterLink,
+      attrs: {
+        to: { name: "paper", params: { id: source.paper } },
+        class: "source-link",
+      },
+    };
+  }
+  if (source && source.href) {
+    return {
+      is: "a",
+      attrs: {
+        href: source.href,
+        target: "_blank",
+        rel: "noopener",
+        class: "source-link",
+        title: source.href.endsWith(".pdf")
+          ? "Method description (PDF)"
+          : undefined,
+      },
+    };
+  }
+  return { is: "span", attrs: {} };
+}
 
 // "N. Debs, A. Routier, et al." -> "N. Debs, et al." for narrow screens.
 // Lists with a single author before "et al." are left as they are.
@@ -663,6 +703,18 @@ onUnmounted(() => {
 .member-row .row-links {
   margin-left: 10px;
   white-space: nowrap;
+}
+
+/* Authors that link to their write-up: underlined like the other links */
+.source-link {
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 3px;
+}
+
+.source-link:hover {
+  color: #e02090;
+  text-decoration-color: currentColor;
 }
 
 /* Full author list; first author + "et al." on phones */
