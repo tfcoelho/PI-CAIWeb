@@ -50,7 +50,7 @@ export const benchmark = {
       id: "pi-cai-study",
       title: "PI-CAI Study",
       description:
-        "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS on biparametric MRI.",
+        "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1,000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       paperId: "saha2024_lancet_oncology",
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
       // algorithms were retrained at the coordinating centre on 9,107 cases
