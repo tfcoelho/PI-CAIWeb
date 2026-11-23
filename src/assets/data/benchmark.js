@@ -44,7 +44,7 @@ export const benchmark = {
       id: "pi-cai-study",
       title: "PI-CAI Study",
       description:
-        "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS (2.1) on biparametric MRI.",
+        "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS on biparametric MRI.",
       paperId: "saha2024_lancet_oncology",
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
       // AI system on all 1,000 testing cases, and AI system vs the 62
@@ -98,7 +98,8 @@ export const benchmark = {
         },
         {
           name: "62 radiologists",
-          detail: "PI-RADS 2.1",
+          detail:
+            "Using PI-RADS · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
           reader: { auc: 0.86, ci: [0.83, 0.89] },
         },
       ],
