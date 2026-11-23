@@ -125,6 +125,9 @@
                       {{ formatCi(member[col.key].ci, row.membersDecimals) }}
                     </span>
                   </template>
+                  <span v-else class="score-missing" title="Not evaluated">
+                    —
+                  </span>
                 </span>
               </div>
             </template>
