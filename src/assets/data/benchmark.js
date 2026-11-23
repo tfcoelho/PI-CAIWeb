@@ -35,7 +35,7 @@ export const columns = [
   },
 ];
 
-// Notes shown under every table; a block's own `footnote` follows them.
+// Notes shown under every table; a block's own `footnotes` follow them.
 export const tableNotes = ["AUROC with 95% CI."];
 
 export const benchmark = {
@@ -46,6 +46,12 @@ export const benchmark = {
       description:
         "International, paired, non-inferiority, confirmatory study comparing an AI system with 62 radiologists using PI-RADS on biparametric MRI.",
       paperId: "saha2024_lancet_oncology",
+      // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
+      // algorithms were retrained at the coordinating centre on 9,107 cases
+      // (7,607 sequestered + 1,500 public) before being ensembled.
+      footnotes: [
+        "All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
+      ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
       // AI system on all 1,000 testing cases, and AI system vs the 62
       // radiologists on the 400-case reader-study subset.
@@ -111,8 +117,10 @@ export const benchmark = {
       id: "post-study",
       title: "Post-Study Submissions",
       decimals: 3,
-      footnote:
+      footnotes: [
         "— Post-study submissions were not submitted for the reader study.",
+        "Training data may differ between post-study submissions, and from the PI-CAI study.",
+      ],
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
       //   submission): .../evaluation/closed-testing-phase-final-ranking/leaderboard/

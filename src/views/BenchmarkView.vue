@@ -141,7 +141,9 @@
           <p v-for="col in notedColumns" :key="col.key">
             {{ col.marker }} {{ col.note }}
           </p>
-          <p v-if="block.footnote">{{ block.footnote }}</p>
+          <p v-for="(note, n) in block.footnotes || []" :key="`b${n}`">
+            {{ note }}
+          </p>
         </div>
 
         <footer v-if="block.paperId" class="card-footer">
