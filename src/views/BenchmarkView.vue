@@ -904,7 +904,7 @@ onUnmounted(() => {
 
   .results-head,
   .result-row {
-    column-gap: 8px;
+    column-gap: 12px;
   }
 
   .results-head,
