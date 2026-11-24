@@ -185,14 +185,16 @@ export const benchmark = {
       logo: "/img/logos/siemens-healthineers.svg",
       description:
         "Commercial AI systems evaluated under the same masked, standardised protocol.",
-      // A dedicated submission is being evaluated on both the 1,000 cases and
-      // the reader study. Replace `pending` with its scores once known.
+      // Three decimals, as reported (so 0.900 doesn't show as 0.90).
+      decimals: 3,
+      // Scores as reported for the dedicated submission: AUROC (95% CI) on
+      // the full hidden testing cohort and on the reader-study subset.
       rows: [
         {
-          name: "AI system",
+          name: "Prostate MR AI VA10A",
           marker: "§",
-          detail: "Dedicated submission under evaluation",
-          pending: true,
+          testing: { auc: 0.887, ci: [0.865, 0.909] },
+          reader: { auc: 0.863, ci: [0.824, 0.9] },
         },
       ],
       footnotes: ["§ Training data is chosen by the model's developers."],
