@@ -177,7 +177,7 @@ export const benchmark = {
   ],
 
   // Only shown on the unlisted /benchmark-test-page for now.
-  industry: [
+  certified: [
     {
       id: "siemens",
       title: "Siemens Healthineers",

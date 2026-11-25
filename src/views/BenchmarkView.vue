@@ -282,15 +282,15 @@ const route = useRoute();
 const router = useRouter();
 
 // The unlisted /benchmark-test-page (route meta `preview`) shows every tab,
-// including results not yet public (Industry). /benchmark shows Academic.
+// including results not yet public (Certified). /benchmark shows Academic.
 const preview = !!route.meta.preview;
 const allTabs = [
   { key: "academic", label: "Academic" },
-  { key: "industry", label: "Industry", previewOnly: true },
+  { key: "certified", label: "Certified", previewOnly: true },
 ];
 const tabs = allTabs.filter((t) => preview || !t.previewOnly);
 
-// The active tab lives in the URL (?tab=industry) so it can be linked to
+// The active tab lives in the URL (?tab=certified) so it can be linked to
 // directly and survives a refresh.
 const activeTab = computed(() =>
   tabs.some((t) => t.key === route.query.tab) ? route.query.tab : "academic"
