@@ -52,6 +52,17 @@ export const columns = [
 // column `note`s (e.g. "* …").
 export const tableNotes = ["AUROC with 95% CI."];
 
+// The 62 radiologists of the PI-CAI reader study (Saha et al., Lancet Oncol
+// 2024), shown as a reference row in more than one box.
+const radiologists = {
+  name: "62 radiologists",
+  detail:
+    "Using PI-RADS · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
+  // Two decimals, as published, even in boxes that show three.
+  decimals: 2,
+  reader: { auc: 0.86, ci: [0.83, 0.89] },
+};
+
 export const benchmark = {
   academic: [
     {
@@ -127,12 +138,7 @@ export const benchmark = {
             },
           ],
         },
-        {
-          name: "62 radiologists",
-          detail:
-            "Using PI-RADS · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
-          reader: { auc: 0.86, ci: [0.83, 0.89] },
-        },
+        radiologists,
       ],
     },
     {
@@ -199,6 +205,7 @@ export const benchmark = {
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
         },
+        radiologists,
       ],
       footnotes: ["§ Training data is chosen by the model's developers."],
     },
