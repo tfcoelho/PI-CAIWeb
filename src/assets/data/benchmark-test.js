@@ -229,10 +229,12 @@ export const benchmark = {
           // patients (332 positive) and the 400 reader-study patients (133
           // positive). The 1000-patient score matches the SCARLET-1
           // manuscript's 0.92 (95% CI 0.90–0.94) in its primary internal
-          // testing cohort. No source icon: the manuscript isn't published yet.
+          // testing cohort. The file icon opens the SCARLET-1 paper on our
+          // Research page.
           name: "PI-CAI-2B",
           marker: "*",
           authors: "A. Saha, J. S. Bosma, et al.",
+          source: { paper: "saha2025_picai2_sd" },
           detail: "SCARLET-1 study",
           testing: { auc: 0.9189, ci: [0.9, 0.9359] },
           reader: { auc: 0.9, ci: [0.8662, 0.9299] },
