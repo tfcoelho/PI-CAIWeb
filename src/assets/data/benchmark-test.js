@@ -149,6 +149,8 @@ export const benchmark = {
               name: "H. Kan, et al.",
               institution: "University of Science and Technology of China",
               logo: "/img/logos/ustc.svg",
+              // The seal's own name is unreadable this small.
+              logoText: { text: "USTC", color: "#1f3f8f" },
               city: "Hefei",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },

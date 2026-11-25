@@ -199,13 +199,27 @@
                   <span class="rank">{{ i + 1 }}</span>
                   <span :class="['member-text', { 'with-logo': member.logo }]">
                     <!-- The institution's logo, left of the authors (above
-                         them on phones) -->
-                    <img
+                         them on phones). `logoText` adds a name beside a
+                         badge that has none readable at this size. -->
+                    <span
                       v-if="member.logo"
-                      :src="member.logo"
-                      :alt="member.institution"
-                      class="member-logo"
-                    />
+                      :class="['member-logo', { 'has-text': member.logoText }]"
+                    >
+                      <img
+                        :src="member.logo"
+                        :alt="member.logoText ? '' : member.institution"
+                      />
+                      <span
+                        v-if="member.logoText"
+                        class="logo-text"
+                        :style="{
+                          color: member.logoText.color,
+                          fontFamily: member.logoText.font,
+                        }"
+                        :aria-label="member.institution"
+                        >{{ member.logoText.text }}</span
+                      >
+                    </span>
                     <span class="member-body">
                       <span class="row-name">
                         <span class="authors-full">{{
@@ -819,10 +833,36 @@ onUnmounted(() => {
 
 .member-logo {
   flex: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
   width: 72px;
   height: 30px;
+}
+
+.member-logo img {
+  max-width: 100%;
+  max-height: 100%;
   object-fit: contain;
   object-position: left center;
+}
+
+/* Badge + name: as wide as it needs, at least the usual box */
+.member-logo.has-text {
+  width: auto;
+  min-width: 72px;
+}
+
+.member-logo.has-text img {
+  flex: none;
+  height: 100%;
+}
+
+.logo-text {
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1;
+  white-space: nowrap;
 }
 
 .member-body {
@@ -1012,7 +1052,6 @@ onUnmounted(() => {
   }
 
   .member-logo {
-    width: 72px;
     height: 26px;
   }
 
