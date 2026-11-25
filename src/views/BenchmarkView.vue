@@ -45,7 +45,22 @@
         class="benchmark-card"
       >
         <header class="card-header">
-          <h2 class="card-title">{{ block.title }}</h2>
+          <h2 class="card-title">
+            {{ block.title
+            }}<component
+              :is="sourceLink(block.source).is"
+              v-if="block.source"
+              v-bind="sourceLink(block.source).attrs"
+              class="source-icon title-source"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path
+                  d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                />
+                <path d="M14 3v5h5M9 13h6M9 17h6" />
+              </svg>
+            </component>
+          </h2>
           <p v-if="block.description" class="card-description">
             {{ block.description }}
           </p>
@@ -357,9 +372,11 @@ function sourceLink(source) {
       },
     };
   }
-  const label = source.href.endsWith(".pdf")
-    ? "Method description (PDF)"
-    : "Method description";
+  const label =
+    source.label ||
+    (source.href.endsWith(".pdf")
+      ? "Method description (PDF)"
+      : "Method description");
   return {
     is: "a",
     attrs: {
@@ -844,6 +861,19 @@ onUnmounted(() => {
 
 .source-icon:hover {
   color: #e02090;
+}
+
+/* After a box title: same icon, sized to the title. It has its own width
+   here, as the title has room to keep it on the last line. */
+.title-source {
+  width: auto;
+  vertical-align: 1px;
+}
+
+.title-source svg {
+  width: 18px;
+  height: 18px;
+  margin-left: 4px;
 }
 
 /* Full author list; first author + "et al." on phones */

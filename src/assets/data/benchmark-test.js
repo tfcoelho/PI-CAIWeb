@@ -27,6 +27,8 @@
 //   their write-up: `{ paper: "<id>" }` for a paper on our Research page, or
 //   `{ href: "/docs/benchmark/<file>.pdf" }` for a method description kept in
 //   public/docs/benchmark/.
+//   Add `label` to name the link (shown on hover). On a box, `source` puts
+//   the icon after its title.
 // - `links` (optional) lists further links, shown under the name, e.g.
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
 //   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
@@ -73,6 +75,11 @@ export const benchmark = {
       description:
         "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       paperId: "saha2024_lancet_oncology",
+      // File icon after the title, straight to the paper in Lancet Oncology.
+      source: {
+        href: "https://doi.org/10.1016/S1470-2045(24)00220-1",
+        label: "Paper in Lancet Oncology",
+      },
       decimals: 2,
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
       // algorithms were retrained at the coordinating centre on 9,107 cases
