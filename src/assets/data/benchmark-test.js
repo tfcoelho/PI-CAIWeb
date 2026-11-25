@@ -205,6 +205,17 @@ export const benchmark = {
           testing: { auc: 0.92, ci: [0.9, 0.94] },
         },
         {
+          // Open Development Phase - Testing leaderboard, position 1 (NTNU,
+          // submitted 25 Nov 2026): "ProZone: UMamba-based SSL pretraining on
+          // unlabeled St. Olav's/ NTNU data, fine-tuned on PI-CAI data".
+          // Authors and PDF from its supporting document.
+          name: "ProZone",
+          marker: "*",
+          authors: "S. F. Abbas, M. S. Larsen, et al.",
+          source: { href: "/docs/benchmark/prozone.pdf" },
+          testing: { auc: 0.905, ci: [0.886, 0.924] },
+        },
+        {
           name: "UMamba-ProSSL",
           marker: "*",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
