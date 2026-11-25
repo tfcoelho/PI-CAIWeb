@@ -183,31 +183,4 @@ export const benchmark = {
       ],
     },
   ],
-
-  // Only shown on the unlisted /benchmark-test-page for now.
-  certified: [
-    {
-      id: "certified",
-      title: "Certified Submissions",
-      description:
-        "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1,000 patients as all other submissions.",
-      // Three decimals, as reported (so 0.900 doesn't show as 0.90).
-      decimals: 3,
-      // Scores as reported for the dedicated submission: AUROC (95% CI) on
-      // the full hidden testing cohort and on the reader-study subset.
-      rows: [
-        {
-          name: "Prostate MR AI VA10A",
-          company: "Siemens Healthineers",
-          logo: "/img/logos/siemens-healthineers.svg",
-          href: "https://www.siemens-healthineers.com/fr-lu/infrastructure-it/artificial-intelligence/ai-campaign/mr-prostate",
-          marker: "§",
-          testing: { auc: 0.887, ci: [0.865, 0.909] },
-          reader: { auc: 0.863, ci: [0.824, 0.9] },
-        },
-        radiologists,
-      ],
-      footnotes: ["§ Training data is chosen by the model's developers."],
-    },
-  ],
 };

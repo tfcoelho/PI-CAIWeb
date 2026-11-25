@@ -292,7 +292,8 @@ import {
   onUnmounted,
 } from "vue";
 import { RouterLink, useRoute, useRouter } from "vue-router";
-import { benchmark, columns, tableNotes } from "@/assets/data/benchmark";
+import * as publicData from "@/assets/data/benchmark";
+import * as testData from "@/assets/data/benchmark-test";
 
 const route = useRoute();
 const router = useRouter();
@@ -300,6 +301,8 @@ const router = useRouter();
 // The unlisted /benchmark-test-page (route meta `preview`) shows every tab,
 // including results not yet public (Certified). /benchmark shows Academic.
 const preview = !!route.meta.preview;
+// It also has its own copy of the data (benchmark-test.js) to edit first.
+const { benchmark, columns, tableNotes } = preview ? testData : publicData;
 const allTabs = [
   { key: "academic", label: "Academic" },
   { key: "certified", label: "Certified", previewOnly: true },
