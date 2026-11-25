@@ -210,8 +210,8 @@ export const benchmark = {
       //   .../evaluation/challenge/leaderboard/
       // Scores on the 400 reader-study patients (`reader`): from the table of
       // computed scores shared on 25 Nov 2026 (400 cases, 133 positive),
-      // which also reproduces the 1000-patient scores here. None for
-      // PI-CAI-2B, which isn't in that table.
+      // which also reproduces the 1000-patient scores here. PI-CAI-2B's came
+      // separately (see its row).
       // Authors from the SCALE paper (bosma2025_scale) and the NTNU
       // submissions' supporting documents.
       rows: [
@@ -225,17 +225,17 @@ export const benchmark = {
           reader: { auc: 0.8928, ci: [0.8583, 0.9239] },
         },
         {
-          // SCARLET-1 manuscript (Saha, Bosma, et al.), Results: AUROC 0.92
-          // (95% CI 0.90–0.94) in the primary internal testing cohort, i.e.
-          // the PI-CAI study's 1000 testing patients. Reported at two decimals
-          // only (eFigure 4 in its Supplement 1 plots it without values); no
-          // score on the 400 reader-study patients. No source icon: the
-          // manuscript isn't published yet.
+          // Scores of pi-cai-2b_mednext-3xl-b2, shared on 25 Nov 2026: 1000
+          // patients (332 positive) and the 400 reader-study patients (133
+          // positive). The 1000-patient score matches the SCARLET-1
+          // manuscript's 0.92 (95% CI 0.90–0.94) in its primary internal
+          // testing cohort. No source icon: the manuscript isn't published yet.
           name: "PI-CAI-2B",
           marker: "*",
           authors: "A. Saha, J. S. Bosma, et al.",
           detail: "SCARLET-1 study",
-          testing: { auc: 0.92, ci: [0.9, 0.94] },
+          testing: { auc: 0.9189, ci: [0.9, 0.9359] },
+          reader: { auc: 0.9, ci: [0.8662, 0.9299] },
         },
         {
           // Open Development Phase - Testing leaderboard, position 1 (NTNU,
