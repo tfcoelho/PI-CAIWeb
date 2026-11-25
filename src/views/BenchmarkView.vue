@@ -863,17 +863,15 @@ onUnmounted(() => {
   color: #e02090;
 }
 
-/* After a box title: same icon, sized to the title. It has its own width
-   here, as the title has room to keep it on the last line. */
+/* After a box title: the same small icon. It has its own width here, as the
+   title has room to keep it on the last line. */
 .title-source {
   width: auto;
-  vertical-align: 1px;
+  vertical-align: 2px;
 }
 
 .title-source svg {
-  width: 18px;
-  height: 18px;
-  margin-left: 4px;
+  margin-left: 2px;
 }
 
 /* Full author list; first author + "et al." on phones */
