@@ -192,51 +192,67 @@
                 class="result-row member-row"
                 role="row"
               >
-                <span class="cell-name" role="cell">
+                <span
+                  :class="['cell-name', { 'has-logo': member.logo }]"
+                  role="cell"
+                >
                   <span class="rank">{{ i + 1 }}</span>
-                  <span class="member-text">
-                    <span class="row-name">
-                      <span class="authors-full">{{
-                        keepEtAl(member.name)
-                      }}</span>
-                      <span class="authors-short">{{
-                        keepEtAl(shortAuthors(member.name))
-                      }}</span>
-                      <component
-                        :is="sourceLink(member.source).is"
-                        v-if="member.source"
-                        v-bind="sourceLink(member.source).attrs"
-                        class="source-icon"
+                  <span :class="['member-text', { 'with-logo': member.logo }]">
+                    <!-- The institution's logo, left of the authors (above
+                         them on phones) -->
+                    <img
+                      v-if="member.logo"
+                      :src="member.logo"
+                      :alt="member.institution"
+                      class="member-logo"
+                    />
+                    <span class="member-body">
+                      <span class="row-name">
+                        <span class="authors-full">{{
+                          keepEtAl(member.name)
+                        }}</span>
+                        <span class="authors-short">{{
+                          keepEtAl(shortAuthors(member.name))
+                        }}</span>
+                        <component
+                          :is="sourceLink(member.source).is"
+                          v-if="member.source"
+                          v-bind="sourceLink(member.source).attrs"
+                          class="source-icon"
+                        >
+                          <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                              d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                            />
+                            <path d="M14 3v5h5M9 13h6M9 17h6" />
+                          </svg>
+                        </component>
+                      </span>
+                      <span
+                        v-if="member.institution"
+                        class="member-affiliation"
                       >
-                        <svg viewBox="0 0 24 24" aria-hidden="true">
-                          <path
-                            d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
-                          />
-                          <path d="M14 3v5h5M9 13h6M9 17h6" />
-                        </svg>
-                      </component>
-                    </span>
-                    <span v-if="member.institution" class="member-affiliation">
-                      <span class="authors-full">{{
-                        affiliation(member)
-                      }}</span>
-                      <span class="authors-short">{{ member.country }}</span>
-                    </span>
-                    <span v-if="member.links" class="row-links">
-                      <template v-for="(link, l) in member.links" :key="l">
-                        <router-link
-                          v-if="link.paper"
-                          :to="{ name: 'paper', params: { id: link.paper } }"
-                          >{{ link.label }}</router-link
-                        >
-                        <a
-                          v-else
-                          :href="link.href"
-                          target="_blank"
-                          rel="noopener"
-                          >{{ link.label }}</a
-                        >
-                      </template>
+                        <span class="authors-full">{{
+                          affiliation(member)
+                        }}</span>
+                        <span class="authors-short">{{ member.country }}</span>
+                      </span>
+                      <span v-if="member.links" class="row-links">
+                        <template v-for="(link, l) in member.links" :key="l">
+                          <router-link
+                            v-if="link.paper"
+                            :to="{ name: 'paper', params: { id: link.paper } }"
+                            >{{ link.label }}</router-link
+                          >
+                          <a
+                            v-else
+                            :href="link.href"
+                            target="_blank"
+                            rel="noopener"
+                            >{{ link.label }}</a
+                          >
+                        </template>
+                      </span>
                     </span>
                   </span>
                 </span>
@@ -790,6 +806,30 @@ onUnmounted(() => {
   font-size: 12px;
 }
 
+/* Logo in a fixed box, so wordmarks and round seals line up */
+.member-row .cell-name.has-logo {
+  align-items: center;
+}
+
+.member-text.with-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.member-logo {
+  flex: none;
+  width: 72px;
+  height: 30px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.member-body {
+  display: block;
+  min-width: 0;
+}
+
 .member-affiliation {
   display: block;
   margin-top: 2px;
@@ -958,6 +998,22 @@ onUnmounted(() => {
 @media (max-width: 750px) {
   .benchmark-page {
     padding-top: 40px;
+  }
+
+  /* Logo above the authors, as there is no room beside them */
+  .member-row .cell-name.has-logo {
+    align-items: baseline;
+  }
+
+  .member-text.with-logo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .member-logo {
+    width: 72px;
+    height: 26px;
   }
 
   /* No room beside the name on phones: the logo goes above it */

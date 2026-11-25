@@ -116,7 +116,8 @@ export const benchmark = {
           // https://ars.els-cdn.com/content/image/1-s2.0-S1470204524002201-mmc1.pdf
           // Each member's `institution`, `city` and `country` are its first
           // authors' affiliation, from the team's write-up in the same
-          // appendix (section S4.4); shown under the authors.
+          // appendix (section S4.4); shown under the authors. Its `logo` (from
+          // Wikimedia Commons / Wikipedia) shows before them.
           membersLabel: "Ensemble members",
           membersDecimals: 2,
           members: [
@@ -125,6 +126,7 @@ export const benchmark = {
               source: { href: "/docs/benchmark/datascientx.pdf" },
               name: "N. Debs, A. Routier, et al.",
               institution: "Guerbet Research",
+              logo: "/img/logos/guerbet.png",
               city: "Villepinte",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
@@ -135,6 +137,7 @@ export const benchmark = {
               source: { href: "/docs/benchmark/bdav_y.pdf" },
               name: "Y. Yuan, et al.",
               institution: "The University of Sydney",
+              logo: "/img/logos/university-of-sydney.svg",
               city: "Sydney",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
@@ -145,6 +148,7 @@ export const benchmark = {
               source: { href: "/docs/benchmark/swangeese.pdf" },
               name: "H. Kan, et al.",
               institution: "University of Science and Technology of China",
+              logo: "/img/logos/ustc.svg",
               city: "Hefei",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
@@ -155,6 +159,7 @@ export const benchmark = {
               source: { href: "/docs/benchmark/pimed-stanford.pdf" },
               name: "C. X. Li, S. Vesal, S. Saunders, et al.",
               institution: "Stanford University",
+              logo: "/img/logos/stanford.svg",
               city: "Stanford",
               country: "United States",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
@@ -167,6 +172,7 @@ export const benchmark = {
               source: { href: "/docs/benchmark/heviai.pdf" },
               name: "A. Karagöz, M. E. Şeker, M. Yergin, et al.",
               institution: "Istanbul Technical University",
+              logo: "/img/logos/istanbul-technical-university.svg",
               city: "Istanbul",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
