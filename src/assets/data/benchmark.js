@@ -194,8 +194,7 @@ export const benchmark = {
           name: "Prostate MR AI VA10A",
           company: "Siemens Healthineers",
           logo: "/img/logos/siemens-healthineers.svg",
-          // TODO: placeholder until the real link is provided.
-          href: "#",
+          href: "https://www.siemens-healthineers.com/fr-lu/infrastructure-it/artificial-intelligence/ai-campaign/mr-prostate",
           marker: "§",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
