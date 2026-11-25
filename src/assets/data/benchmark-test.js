@@ -82,7 +82,7 @@ export const benchmark = {
       // radiologists on the 400-case reader-study subset.
       rows: [
         {
-          name: "PI-CAI AI system",
+          name: "PI-CAI-1 AI system",
           marker: "*",
           detail: "Ensemble of the five top-ranked algorithms",
           testing: { auc: 0.93, ci: [0.91, 0.94] },
