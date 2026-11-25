@@ -45,16 +45,7 @@
         class="benchmark-card"
       >
         <header class="card-header">
-          <h2 class="card-title">
-            <!-- A company's logo stands in for its name -->
-            <img
-              v-if="block.logo"
-              :src="block.logo"
-              :alt="block.title"
-              class="card-logo"
-            />
-            <template v-else>{{ block.title }}</template>
-          </h2>
+          <h2 class="card-title">{{ block.title }}</h2>
           <p v-if="block.description" class="card-description">
             {{ block.description }}
           </p>
@@ -84,6 +75,13 @@
           >
             <div class="result-row" role="row">
               <span class="cell-name" role="cell">
+                <!-- The developer's logo, above the system's name -->
+                <img
+                  v-if="row.logo"
+                  :src="row.logo"
+                  :alt="row.company"
+                  class="row-logo"
+                />
                 <span class="row-name"
                   >{{ row.name
                   }}<sup v-if="row.marker" class="row-marker">{{
@@ -534,11 +532,11 @@ onUnmounted(() => {
   margin: 0 0 8px;
 }
 
-.card-logo {
-  display: block;
-  height: 30px;
+.row-logo {
+  align-self: flex-start;
+  height: 22px;
   width: auto;
-  margin: 2px 0 6px;
+  margin-bottom: 4px;
 }
 
 .card-description {

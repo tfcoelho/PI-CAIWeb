@@ -28,8 +28,9 @@
 // - `links` (optional) lists further links, shown under the name, e.g.
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
 //   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
-// - `logo` (optional, on a block) shows a company's logo instead of its title,
-//   e.g. "/img/logos/<company>.svg" in public/img/logos/.
+// - `logo` (optional) shows the developer's logo above a row's name, e.g.
+//   "/img/logos/<company>.svg" in public/img/logos/, with `company` as its
+//   alt text.
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
@@ -179,10 +180,8 @@ export const benchmark = {
   // Only shown on the unlisted /benchmark-test-page for now.
   certified: [
     {
-      id: "siemens",
-      title: "Siemens Healthineers",
-      // Shown instead of the title; the title stays as its alt text.
-      logo: "/img/logos/siemens-healthineers.svg",
+      id: "certified",
+      title: "Certified Submissions",
       description:
         "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study.",
       // Three decimals, as reported (so 0.900 doesn't show as 0.90).
@@ -192,6 +191,8 @@ export const benchmark = {
       rows: [
         {
           name: "Prostate MR AI VA10A",
+          company: "Siemens Healthineers",
+          logo: "/img/logos/siemens-healthineers.svg",
           marker: "§",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
