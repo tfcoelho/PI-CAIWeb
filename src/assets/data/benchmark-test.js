@@ -85,7 +85,6 @@ export const benchmark = {
       // algorithms were retrained at the coordinating centre on 9,107 cases
       // (7,607 sequestered + 1,500 public) before being ensembled.
       footnotes: [
-        "Ensemble members' scores on the 400 reader-study patients are from the study's supplementary appendix, which does not report their 95% CI.",
         "* All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
       ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
