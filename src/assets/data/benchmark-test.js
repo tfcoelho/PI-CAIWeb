@@ -85,6 +85,7 @@ export const benchmark = {
       // algorithms were retrained at the coordinating centre on 9,107 cases
       // (7,607 sequestered + 1,500 public) before being ensembled.
       footnotes: [
+        "Ensemble members' scores on the 400 reader-study patients are from the study's supplementary appendix, which does not report their 95% CI.",
         "* All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
       ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
@@ -106,6 +107,11 @@ export const benchmark = {
           // first authors, then "et al.". DataScientX (Debs, Routier) and
           // PIMed-Stanford (Li, Vesal, Saunders) have shared first authors who
           // contributed equally, per their Grand Challenge algorithm pages.
+          // Scores on the 400 reader-study patients: supplementary appendix,
+          // Figure S7 (top left, ROC legend; printed page 11), which gives no
+          // 95% CIs for them. Its legend also gives the ensemble 0.904 on
+          // these 400, where the main paper reports 0.91 (0.87–0.94).
+          // https://ars.els-cdn.com/content/image/1-s2.0-S1470204524002201-mmc1.pdf
           membersLabel: "Ensemble members",
           membersDecimals: 2,
           members: [
@@ -115,6 +121,7 @@ export const benchmark = {
               name: "N. Debs, A. Routier, et al.",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
+              reader: { auc: 0.909 },
             },
             {
               team: "BDAV_Y",
@@ -122,6 +129,7 @@ export const benchmark = {
               name: "Y. Yuan, et al.",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
+              reader: { auc: 0.897 },
             },
             {
               team: "Swangeese",
@@ -129,6 +137,7 @@ export const benchmark = {
               name: "H. Kan, et al.",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
+              reader: { auc: 0.885 },
             },
             {
               team: "PIMed-Stanford",
@@ -136,6 +145,7 @@ export const benchmark = {
               name: "X. Li, S. Vesal, S. Saunders, et al.",
               country: "USA",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
+              reader: { auc: 0.876 },
             },
             {
               team: "HeviAI",
@@ -145,6 +155,7 @@ export const benchmark = {
               name: "A. Karagöz, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
+              reader: { auc: 0.861 },
             },
           ],
         },
