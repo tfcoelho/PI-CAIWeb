@@ -660,14 +660,14 @@ onUnmounted(() => {
 
 /* ---- Results table: name column + one column per analysis ---- */
 .results {
-  --score-col: 132px;
+  --score-col: 128px;
 }
 
 .results-head,
 .result-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) repeat(2, var(--score-col));
-  column-gap: 24px;
+  column-gap: 16px;
   align-items: baseline;
 }
 
