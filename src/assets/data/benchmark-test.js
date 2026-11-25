@@ -190,6 +190,19 @@ export const benchmark = {
           testing: { auc: 0.924, ci: [0.906, 0.94] },
         },
         {
+          // SCARLET-1 manuscript (Saha, Bosma, et al.), Results: AUROC 0.92
+          // (95% CI 0.90–0.94) in the primary internal testing cohort, i.e.
+          // the PI-CAI study's 1000 testing patients. Reported at two decimals
+          // only (eFigure 4 in its Supplement 1 plots it without values); no
+          // score on the 400 reader-study patients. No source icon: the
+          // manuscript isn't published yet.
+          name: "PI-CAI-2B",
+          marker: "*",
+          authors: "A. Saha, J. S. Bosma, et al.",
+          detail: "SCARLET-1 study",
+          testing: { auc: 0.92, ci: [0.9, 0.94] },
+        },
+        {
           name: "UMamba-ProSSL",
           marker: "*",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
