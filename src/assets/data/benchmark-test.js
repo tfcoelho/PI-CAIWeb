@@ -114,6 +114,9 @@ export const benchmark = {
           // ensemble 0.904 on these 400, where the main paper reports 0.91
           // (0.87–0.94).
           // https://ars.els-cdn.com/content/image/1-s2.0-S1470204524002201-mmc1.pdf
+          // Each member's `institution`, `city` and `country` are its first
+          // authors' affiliation, from the team's write-up in the same
+          // appendix (section S4.4); shown under the authors.
           membersLabel: "Ensemble members",
           membersDecimals: 2,
           members: [
@@ -121,6 +124,8 @@ export const benchmark = {
               team: "DataScientX",
               source: { href: "/docs/benchmark/datascientx.pdf" },
               name: "N. Debs, A. Routier, et al.",
+              institution: "Guerbet Research",
+              city: "Villepinte",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
               reader: { auc: 0.9089, ci: [0.8765, 0.9378] },
@@ -129,6 +134,8 @@ export const benchmark = {
               team: "BDAV_Y",
               source: { href: "/docs/benchmark/bdav_y.pdf" },
               name: "Y. Yuan, et al.",
+              institution: "The University of Sydney",
+              city: "Sydney",
               country: "Australia",
               testing: { auc: 0.909, ci: [0.89, 0.928] },
               reader: { auc: 0.8969, ci: [0.863, 0.9271] },
@@ -137,6 +144,8 @@ export const benchmark = {
               team: "Swangeese",
               source: { href: "/docs/benchmark/swangeese.pdf" },
               name: "H. Kan, et al.",
+              institution: "University of Science and Technology of China",
+              city: "Hefei",
               country: "China",
               testing: { auc: 0.904, ci: [0.884, 0.923] },
               reader: { auc: 0.8847, ci: [0.8455, 0.9204] },
@@ -145,7 +154,9 @@ export const benchmark = {
               team: "PIMed-Stanford",
               source: { href: "/docs/benchmark/pimed-stanford.pdf" },
               name: "X. Li, S. Vesal, S. Saunders, et al.",
-              country: "USA",
+              institution: "Stanford University",
+              city: "Stanford",
+              country: "United States",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
               reader: { auc: 0.8756, ci: [0.8367, 0.912] },
             },
@@ -155,6 +166,8 @@ export const benchmark = {
               // first three in its author list, then "et al.".
               source: { href: "/docs/benchmark/heviai.pdf" },
               name: "A. Karagöz, M. E. Şeker, M. Yergin, et al.",
+              institution: "Istanbul Technical University",
+              city: "Istanbul",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
               reader: { auc: 0.8614, ci: [0.8186, 0.9006] },

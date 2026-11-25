@@ -216,6 +216,12 @@
                         </svg>
                       </component>
                     </span>
+                    <span v-if="member.institution" class="member-affiliation">
+                      <span class="authors-full">{{
+                        affiliation(member)
+                      }}</span>
+                      <span class="authors-short">{{ member.country }}</span>
+                    </span>
                     <span v-if="member.links" class="row-links">
                       <template v-for="(link, l) in member.links" :key="l">
                         <router-link
@@ -390,6 +396,12 @@ function sourceLink(source) {
 }
 
 // Keeps "et al." on one line when author lists wrap.
+// "Institution · City, Country", leaving out any part not given.
+function affiliation({ institution, city, country }) {
+  const place = [city, country].filter(Boolean).join(", ");
+  return [institution, place].filter(Boolean).join(" · ");
+}
+
 function keepEtAl(authors) {
   return authors.replace(/\bet al\./g, "et\u00a0al.");
 }
@@ -778,6 +790,13 @@ onUnmounted(() => {
   font-size: 12px;
 }
 
+.member-affiliation {
+  display: block;
+  margin-top: 2px;
+  font-size: 13px;
+  color: #888;
+}
+
 .rank {
   width: 22px;
   flex-shrink: 0;
@@ -874,7 +893,8 @@ onUnmounted(() => {
   margin-left: 2px;
 }
 
-/* Full author list; first author + "et al." on phones */
+/* Full author list (and affiliation); first author + "et al." (and the
+   country only) on phones */
 .authors-short {
   display: none;
 }
