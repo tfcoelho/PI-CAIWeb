@@ -183,8 +183,7 @@ export const benchmark = {
       title: "Siemens Healthineers",
       // Shown instead of the title; the title stays as its alt text.
       logo: "/img/logos/siemens-healthineers.svg",
-      description:
-        "Certified AI systems evaluated under the same masked, standardised protocol.",
+      description: "Certified AI systems.",
       // Three decimals, as reported (so 0.900 doesn't show as 0.90).
       decimals: 3,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
