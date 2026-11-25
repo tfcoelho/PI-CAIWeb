@@ -153,7 +153,7 @@ export const benchmark = {
             {
               team: "PIMed-Stanford",
               source: { href: "/docs/benchmark/pimed-stanford.pdf" },
-              name: "X. Li, S. Vesal, S. Saunders, et al.",
+              name: "C. X. Li, S. Vesal, S. Saunders, et al.",
               institution: "Stanford University",
               city: "Stanford",
               country: "United States",
