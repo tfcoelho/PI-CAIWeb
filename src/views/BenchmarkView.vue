@@ -394,9 +394,17 @@ function decimalsFor(row, block) {
 // (0.9 -> "0.90", 0.8875 -> "0.8875").
 function formatAuc(value, decimals) {
   if (value == null) return "—";
-  if (decimals != null) return value.toFixed(decimals);
+  if (decimals != null) return roundHalfUp(value, decimals);
   const entered = (String(value).split(".")[1] || "").length;
   return value.toFixed(Math.max(2, entered));
+}
+
+// Rounds as written, half up: 0.865 -> "0.87". (toFixed alone gives "0.86",
+// as 0.865 is stored as 0.86499….)
+function roundHalfUp(value, decimals) {
+  return Number(
+    Math.round(Number(`${value}e${decimals}`)) + `e-${decimals}`
+  ).toFixed(decimals);
 }
 
 function formatCi(ci, decimals) {
