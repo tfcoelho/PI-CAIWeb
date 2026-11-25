@@ -28,7 +28,8 @@
 // - `links` (optional) lists further links, shown under the name, e.g.
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
 //   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
-// - `logo` (optional) shows the developer's logo above a row's name, e.g.
+// - `href` (optional) links a row's name, e.g. to the system's product page.
+// - `logo` (optional) shows the developer's logo left of a row's name, e.g.
 //   "/img/logos/<company>.svg" in public/img/logos/, with `company` as its
 //   alt text.
 // - Author strings follow the site's paper convention: initials, then surname
@@ -193,6 +194,8 @@ export const benchmark = {
           name: "Prostate MR AI VA10A",
           company: "Siemens Healthineers",
           logo: "/img/logos/siemens-healthineers.svg",
+          // TODO: placeholder until the real link is provided.
+          href: "#",
           marker: "§",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },

@@ -74,59 +74,77 @@
             role="rowgroup"
           >
             <div class="result-row" role="row">
-              <span class="cell-name" role="cell">
-                <!-- The developer's logo, above the system's name -->
+              <span
+                :class="['cell-name', { 'with-logo': row.logo }]"
+                role="cell"
+              >
+                <!-- The developer's logo, left of the system's name -->
                 <img
                   v-if="row.logo"
                   :src="row.logo"
                   :alt="row.company"
                   class="row-logo"
                 />
-                <span class="row-name"
-                  >{{ row.name
-                  }}<sup v-if="row.marker" class="row-marker">{{
-                    row.marker
-                  }}</sup></span
-                >
-                <!-- A small file icon after the authors opens their write-up
-                     (paper or PDF) -->
-                <span v-if="row.authors" class="row-authors">
-                  <span class="authors-full">{{ keepEtAl(row.authors) }}</span>
-                  <span class="authors-short">{{
-                    keepEtAl(shortAuthors(row.authors))
-                  }}</span>
-                  <component
-                    :is="sourceLink(row.source).is"
-                    v-if="row.source"
-                    v-bind="sourceLink(row.source).attrs"
-                    class="source-icon"
+                <span class="row-text">
+                  <!-- `href` links the system's name, e.g. to its product page -->
+                  <span class="row-name"
+                    ><a
+                      v-if="row.href"
+                      :href="row.href"
+                      v-bind="
+                        row.href.startsWith('http')
+                          ? { target: '_blank', rel: 'noopener' }
+                          : {}
+                      "
+                      class="row-name-link"
+                      >{{ row.name }}</a
+                    ><template v-else>{{ row.name }}</template
+                    ><sup v-if="row.marker" class="row-marker">{{
+                      row.marker
+                    }}</sup></span
                   >
-                    <svg viewBox="0 0 24 24" aria-hidden="true">
-                      <path
-                        d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
-                      />
-                      <path d="M14 3v5h5M9 13h6M9 17h6" />
-                    </svg>
-                  </component>
-                </span>
-                <span v-if="row.detail" class="row-detail">
-                  {{ row.detail }}
-                </span>
-                <span v-if="row.links" class="row-links">
-                  <template v-for="(link, l) in row.links" :key="l">
-                    <router-link
-                      v-if="link.paper"
-                      :to="{ name: 'paper', params: { id: link.paper } }"
-                      >{{ link.label }}</router-link
+                  <!-- A small file icon after the authors opens their write-up
+                     (paper or PDF) -->
+                  <span v-if="row.authors" class="row-authors">
+                    <span class="authors-full">{{
+                      keepEtAl(row.authors)
+                    }}</span>
+                    <span class="authors-short">{{
+                      keepEtAl(shortAuthors(row.authors))
+                    }}</span>
+                    <component
+                      :is="sourceLink(row.source).is"
+                      v-if="row.source"
+                      v-bind="sourceLink(row.source).attrs"
+                      class="source-icon"
                     >
-                    <a
-                      v-else
-                      :href="link.href"
-                      target="_blank"
-                      rel="noopener"
-                      >{{ link.label }}</a
-                    >
-                  </template>
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                        />
+                        <path d="M14 3v5h5M9 13h6M9 17h6" />
+                      </svg>
+                    </component>
+                  </span>
+                  <span v-if="row.detail" class="row-detail">
+                    {{ row.detail }}
+                  </span>
+                  <span v-if="row.links" class="row-links">
+                    <template v-for="(link, l) in row.links" :key="l">
+                      <router-link
+                        v-if="link.paper"
+                        :to="{ name: 'paper', params: { id: link.paper } }"
+                        >{{ link.label }}</router-link
+                      >
+                      <a
+                        v-else
+                        :href="link.href"
+                        target="_blank"
+                        rel="noopener"
+                        >{{ link.label }}</a
+                      >
+                    </template>
+                  </span>
                 </span>
               </span>
               <span
@@ -532,11 +550,35 @@ onUnmounted(() => {
   margin: 0 0 8px;
 }
 
+.cell-name.with-logo {
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+}
+
 .row-logo {
-  align-self: flex-start;
+  flex: none;
   height: 22px;
   width: auto;
-  margin-bottom: 4px;
+}
+
+.row-text {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.row-name-link {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: #ccc;
+  text-underline-offset: 3px;
+}
+
+.row-name-link:hover {
+  color: #e02090;
+  text-decoration-color: currentColor;
 }
 
 .card-description {
@@ -857,6 +899,17 @@ onUnmounted(() => {
 @media (max-width: 750px) {
   .benchmark-page {
     padding-top: 40px;
+  }
+
+  /* No room beside the name on phones: the logo goes above it */
+  .cell-name.with-logo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .row-logo {
+    height: 18px;
   }
 
   .header-logo-glass {
