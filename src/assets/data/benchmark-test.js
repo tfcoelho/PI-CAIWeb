@@ -151,10 +151,10 @@ export const benchmark = {
             },
             {
               team: "HeviAI",
-              // All eight authors contributed equally (per their report), so no
-              // separate group of first authors to list: first author + "et al.".
+              // All eight authors contributed equally (per their report); the
+              // first three in its author list, then "et al.".
               source: { href: "/docs/benchmark/heviai.pdf" },
-              name: "A. Karagöz, et al.",
+              name: "A. Karagöz, M. E. Şeker, M. Yergin, et al.",
               country: "Turkey",
               testing: { auc: 0.892, ci: [0.87, 0.913] },
               reader: { auc: 0.8614, ci: [0.8186, 0.9006] },
