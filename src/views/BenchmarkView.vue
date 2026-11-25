@@ -831,26 +831,23 @@ onUnmounted(() => {
   gap: 12px;
 }
 
+/* Same width for every logo, so the authors after it line up. Wide enough
+   for a badge with its name beside it. */
 .member-logo {
   flex: none;
   display: flex;
   align-items: center;
   gap: 4px;
-  width: 72px;
+  width: 94px;
   height: 30px;
 }
 
+/* Logos keep their earlier size; only the space they sit in is wider */
 .member-logo img {
-  max-width: 100%;
+  max-width: 72px;
   max-height: 100%;
   object-fit: contain;
   object-position: left center;
-}
-
-/* Badge + name: as wide as it needs, at least the usual box */
-.member-logo.has-text {
-  width: auto;
-  min-width: 72px;
 }
 
 .member-logo.has-text img {
