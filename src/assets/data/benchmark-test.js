@@ -161,19 +161,22 @@ export const benchmark = {
         "* Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
-      // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
-      //   submission): .../evaluation/closed-testing-phase-final-ranking/leaderboard/
+      // - Closed Testing Phase - Testing (Final Ranking), position 3 (PI-CAI-2A:
+      //   "SCALE algorithm for clinically significant prostate cancer
+      //   detection", the final, semi-supervised SCALE; submitted 7 May 2025):
+      //   .../evaluation/closed-testing-phase-final-ranking/leaderboard/
       // - Open Development Phase - Testing, ranks 1 and 2 (NTNU - PROPERMED):
       //   .../evaluation/challenge/leaderboard/
       // Authors from the SCALE paper (bosma2025_scale) and the NTNU
       // submissions' supporting documents.
       rows: [
         {
-          name: "SCALE (supervised)",
+          name: "PI-CAI-2A",
           marker: "*",
           authors: "J. S. Bosma, L. Builtjes, et al.",
           source: { paper: "bosma2025_scale" },
-          testing: { auc: 0.921, ci: [0.902, 0.938] },
+          detail: "SCALE, semi-supervised",
+          testing: { auc: 0.924, ci: [0.906, 0.94] },
         },
         {
           name: "UMamba-ProSSL",
