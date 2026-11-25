@@ -182,7 +182,7 @@ export const benchmark = {
   certified: [
     {
       id: "certified",
-      title: "Certified Submissions",
+      title: "Commercial Certified Submissions",
       description:
         "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study.",
       // Three decimals, as reported (so 0.900 doesn't show as 0.90).
