@@ -21,7 +21,7 @@
 //   they show indented under it.
 // - `pending: true` shows "Pending" in both columns, for evaluations in progress.
 // - Rows show in the order given here: keep them sorted by AUROC.
-// - `marker` (optional, e.g. "†") is added after a row's name; explain it in
+// - `marker` (optional, "*") is added after a row's name; explain it in
 //   one of the block's `footnotes` starting with the same sign.
 // - `source` (optional) adds a small file icon after the authors, linking to
 //   their write-up: `{ paper: "<id>" }` for a paper on our Research page, or
@@ -38,15 +38,13 @@
 //   ("A. Saha"). Use "et al." for long author lists.
 
 export const columns = [
-  { key: "testing", title: "1,000 patients", subtitle: "Standalone AI" },
+  { key: "testing", title: "1,000 patients", subtitle: "Complete set" },
   {
     key: "reader",
     title: "400 patients",
-    subtitle: "Reader study",
-    // `marker` is added to the column header; `note` explains it under
-    // every table.
-    marker: "*",
-    note: "The 400 reader-study patients are a subset of the 1,000 testing patients.",
+    subtitle: "Reader study subset",
+    // Optional: `marker` is added to the column header and `note` explains
+    // it under every table.
   },
 ];
 
@@ -69,7 +67,7 @@ export const benchmark = {
   academic: [
     {
       id: "pi-cai-study",
-      title: "PI-CAI Study",
+      title: "The PI-CAI Study",
       description:
         "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1,000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       paperId: "saha2024_lancet_oncology",
@@ -77,7 +75,7 @@ export const benchmark = {
       // algorithms were retrained at the coordinating centre on 9,107 cases
       // (7,607 sequestered + 1,500 public) before being ensembled.
       footnotes: [
-        "† All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
+        "* All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
       ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
       // AI system on all 1,000 testing cases, and AI system vs the 62
@@ -85,7 +83,7 @@ export const benchmark = {
       rows: [
         {
           name: "PI-CAI AI system",
-          marker: "†",
+          marker: "*",
           detail: "Ensemble of the five top-ranked algorithms",
           testing: { auc: 0.93, ci: [0.91, 0.94] },
           reader: { auc: 0.91, ci: [0.87, 0.94] },
@@ -147,10 +145,10 @@ export const benchmark = {
       id: "post-study",
       title: "Post-Study Submissions",
       decimals: 3,
-      // `§` on every row: each developer chose their own training data.
+      // `*` on every row: each developer chose their own training data.
       footnotes: [
         "Post-study submissions were not submitted for the reader study.",
-        "§ Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
+        "* Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Final Ranking, rank 2 (best-ranked SCALE
@@ -162,21 +160,21 @@ export const benchmark = {
       rows: [
         {
           name: "SCALE (supervised)",
-          marker: "§",
+          marker: "*",
           authors: "J. S. Bosma, L. Builtjes, et al.",
           source: { paper: "bosma2025_scale" },
           testing: { auc: 0.921, ci: [0.902, 0.938] },
         },
         {
           name: "UMamba-ProSSL",
-          marker: "§",
+          marker: "*",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           testing: { auc: 0.905, ci: [0.885, 0.924] },
         },
         {
           name: "U-MambaMTL",
-          marker: "§",
+          marker: "*",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
           // MIDL 2025 full paper
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
@@ -202,13 +200,13 @@ export const benchmark = {
           company: "Siemens Healthineers",
           logo: "/img/logos/siemens-healthineers.svg",
           href: "https://www.siemens-healthineers.com/fr-lu/infrastructure-it/artificial-intelligence/ai-campaign/mr-prostate",
-          marker: "§",
+          marker: "*",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
         },
         radiologists,
       ],
-      footnotes: ["§ Training data is chosen by the model's developers."],
+      footnotes: ["* Training data is chosen by the model's developers."],
     },
   ],
 };
