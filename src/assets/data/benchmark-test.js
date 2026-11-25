@@ -37,6 +37,9 @@
 // - Author strings follow the site's paper convention: initials, then surname
 //   ("A. Saha"). Use "et al." for long author lists.
 
+// The test page shows every AUROC and CI at two decimals (`decimals: 2` on
+// each box), rounded half up from the values entered here.
+
 export const columns = [
   { key: "testing", title: "1000 patients", subtitle: "Complete set" },
   {
@@ -58,7 +61,6 @@ const radiologists = {
   name: "62 radiologists",
   detail:
     "Using PI-RADS · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
-  // Two decimals, as published, even in boxes that show three.
   decimals: 2,
   reader: { auc: 0.86, ci: [0.83, 0.89] },
 };
@@ -71,6 +73,7 @@ export const benchmark = {
       description:
         "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       paperId: "saha2024_lancet_oncology",
+      decimals: 2,
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
       // algorithms were retrained at the coordinating centre on 9,107 cases
       // (7,607 sequestered + 1,500 public) before being ensembled.
@@ -97,7 +100,7 @@ export const benchmark = {
           // PIMed-Stanford (Li, Vesal, Saunders) have shared first authors who
           // contributed equally, per their Grand Challenge algorithm pages.
           membersLabel: "Ensemble members",
-          membersDecimals: 3,
+          membersDecimals: 2,
           members: [
             {
               team: "DataScientX",
@@ -144,7 +147,7 @@ export const benchmark = {
     {
       id: "post-study",
       title: "Post-Study Submissions",
-      decimals: 3,
+      decimals: 2,
       // `*` on every row: each developer chose their own training data.
       footnotes: [
         "Post-study submissions were not submitted for the reader study.",
@@ -190,8 +193,7 @@ export const benchmark = {
       title: "Certified Submissions",
       description:
         "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1000 patients as all other submissions.",
-      // Three decimals, as reported (so 0.900 doesn't show as 0.90).
-      decimals: 3,
+      decimals: 2,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
       // the full hidden testing cohort and on the reader-study subset.
       rows: [
