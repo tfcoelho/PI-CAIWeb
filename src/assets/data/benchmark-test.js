@@ -6,7 +6,7 @@
 // an entry, edit it here; BenchmarkView.vue needs no changes.
 //
 // Every box is a table with the two analyses in `columns` side by side:
-// the full 1,000-case testing cohort and the 400-case reader study against
+// the full 1000-case testing cohort and the 400-case reader study against
 // radiologists. A row gives a score per column under that column's `key`
 // (`testing` / `reader`); leave one out and the page shows "—" (not
 // evaluated) in that cell.
@@ -38,7 +38,7 @@
 //   ("A. Saha"). Use "et al." for long author lists.
 
 export const columns = [
-  { key: "testing", title: "1,000 patients", subtitle: "Complete set" },
+  { key: "testing", title: "1000 patients", subtitle: "Complete set" },
   {
     key: "reader",
     title: "400 patients",
@@ -69,7 +69,7 @@ export const benchmark = {
       id: "pi-cai-study",
       title: "The PI-CAI Study",
       description:
-        "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1,000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
+        "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       paperId: "saha2024_lancet_oncology",
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
       // algorithms were retrained at the coordinating centre on 9,107 cases
@@ -78,7 +78,7 @@ export const benchmark = {
         "* All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
       ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
-      // AI system on all 1,000 testing cases, and AI system vs the 62
+      // AI system on all 1000 testing cases, and AI system vs the 62
       // radiologists on the 400-case reader-study subset.
       rows: [
         {
@@ -88,7 +88,7 @@ export const benchmark = {
           testing: { auc: 0.93, ci: [0.91, 0.94] },
           reader: { auc: 0.91, ci: [0.87, 0.94] },
           // The five algorithms that make up the ensemble, in final ranking
-          // order, each on the same 1,000 cases. Source: Closed Testing Phase -
+          // order, each on the same 1000 cases. Source: Closed Testing Phase -
           // Final Ranking leaderboard (ranks 1, 4, 5, 7 and 8; the other rows
           // are later submissions and baselines):
           // https://pi-cai.grand-challenge.org/evaluation/closed-testing-phase-final-ranking/leaderboard/
@@ -189,7 +189,7 @@ export const benchmark = {
       id: "certified",
       title: "Certified Submissions",
       description:
-        "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1,000 patients as all other submissions.",
+        "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1000 patients as all other submissions.",
       // Three decimals, as reported (so 0.900 doesn't show as 0.90).
       decimals: 3,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
