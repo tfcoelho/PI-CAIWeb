@@ -183,6 +183,16 @@ export const benchmark = {
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
           testing: { auc: 0.896, ci: [0.875, 0.916] },
         },
+        {
+          // Open Development Phase - Testing leaderboard, position 4:
+          // "E. Pooch et al.: nnUNet fully-supervised (trained with additional
+          // manual annotations)".
+          name: "nnUNet fully-supervised",
+          marker: "*",
+          authors: "E. Pooch, et al.",
+          detail: "Trained with additional manual annotations",
+          testing: { auc: 0.888, ci: [0.866, 0.908] },
+        },
       ],
     },
   ],
