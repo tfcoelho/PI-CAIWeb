@@ -660,7 +660,7 @@ onUnmounted(() => {
 
 /* ---- Results table: name column + one column per analysis ---- */
 .results {
-  --score-col: 160px;
+  --score-col: 132px;
 }
 
 .results-head,
