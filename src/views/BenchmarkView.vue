@@ -208,6 +208,11 @@
                       <img
                         :src="member.logo"
                         :alt="member.logoText ? '' : member.institution"
+                        :style="
+                          member.logoWidth && {
+                            maxWidth: `${member.logoWidth}px`,
+                          }
+                        "
                       />
                       <span
                         v-if="member.logoText"
