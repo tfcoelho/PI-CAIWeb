@@ -184,7 +184,7 @@ export const benchmark = {
       id: "certified",
       title: "Certified Submissions",
       description:
-        "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study.",
+        "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study. They are tested on the PI-CAI study's sequestered testing cohort: the same 1,000 patients used for all other submissions.",
       // Three decimals, as reported (so 0.900 doesn't show as 0.90).
       decimals: 3,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
