@@ -197,7 +197,6 @@ export const benchmark = {
       decimals: 2,
       // `*` on every row: each developer chose their own training data.
       footnotes: [
-        "Post-study submissions were not submitted for the reader study.",
         "* Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
@@ -207,6 +206,10 @@ export const benchmark = {
       //   .../evaluation/closed-testing-phase-final-ranking/leaderboard/
       // - Open Development Phase - Testing, ranks 1 and 2 (NTNU - PROPERMED):
       //   .../evaluation/challenge/leaderboard/
+      // Scores on the 400 reader-study patients (`reader`): from the table of
+      // computed scores shared on 25 Nov 2026 (400 cases, 133 positive),
+      // which also reproduces the 1000-patient scores here. None for
+      // PI-CAI-2B, which isn't in that table.
       // Authors from the SCALE paper (bosma2025_scale) and the NTNU
       // submissions' supporting documents.
       rows: [
@@ -217,6 +220,7 @@ export const benchmark = {
           source: { paper: "bosma2025_scale" },
           detail: "SCALE, semi-supervised",
           testing: { auc: 0.924, ci: [0.906, 0.94] },
+          reader: { auc: 0.8928, ci: [0.8583, 0.9239] },
         },
         {
           // SCARLET-1 manuscript (Saha, Bosma, et al.), Results: AUROC 0.92
@@ -241,6 +245,7 @@ export const benchmark = {
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/prozone.pdf" },
           testing: { auc: 0.905, ci: [0.886, 0.924] },
+          reader: { auc: 0.8772, ci: [0.8392, 0.9112] },
         },
         {
           name: "UMamba-ProSSL",
@@ -248,6 +253,7 @@ export const benchmark = {
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           testing: { auc: 0.905, ci: [0.885, 0.924] },
+          reader: { auc: 0.8832, ci: [0.8471, 0.9157] },
         },
         {
           name: "U-MambaMTL",
@@ -256,6 +262,7 @@ export const benchmark = {
           // MIDL 2025 full paper
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
           testing: { auc: 0.896, ci: [0.875, 0.916] },
+          reader: { auc: 0.8655, ci: [0.8246, 0.9031] },
         },
         {
           // Open Development Phase - Testing leaderboard, position 4:
@@ -266,6 +273,7 @@ export const benchmark = {
           authors: "E. Pooch, et al.",
           detail: "Trained with additional manual annotations",
           testing: { auc: 0.888, ci: [0.866, 0.908] },
+          reader: { auc: 0.8621, ci: [0.8205, 0.8995] },
         },
       ],
     },
