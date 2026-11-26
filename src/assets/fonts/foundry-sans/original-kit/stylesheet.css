@@ -1,0 +1,108 @@
+@font-face {
+    font-family: 'Foundry Sans';
+    src: url('FoundrySans-Light.eot');
+    src: local('Foundry Sans Light'), local('FoundrySans-Light'),
+        url('FoundrySans-Light.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-Light.woff2') format('woff2'),
+        url('FoundrySans-Light.woff') format('woff'),
+        url('FoundrySans-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foundry Sans';
+    src: url('FoundrySans-Medium.eot');
+    src: local('Foundry Sans Medium'), local('FoundrySans-Medium'),
+        url('FoundrySans-Medium.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-Medium.woff2') format('woff2'),
+        url('FoundrySans-Medium.woff') format('woff'),
+        url('FoundrySans-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foundry Sans Demi';
+    src: url('FoundrySans-Demi.eot');
+    src: local('Foundry Sans Demi'), local('FoundrySans-Demi'),
+        url('FoundrySans-Demi.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-Demi.woff2') format('woff2'),
+        url('FoundrySans-Demi.woff') format('woff'),
+        url('FoundrySans-Demi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foundry Sans Normal';
+    src: url('FoundrySans-Normal.eot');
+    src: local('Foundry Sans Normal'), local('FoundrySans-Normal'),
+        url('FoundrySans-Normal.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-Normal.woff2') format('woff2'),
+        url('FoundrySans-Normal.woff') format('woff'),
+        url('FoundrySans-Normal.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foundry Sans Demi';
+    src: url('FoundrySans-DemiItalic.eot');
+    src: local('Foundry Sans Demi Italic'), local('FoundrySans-DemiItalic'),
+        url('FoundrySans-DemiItalic.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-DemiItalic.woff2') format('woff2'),
+        url('FoundrySans-DemiItalic.woff') format('woff'),
+        url('FoundrySans-DemiItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Foundry Sans';
+    src: url('FoundrySans-Bold.eot');
+    src: local('Foundry Sans Bold'), local('FoundrySans-Bold'),
+        url('FoundrySans-Bold.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-Bold.woff2') format('woff2'),
+        url('FoundrySans-Bold.woff') format('woff'),
+        url('FoundrySans-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Foundry Sans';
+    src: url('FoundrySans-MediumItalic.eot');
+    src: local('Foundry Sans Medium Italic'), local('FoundrySans-MediumItalic'),
+        url('FoundrySans-MediumItalic.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-MediumItalic.woff2') format('woff2'),
+        url('FoundrySans-MediumItalic.woff') format('woff'),
+        url('FoundrySans-MediumItalic.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Foundry Sans Normal';
+    src: url('FoundrySans-NormalItalic.eot');
+    src: local('Foundry Sans Normal Italic'), local('FoundrySans-NormalItalic'),
+        url('FoundrySans-NormalItalic.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-NormalItalic.woff2') format('woff2'),
+        url('FoundrySans-NormalItalic.woff') format('woff'),
+        url('FoundrySans-NormalItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Foundry Sans';
+    src: url('FoundrySans-ExtraBold.eot');
+    src: local('Foundry Sans ExtraBold'), local('FoundrySans-ExtraBold'),
+        url('FoundrySans-ExtraBold.eot?#iefix') format('embedded-opentype'),
+        url('FoundrySans-ExtraBold.woff2') format('woff2'),
+        url('FoundrySans-ExtraBold.woff') format('woff'),
+        url('FoundrySans-ExtraBold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+}
+
