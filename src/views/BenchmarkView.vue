@@ -888,8 +888,12 @@ onUnmounted(() => {
   display: flex;
   align-items: center;
   gap: 4px;
-  width: 94px;
+  /* Fits the widest logo (Guerbet, 84px) */
+  width: 84px;
   height: 30px;
+  /* A fine divider between the logo and the authors */
+  padding-right: 10px;
+  border-right: 1px solid #dcdce6;
 }
 
 /* Logos keep their earlier size; only the space they sit in is wider */
@@ -1104,6 +1108,8 @@ onUnmounted(() => {
 
   .member-logo {
     height: 26px;
+    padding-right: 0;
+    border-right: none;
   }
 
   /* No room beside the name on phones: the logo goes above it */
