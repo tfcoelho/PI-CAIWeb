@@ -116,8 +116,20 @@
                     ><template v-else>{{ row.name }}</template
                     ><sup v-if="row.marker" class="row-marker">{{
                       row.marker
-                    }}</sup></span
-                  >
+                    }}</sup
+                    ><!-- With no author line, the file icon follows the name -->
+                    <component
+                      :is="sourceLink(row.source).is"
+                      v-if="row.source && !row.authors"
+                      v-bind="sourceLink(row.source).attrs"
+                      class="source-icon title-source"
+                    >
+                      <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path
+                          d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"
+                        />
+                        <path d="M14 3v5h5M9 13h6M9 17h6" /></svg></component
+                  ></span>
                   <!-- A small file icon after the authors opens their write-up
                      (paper or PDF) -->
                   <span v-if="row.authors" class="row-authors">
