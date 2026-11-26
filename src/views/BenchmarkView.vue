@@ -891,8 +891,9 @@ onUnmounted(() => {
   /* Fits the widest logo (Guerbet, 84px) */
   width: 84px;
   height: 30px;
-  /* A fine divider between the logo and the authors */
-  padding-right: 10px;
+  /* A fine divider between the logo and the authors, about as far from
+     the logos as from the names */
+  padding-right: 4px;
   border-right: 1px solid #dcdce6;
 }
 
