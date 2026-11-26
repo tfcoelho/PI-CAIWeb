@@ -57,6 +57,12 @@ export const columns = [
 // column `note`s (e.g. "* …").
 export const tableNotes = ["AUROC with 95% CI."];
 
+// Shown at the bottom of every tab. Merges the colleagues' request (costs,
+// equity, health effects aren't covered) with the fifth limitation in the
+// Discussion of the PI-CAI paper (Saha et al., Lancet Oncol 2024).
+export const disclaimer =
+  "This benchmark compares diagnostic performance only. It does not account for costs, health equity, or the effects on patients' health of using these AI systems in practice. In addition, the PI-CAI study did not record patient ethnicity, and 93.4% of its MRI examinations were acquired on scanners from one manufacturer, so whether these results are reproducible in other settings is not known.";
+
 // The 62 radiologists of the PI-CAI reader study (Saha et al., Lancet Oncol
 // 2024), shown as a reference row in more than one box.
 const radiologists = {

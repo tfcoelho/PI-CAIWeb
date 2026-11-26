@@ -345,6 +345,11 @@
           >Saha et al., Lancet Oncology 2024</router-link
         >.
       </p>
+
+      <!-- Shown under every tab -->
+      <p v-if="disclaimer" class="page-sources page-disclaimer">
+        <strong>Disclaimer.</strong> {{ disclaimer }}
+      </p>
     </div>
   </div>
 </template>
@@ -371,6 +376,8 @@ const router = useRouter();
 const preview = !!route.meta.preview;
 // It also has its own copy of the data (benchmark-test.js) to edit first.
 const { benchmark, columns, tableNotes } = preview ? testData : publicData;
+// A closing disclaimer, so far only on the test page.
+const disclaimer = preview ? testData.disclaimer : null;
 const allTabs = [
   { key: "academic", label: "Academic" },
   { key: "certified", label: "Certified", previewOnly: true },
@@ -1000,6 +1007,10 @@ onUnmounted(() => {
   line-height: 1.6;
   color: #777;
   text-align: left;
+}
+
+.page-disclaimer {
+  margin-top: 12px;
 }
 
 .page-sources a {
