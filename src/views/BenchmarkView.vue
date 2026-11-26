@@ -436,7 +436,8 @@ function sourceLink(source) {
       href: source.href,
       target: "_blank",
       rel: "noopener",
-      title: label,
+      // `tooltip`, if given, is shown on hover instead of the label
+      title: source.tooltip || label,
       "aria-label": label,
     },
   };
