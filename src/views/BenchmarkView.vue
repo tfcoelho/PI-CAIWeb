@@ -1,5 +1,5 @@
 <template>
-  <div :class="['benchmark-page', { 'is-preview': preview }]">
+  <div class="benchmark-page">
     <div class="benchmark-header">
       <div class="logo-and-title">
         <router-link
@@ -358,26 +358,13 @@
       </section>
 
       <!-- Sources describe the research results only -->
-      <p v-if="activeTab === 'academic' && preview" class="page-sources">
+      <p v-if="activeTab === 'academic'" class="page-sources">
         <strong>Data sources.</strong> Algorithm results are from the
         <a
           href="https://pi-cai.grand-challenge.org/"
           target="_blank"
           rel="noopener"
           >PI-CAI leaderboards on grand-challenge.org</a
-        >.
-      </p>
-      <p v-else-if="activeTab === 'academic'" class="page-sources">
-        <strong>Data sources.</strong> Algorithm results are from the
-        <a
-          href="https://pi-cai.grand-challenge.org/"
-          target="_blank"
-          rel="noopener"
-          >PI-CAI leaderboards on Grand Challenge</a
-        >. Results for the PI-CAI AI system and the reader study are from
-        <router-link
-          :to="{ name: 'paper', params: { id: 'saha2024_lancet_oncology' } }"
-          >Saha et al., Lancet Oncology 2024</router-link
         >.
       </p>
 
@@ -406,17 +393,17 @@ import * as testData from "@/assets/data/benchmark-test";
 const route = useRoute();
 const router = useRouter();
 
-// The unlisted /benchmark-test-page (route meta `preview`) shows every tab,
-// including results not yet public (Certified). /benchmark shows Academic.
+// The unlisted /benchmark-test-page (route meta `preview`) has its own copy
+// of the data (benchmark-test.js) to edit and review before it goes public.
+// A tab marked `previewOnly` shows only there.
 const preview = !!route.meta.preview;
-// It also has its own copy of the data (benchmark-test.js) to edit first.
-const { benchmark, columns, tableNotes } = preview ? testData : publicData;
-// A closing disclaimer, so far only on the test page.
-const disclaimer = preview ? testData.disclaimer : null;
+const { benchmark, columns, tableNotes, disclaimer } = preview
+  ? testData
+  : publicData;
 const allTabs = [
   // Shown as "Research": companies can submit research algorithms too
   { key: "academic", label: "Research" },
-  { key: "certified", label: "Certified", previewOnly: true },
+  { key: "certified", label: "Certified" },
 ];
 const tabs = allTabs.filter((t) => preview || !t.previewOnly);
 
@@ -570,7 +557,7 @@ onUnmounted(() => {
   min-height: 100vh;
   padding-top: 60px;
   padding-bottom: 100px;
-  max-width: 920px;
+  max-width: 1000px;
   margin: 0 auto;
   font-family: inherit;
   background-color: #ebebf5;
@@ -736,19 +723,7 @@ onUnmounted(() => {
 
 /* ---- Results table: name column + one column per analysis ---- */
 .results {
-  --score-col: 128px;
-}
-
-/* Test page: a wider page and slightly narrower score columns, so names,
-   affiliations and dates wrap onto fewer lines (wide screens only) */
-@media (min-width: 751px) {
-  .benchmark-page.is-preview {
-    max-width: 1000px;
-  }
-
-  .is-preview .results {
-    --score-col: 116px;
-  }
+  --score-col: 116px;
 }
 
 .results-head,
@@ -1117,7 +1092,7 @@ onUnmounted(() => {
   }
 
   .results {
-    --score-col: 128px;
+    --score-col: 116px;
   }
 
   .results-head,

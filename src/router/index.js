@@ -32,7 +32,8 @@ const routes = [
       import(/* webpackChunkName: "benchmark" */ "../views/BenchmarkView.vue"),
   },
   {
-    // Unlisted working version of /benchmark, including the Certified tab.
+    // Unlisted working version of /benchmark, to review changes before they
+    // go public (it reads benchmark-test.js).
     path: "/benchmark-test-page",
     name: "benchmark-test",
     component: () =>
