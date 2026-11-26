@@ -80,8 +80,10 @@ export const benchmark = {
       source: {
         href: "https://doi.org/10.1016/S1470-2045(24)00220-1",
         label: "Paper in Lancet Oncology",
+        // The paper's Background (abstract), then one line on the testing data.
         tooltip:
-          "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1000 patients (33% csPCa prevalence), and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
+          "Artificial intelligence (AI) systems can potentially aid the diagnostic pathway of prostate cancer by alleviating the increasing workload, preventing overdiagnosis, and reducing the dependence on experienced radiologists. We aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale.\n\n" +
+          "Testing data: 1000 patients from four centres in the Netherlands and Norway, 332 (33%) with clinically significant prostate cancer.",
       },
       decimals: 2,
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
