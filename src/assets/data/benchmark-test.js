@@ -88,7 +88,7 @@ export const benchmark = {
       // colleagues (meeting of 26 Nov 2026).
       description: [
         "The PI-CAI study aimed to investigate the performance of AI systems at detecting Gleason grade group 2 or greater prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale.",
-        "The AI systems were tested on 1000 patients from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway, 33% of whom had Gleason grade group 2 or greater prostate cancer. Of these, 400 patients (also 33% with Gleason grade group 2 or greater prostate cancer) were read by 62 international radiologists using PI-RADS v2.1.",
+        "The AI systems were tested on 1000 patients (33% prevalence) from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway. Of these, 400 patients (33% prevalence) were read by 62 international radiologists using PI-RADS v2.1.",
       ],
       paperId: "saha2024_lancet_oncology",
       // File icon after the title, straight to the paper in Lancet Oncology.
@@ -354,7 +354,7 @@ export const benchmark = {
       // the testing data (same patients and prevalence as there).
       description: [
         "Certified AI products from vendors, evaluated under the same masked, standardised protocol as the PI-CAI study.",
-        "They were tested on the same 1000 patients as all other submissions, 33% of whom had Gleason grade group 2 or greater prostate cancer. Of these, 400 patients (also 33% with Gleason grade group 2 or greater prostate cancer) were read by 62 international radiologists using PI-RADS v2.1.",
+        "They were tested on the same 1000 patients as all other submissions, 33% of whom had Gleason grade group 2 or greater prostate cancer. Of these, 400 patients (33% prevalence) were read by 62 international radiologists using PI-RADS v2.1.",
       ],
       decimals: 2,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
