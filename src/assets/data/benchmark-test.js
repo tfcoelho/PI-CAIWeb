@@ -230,7 +230,7 @@ export const benchmark = {
           marker: "*",
           authors: "J. S. Bosma, L. Builtjes, et al.",
           source: { paper: "bosma2025_scale" },
-          detail: "SCALE study, Comput Biol Med 2025",
+          detail: "SCALE study, Comput Biol Med · December 2025",
           testing: { auc: 0.924, ci: [0.906, 0.94] },
           reader: { auc: 0.8928, ci: [0.8583, 0.9239] },
         },
@@ -245,7 +245,7 @@ export const benchmark = {
           marker: "*",
           authors: "A. Saha, J. S. Bosma, et al.",
           source: { paper: "saha2025_picai2_sd" },
-          detail: "SCARLET-1 study, Radiology 2026",
+          detail: "SCARLET-1 study, Radiology · October 2026",
           testing: { auc: 0.9189, ci: [0.9, 0.9359] },
           reader: { auc: 0.9, ci: [0.8662, 0.9299] },
         },
@@ -258,8 +258,8 @@ export const benchmark = {
           marker: "*",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/prozone.pdf" },
-          // No paper yet: the month it was submitted instead.
-          detail: "Submitted November 2026",
+          // No paper yet: the month it was submitted instead (25 Nov 2026).
+          detail: "November 2026",
           testing: { auc: 0.905, ci: [0.886, 0.924] },
           reader: { auc: 0.8772, ci: [0.8392, 0.9112] },
         },
@@ -269,7 +269,7 @@ export const benchmark = {
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           // No paper: the month it was submitted (November 2025, per Tiago).
-          detail: "Submitted November 2025",
+          detail: "November 2025",
           testing: { auc: 0.905, ci: [0.885, 0.924] },
           reader: { auc: 0.8832, ci: [0.8471, 0.9157] },
         },
@@ -277,9 +277,9 @@ export const benchmark = {
           name: "U-MambaMTL",
           marker: "*",
           authors: "M. S. Larsen, S. F. Abbas, et al.",
-          // MIDL 2025 full paper
+          // MIDL 2025 full paper (conference held in July 2025)
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
-          detail: "MIDL 2025",
+          detail: "MIDL · July 2025",
           testing: { auc: 0.896, ci: [0.875, 0.916] },
           reader: { auc: 0.8655, ci: [0.8246, 0.9031] },
         },
@@ -289,7 +289,9 @@ export const benchmark = {
           // manual annotations)". Its paper: Pooch, et al., "Semi-supervised
           // learning in prostate MRI tumor detection approaches fully
           // supervised performance on external validation", Eur Radiol
-          // 2026;36(6):5011–5021 (PubMed 41606246).
+          // 2026;36(6):5011–5021, June 2026 issue (online January 2026;
+          // PubMed 41606246). Dates shown are the journal issue's month, as on
+          // the Research page (SCALE: December 2025; SCARLET-1: October 2026).
           name: "Fully supervised nnU-Net trained with additional manual annotations",
           marker: "*",
           authors: "E. H. P. Pooch, et al.",
@@ -297,7 +299,7 @@ export const benchmark = {
             href: "https://doi.org/10.1007/s00330-026-12324-x",
             label: "Paper in European Radiology",
           },
-          detail: "Eur Radiol 2026",
+          detail: "Eur Radiol · June 2026",
           testing: { auc: 0.888, ci: [0.866, 0.908] },
           reader: { auc: 0.8621, ci: [0.8205, 0.8995] },
         },
@@ -324,7 +326,7 @@ export const benchmark = {
           logo: "/img/logos/siemens-healthineers.svg",
           href: "https://www.siemens-healthineers.com/fr-lu/infrastructure-it/artificial-intelligence/ai-campaign/mr-prostate",
           source: { paper: "twilt2026_siemens_benchmark" },
-          detail: "Benchmarking report, November 2026",
+          detail: "Benchmarking report · November 2026",
           marker: "*",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
