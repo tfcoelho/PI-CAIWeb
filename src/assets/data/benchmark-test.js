@@ -176,10 +176,10 @@ export const benchmark = {
               source: { href: "/docs/benchmark/pimed-stanford.pdf" },
               name: "C. X. Li, S. Vesal, S. Saunders, et al.",
               institution: "Stanford University",
-              // Stanford Medicine logo (English Wikipedia). Wide, so it gets
-              // the full logo slot.
+              // Stanford Medicine logo (English Wikipedia), a little wider than
+              // the usual 72px so it ends level with the Guerbet logo.
               logo: "/img/logos/stanford-medicine.svg",
-              logoWidth: 94,
+              logoWidth: 76,
               city: "Stanford",
               country: "United States",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
