@@ -106,8 +106,7 @@ export default {
   padding-top: 60px;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif;
+  font-family: inherit;
 }
 
 .people-header {

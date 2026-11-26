@@ -125,7 +125,7 @@ const SHOW_SYMPOSIUM_CARD = false;
 
 .symposium-badge {
   display: inline-block;
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   letter-spacing: 1.2px;
   font-size: 11px;
   font-weight: 700;
@@ -135,7 +135,7 @@ const SHOW_SYMPOSIUM_CARD = false;
 
 .symposium-title {
   margin: 10px 0 8px 0;
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   font-size: 21px;
   line-height: 1.2;
   font-weight: 700;
@@ -143,7 +143,7 @@ const SHOW_SYMPOSIUM_CARD = false;
 
 .symposium-meta {
   margin: 0;
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   font-size: 14px;
   letter-spacing: 0.6px;
   color: rgba(255, 255, 255, 0.9);
@@ -152,7 +152,7 @@ const SHOW_SYMPOSIUM_CARD = false;
 .symposium-cta {
   display: inline-block;
   margin-top: 14px;
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   font-size: 14px;
   font-weight: 700;
   color: #ffffff;
@@ -171,7 +171,7 @@ const SHOW_SYMPOSIUM_CARD = false;
   z-index: 1;
   padding: 12px 20px;
   font-weight: 200;
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   letter-spacing: 2px;
   overflow: hidden;
   cursor: pointer;
@@ -260,7 +260,7 @@ const SHOW_SYMPOSIUM_CARD = false;
 }
 
 .contact-label {
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   letter-spacing: 1.2px;
   font-size: 10px;
   font-weight: 700;
@@ -269,7 +269,7 @@ const SHOW_SYMPOSIUM_CARD = false;
 }
 
 .contact-email {
-  font-family: "Nunito-Sans", sans-serif;
+  font-family: inherit;
   font-size: 13px;
   letter-spacing: 0.6px;
   color: rgba(255, 255, 255, 0.5);

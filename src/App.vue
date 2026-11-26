@@ -65,8 +65,11 @@ body {
   background-color: #111820; /* Dark background for the app */
 }
 
+/* The site's font: Foundry Sans (Light, Medium and Demi); every page
+   inherits it from here */
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: "Foundry Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;

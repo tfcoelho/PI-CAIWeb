@@ -535,8 +535,7 @@ onUnmounted(() => {
   padding: 110px 28px 80px;
   color: var(--research-text);
   text-align: left;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif;
+  font-family: inherit;
   background-color: var(--research-bg);
 }
 

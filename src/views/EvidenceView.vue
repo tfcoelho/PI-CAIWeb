@@ -174,8 +174,7 @@ export default {
 }
 
 .markdown-body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif;
+  font-family: inherit;
   font-size: 16px;
   line-height: 1.6;
 }

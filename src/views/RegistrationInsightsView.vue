@@ -341,19 +341,6 @@ const filteredSubmissions = computed(() => {
 </script>
 
 <style scoped>
-@font-face {
-  font-family: "Nunito Sans Local";
-  src: url("@/assets/fonts/nunito-sans/NunitoSans-Regular.ttf")
-    format("truetype");
-  font-weight: 400;
-}
-
-@font-face {
-  font-family: "Nunito Sans Local";
-  src: url("@/assets/fonts/nunito-sans/NunitoSans-Bold.ttf") format("truetype");
-  font-weight: 700;
-}
-
 .insights-dashboard {
   position: relative;
   min-height: 100vh;
@@ -362,7 +349,7 @@ const filteredSubmissions = computed(() => {
     linear-gradient(140deg, #111820 0%, #1d2430 42%, #151b24 100%);
   color: #f3f5f9;
   overflow: hidden;
-  font-family: "Nunito Sans Local", "Segoe UI", sans-serif;
+  font-family: inherit;
 }
 
 .dash-content {

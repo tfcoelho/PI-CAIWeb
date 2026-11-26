@@ -196,8 +196,7 @@ export default {
   padding: 0;
   max-width: 1200px;
   margin: 0 auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
-    sans-serif;
+  font-family: inherit;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
