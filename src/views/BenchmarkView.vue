@@ -61,8 +61,13 @@
               </svg>
             </component>
           </h2>
-          <p v-if="block.description" class="card-description">
-            {{ block.description }}
+          <!-- One paragraph, or several given as a list -->
+          <p
+            v-for="(paragraph, d) in [].concat(block.description || [])"
+            :key="`d${d}`"
+            class="card-description"
+          >
+            {{ paragraph }}
           </p>
         </header>
 
@@ -453,8 +458,7 @@ function sourceLink(source) {
       href: source.href,
       target: "_blank",
       rel: "noopener",
-      // `tooltip`, if given, is shown on hover instead of the label
-      title: source.tooltip || label,
+      title: label,
       "aria-label": label,
     },
   };
@@ -691,6 +695,10 @@ onUnmounted(() => {
   line-height: 1.6;
   color: #444;
   margin: 0;
+}
+
+.card-description + .card-description {
+  margin-top: 8px;
 }
 
 /* ---- Results table: name column + one column per analysis ---- */

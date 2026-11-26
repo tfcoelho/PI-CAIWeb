@@ -27,8 +27,8 @@
 //   their write-up: `{ paper: "<id>" }` for a paper on our Research page, or
 //   `{ href: "/docs/benchmark/<file>.pdf" }` for a method description kept in
 //   public/docs/benchmark/.
-//   Add `label` to name the link (shown on hover, unless `tooltip` gives
-//   other hover text). On a box, `source` puts the icon after its title.
+//   Add `label` to name the link (shown on hover). On a box, `source` puts
+//   the icon after its title.
 // - `links` (optional) lists further links, shown under the name, e.g.
 //   `{ label: "Model", href: "<url>" }` for its Grand Challenge algorithm page
 //   (or `{ label: "…", paper: "<id>" }` for a paper on our Research page).
@@ -78,20 +78,20 @@ export const benchmark = {
     {
       id: "pi-cai-study",
       title: "The PI-CAI Study",
+      // Two paragraphs: the paper's Background (abstract), then the testing
+      // data. Prevalence from the paper's Table: 332 of the 1000 testing
+      // cases have clinically significant cancer (91 + 79 + 84 + 78 across the
+      // 4 centres); 133 of the 400 reader-study cases do (Results). Setting as
+      // worded by the colleagues (meeting of 26 Nov 2026).
+      description: [
+        "Artificial intelligence (AI) systems can potentially aid the diagnostic pathway of prostate cancer by alleviating the increasing workload, preventing overdiagnosis, and reducing the dependence on experienced radiologists. We aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale.",
+        "Testing data: 1000 patients (33% csPCa prevalence) from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway. 400 of these patients (33% csPCa prevalence) were read by 62 international radiologists using PI-RADS v2.1.",
+      ],
       paperId: "saha2024_lancet_oncology",
       // File icon after the title, straight to the paper in Lancet Oncology.
-      // Hovering it shows the study's description (no longer in the box).
-      // Prevalence from the paper's Table: 332 of the 1000 testing cases have
-      // clinically significant cancer (91 + 79 + 84 + 78 across the 4 centres);
-      // 133 of the 400 reader-study cases do (Results). Setting as worded by
-      // the colleagues (meeting of 26 Nov 2026).
       source: {
         href: "https://doi.org/10.1016/S1470-2045(24)00220-1",
         label: "Paper in Lancet Oncology",
-        // The paper's Background (abstract), then one line on the testing data.
-        tooltip:
-          "Artificial intelligence (AI) systems can potentially aid the diagnostic pathway of prostate cancer by alleviating the increasing workload, preventing overdiagnosis, and reducing the dependence on experienced radiologists. We aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale.\n\n" +
-          "Testing data: 1000 patients (33% csPCa prevalence) from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway. 400 of these patients (33% csPCa prevalence) were read by 62 international radiologists using PI-RADS v2.1.",
       },
       decimals: 2,
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
