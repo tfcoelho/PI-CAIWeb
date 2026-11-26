@@ -1,5 +1,10 @@
 <template>
-  <div :class="['benchmark-page', { 'foundry-sans': preview }]">
+  <div
+    :class="[
+      'benchmark-page',
+      { 'foundry-sans': preview, 'is-preview': preview },
+    ]"
+  >
     <div class="benchmark-header">
       <div class="logo-and-title">
         <router-link
@@ -740,6 +745,18 @@ onUnmounted(() => {
 /* ---- Results table: name column + one column per analysis ---- */
 .results {
   --score-col: 128px;
+}
+
+/* Test page: a wider page and slightly narrower score columns, so names,
+   affiliations and dates wrap onto fewer lines (wide screens only) */
+@media (min-width: 751px) {
+  .benchmark-page.is-preview {
+    max-width: 1000px;
+  }
+
+  .is-preview .results {
+    --score-col: 116px;
+  }
 }
 
 .results-head,
