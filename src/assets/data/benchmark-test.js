@@ -75,6 +75,8 @@ export const benchmark = {
       paperId: "saha2024_lancet_oncology",
       // File icon after the title, straight to the paper in Lancet Oncology.
       // Hovering it shows the study's description (no longer in the box).
+      // Prevalence from the paper's Table: 332 of the 1000 testing cases have
+      // clinically significant cancer (91 + 79 + 84 + 78 across the 4 centres).
       source: {
         href: "https://doi.org/10.1016/S1470-2045(24)00220-1",
         label: "Paper in Lancet Oncology",
