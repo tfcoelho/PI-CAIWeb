@@ -95,12 +95,27 @@
           >
             <div class="result-row" role="row">
               <span
-                :class="['cell-name', { 'with-logo': row.logo }]"
+                :class="[
+                  'cell-name',
+                  {
+                    'with-logo': row.logo,
+                    'with-institution': row.logo && row.institution,
+                  },
+                ]"
                 role="cell"
               >
-                <!-- The developer's logo, left of the system's name -->
+                <!-- A research group's institution logo, in the same slot (and
+                     with the same divider) as the ensembled algorithms' -->
+                <span v-if="row.logo && row.institution" class="member-logo">
+                  <img
+                    :src="row.logo"
+                    :alt="row.institution"
+                    :style="row.logoWidth && { maxWidth: `${row.logoWidth}px` }"
+                  />
+                </span>
+                <!-- A company's logo, left of the system's name -->
                 <img
-                  v-if="row.logo"
+                  v-else-if="row.logo"
                   :src="row.logo"
                   :alt="row.company"
                   class="row-logo"
@@ -157,6 +172,12 @@
                         <path d="M14 3v5h5M9 13h6M9 17h6" />
                       </svg>
                     </component>
+                  </span>
+                  <!-- Institution and place, as for the ensembled algorithms
+                       (country only on phones) -->
+                  <span v-if="row.institution" class="member-affiliation">
+                    <span class="authors-full">{{ affiliation(row) }}</span>
+                    <span class="authors-short">{{ row.country }}</span>
                   </span>
                   <span v-if="row.detail" class="row-detail">
                     {{ row.detail }}
@@ -670,6 +691,10 @@ onUnmounted(() => {
   flex-direction: row;
   align-items: center;
   gap: 16px;
+}
+
+.cell-name.with-institution {
+  gap: 12px;
 }
 
 .row-logo {
