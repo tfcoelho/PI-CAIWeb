@@ -93,7 +93,7 @@
             class="row-group"
             role="rowgroup"
           >
-            <div class="result-row" role="row">
+            <div :class="['result-row', { 'logo-row': row.logo }]" role="row">
               <span
                 :class="[
                   'cell-name',
@@ -227,7 +227,11 @@
               <div
                 v-for="(member, i) in row.members"
                 :key="i"
-                class="result-row member-row"
+                :class="[
+                  'result-row',
+                  'member-row',
+                  { 'logo-row': member.logo },
+                ]"
                 role="row"
               >
                 <span
@@ -786,6 +790,12 @@ onUnmounted(() => {
   padding: 14px 0;
 }
 
+/* Rows with a logo centre it beside the text, so the scores sit in the
+   middle of the row too (rather than on the logo's baseline) */
+.result-row.logo-row {
+  align-items: center;
+}
+
 .row-group + .row-group {
   border-top: 1px solid #eee;
 }
@@ -1123,6 +1133,11 @@ onUnmounted(() => {
 
   /* Logo above the authors, as there is no room beside them */
   .member-row .cell-name.has-logo {
+    align-items: baseline;
+  }
+
+  /* …and the scores line up with the logo at the top of the row */
+  .result-row.logo-row {
     align-items: baseline;
   }
 
