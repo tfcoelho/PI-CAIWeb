@@ -208,7 +208,9 @@ export const benchmark = {
     },
     {
       id: "post-study",
-      title: "Ongoing Submissions",
+      // "Recent": every entry is from the last two years (Nov 2026); revisit
+      // the name once older entries accumulate.
+      title: "Recent Submissions",
       decimals: 2,
       // `*` on every row: each developer chose their own training data.
       footnotes: [
