@@ -259,7 +259,7 @@ export const benchmark = {
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/prozone.pdf" },
           // No paper yet: the month it was submitted instead (25 Nov 2026).
-          detail: "Grand Challenge submission · November 2026",
+          detail: "Benchmark submission · November 2026",
           testing: { auc: 0.905, ci: [0.886, 0.924] },
           reader: { auc: 0.8772, ci: [0.8392, 0.9112] },
         },
@@ -269,7 +269,7 @@ export const benchmark = {
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           // No paper: the month it was submitted (November 2025, per Tiago).
-          detail: "Grand Challenge submission · November 2025",
+          detail: "Benchmark submission · November 2025",
           testing: { auc: 0.905, ci: [0.885, 0.924] },
           reader: { auc: 0.8832, ci: [0.8471, 0.9157] },
         },
