@@ -268,6 +268,8 @@ export const benchmark = {
           marker: "*",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
+          // No paper: the month it was submitted (November 2025, per Tiago).
+          detail: "Submitted November 2025",
           testing: { auc: 0.905, ci: [0.885, 0.924] },
           reader: { auc: 0.8832, ci: [0.8471, 0.9157] },
         },
