@@ -143,8 +143,9 @@ export const benchmark = {
               name: "N. Debs, A. Routier, et al.",
               institution: "Guerbet Research",
               logo: "/img/logos/guerbet.png",
-              // A bit larger than the usual 72px: it's a thin wordmark.
-              logoWidth: 84,
+              // Cropped to the wordmark (the original file had wide empty
+              // margins), so the standard 72px shows it a touch larger than
+              // before and flush left like the others.
               city: "Villepinte",
               country: "France",
               testing: { auc: 0.934, ci: [0.918, 0.95] },
