@@ -348,8 +348,12 @@ export const benchmark = {
     {
       id: "certified",
       title: "Certified AI Products",
-      description:
-        "Certified AI products from vendors evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1000 patients as all other submissions.",
+      // Two paragraphs, like The PI-CAI Study's: what the products are, then
+      // the testing data (same patients and prevalence as there).
+      description: [
+        "Certified AI products from vendors, evaluated under the same masked, standardised protocol as the PI-CAI study.",
+        "They were tested on the same 1000 patients as all other submissions, 33% of whom had Gleason grade group 2 or greater prostate cancer. Of these, 400 patients (also 33% with Gleason grade group 2 or greater prostate cancer) were read by 62 international radiologists using PI-RADS v2.1.",
+      ],
       decimals: 2,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
       // the full hidden testing cohort and on the reader-study subset.
