@@ -115,7 +115,7 @@
                   <img
                     :src="row.logo"
                     :alt="row.institution"
-                    :style="row.logoWidth && { maxWidth: `${row.logoWidth}px` }"
+                    :style="logoStyle(row)"
                   />
                 </span>
                 <!-- A company's logo, left of the system's name -->
@@ -255,11 +255,7 @@
                       <img
                         :src="member.logo"
                         :alt="member.logoText ? '' : member.institution"
-                        :style="
-                          member.logoWidth && {
-                            maxWidth: `${member.logoWidth}px`,
-                          }
-                        "
+                        :style="logoStyle(member)"
                       />
                       <span
                         v-if="member.logoText"
@@ -497,6 +493,15 @@ function sourceLink(source) {
 
 // Keeps "et al." on one line when author lists wrap.
 // "Institution · City, Country", leaving out any part not given.
+// Per-logo size overrides: `logoWidth` (default max 72px) and `logoHeight`
+// (default the 30px logo slot) for logos that read too small or too large.
+function logoStyle({ logoWidth, logoHeight }) {
+  return {
+    ...(logoWidth && { maxWidth: `${logoWidth}px` }),
+    ...(logoHeight && { maxHeight: `${logoHeight}px` }),
+  };
+}
+
 function affiliation({ institution, city, country }) {
   const place = [city, country].filter(Boolean).join(", ");
   return [institution, place].filter(Boolean).join(" · ");

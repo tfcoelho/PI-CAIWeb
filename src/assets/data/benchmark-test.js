@@ -237,8 +237,6 @@ export const benchmark = {
           city: "Nijmegen",
           country: "Netherlands",
           logo: "/img/logos/radboudumc.png",
-          // A wide, thin wordmark: shown a little larger, like Guerbet's
-          logoWidth: 84,
           source: { paper: "bosma2025_scale" },
           detail: "SCALE study, Comput Biol Med · December 2025",
           testing: { auc: 0.924, ci: [0.906, 0.94] },
@@ -258,8 +256,6 @@ export const benchmark = {
           city: "Nijmegen",
           country: "Netherlands",
           logo: "/img/logos/radboudumc.png",
-          // A wide, thin wordmark: shown a little larger, like Guerbet's
-          logoWidth: 84,
           source: { paper: "saha2025_picai2_sd" },
           detail: "SCARLET-1 study, Radiology · October 2026",
           testing: { auc: 0.9189, ci: [0.9, 0.9359] },
@@ -277,6 +273,7 @@ export const benchmark = {
           city: "Trondheim",
           country: "Norway",
           logo: "/img/logos/ntnu.png",
+          logoWidth: 70,
           source: { href: "/docs/benchmark/prozone.pdf" },
           // No paper yet: the month it was submitted instead (25 Nov 2026).
           detail: "Benchmark submission · November 2026",
@@ -291,6 +288,7 @@ export const benchmark = {
           city: "Trondheim",
           country: "Norway",
           logo: "/img/logos/ntnu.png",
+          logoWidth: 70,
           source: { href: "/docs/benchmark/umamba-prossl.pdf" },
           // No paper: the month it was submitted (November 2025, per Tiago).
           detail: "Benchmark submission · November 2025",
@@ -305,6 +303,7 @@ export const benchmark = {
           city: "Trondheim",
           country: "Norway",
           logo: "/img/logos/ntnu.png",
+          logoWidth: 70,
           // MIDL 2025 full paper (conference held in July 2025)
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
           detail: "MIDL · July 2025",
@@ -328,6 +327,8 @@ export const benchmark = {
           country: "Netherlands",
           // From the institute's own website (nki.nl); not on Wikimedia
           logo: "/img/logos/netherlands-cancer-institute.svg",
+          // Taller than the 30px slot, as its lettering is small
+          logoHeight: 36,
           source: {
             href: "https://doi.org/10.1007/s00330-026-12324-x",
             label: "Paper in European Radiology",
