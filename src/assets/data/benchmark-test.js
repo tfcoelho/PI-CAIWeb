@@ -164,13 +164,10 @@ export const benchmark = {
               source: { href: "/docs/benchmark/pimed-stanford.pdf" },
               name: "C. X. Li, S. Vesal, S. Saunders, et al.",
               institution: "Stanford University",
-              // Trying the seal + name instead of the wordmark (stanford.svg).
-              logo: "/img/logos/stanford-seal.svg",
-              logoText: {
-                text: "Stanford",
-                color: "#8c1515",
-                font: "Georgia, serif",
-              },
+              // Stanford Medicine logo (English Wikipedia). Wide, so it gets
+              // the full logo slot.
+              logo: "/img/logos/stanford-medicine.svg",
+              logoWidth: 94,
               city: "Stanford",
               country: "United States",
               testing: { auc: 0.9, ci: [0.879, 0.919] },
