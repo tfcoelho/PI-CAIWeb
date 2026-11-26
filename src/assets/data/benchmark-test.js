@@ -66,9 +66,9 @@ export const disclaimer =
 // The 62 radiologists of the PI-CAI reader study (Saha et al., Lancet Oncol
 // 2024), shown as a reference row in more than one box.
 const radiologists = {
-  name: "62 radiologists",
+  name: "62 international radiologists",
   detail:
-    "PI-RADS 2.1 · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
+    "PI-RADS v2.1 · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
   decimals: 2,
   reader: { auc: 0.86, ci: [0.83, 0.89] },
 };
@@ -82,21 +82,23 @@ export const benchmark = {
       // File icon after the title, straight to the paper in Lancet Oncology.
       // Hovering it shows the study's description (no longer in the box).
       // Prevalence from the paper's Table: 332 of the 1000 testing cases have
-      // clinically significant cancer (91 + 79 + 84 + 78 across the 4 centres).
+      // clinically significant cancer (91 + 79 + 84 + 78 across the 4 centres);
+      // 133 of the 400 reader-study cases do (Results). Setting as worded by
+      // the colleagues (meeting of 26 Nov 2026).
       source: {
         href: "https://doi.org/10.1016/S1470-2045(24)00220-1",
         label: "Paper in Lancet Oncology",
         // The paper's Background (abstract), then one line on the testing data.
         tooltip:
           "Artificial intelligence (AI) systems can potentially aid the diagnostic pathway of prostate cancer by alleviating the increasing workload, preventing overdiagnosis, and reducing the dependence on experienced radiologists. We aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale.\n\n" +
-          "Testing data: 1000 patients from four centres in the Netherlands and Norway, 332 (33%) with clinically significant prostate cancer.",
+          "Testing data: 1000 patients (33% csPCa prevalence) from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway. 400 of these patients (33% csPCa prevalence) were read by 62 international radiologists using PI-RADS v2.1.",
       },
       decimals: 2,
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
-      // algorithms were retrained at the coordinating centre on 9,107 cases
+      // algorithms were trained at the coordinating centre on 9,107 cases
       // (7,607 sequestered + 1,500 public) before being ensembled.
       footnotes: [
-        "* All algorithms were retrained on the same PI-CAI training data: 9,107 cases (7,607 private and 1,500 public).",
+        "* All algorithms were trained on the same PI-CAI training data: 9,107 MRI examinations (7,607 private and 1,500 public).",
       ],
       // Numbers from Saha et al., Lancet Oncol 2024 (Results, p 884; Figure):
       // AI system on all 1000 testing cases, and AI system vs the 62
@@ -129,7 +131,7 @@ export const benchmark = {
           // authors' affiliation, from the team's write-up in the same
           // appendix (section S4.4); shown under the authors. Its `logo` (from
           // Wikimedia Commons / Wikipedia) shows before them.
-          membersLabel: "Ensemble members",
+          membersLabel: "Ensembled AI algorithms",
           membersDecimals: 2,
           members: [
             {
@@ -203,11 +205,11 @@ export const benchmark = {
     },
     {
       id: "post-study",
-      title: "Post-Study Submissions",
+      title: "Ongoing Submissions",
       decimals: 2,
       // `*` on every row: each developer chose their own training data.
       footnotes: [
-        "* Training data is chosen by each model's developers, so it differs between submissions and from the PI-CAI study.",
+        "* Training data is chosen by each model's developers, so it may differ between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Testing (Final Ranking), position 3 (PI-CAI-2A:
@@ -224,11 +226,11 @@ export const benchmark = {
       // submissions' supporting documents.
       rows: [
         {
-          name: "PI-CAI-2A",
+          name: "PI-CAI-2A AI system",
           marker: "*",
           authors: "J. S. Bosma, L. Builtjes, et al.",
           source: { paper: "bosma2025_scale" },
-          detail: "SCALE, semi-supervised",
+          detail: "SCALE study, Comput Biol Med 2025",
           testing: { auc: 0.924, ci: [0.906, 0.94] },
           reader: { auc: 0.8928, ci: [0.8583, 0.9239] },
         },
@@ -239,11 +241,11 @@ export const benchmark = {
           // manuscript's 0.92 (95% CI 0.90–0.94) in its primary internal
           // testing cohort. The file icon opens the SCARLET-1 paper on our
           // Research page.
-          name: "PI-CAI-2B",
+          name: "PI-CAI-2B AI system",
           marker: "*",
           authors: "A. Saha, J. S. Bosma, et al.",
           source: { paper: "saha2025_picai2_sd" },
-          detail: "SCARLET-1 study",
+          detail: "SCARLET-1 study, Radiology 2026",
           testing: { auc: 0.9189, ci: [0.9, 0.9359] },
           reader: { auc: 0.9, ci: [0.8662, 0.9299] },
         },
@@ -256,6 +258,8 @@ export const benchmark = {
           marker: "*",
           authors: "S. F. Abbas, M. S. Larsen, et al.",
           source: { href: "/docs/benchmark/prozone.pdf" },
+          // No paper yet: the month it was submitted instead.
+          detail: "Submitted November 2026",
           testing: { auc: 0.905, ci: [0.886, 0.924] },
           reader: { auc: 0.8772, ci: [0.8392, 0.9112] },
         },
@@ -273,17 +277,25 @@ export const benchmark = {
           authors: "M. S. Larsen, S. F. Abbas, et al.",
           // MIDL 2025 full paper
           source: { href: "/docs/benchmark/u-mambamtl.pdf" },
+          detail: "MIDL 2025",
           testing: { auc: 0.896, ci: [0.875, 0.916] },
           reader: { auc: 0.8655, ci: [0.8246, 0.9031] },
         },
         {
           // Open Development Phase - Testing leaderboard, position 4:
           // "E. Pooch et al.: nnUNet fully-supervised (trained with additional
-          // manual annotations)".
-          name: "nnUNet fully-supervised",
+          // manual annotations)". Its paper: Pooch, et al., "Semi-supervised
+          // learning in prostate MRI tumor detection approaches fully
+          // supervised performance on external validation", Eur Radiol
+          // 2026;36(6):5011–5021 (PubMed 41606246).
+          name: "Fully supervised nnU-Net trained with additional manual annotations",
           marker: "*",
-          authors: "E. Pooch, et al.",
-          detail: "Trained with additional manual annotations",
+          authors: "E. H. P. Pooch, et al.",
+          source: {
+            href: "https://doi.org/10.1007/s00330-026-12324-x",
+            label: "Paper in European Radiology",
+          },
+          detail: "Eur Radiol 2026",
           testing: { auc: 0.888, ci: [0.866, 0.908] },
           reader: { auc: 0.8621, ci: [0.8205, 0.8995] },
         },
@@ -294,9 +306,9 @@ export const benchmark = {
   certified: [
     {
       id: "certified",
-      title: "Certified Submissions",
+      title: "Certified AI Products",
       description:
-        "Certified AI systems evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1000 patients as all other submissions.",
+        "Certified AI products from vendors evaluated under the same masked, standardised protocol as the PI-CAI study. Tested on the same 1000 patients as all other submissions.",
       decimals: 2,
       // Scores as reported for the dedicated submission: AUROC (95% CI) on
       // the full hidden testing cohort and on the reader-study subset.
@@ -310,6 +322,7 @@ export const benchmark = {
           logo: "/img/logos/siemens-healthineers.svg",
           href: "https://www.siemens-healthineers.com/fr-lu/infrastructure-it/artificial-intelligence/ai-campaign/mr-prostate",
           source: { paper: "twilt2026_siemens_benchmark" },
+          detail: "Benchmarking report, November 2026",
           marker: "*",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
