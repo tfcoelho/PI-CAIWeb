@@ -331,8 +331,17 @@
         </footer>
       </section>
 
-      <!-- Sources describe the academic results only -->
-      <p v-if="activeTab === 'academic'" class="page-sources">
+      <!-- Sources describe the research results only -->
+      <p v-if="activeTab === 'academic' && preview" class="page-sources">
+        <strong>Data sources.</strong> Algorithm results are from the
+        <a
+          href="https://pi-cai.grand-challenge.org/"
+          target="_blank"
+          rel="noopener"
+          >PI-CAI leaderboards on grand-challenge.org</a
+        >.
+      </p>
+      <p v-else-if="activeTab === 'academic'" class="page-sources">
         <strong>Data sources.</strong> Algorithm results are from the
         <a
           href="https://pi-cai.grand-challenge.org/"
@@ -379,7 +388,8 @@ const { benchmark, columns, tableNotes } = preview ? testData : publicData;
 // A closing disclaimer, so far only on the test page.
 const disclaimer = preview ? testData.disclaimer : null;
 const allTabs = [
-  { key: "academic", label: "Academic" },
+  // Shown as "Research": companies can submit research algorithms too
+  { key: "academic", label: "Research" },
   { key: "certified", label: "Certified", previewOnly: true },
 ];
 const tabs = allTabs.filter((t) => preview || !t.previewOnly);
