@@ -23,3 +23,11 @@ pnpm-debug.log*
 *.sw?
 export_spam.js
 spam_export.csv
+
+# Reference files shared while working on the site (papers, protocols,
+# recordings): kept locally, never committed
+/inputs/
+
+# Local notes and data exports
+/benchmark-changes.md
+spam_export*
