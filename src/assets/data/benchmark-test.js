@@ -78,13 +78,14 @@ export const benchmark = {
     {
       id: "pi-cai-study",
       title: "The PI-CAI Study",
-      // The paper's Background (abstract), followed by a sentence on the
-      // testing data. Prevalence from the paper's Table: 332 of the 1000 testing
-      // cases have clinically significant cancer (91 + 79 + 84 + 78 across the
-      // 4 centres); 133 of the 400 reader-study cases do (Results). Setting as
-      // worded by the colleagues (meeting of 26 Nov 2026).
+      // The aim from the paper's Background (abstract; "We aimed" → "The
+      // PI-CAI study aimed"), then a sentence on the testing data. Prevalence
+      // from the paper's Table: 332 of the 1000 testing cases have clinically
+      // significant cancer (91 + 79 + 84 + 78 across the 4 centres); 133 of
+      // the 400 reader-study cases do (Results). Setting as worded by the
+      // colleagues (meeting of 26 Nov 2026).
       description: [
-        "Artificial intelligence (AI) systems can potentially aid the diagnostic pathway of prostate cancer by alleviating the increasing workload, preventing overdiagnosis, and reducing the dependence on experienced radiologists. We aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale. The AI systems were tested on 1000 patients (33% csPCa prevalence) from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway, and 400 of these patients (33% csPCa prevalence) were also read by 62 international radiologists using PI-RADS v2.1.",
+        "The PI-CAI study aimed to investigate the performance of AI systems at detecting clinically significant prostate cancer on MRI in comparison with radiologists using the Prostate Imaging—Reporting and Data System version 2.1 (PI-RADS 2.1) and the standard of care in multidisciplinary routine practice at scale. The AI systems were tested on 1000 patients (33% csPCa prevalence) from diagnostic settings at four tertiary care centres, three in the Netherlands and one external site in Norway, and 400 of these patients (33% csPCa prevalence) were also read by 62 international radiologists using PI-RADS v2.1.",
       ],
       paperId: "saha2024_lancet_oncology",
       // File icon after the title, straight to the paper in Lancet Oncology.
