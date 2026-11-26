@@ -1,5 +1,5 @@
 <template>
-  <div class="benchmark-page">
+  <div :class="['benchmark-page', { 'foundry-sans': preview }]">
     <div class="benchmark-header">
       <div class="logo-and-title">
         <router-link
@@ -381,6 +381,7 @@ import {
 import { RouterLink, useRoute, useRouter } from "vue-router";
 import * as publicData from "@/assets/data/benchmark";
 import * as testData from "@/assets/data/benchmark-test";
+import "@/assets/fonts/foundry-sans/foundry-sans.css";
 
 const route = useRoute();
 const router = useRouter();
@@ -545,6 +546,12 @@ onUnmounted(() => {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif;
   background-color: #ebebf5;
+}
+
+/* Test page: Foundry Sans (Light, Medium and Demi) */
+.benchmark-page.foundry-sans {
+  font-family: "Foundry Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    Helvetica, Arial, sans-serif;
 }
 
 /* ---- Header (shared look with About / Research) ---- */
