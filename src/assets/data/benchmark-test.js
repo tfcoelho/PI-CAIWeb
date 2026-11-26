@@ -294,16 +294,14 @@ export const benchmark = {
       // the full hidden testing cohort and on the reader-study subset.
       rows: [
         {
-          // Scores match the public evaluation report on Zenodo (Twilt, Saha,
-          // et al., 26 Nov 2026), which the file icon after the name opens.
+          // Scores match the public evaluation report (Twilt, Saha, et al.,
+          // Zenodo, 26 Nov 2026); the file icon after the name opens its
+          // entry on our Research page.
           name: "Prostate MR AI VA10A",
           company: "Siemens Healthineers",
           logo: "/img/logos/siemens-healthineers.svg",
           href: "https://www.siemens-healthineers.com/fr-lu/infrastructure-it/artificial-intelligence/ai-campaign/mr-prostate",
-          source: {
-            href: "https://doi.org/10.5281/zenodo.24552810",
-            label: "Evaluation report (Zenodo)",
-          },
+          source: { paper: "twilt2026_siemens_benchmark" },
           marker: "*",
           testing: { auc: 0.887, ci: [0.865, 0.909] },
           reader: { auc: 0.863, ci: [0.824, 0.9] },
