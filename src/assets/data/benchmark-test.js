@@ -62,7 +62,7 @@ export const tableNotes = ["AUROC with 95% CI."];
 const radiologists = {
   name: "62 radiologists",
   detail:
-    "Using PI-RADS · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
+    "PI-RADS 2.1 · median 7 (IQR 5–10) years of experience in reading prostate MRI · 45 centres in 20 countries",
   decimals: 2,
   reader: { auc: 0.86, ci: [0.83, 0.89] },
 };
