@@ -79,7 +79,7 @@ export const benchmark = {
         href: "https://doi.org/10.1016/S1470-2045(24)00220-1",
         label: "Paper in Lancet Oncology",
         tooltip:
-          "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1000 patients, and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
+          "International, paired, non-inferiority, confirmatory study on biparametric MRI. The AI system was evaluated on a sequestered testing cohort of 1000 patients (33% csPCa prevalence), and compared head-to-head with 62 radiologists using PI-RADS on 400 of these patients.",
       },
       decimals: 2,
       // Training data: Saha et al., Lancet Oncol 2024 (Methods) — the five
