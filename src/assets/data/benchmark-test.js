@@ -61,7 +61,7 @@ export const tableNotes = ["AUROC with 95% CI."];
 // equity, health effects aren't covered) with the fifth limitation in the
 // Discussion of the PI-CAI paper (Saha et al., Lancet Oncol 2024).
 export const disclaimer =
-  "This benchmark compares diagnostic performance only. It does not account for costs, health equity, or the effects on patients' health of using these AI systems in practice. In addition, the PI-CAI study did not record patient ethnicity, and 93.4% of its MRI examinations were acquired on scanners from one manufacturer, so whether these results are reproducible in other settings is not known.";
+  "This benchmark compares diagnostic performance only. It does not account for costs, health equity, or patient outcomes from using these AI systems in practice. The PI-CAI study did not record patient ethnicity, and 93.4% of its MRI examinations were acquired on scanners from one manufacturer. Whether these results are reproducible in other settings is not known.";
 
 // The 62 radiologists of the PI-CAI reader study (Saha et al., Lancet Oncol
 // 2024), shown as a reference row in more than one box.
@@ -110,7 +110,9 @@ export const benchmark = {
         {
           name: "PI-CAI-1 AI system",
           marker: "*",
-          detail: "Ensemble of the five top-ranked algorithms",
+          // Paper: Lancet Oncol 2024;25(7), the July 2024 issue
+          detail:
+            "Ensemble of the five top-ranked algorithms, Lancet Oncol · July 2024",
           testing: { auc: 0.93, ci: [0.91, 0.94] },
           reader: { auc: 0.91, ci: [0.87, 0.94] },
           // The five algorithms that make up the ensemble, in final ranking
