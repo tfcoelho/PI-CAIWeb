@@ -359,7 +359,7 @@
 
       <!-- Sources describe the research results only -->
       <p v-if="activeTab === 'academic'" class="page-sources">
-        <strong>Data sources.</strong> Algorithm results are from the
+        <strong>Data sources.</strong> Algorithm results were taken from the
         <a
           href="https://pi-cai.grand-challenge.org/"
           target="_blank"

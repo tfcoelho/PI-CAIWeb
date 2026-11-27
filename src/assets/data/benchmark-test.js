@@ -61,7 +61,7 @@ export const tableNotes = ["AUROC with 95% CI."];
 // equity, health effects aren't covered) with the fifth limitation in the
 // Discussion of the PI-CAI paper (Saha et al., Lancet Oncol 2024).
 export const disclaimer =
-  "This benchmark compares diagnostic performance only. It does not account for costs, health equity, or patient outcomes from using these AI systems in practice. The PI-CAI study did not record patient ethnicity, and 93.4% of its MRI examinations were acquired on scanners from one manufacturer. Whether these results are reproducible in other settings is not known.";
+  "This benchmark compared diagnostic performance only. It did not account for costs, health equity, or patient outcomes from using these AI systems in practice. The PI-CAI study did not record patient ethnicity, and 93.4% of its MRI examinations were acquired on scanners from one manufacturer. Whether these results are reproducible in other settings is not known.";
 
 // The 62 radiologists of the PI-CAI reader study (Saha et al., Lancet Oncol
 // 2024), shown as a reference row in more than one box.
@@ -217,7 +217,7 @@ export const benchmark = {
       decimals: 2,
       // `*` on every row: each developer chose their own training data.
       footnotes: [
-        "* Training data is chosen by each model's developers, so it may differ between submissions and from the PI-CAI study.",
+        "* Training data was chosen by each model's developers, so it may have differed between submissions and from the PI-CAI study.",
       ],
       // Sources (Grand Challenge leaderboards):
       // - Closed Testing Phase - Testing (Final Ranking), position 3 (PI-CAI-2A:
@@ -379,7 +379,7 @@ export const benchmark = {
         },
         radiologists,
       ],
-      footnotes: ["* Training data is chosen by the model's developers."],
+      footnotes: ["* Training data was chosen by the model's developers."],
     },
   ],
 };
